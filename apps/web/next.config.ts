@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   // Image transformation needs a Cloudflare Images binding — deferred to v2.
@@ -9,7 +12,7 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
 
 // Makes getCloudflareContext() (bindings, .dev.vars) work in `next dev`.
 initOpenNextCloudflareForDev();

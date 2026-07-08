@@ -1,0 +1,36 @@
+{
+  "common": {
+    "nav": {
+      "home": "Início",
+      "course": "Curso",
+      "mentorship": "Mentoria",
+      "consulting": "Consultoria",
+      "about": "Sobre",
+      "contact": "Contato",
+      "menuOpen": "Abrir menu",
+      "menuClose": "Fechar menu"
+    },
+    "cta": {
+      "whatsapp": "Falar no WhatsApp",
+      "whatsappMessage": "Olá! Vim pelo site da TechTelligence e quero saber mais."
+    },
+    "footer": {
+      "description": "Construímos soluções de Dados e IA para empresas — e formamos pessoas para chegar lá.",
+      "products": "Produtos",
+      "company": "Empresa",
+      "privacy": "Política de Privacidade",
+      "rights": "Todos os direitos reservados."
+    },
+    "localeSwitcher": {
+      "label": "Idioma"
+    },
+    "whatsappFloat": {
+      "label": "Conversar no WhatsApp"
+    },
+    "notFound": {
+      "title": "Página não encontrada",
+      "description": "A página que você procura não existe ou foi movida.",
+      "back": "Voltar para o início"
+    }
+  }
+}

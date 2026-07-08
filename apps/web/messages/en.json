@@ -1,0 +1,36 @@
+{
+  "common": {
+    "nav": {
+      "home": "Home",
+      "course": "Course",
+      "mentorship": "Mentorship",
+      "consulting": "Consulting",
+      "about": "About",
+      "contact": "Contact",
+      "menuOpen": "Open menu",
+      "menuClose": "Close menu"
+    },
+    "cta": {
+      "whatsapp": "Chat on WhatsApp",
+      "whatsappMessage": "Hi! I found TechTelligence's website and I'd like to know more."
+    },
+    "footer": {
+      "description": "We build Data & AI solutions for companies — and we train people to get there.",
+      "products": "Products",
+      "company": "Company",
+      "privacy": "Privacy Policy",
+      "rights": "All rights reserved."
+    },
+    "localeSwitcher": {
+      "label": "Language"
+    },
+    "whatsappFloat": {
+      "label": "Chat on WhatsApp"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you are looking for does not exist or has been moved.",
+      "back": "Back to home"
+    }
+  }
+}
