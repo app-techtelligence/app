@@ -54,21 +54,33 @@
         "tagline": "Break into tech",
         "title": "Course",
         "description": "For career changers who want to build a career in technology — no prior experience required.",
-        "items": ["Tracks for Dev, Data and DevOps roles", "From zero to your first tech job", "Learn what the market actually hires for"],
+        "items": [
+          "Tracks for Dev, Data and DevOps roles",
+          "From zero to your first tech job",
+          "Learn what the market actually hires for"
+        ],
         "cta": "Explore the course"
       },
       "mentorship": {
         "tagline": "Accelerate your career",
         "title": "Mentorship",
         "description": "1:1 guidance to land your next role or grow your career in tech.",
-        "items": ["Personalized career strategy", "LinkedIn and interview preparation", "Technical skill development"],
+        "items": [
+          "Personalized career strategy",
+          "LinkedIn and interview preparation",
+          "Technical skill development"
+        ],
         "cta": "Explore mentorship"
       },
       "consulting": {
         "tagline": "For companies",
         "title": "Consulting",
         "description": "Data platforms and AI environments implemented by builders — from strategy to production.",
-        "items": ["Modern data platforms", "AI environments and solutions", "From architecture to operations"],
+        "items": [
+          "Modern data platforms",
+          "AI environments and solutions",
+          "From architecture to operations"
+        ],
         "cta": "Explore consulting"
       }
     },
@@ -82,6 +94,518 @@
       "subtitle": "Talk to us on WhatsApp and find the best path for you or your company.",
       "cta": "Chat on WhatsApp",
       "whatsappMessage": "Hi! I'd like to take the next step with TechTelligence."
+    }
+  },
+  "course": {
+    "meta": {
+      "title": "Career-Change Course into Tech — TechTelligence",
+      "description": "Break into tech with no prior experience: tracks for Dev, Data and DevOps roles, built by the team that ships Data & AI for companies. Join the waitlist."
+    },
+    "hero": {
+      "kicker": "Career-change course",
+      "title": "Your transition into tech starts here",
+      "subtitle": "A course for people building a tech career from zero — no prior experience, no CS degree. You learn what the market actually hires for, from a team that builds Data & AI every day.",
+      "ctaPrimary": "Join the waitlist",
+      "ctaSecondary": "See if it's for you",
+      "note": "The first cohorts are in preparation. Join the waitlist and be the first to hear when enrollment opens.",
+      "whatsappMessage": "Hi! I'd like to join the waitlist for TechTelligence's career-change course."
+    },
+    "whoFor": {
+      "kicker": "Who it's for",
+      "title": "Built for people starting from zero",
+      "subtitle": "You don't need prior experience or a degree in the field. You need the will to climb.",
+      "personas": [
+        {
+          "title": "Career changers",
+          "text": "You work in sales, healthcare, law, manufacturing — any field — and want a clear path into technology."
+        },
+        {
+          "title": "No CS degree",
+          "text": "A computer science degree is not a prerequisite. The course starts from absolute zero and builds the foundation the market demands."
+        },
+        {
+          "title": "People restarting",
+          "text": "If your career has stalled or you want a fresh start, tech is one of the fields that opens the most doors for those who prepare."
+        },
+        {
+          "title": "Looking for more freedom",
+          "text": "Better pay, remote work and continuous growth: you prepare for a market that rewards people who can build."
+        }
+      ]
+    },
+    "tracks": {
+      "kicker": "What you'll learn",
+      "title": "Tracks for the roles the market hires",
+      "subtitle": "The course prepares you for the main roles in tech. You build the foundation first, then go deep in the track you choose.",
+      "disclaimer": "Example tracks — full curriculum coming soon",
+      "items": [
+        {
+          "title": "Dev",
+          "text": "Become the person who builds software: logic, programming and real projects from day one."
+        },
+        {
+          "title": "Front-end",
+          "text": "Create the interfaces people use every day: fast, beautiful, accessible websites and applications."
+        },
+        {
+          "title": "Back-end",
+          "text": "Build the invisible part that holds everything up: APIs, databases and systems that survive the real world."
+        },
+        {
+          "title": "DevOps",
+          "text": "Automate, deploy and keep systems running — the bridge between code and operations."
+        },
+        {
+          "title": "Data Engineering",
+          "text": "Build the pipelines and platforms that turn raw data into reliable information."
+        },
+        {
+          "title": "Data Analytics",
+          "text": "Turn data into answers: dashboards, metrics and decisions driven by evidence."
+        },
+        {
+          "title": "Data Science",
+          "text": "Go beyond analysis: models, predictions and the path to working with AI."
+        },
+        {
+          "title": "And other roles",
+          "text": "Tech is a broad market. We help you find the role that best fits your profile."
+        }
+      ]
+    },
+    "method": {
+      "kicker": "How it works",
+      "title": "Taught by the people who build",
+      "text": "TechTelligence implements data platforms and AI environments for companies. That day-to-day work defines what goes into the course: you learn what the market hires for — no filler content.",
+      "cta": "Read our story",
+      "items": [
+        {
+          "title": "From absolute zero",
+          "text": "No prerequisites. The course assumes you've never written a line of code."
+        },
+        {
+          "title": "Focused on what the market hires",
+          "text": "The content comes from the real projects we deliver for companies — you study what job openings actually ask for."
+        },
+        {
+          "title": "Hands-on from day one",
+          "text": "You learn by doing: projects that become a portfolio and show the market what you can do."
+        },
+        {
+          "title": "A clear direction",
+          "text": "One track at a time, with a beginning, middle and end — no getting lost in a pile of random courses."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Start your climb now",
+      "subtitle": "Join the waitlist on WhatsApp and be the first to know when enrollment opens. No commitment.",
+      "ctaPrimary": "Join the waitlist",
+      "ctaSecondary": "Other ways to reach us",
+      "whatsappMessage": "Hi! I'd like to join the waitlist for TechTelligence's course and hear when enrollment opens."
+    }
+  },
+  "mentorship": {
+    "meta": {
+      "title": "Tech Career Mentorship — TechTelligence",
+      "description": "1:1 mentorship to land a job or grow in tech: career strategy, LinkedIn, interview prep and technical skills. Talk to TechTelligence on WhatsApp."
+    },
+    "hero": {
+      "kicker": "1:1 Mentorship",
+      "title": "Accelerate your career with someone who's made the climb",
+      "subtitle": "One-on-one mentorship to land your next role or grow in tech — with a plan built for where you are and guidance from people who work with Data & AI every day.",
+      "ctaPrimary": "Chat on WhatsApp",
+      "ctaSecondary": "See how we can help",
+      "whatsappMessage": "Hi! I'm interested in TechTelligence's mentorship and I'd like to know how it works."
+    },
+    "help": {
+      "kicker": "What we work on",
+      "title": "How we can help",
+      "subtitle": "Every journey is different. We understand where you are and focus on what will unlock your career.",
+      "items": [
+        {
+          "title": "Career strategy",
+          "description": "Clarity on where you are, where you want to go and the shortest path between the two.",
+          "points": [
+            "An honest diagnosis of where you stand",
+            "Clear goals and defined next steps",
+            "Choosing your track and technologies with intention"
+          ]
+        },
+        {
+          "title": "LinkedIn optimization",
+          "description": "A profile that works for you: positioned to show up in the right searches.",
+          "points": [
+            "Headline, about and experience repositioned",
+            "Keywords recruiters actually search for",
+            "A content and connections strategy"
+          ]
+        },
+        {
+          "title": "Interview preparation",
+          "description": "Walk in confident: we rehearse answers, your pitch and technical challenges together.",
+          "points": [
+            "Mock interviews with direct feedback",
+            "Personal pitch and behavioral answers",
+            "Preparation for technical rounds"
+          ]
+        },
+        {
+          "title": "Technical skill development",
+          "description": "Grow the skills the market hires for, with people who use these tools on real projects.",
+          "points": [
+            "A study plan focused on the role you want",
+            "Project and portfolio reviews",
+            "Guided practice in your track's technologies"
+          ]
+        }
+      ]
+    },
+    "process": {
+      "kicker": "Step by step",
+      "title": "How it works",
+      "subtitle": "A simple, direct process designed to give you more clarity from the very first conversation.",
+      "steps": [
+        {
+          "title": "Diagnostic conversation",
+          "description": "We start by listening: your story, your moment and where you want to go. No one-size-fits-all formula."
+        },
+        {
+          "title": "Personalized plan",
+          "description": "Together we build a plan with clear goals and defined priorities — your map for the climb."
+        },
+        {
+          "title": "Recurring 1:1 sessions",
+          "description": "Individual sessions with defined goals, practical tasks and progress tracking along the way."
+        }
+      ],
+      "note": "Flexible format: session length and frequency are set according to your goal — no rigid packages."
+    },
+    "credibility": {
+      "title": "Guidance from people who live the market",
+      "text": "Your TechTelligence mentors build Data & AI solutions for companies every day. That's why the guidance you get reflects what companies actually hire for — not theory detached from practice.",
+      "cta": "Read our story"
+    },
+    "finalCta": {
+      "title": "Ready for the next step in your career?",
+      "subtitle": "Message us on WhatsApp and tell us where you are and where you want to go. The first conversation is commitment-free.",
+      "cta": "Chat on WhatsApp",
+      "whatsappMessage": "Hi! I'd like to talk about TechTelligence's mentorship."
+    }
+  },
+  "consulting": {
+    "meta": {
+      "title": "Data & AI Consulting for Companies — TechTelligence",
+      "description": "Data platforms and AI environments implemented end to end: diagnosis, architecture, implementation and operations. Request a proposal."
+    },
+    "hero": {
+      "kicker": "Data & AI Consulting",
+      "title": "Data and AI that leave the slide deck and reach production",
+      "subtitle": "We implement data platforms and AI environments end to end — from diagnosis to operations, with your team ready to own what we build.",
+      "ctaPrimary": "Request a proposal",
+      "ctaSecondary": "Use the contact form",
+      "whatsappMessage": "Hi! I'd like to request a Data & AI consulting proposal from TechTelligence for my company."
+    },
+    "services": {
+      "kicker": "Services",
+      "title": "What we implement",
+      "subtitle": "Three service lines, one standard: solid engineering, from raw data to value in production.",
+      "dataPlatforms": {
+        "tagline": "Data engineering",
+        "title": "Data Platforms",
+        "description": "A modern, reliable data platform sized for where your business is today.",
+        "items": [
+          "Ingestion and integration of your data sources",
+          "Warehouse or lakehouse — whichever fits your case",
+          "Reliable, tested and monitored pipelines",
+          "Data governance and quality from day one"
+        ]
+      },
+      "aiEnvironments": {
+        "tagline": "Artificial intelligence",
+        "title": "AI Environments",
+        "description": "From your first generative AI use case to machine learning foundations — with responsible adoption.",
+        "items": [
+          "LLM integration with your systems and processes",
+          "RAG: AI that answers with your company's data",
+          "Machine learning foundations to grow on safely",
+          "Responsible adoption: privacy, security and control"
+        ]
+      },
+      "integrated": {
+        "tagline": "The full stack",
+        "title": "Data + AI, Integrated",
+        "description": "The complete journey in one coherent architecture: from raw data to AI creating value in production.",
+        "items": [
+          "A single roadmap for data and AI",
+          "Architecture designed end to end, no patchwork",
+          "Less rework, faster delivery",
+          "Continuous evolution alongside your team"
+        ]
+      }
+    },
+    "approach": {
+      "kicker": "Our approach",
+      "title": "How we work",
+      "subtitle": "No never-ending projects: a clear path from base to summit, with concrete deliverables at every stage.",
+      "steps": [
+        {
+          "title": "Diagnosis",
+          "description": "We map your business, your data and your systems. You leave with a clear picture of where you stand and the highest-impact opportunities."
+        },
+        {
+          "title": "Architecture and roadmap",
+          "description": "We design the architecture and prioritize a pragmatic roadmap: what creates value first ships first."
+        },
+        {
+          "title": "Implementation",
+          "description": "We build in short cycles, with working deliverables in production — not just documents and presentations."
+        },
+        {
+          "title": "Handover and operations",
+          "description": "We hand over a running operation with your team enabled: documentation, training and support until full autonomy."
+        }
+      ]
+    },
+    "whyUs": {
+      "kicker": "Why TechTelligence",
+      "title": "We build — we don't just advise",
+      "subtitle": "The same team that implements Data & AI for companies also trains professionals for the market. That loop keeps our bar high on both sides.",
+      "items": [
+        {
+          "title": "Hands-on, not slide decks",
+          "description": "We deliver working code, pipelines and infrastructure — not recommendations that stay on paper."
+        },
+        {
+          "title": "A market-current stack",
+          "description": "We work with the tools the market uses today, chosen for the problem — not for the hype."
+        },
+        {
+          "title": "Pragmatic scope",
+          "description": "We start from the business problem and deliver in short cycles. Value first; complexity only when it earns its place."
+        },
+        {
+          "title": "Knowledge that stays",
+          "description": "Training people is part of our business — and we do the same for your team, so they own the platform with confidence."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Ready to talk about your project?",
+      "subtitle": "Tell us your company's challenge and get a clear proposal, with scope, stages and next steps defined.",
+      "ctaPrimary": "Request a proposal",
+      "ctaSecondary": "Fill out the contact form",
+      "whatsappMessage": "Hi! I'd like a Data & AI consulting proposal from TechTelligence. Can we talk about my company's project?"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "About TechTelligence — Those who build, teach",
+      "description": "Meet TechTelligence: we were born building Data & AI solutions for companies — and we turn that experience into a course, mentorship and consulting."
+    },
+    "hero": {
+      "kicker": "About TechTelligence",
+      "title": "Those who build, teach",
+      "subtitle": "TechTelligence was born inside real Data & AI projects. Everything we teach and deliver comes from there: from what the market actually builds, hires for and values."
+    },
+    "story": {
+      "kicker": "Our story",
+      "title": "Two sides of the same problem",
+      "paragraphs": [
+        "TechTelligence was born inside Data & AI projects for companies. Working on those projects, we saw two sides of the same problem: companies struggling to find well-prepared professionals — and people wanting to break into tech with no idea where to start.",
+        "On one side, teams and platforms in need of qualified people. On the other, talented people going in circles through generic courses, with no map leading to an actual job. We decided to build that bridge.",
+        "That's why everything here starts from practice: what we learn implementing solutions for companies becomes course, mentorship and consulting. The market shows us the way — and we teach you how to walk it."
+      ],
+      "founder": {
+        "kicker": "Behind the project",
+        "text": "The people behind TechTelligence build Data & AI solutions every day — soon, you'll get to know this story up close."
+      }
+    },
+    "values": {
+      "kicker": "Our principles",
+      "title": "What we believe in",
+      "subtitle": "Four principles guide everything we do — from the first course exercise to the delivery of a consulting project.",
+      "items": [
+        {
+          "title": "Learning by doing",
+          "description": "Nobody learns technology just by watching lectures. Here, you build real projects from step one — because that's how the market evaluates who it hires."
+        },
+        {
+          "title": "The market as our compass",
+          "description": "We don't teach what's trendy: we teach what companies actually use and hire for. Our consulting projects keep that compass calibrated."
+        },
+        {
+          "title": "Transparency, always",
+          "description": "No magic promises, no shortcuts that don't exist. We're upfront about the effort the transition takes — and we stay by your side throughout the climb."
+        },
+        {
+          "title": "Always climbing",
+          "description": "Technology is a mountain that never stops growing. We keep studying, building and evolving every day — and that's what we hope to inspire in you."
+        }
+      ]
+    },
+    "ecosystem": {
+      "kicker": "One ecosystem",
+      "title": "Three products, one foundation",
+      "subtitle": "What we build in consulting becomes content in the course and direction in mentorship. Each product strengthens the others — and you're the one who wins.",
+      "course": {
+        "title": "Course",
+        "description": "Your door into tech, with tracks guided by what the market actually hires for.",
+        "cta": "Explore the course"
+      },
+      "mentorship": {
+        "title": "Mentorship",
+        "description": "1:1 guidance to land your next role or accelerate your career in tech.",
+        "cta": "Explore mentorship"
+      },
+      "consulting": {
+        "title": "Consulting",
+        "description": "Data platforms and AI environments for companies — from strategy to production.",
+        "cta": "Explore consulting"
+      }
+    },
+    "finalCta": {
+      "title": "Shall we talk?",
+      "subtitle": "Whether you're breaking into tech, growing in it or bringing data and AI to your company, the first step is a conversation.",
+      "ctaWhatsapp": "Chat on WhatsApp",
+      "ctaContact": "Go to contact",
+      "whatsappMessage": "Hi! I just read TechTelligence's story on your website and I'd like to talk about the best path for me."
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact — TechTelligence",
+      "description": "Reach TechTelligence on WhatsApp or send a message through the form. Course, mentorship and Data & AI consulting."
+    },
+    "hero": {
+      "kicker": "Contact",
+      "title": "Let's talk",
+      "subtitle": "WhatsApp is the fastest way to reach us. Prefer email? Send a message through the form and we'll reply."
+    },
+    "whatsapp": {
+      "title": "Fastest response",
+      "text": "Talk to us directly on WhatsApp — it's where we answer first.",
+      "cta": "Chat on WhatsApp",
+      "message": "Hi! I'm reaching out from TechTelligence's contact page."
+    },
+    "email": {
+      "title": "Email",
+      "note": "Your data is used only to reply to your message. Learn more in our",
+      "privacyLink": "Privacy Policy"
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "subjectOptions": {
+        "course": "Course",
+        "mentorship": "Mentorship",
+        "consulting": "Consulting (companies)",
+        "other": "Something else"
+      },
+      "message": "Message",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "success": {
+        "title": "Message sent!",
+        "text": "Thanks for reaching out. We'll get back to you by email as soon as we can."
+      },
+      "errors": {
+        "validation": "Please check the fields and try again.",
+        "turnstile": "Please complete the security check before sending.",
+        "delivery": "We couldn't send your message right now. Try again shortly or reach us on WhatsApp.",
+        "generic": "Something went wrong. Try again or contact us on WhatsApp."
+      },
+      "privacyNote": "Protected by Cloudflare Turnstile. We don't store your data: your message is delivered straight to our inbox."
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy — TechTelligence",
+      "description": "Learn what data the TechTelligence website collects, how we use it, which cookies exist, and how to exercise your rights under Brazil's LGPD."
+    },
+    "header": {
+      "kicker": "Transparency",
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: July 8, 2026",
+      "intro": [
+        "This policy explains, in plain language, what personal data this website collects, why, and what we do (and don't do) with it — in compliance with Brazil's General Data Protection Law (LGPD, Law No. 13,709/2018).",
+        "The short version: this is an informational website. You don't create an account, you don't log in, and you are not tracked by ads. The only personal data we receive is what you choose to send us to get in touch."
+      ]
+    },
+    "sections": {
+      "dataCollected": {
+        "title": "What data we collect",
+        "body": [
+          "The website has no sign-up and no user accounts. The personal data we may receive comes from two situations, always initiated by you:"
+        ],
+        "items": [
+          "Contact form: your name, email address and the content of your message.",
+          "WhatsApp: when you click a WhatsApp button, the conversation happens inside the app, under WhatsApp's own privacy policy."
+        ]
+      },
+      "howWeUse": {
+        "title": "How we use your data",
+        "body": [
+          "We use your name, email and message for a single purpose: understanding your request and replying to you.",
+          "We don't add your email to marketing lists, we don't sell your data, and we don't share it with third parties for advertising."
+        ]
+      },
+      "storage": {
+        "title": "Where your data lives (and where it doesn't)",
+        "body": [
+          "When you submit the contact form, your message is validated, checked for spam by Cloudflare Turnstile, and delivered to our inbox by the Resend email platform.",
+          "The website does not store these messages in any database. In other words: your message exists only in our email inbox."
+        ]
+      },
+      "retention": {
+        "title": "How long we keep it",
+        "body": [
+          "We keep the emails we receive only for as long as needed to handle your request. After that, they can be deleted. If you'd like your message deleted sooner, just ask — we explain how below."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies",
+        "body": [
+          "The website uses a single functional cookie, called NEXT_LOCALE, which remembers the language you chose (Portuguese or English). It does not identify you and does not track your browsing.",
+          "We do not use advertising, behavioral analytics, or third-party tracking cookies in this version of the website."
+        ]
+      },
+      "infrastructure": {
+        "title": "Infrastructure and security",
+        "body": [
+          "The website runs on Cloudflare's infrastructure, which processes technical data — such as your connection's IP address — for security, protection against attacks (such as DDoS), and content delivery. This processing is standard practice on the modern web and keeps the site safe and available.",
+          "Cloudflare Turnstile, used on the contact form to block bots, may also process technical data from your browser during that verification."
+        ]
+      },
+      "rights": {
+        "title": "Your rights under the LGPD",
+        "body": [
+          "As a data subject, the LGPD grants you, among others, the right to:"
+        ],
+        "items": [
+          "Confirm whether we process data about you",
+          "Access the data we hold about you",
+          "Correct incomplete, inaccurate or outdated data",
+          "Request the deletion or anonymization of your data",
+          "Request the portability of your data to another provider",
+          "Know who we share your data with",
+          "Withdraw consent you previously gave"
+        ]
+      },
+      "exercise": {
+        "title": "How to exercise your rights",
+        "body": [
+          "No red tape: send an email to <email>contato@techtelligence.com.br</email> telling us what you need. We'll reply as quickly as possible.",
+          "If you're not satisfied with our response, you can also file a complaint with Brazil's National Data Protection Authority (ANPD)."
+        ]
+      },
+      "changes": {
+        "title": "Changes to this policy",
+        "body": [
+          "We may update this policy when the website gains new features or when the law requires it. When that happens, we update the date at the top of this page. The version published here always applies."
+        ]
+      }
     }
   }
 }

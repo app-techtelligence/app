@@ -54,21 +54,33 @@
         "tagline": "Migre para a área tech",
         "title": "Curso",
         "description": "Para quem quer sair de outra área e construir uma carreira em tecnologia — sem experiência prévia.",
-        "items": ["Trilhas para Dev, Dados e DevOps", "Do zero à sua primeira vaga em tech", "Aprenda o que o mercado realmente contrata"],
+        "items": [
+          "Trilhas para Dev, Dados e DevOps",
+          "Do zero à sua primeira vaga em tech",
+          "Aprenda o que o mercado realmente contrata"
+        ],
         "cta": "Conhecer o curso"
       },
       "mentorship": {
         "tagline": "Acelere sua carreira",
         "title": "Mentoria",
         "description": "Acompanhamento 1:1 para conquistar sua vaga ou crescer na área de tecnologia.",
-        "items": ["Estratégia de carreira personalizada", "LinkedIn e preparação para entrevistas", "Desenvolvimento de habilidades técnicas"],
+        "items": [
+          "Estratégia de carreira personalizada",
+          "LinkedIn e preparação para entrevistas",
+          "Desenvolvimento de habilidades técnicas"
+        ],
         "cta": "Conhecer a mentoria"
       },
       "consulting": {
         "tagline": "Para empresas",
         "title": "Consultoria",
         "description": "Plataformas de dados e ambientes de IA implementados por quem constrói — da estratégia à produção.",
-        "items": ["Plataformas de dados modernas", "Ambientes e soluções de IA", "Da arquitetura à operação"],
+        "items": [
+          "Plataformas de dados modernas",
+          "Ambientes e soluções de IA",
+          "Da arquitetura à operação"
+        ],
         "cta": "Conhecer a consultoria"
       }
     },
@@ -82,6 +94,518 @@
       "subtitle": "Fale com a gente no WhatsApp e descubra o melhor caminho para você ou para a sua empresa.",
       "cta": "Falar no WhatsApp",
       "whatsappMessage": "Olá! Quero dar o próximo passo com a TechTelligence."
+    }
+  },
+  "course": {
+    "meta": {
+      "title": "Curso de Transição de Carreira para Tech — TechTelligence",
+      "description": "Migre para a tecnologia sem experiência prévia: trilhas para Dev, Dados e DevOps criadas por quem constrói Dados & IA para empresas. Entre na lista de espera."
+    },
+    "hero": {
+      "kicker": "Curso de transição de carreira",
+      "title": "Sua transição para a área tech começa aqui",
+      "subtitle": "Um curso para quem quer construir uma carreira em tecnologia começando do zero — sem experiência prévia, sem diploma de TI. Você aprende o que o mercado realmente contrata, com quem constrói Dados & IA todos os dias.",
+      "ctaPrimary": "Entrar na lista de espera",
+      "ctaSecondary": "Ver se é para você",
+      "note": "As primeiras turmas estão em preparação. Entre na lista de espera e seja avisado em primeira mão quando as inscrições abrirem.",
+      "whatsappMessage": "Olá! Quero entrar na lista de espera do curso de transição de carreira da TechTelligence."
+    },
+    "whoFor": {
+      "kicker": "Para quem é",
+      "title": "Feito para quem está começando do zero",
+      "subtitle": "Você não precisa de experiência prévia nem de diploma na área. Precisa de vontade de subir.",
+      "personas": [
+        {
+          "title": "Quem vem de outra área",
+          "text": "Você trabalha com vendas, saúde, direito, indústria — qualquer área — e quer migrar para a tecnologia com um caminho claro."
+        },
+        {
+          "title": "Quem não tem formação em TI",
+          "text": "Faculdade de computação não é pré-requisito. O curso começa do zero absoluto e constrói a base que o mercado exige."
+        },
+        {
+          "title": "Quem quer recomeçar",
+          "text": "Se a sua carreira estagnou ou você quer um novo começo, a tecnologia é uma das áreas que mais abre portas para quem se prepara."
+        },
+        {
+          "title": "Quem busca mais liberdade",
+          "text": "Melhores salários, trabalho remoto e crescimento contínuo: você se prepara para um mercado que valoriza quem sabe fazer."
+        }
+      ]
+    },
+    "tracks": {
+      "kicker": "O que você vai aprender",
+      "title": "Trilhas para as funções que o mercado contrata",
+      "subtitle": "O curso prepara você para atuar nas principais funções de tecnologia. Primeiro você constrói a base; depois, se aprofunda na trilha que escolher.",
+      "disclaimer": "Exemplos de trilha — currículo completo em breve",
+      "items": [
+        {
+          "title": "Dev",
+          "text": "Torne-se quem constrói software: lógica, programação e projetos de verdade desde o início."
+        },
+        {
+          "title": "Front-end",
+          "text": "Crie as interfaces que as pessoas usam todos os dias: sites e aplicações rápidas, bonitas e acessíveis."
+        },
+        {
+          "title": "Back-end",
+          "text": "Construa a parte invisível que sustenta tudo: APIs, bancos de dados e sistemas que aguentam o mundo real."
+        },
+        {
+          "title": "DevOps",
+          "text": "Automatize, publique e mantenha sistemas no ar — a ponte entre o código e a operação."
+        },
+        {
+          "title": "Engenharia de Dados",
+          "text": "Monte os pipelines e as plataformas que transformam dados brutos em informação confiável."
+        },
+        {
+          "title": "Análise de Dados",
+          "text": "Transforme dados em respostas: dashboards, indicadores e decisões guiadas por evidência."
+        },
+        {
+          "title": "Ciência de Dados",
+          "text": "Vá além da análise: modelos, previsões e o caminho para trabalhar com IA."
+        },
+        {
+          "title": "E outras funções",
+          "text": "O mercado tech é amplo. Ajudamos você a encontrar a função com mais a ver com o seu perfil."
+        }
+      ]
+    },
+    "method": {
+      "kicker": "Como funciona",
+      "title": "Quem ensina é quem constrói",
+      "text": "A TechTelligence implementa plataformas de dados e ambientes de IA para empresas. É esse dia a dia que define o que entra no curso: você aprende o que o mercado contrata — nada de conteúdo que ninguém usa.",
+      "cta": "Conheça nossa história",
+      "items": [
+        {
+          "title": "Do zero absoluto",
+          "text": "Sem pré-requisitos. O curso assume que você nunca escreveu uma linha de código."
+        },
+        {
+          "title": "Foco no que o mercado contrata",
+          "text": "O conteúdo nasce dos projetos reais que entregamos para empresas — você estuda o que as vagas pedem."
+        },
+        {
+          "title": "Prática desde o início",
+          "text": "Você aprende fazendo: projetos que viram portfólio e mostram ao mercado o que você sabe."
+        },
+        {
+          "title": "Direção clara",
+          "text": "Uma trilha por vez, com começo, meio e fim — sem se perder em mil cursos soltos."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Comece sua subida agora",
+      "subtitle": "Entre na lista de espera pelo WhatsApp e seja a primeira pessoa a saber quando as inscrições abrirem. Sem compromisso.",
+      "ctaPrimary": "Entrar na lista de espera",
+      "ctaSecondary": "Outras formas de contato",
+      "whatsappMessage": "Olá! Quero entrar na lista de espera do curso da TechTelligence e ser avisado quando as inscrições abrirem."
+    }
+  },
+  "mentorship": {
+    "meta": {
+      "title": "Mentoria de Carreira em Tech — TechTelligence",
+      "description": "Mentoria 1:1 para conquistar sua vaga ou crescer em tech: estratégia de carreira, LinkedIn, entrevistas e habilidades técnicas. Fale com a TechTelligence."
+    },
+    "hero": {
+      "kicker": "Mentoria 1:1",
+      "title": "Acelere sua carreira com quem já fez essa subida",
+      "subtitle": "Mentoria individual para conquistar sua vaga ou crescer na área de tecnologia — com um plano feito para o seu momento e acompanhamento de quem trabalha com Dados e IA todos os dias.",
+      "ctaPrimary": "Falar no WhatsApp",
+      "ctaSecondary": "Ver como podemos ajudar",
+      "whatsappMessage": "Olá! Tenho interesse na mentoria da TechTelligence e quero entender como funciona."
+    },
+    "help": {
+      "kicker": "Frentes da mentoria",
+      "title": "Como podemos ajudar",
+      "subtitle": "Cada jornada é diferente. Entendemos o seu momento e focamos no que vai destravar a sua carreira.",
+      "items": [
+        {
+          "title": "Estratégia de carreira",
+          "description": "Clareza sobre onde você está, aonde quer chegar e o caminho mais curto entre os dois.",
+          "points": [
+            "Diagnóstico honesto do seu momento",
+            "Metas claras e próximos passos definidos",
+            "Escolha de área e tecnologias com critério"
+          ]
+        },
+        {
+          "title": "Otimização de LinkedIn",
+          "description": "Seu perfil trabalhando por você: posicionamento certo para aparecer nas buscas certas.",
+          "points": [
+            "Título, resumo e experiências reposicionados",
+            "Palavras-chave que recrutadores realmente buscam",
+            "Estratégia de conteúdo e conexões"
+          ]
+        },
+        {
+          "title": "Preparação para entrevistas",
+          "description": "Chegue confiante: treinamos juntos as respostas, o pitch e os desafios técnicos.",
+          "points": [
+            "Simulações de entrevista com feedback direto",
+            "Pitch pessoal e respostas comportamentais",
+            "Preparação para as etapas técnicas"
+          ]
+        },
+        {
+          "title": "Desenvolvimento técnico",
+          "description": "Evolua as habilidades que o mercado contrata, com quem usa essas ferramentas em projetos reais.",
+          "points": [
+            "Plano de estudos focado na vaga que você quer",
+            "Revisão de projetos e portfólio",
+            "Prática guiada nas tecnologias da sua área"
+          ]
+        }
+      ]
+    },
+    "process": {
+      "kicker": "Passo a passo",
+      "title": "Como funciona",
+      "subtitle": "Um processo simples e direto, desenhado para você sair da primeira conversa já com mais clareza.",
+      "steps": [
+        {
+          "title": "Conversa de diagnóstico",
+          "description": "Começamos ouvindo você: sua história, seu momento e aonde quer chegar. Sem fórmula pronta."
+        },
+        {
+          "title": "Plano personalizado",
+          "description": "Montamos juntos um plano com metas claras e prioridades definidas — o seu mapa da subida."
+        },
+        {
+          "title": "Sessões 1:1 recorrentes",
+          "description": "Encontros individuais com objetivos definidos, tarefas práticas e acompanhamento do seu progresso."
+        }
+      ],
+      "note": "Formato flexível: duração e frequência das sessões são definidas de acordo com o seu objetivo — sem pacotes engessados."
+    },
+    "credibility": {
+      "title": "Orientação de quem vive o mercado",
+      "text": "Quem mentora você na TechTelligence constrói soluções de Dados e IA para empresas todos os dias. Por isso, a orientação que você recebe reflete o que as empresas realmente contratam — não teoria distante da prática.",
+      "cta": "Conheça nossa história"
+    },
+    "finalCta": {
+      "title": "Pronto para dar o próximo passo na carreira?",
+      "subtitle": "Chame a gente no WhatsApp e conte onde você está e aonde quer chegar. A primeira conversa é sem compromisso.",
+      "cta": "Falar no WhatsApp",
+      "whatsappMessage": "Olá! Quero conversar sobre a mentoria da TechTelligence."
+    }
+  },
+  "consulting": {
+    "meta": {
+      "title": "Consultoria em Dados & IA para empresas — TechTelligence",
+      "description": "Plataformas de dados e ambientes de IA implementados de ponta a ponta: diagnóstico, arquitetura, implementação e operação. Peça uma proposta."
+    },
+    "hero": {
+      "kicker": "Consultoria em Dados & IA",
+      "title": "Dados e IA que saem do slide e entram em produção",
+      "subtitle": "Implementamos plataformas de dados e ambientes de IA de ponta a ponta — do diagnóstico à operação, com o seu time preparado para assumir o que construímos.",
+      "ctaPrimary": "Pedir uma proposta",
+      "ctaSecondary": "Falar pelo formulário",
+      "whatsappMessage": "Olá! Quero pedir uma proposta de consultoria em Dados & IA da TechTelligence para a minha empresa."
+    },
+    "services": {
+      "kicker": "Serviços",
+      "title": "O que implementamos",
+      "subtitle": "Três frentes de atuação, um mesmo padrão: engenharia bem-feita, do dado bruto ao valor em produção.",
+      "dataPlatforms": {
+        "tagline": "Engenharia de dados",
+        "title": "Plataformas de Dados",
+        "description": "Uma plataforma de dados moderna, confiável e dimensionada para o momento do seu negócio.",
+        "items": [
+          "Ingestão e integração das suas fontes de dados",
+          "Warehouse ou lakehouse, conforme o seu caso",
+          "Pipelines confiáveis, testados e monitorados",
+          "Governança e qualidade de dados desde o início"
+        ]
+      },
+      "aiEnvironments": {
+        "tagline": "Inteligência artificial",
+        "title": "Ambientes de IA",
+        "description": "Do primeiro caso de uso com IA generativa às fundações de machine learning — com adoção responsável.",
+        "items": [
+          "Integração de LLMs aos seus sistemas e processos",
+          "RAG: IA que responde com os dados da sua empresa",
+          "Fundações de machine learning para evoluir com segurança",
+          "Adoção responsável: privacidade, segurança e controle"
+        ]
+      },
+      "integrated": {
+        "tagline": "A stack completa",
+        "title": "Dados + IA integrados",
+        "description": "O caminho completo em uma única arquitetura coerente: do dado bruto à IA gerando valor em produção.",
+        "items": [
+          "Um roadmap único para dados e IA",
+          "Arquitetura pensada de ponta a ponta, sem remendos",
+          "Menos retrabalho, mais velocidade de entrega",
+          "Evolução contínua junto com o seu time"
+        ]
+      }
+    },
+    "approach": {
+      "kicker": "Nossa abordagem",
+      "title": "Como trabalhamos",
+      "subtitle": "Sem projetos intermináveis: um caminho claro da base ao topo, com entregas concretas em cada etapa.",
+      "steps": [
+        {
+          "title": "Diagnóstico",
+          "description": "Entendemos o seu negócio, seus dados e seus sistemas. Você sai com um mapa claro do ponto de partida e das oportunidades de maior impacto."
+        },
+        {
+          "title": "Arquitetura e roadmap",
+          "description": "Desenhamos a arquitetura e priorizamos um roadmap pragmático: o que gera valor primeiro entra primeiro."
+        },
+        {
+          "title": "Implementação",
+          "description": "Construímos em ciclos curtos, com entregas funcionando em produção — não apenas documentos e apresentações."
+        },
+        {
+          "title": "Transição e operação",
+          "description": "Entregamos a operação com o seu time capacitado: documentação, treinamento e acompanhamento até a autonomia."
+        }
+      ]
+    },
+    "whyUs": {
+      "kicker": "Por que a TechTelligence",
+      "title": "Construímos — não apenas recomendamos",
+      "subtitle": "A mesma equipe que implementa Dados e IA em empresas também forma profissionais para o mercado. Esse ciclo mantém nosso padrão alto dos dois lados.",
+      "items": [
+        {
+          "title": "Mão na massa, não slides",
+          "description": "Entregamos código, pipelines e infraestrutura funcionando — não recomendações que param no papel."
+        },
+        {
+          "title": "Stack atual de mercado",
+          "description": "Trabalhamos com as ferramentas que o mercado usa hoje, escolhidas pelo problema — não pela moda."
+        },
+        {
+          "title": "Escopo pragmático",
+          "description": "Começamos pelo problema de negócio e entregamos em ciclos curtos. Valor primeiro; complexidade, só quando necessária."
+        },
+        {
+          "title": "Conhecimento que fica",
+          "description": "Formar pessoas faz parte do nosso negócio — e fazemos o mesmo pelo seu time, que assume a plataforma com autonomia."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Vamos falar sobre o seu projeto?",
+      "subtitle": "Conte o desafio da sua empresa e receba uma proposta clara, com escopo, etapas e próximos passos definidos.",
+      "ctaPrimary": "Pedir uma proposta",
+      "ctaSecondary": "Preencher o formulário de contato",
+      "whatsappMessage": "Olá! Quero uma proposta de consultoria em Dados & IA da TechTelligence. Podemos conversar sobre o projeto da minha empresa?"
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "Sobre a TechTelligence — Quem constrói, ensina",
+      "description": "Conheça a TechTelligence: nascemos construindo soluções de Dados e IA para empresas — e transformamos essa experiência em curso, mentoria e consultoria."
+    },
+    "hero": {
+      "kicker": "Sobre a TechTelligence",
+      "title": "Quem constrói, ensina",
+      "subtitle": "A TechTelligence nasceu dentro de projetos reais de Dados e IA. Tudo o que ensinamos e entregamos vem de lá: do que o mercado constrói, contrata e valoriza de verdade."
+    },
+    "story": {
+      "kicker": "Nossa história",
+      "title": "Dois lados do mesmo problema",
+      "paragraphs": [
+        "A TechTelligence nasceu dentro de projetos de Dados e IA para empresas. Foi trabalhando nesses projetos que enxergamos os dois lados de um mesmo problema: empresas com dificuldade de encontrar profissionais preparados — e pessoas querendo entrar em tecnologia sem saber por onde começar.",
+        "De um lado, times e plataformas precisando de gente qualificada. Do outro, pessoas talentosas dando voltas em cursos genéricos, sem um mapa que levasse até uma vaga de verdade. Decidimos construir essa ponte.",
+        "É por isso que tudo aqui parte da prática: o que aprendemos implementando soluções para empresas vira curso, mentoria e consultoria. O mercado nos mostra o caminho — e a gente ensina você a percorrê-lo."
+      ],
+      "founder": {
+        "kicker": "Por trás do projeto",
+        "text": "Quem está por trás da TechTelligence constrói soluções de Dados e IA no dia a dia — em breve, você vai conhecer essa história de perto."
+      }
+    },
+    "values": {
+      "kicker": "Nossos princípios",
+      "title": "No que acreditamos",
+      "subtitle": "Quatro princípios guiam tudo o que fazemos — do primeiro exercício do curso à entrega de um projeto de consultoria.",
+      "items": [
+        {
+          "title": "Aprender fazendo",
+          "description": "Ninguém aprende tecnologia só assistindo aula. Aqui, você constrói projetos reais desde o primeiro passo — porque é assim que o mercado avalia quem contrata."
+        },
+        {
+          "title": "O mercado como bússola",
+          "description": "Não ensinamos o que está na moda: ensinamos o que as empresas realmente usam e contratam. Nossos projetos de consultoria mantêm essa bússola sempre calibrada."
+        },
+        {
+          "title": "Transparência sempre",
+          "description": "Sem promessas mágicas, sem atalhos que não existem. Falamos abertamente sobre o esforço que a transição exige — e ficamos ao seu lado durante toda a subida."
+        },
+        {
+          "title": "Subida constante",
+          "description": "Tecnologia é uma montanha que não para de crescer. Continuamos estudando, construindo e evoluindo todos os dias — e é isso que queremos inspirar em você."
+        }
+      ]
+    },
+    "ecosystem": {
+      "kicker": "Um ecossistema",
+      "title": "Três produtos, uma mesma base",
+      "subtitle": "O que construímos na consultoria vira conteúdo no curso e direção na mentoria. Cada produto fortalece os outros — e quem ganha é você.",
+      "course": {
+        "title": "Curso",
+        "description": "Sua porta de entrada na área tech, com trilhas guiadas pelo que o mercado contrata.",
+        "cta": "Conhecer o curso"
+      },
+      "mentorship": {
+        "title": "Mentoria",
+        "description": "Acompanhamento 1:1 para conquistar sua vaga ou acelerar sua carreira em tecnologia.",
+        "cta": "Conhecer a mentoria"
+      },
+      "consulting": {
+        "title": "Consultoria",
+        "description": "Plataformas de dados e ambientes de IA para empresas — da estratégia à produção.",
+        "cta": "Conhecer a consultoria"
+      }
+    },
+    "finalCta": {
+      "title": "Vamos conversar?",
+      "subtitle": "Seja para entrar na área, crescer nela ou levar dados e IA para a sua empresa, o primeiro passo é uma conversa.",
+      "ctaWhatsapp": "Falar no WhatsApp",
+      "ctaContact": "Ir para o contato",
+      "whatsappMessage": "Olá! Li a história da TechTelligence no site e quero conversar sobre o melhor caminho para mim."
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contato — TechTelligence",
+      "description": "Fale com a TechTelligence pelo WhatsApp ou envie uma mensagem pelo formulário. Curso, mentoria e consultoria em Dados & IA."
+    },
+    "hero": {
+      "kicker": "Contato",
+      "title": "Vamos conversar?",
+      "subtitle": "O WhatsApp é o caminho mais rápido. Se preferir, envie uma mensagem pelo formulário e retornamos por e-mail."
+    },
+    "whatsapp": {
+      "title": "Resposta mais rápida",
+      "text": "Fale direto com a gente no WhatsApp — é por lá que atendemos primeiro.",
+      "cta": "Falar no WhatsApp",
+      "message": "Olá! Vim pela página de contato do site da TechTelligence."
+    },
+    "email": {
+      "title": "E-mail",
+      "note": "Seus dados são usados apenas para responder à sua mensagem. Saiba mais na nossa",
+      "privacyLink": "Política de Privacidade"
+    },
+    "form": {
+      "name": "Nome",
+      "email": "E-mail",
+      "subject": "Assunto",
+      "subjectOptions": {
+        "course": "Curso",
+        "mentorship": "Mentoria",
+        "consulting": "Consultoria (empresas)",
+        "other": "Outro assunto"
+      },
+      "message": "Mensagem",
+      "submit": "Enviar mensagem",
+      "submitting": "Enviando…",
+      "success": {
+        "title": "Mensagem enviada!",
+        "text": "Obrigado pelo contato. Vamos responder no seu e-mail o quanto antes."
+      },
+      "errors": {
+        "validation": "Confira os campos e tente novamente.",
+        "turnstile": "Complete a verificação de segurança antes de enviar.",
+        "delivery": "Não conseguimos enviar sua mensagem agora. Tente de novo em instantes ou chame no WhatsApp.",
+        "generic": "Algo deu errado. Tente novamente ou fale com a gente pelo WhatsApp."
+      },
+      "privacyNote": "Protegido por Cloudflare Turnstile. Não armazenamos seus dados: sua mensagem é entregue diretamente ao nosso e-mail."
+    }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Política de Privacidade — TechTelligence",
+      "description": "Saiba quais dados o site da TechTelligence coleta, como eles são usados, quais cookies existem e como exercer seus direitos garantidos pela LGPD."
+    },
+    "header": {
+      "kicker": "Transparência",
+      "title": "Política de Privacidade",
+      "lastUpdated": "Última atualização: 8 de julho de 2026",
+      "intro": [
+        "Esta política explica, em linguagem simples, quais dados pessoais este site coleta, para que eles servem e o que fazemos (e não fazemos) com eles — em conformidade com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).",
+        "A versão curta: este é um site informativo. Você não cria conta, não faz login e não é rastreado por anúncios. Os únicos dados pessoais que recebemos são os que você mesmo decide enviar para falar com a gente."
+      ]
+    },
+    "sections": {
+      "dataCollected": {
+        "title": "Quais dados coletamos",
+        "body": [
+          "O site não tem cadastro nem contas de usuário. Os dados pessoais que podemos receber vêm de duas situações, sempre por iniciativa sua:"
+        ],
+        "items": [
+          "Formulário de contato: nome, e-mail e o conteúdo da sua mensagem.",
+          "WhatsApp: ao clicar em um botão de WhatsApp, a conversa acontece dentro do aplicativo, sob a política de privacidade do próprio WhatsApp."
+        ]
+      },
+      "howWeUse": {
+        "title": "Como usamos seus dados",
+        "body": [
+          "Usamos seu nome, e-mail e mensagem para uma única finalidade: entender o seu pedido e responder a você.",
+          "Não incluímos seu e-mail em listas de marketing, não vendemos seus dados e não os compartilhamos com terceiros para publicidade."
+        ]
+      },
+      "storage": {
+        "title": "Onde seus dados ficam (e onde não ficam)",
+        "body": [
+          "Quando você envia o formulário de contato, a mensagem é validada, passa por uma verificação antispam do Cloudflare Turnstile e é entregue à nossa caixa de e-mail pela plataforma Resend.",
+          "O site não guarda essas mensagens em nenhum banco de dados. Ou seja: sua mensagem existe apenas no nosso e-mail."
+        ]
+      },
+      "retention": {
+        "title": "Por quanto tempo guardamos",
+        "body": [
+          "Mantemos os e-mails recebidos apenas pelo tempo necessário para atender à sua solicitação. Depois disso, eles podem ser excluídos. Se você quiser que a sua mensagem seja apagada antes, basta pedir — explicamos como logo abaixo."
+        ]
+      },
+      "cookies": {
+        "title": "Cookies",
+        "body": [
+          "O site usa um único cookie funcional, chamado NEXT_LOCALE, que serve para lembrar o idioma que você escolheu (português ou inglês). Ele não identifica você nem acompanha sua navegação.",
+          "Não usamos cookies de publicidade, de análise de comportamento ou de rastreamento de terceiros nesta versão do site."
+        ]
+      },
+      "infrastructure": {
+        "title": "Infraestrutura e segurança",
+        "body": [
+          "O site é hospedado na infraestrutura da Cloudflare, que processa dados técnicos — como o endereço IP da sua conexão — para fins de segurança, proteção contra ataques (como DDoS) e entrega do conteúdo. Esse processamento é prática padrão da internet moderna e serve para manter o site seguro e disponível.",
+          "O Cloudflare Turnstile, usado no formulário de contato para bloquear robôs, também pode processar dados técnicos do seu navegador durante essa verificação."
+        ]
+      },
+      "rights": {
+        "title": "Seus direitos pela LGPD",
+        "body": [
+          "Como titular de dados pessoais, a LGPD garante a você, entre outros, o direito de:"
+        ],
+        "items": [
+          "Confirmar se tratamos dados sobre você",
+          "Acessar os dados que temos a seu respeito",
+          "Corrigir dados incompletos, inexatos ou desatualizados",
+          "Pedir a exclusão ou a anonimização dos seus dados",
+          "Solicitar a portabilidade dos dados a outro fornecedor",
+          "Saber com quem compartilhamos seus dados",
+          "Revogar um consentimento dado anteriormente"
+        ]
+      },
+      "exercise": {
+        "title": "Como exercer seus direitos",
+        "body": [
+          "Sem burocracia: envie um e-mail para <email>contato@techtelligence.com.br</email> dizendo o que você precisa. Vamos responder o mais rápido possível.",
+          "Se não ficar satisfeito com a resposta, você também pode apresentar uma reclamação à Autoridade Nacional de Proteção de Dados (ANPD)."
+        ]
+      },
+      "changes": {
+        "title": "Alterações nesta política",
+        "body": [
+          "Podemos atualizar esta política quando o site ganhar novas funcionalidades ou quando a legislação exigir. Quando isso acontecer, atualizamos a data no topo desta página. Vale sempre a versão publicada aqui."
+        ]
+      }
     }
   }
 }
