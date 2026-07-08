@@ -1,16 +1,21 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Container } from "@/components/ui/Container";
+import { setRequestLocale } from "next-intl/server";
+import { Hero } from "@/components/sections/home/Hero";
+import { ProductDoors } from "@/components/sections/home/ProductDoors";
+import { CredibilityBand } from "@/components/sections/home/CredibilityBand";
+import { FinalCta } from "@/components/sections/home/FinalCta";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("common.nav");
 
   return (
-    <Container className="py-24">
-      <h1 className="text-3xl font-extrabold tracking-wide">{t("home")}</h1>
-    </Container>
+    <>
+      <Hero />
+      <ProductDoors />
+      <CredibilityBand />
+      <FinalCta />
+    </>
   );
 }

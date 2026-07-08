@@ -32,5 +32,56 @@
       "description": "The page you are looking for does not exist or has been moved.",
       "back": "Back to home"
     }
+  },
+  "home": {
+    "meta": {
+      "title": "TechTelligence — Course, Mentorship and Data & AI Consulting",
+      "description": "A course to break into tech, 1:1 mentorship to grow your career, and Data & AI consulting for companies. Start your climb with TechTelligence."
+    },
+    "hero": {
+      "kicker": "Data & Artificial Intelligence",
+      "title": "Technology that transforms careers and companies",
+      "subtitle": "A course to break into tech, mentorship to grow in it, and Data & AI consulting for companies. Choose your path to the top.",
+      "ctaPrimary": "Chat on WhatsApp",
+      "ctaSecondary": "Explore our solutions",
+      "whatsappMessage": "Hi! I found TechTelligence's website and I'd like to know more about your solutions."
+    },
+    "doors": {
+      "kicker": "Our solutions",
+      "title": "Three paths, one goal: growing with technology",
+      "subtitle": "For people breaking into tech, professionals accelerating their careers, and companies scaling with data and AI.",
+      "course": {
+        "tagline": "Break into tech",
+        "title": "Course",
+        "description": "For career changers who want to build a career in technology — no prior experience required.",
+        "items": ["Tracks for Dev, Data and DevOps roles", "From zero to your first tech job", "Learn what the market actually hires for"],
+        "cta": "Explore the course"
+      },
+      "mentorship": {
+        "tagline": "Accelerate your career",
+        "title": "Mentorship",
+        "description": "1:1 guidance to land your next role or grow your career in tech.",
+        "items": ["Personalized career strategy", "LinkedIn and interview preparation", "Technical skill development"],
+        "cta": "Explore mentorship"
+      },
+      "consulting": {
+        "tagline": "For companies",
+        "title": "Consulting",
+        "description": "Data platforms and AI environments implemented by builders — from strategy to production.",
+        "items": ["Modern data platforms", "AI environments and solutions", "From architecture to operations"],
+        "cta": "Explore consulting"
+      }
+    },
+    "credibility": {
+      "title": "Taught by the people who build",
+      "text": "We build Data & AI solutions for companies every day. That's how we know exactly what the market hires for — and how we prepare you to get there.",
+      "cta": "Read our story"
+    },
+    "finalCta": {
+      "title": "Ready for the next step?",
+      "subtitle": "Talk to us on WhatsApp and find the best path for you or your company.",
+      "cta": "Chat on WhatsApp",
+      "whatsappMessage": "Hi! I'd like to take the next step with TechTelligence."
+    }
   }
 }

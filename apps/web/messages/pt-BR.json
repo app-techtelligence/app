@@ -32,5 +32,56 @@
       "description": "A página que você procura não existe ou foi movida.",
       "back": "Voltar para o início"
     }
+  },
+  "home": {
+    "meta": {
+      "title": "TechTelligence — Curso, Mentoria e Consultoria em Dados & IA",
+      "description": "Curso para entrar na área tech, mentoria 1:1 para crescer na carreira e consultoria de Dados & IA para empresas. Comece sua subida com a TechTelligence."
+    },
+    "hero": {
+      "kicker": "Dados & Inteligência Artificial",
+      "title": "Tecnologia que transforma carreiras e empresas",
+      "subtitle": "Curso para você entrar na área tech, mentoria para crescer nela e consultoria de Dados & IA para empresas. Escolha o seu caminho para o topo.",
+      "ctaPrimary": "Falar no WhatsApp",
+      "ctaSecondary": "Conhecer as soluções",
+      "whatsappMessage": "Olá! Vim pelo site da TechTelligence e quero saber mais sobre as soluções de vocês."
+    },
+    "doors": {
+      "kicker": "Nossas soluções",
+      "title": "Três caminhos, um objetivo: crescer com tecnologia",
+      "subtitle": "Para quem quer entrar na área, para quem quer acelerar a carreira e para empresas que querem escalar com dados e IA.",
+      "course": {
+        "tagline": "Migre para a área tech",
+        "title": "Curso",
+        "description": "Para quem quer sair de outra área e construir uma carreira em tecnologia — sem experiência prévia.",
+        "items": ["Trilhas para Dev, Dados e DevOps", "Do zero à sua primeira vaga em tech", "Aprenda o que o mercado realmente contrata"],
+        "cta": "Conhecer o curso"
+      },
+      "mentorship": {
+        "tagline": "Acelere sua carreira",
+        "title": "Mentoria",
+        "description": "Acompanhamento 1:1 para conquistar sua vaga ou crescer na área de tecnologia.",
+        "items": ["Estratégia de carreira personalizada", "LinkedIn e preparação para entrevistas", "Desenvolvimento de habilidades técnicas"],
+        "cta": "Conhecer a mentoria"
+      },
+      "consulting": {
+        "tagline": "Para empresas",
+        "title": "Consultoria",
+        "description": "Plataformas de dados e ambientes de IA implementados por quem constrói — da estratégia à produção.",
+        "items": ["Plataformas de dados modernas", "Ambientes e soluções de IA", "Da arquitetura à operação"],
+        "cta": "Conhecer a consultoria"
+      }
+    },
+    "credibility": {
+      "title": "Quem ensina é quem constrói",
+      "text": "Construímos soluções de Dados e IA para empresas todos os dias. Por isso, sabemos exatamente o que o mercado contrata — e é assim que preparamos você para chegar lá.",
+      "cta": "Conheça nossa história"
+    },
+    "finalCta": {
+      "title": "Pronto para dar o próximo passo?",
+      "subtitle": "Fale com a gente no WhatsApp e descubra o melhor caminho para você ou para a sua empresa.",
+      "cta": "Falar no WhatsApp",
+      "whatsappMessage": "Olá! Quero dar o próximo passo com a TechTelligence."
+    }
   }
 }
