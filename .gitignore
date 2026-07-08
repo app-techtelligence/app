@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# builds
+.next/
+.open-next/
+out/
+dist/
+
+# tooling caches
+.turbo/
+.wrangler/
+*.tsbuildinfo
+
+# secrets & env — never commit
+.dev.vars
+.env
+.env.*
+!.env.example
+!.dev.vars.example
+
+# logs & OS noise
+*.log
+.DS_Store
+Thumbs.db
