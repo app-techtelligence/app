@@ -4,10 +4,13 @@
   /* Brand palette — CLAUDE.md §3 */
   --color-navy: #1a2a44;
   --color-navy-deep: #111b2e;
-  --color-steel: #727b8a;
+  /* Brand gray-blue is #727B8A; darkened to meet WCAG AA (4.5:1) as text on white. */
+  --color-steel: #667080;
+  --color-steel-light: #9aa3b0; /* gray-blue for text on navy (AA) */
   --color-canvas: #f7f8fa;
   --color-accent: #f59e0b; /* amber — CTA accent (user decision) */
-  --color-accent-strong: #d97706; /* hover/pressed */
+  --color-accent-strong: #d97706; /* hover/pressed backgrounds */
+  --color-accent-ink: #b45309; /* AA-safe amber for TEXT on light backgrounds */
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }

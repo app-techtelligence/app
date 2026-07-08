@@ -18,7 +18,7 @@ export async function Approach() {
             <li key={i} className="border-t-2 border-accent pt-5">
               <span
                 aria-hidden="true"
-                className="text-sm font-extrabold tracking-[0.18em] text-accent-strong"
+                className="text-sm font-extrabold tracking-[0.18em] text-accent-ink"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>

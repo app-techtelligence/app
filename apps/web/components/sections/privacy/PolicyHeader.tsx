@@ -10,7 +10,7 @@ export async function PolicyHeader() {
     <section className="bg-white pt-16 sm:pt-20">
       <Container>
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent-strong">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent-ink">
             {t("kicker")}
           </p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-wide text-navy sm:text-4xl">

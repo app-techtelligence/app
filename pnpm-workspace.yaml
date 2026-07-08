@@ -2,6 +2,14 @@ packages:
   - apps/*
   - packages/*
 
+# Flattened node_modules: required by @opennextjs/cloudflare bundling
+# (pnpm's symlinked layout breaks manifest/chunk inlining — workers-sdk#10236)
+nodeLinker: hoisted
+
+overrides:
+  # GHSA-qx2v-qp2m-jg93 — XSS in postcss stringify (<8.5.10)
+  postcss: '>=8.5.10'
+
 allowBuilds:
   '@parcel/watcher': true
   '@swc/core': true

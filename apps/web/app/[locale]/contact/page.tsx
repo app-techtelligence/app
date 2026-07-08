@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { pageMetadata } from "@/lib/metadata";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
@@ -20,6 +21,8 @@ export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
+  // The form is a client island — give it just its own namespace.
+  const messages = await getMessages();
 
   return (
     <section className="bg-canvas py-16 sm:py-20">
@@ -71,7 +74,9 @@ export default async function ContactPage({ params }: Props) {
             </div>
           </div>
 
-          <ContactForm />
+          <NextIntlClientProvider messages={{ contact: messages.contact }}>
+            <ContactForm />
+          </NextIntlClientProvider>
         </div>
       </Container>
     </section>

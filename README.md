@@ -40,6 +40,11 @@ Never commit secrets. Only `NEXT_PUBLIC_*` values reach the client.
 - Contact form: Zod validation → Turnstile `siteverify` → Resend delivery. Submissions are **not stored**; PII is never logged.
 - Keep `middleware.ts` on the legacy filename — the OpenNext Cloudflare adapter does not support Next 16's `proxy.ts`.
 
+## Build notes (don't "simplify" these away)
+
+- `nodeLinker: hoisted` in `pnpm-workspace.yaml`: pnpm's default symlinked layout breaks the OpenNext bundler (500s from unresolvable manifest/chunk requires — workers-sdk#10236).
+- `next build --webpack` in `apps/web`: Turbopack server chunks fail to load through the adapter's runtime patching. Re-test `pnpm --filter web preview` before switching back to Turbopack.
+
 ## Manual Cloudflare/ops checklist (one-time, dashboard)
 
 1. **Turnstile**: create a widget for the production domain; set `NEXT_PUBLIC_TURNSTILE_SITE_KEY` (build var) and `wrangler secret put TURNSTILE_SECRET_KEY`.

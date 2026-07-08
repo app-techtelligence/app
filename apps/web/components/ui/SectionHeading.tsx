@@ -23,7 +23,7 @@ export function SectionHeading({
       {kicker ? (
         <p
           className={`mb-3 text-xs font-bold uppercase tracking-[0.22em] ${
-            onDark ? "text-accent" : "text-accent-strong"
+            onDark ? "text-accent" : "text-accent-ink"
           }`}
         >
           {kicker}

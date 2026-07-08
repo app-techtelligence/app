@@ -20,7 +20,7 @@ export async function Footer() {
     <footer className="bg-navy text-white">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
-          <Link href="/" aria-label={t("nav.home")} className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <LogoMark className="h-8 w-auto text-white" />
             <Wordmark onDark className="text-sm" />
           </Link>

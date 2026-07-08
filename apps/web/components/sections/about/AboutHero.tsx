@@ -14,7 +14,7 @@ export async function AboutHero() {
       <LogoMark className="pointer-events-none absolute -right-16 -top-10 hidden h-[130%] w-auto text-navy/[0.04] md:block" />
       <Container className="relative py-20 sm:py-28">
         <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent-strong">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent-ink">
             {t("kicker")}
           </p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-wide text-navy sm:text-5xl">

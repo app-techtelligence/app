@@ -24,7 +24,8 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-navy/10 bg-white/95 backdrop-blur">
       <Container className="relative flex h-16 items-center justify-between gap-4">
-        <Link href="/" aria-label={t("nav.home")} className="flex items-center gap-2">
+        {/* No aria-label: the visible wordmark text is the accessible name. */}
+        <Link href="/" className="flex items-center gap-2">
           <LogoMark className="h-8 w-auto text-navy" />
           <Wordmark className="text-sm sm:text-base" />
         </Link>
