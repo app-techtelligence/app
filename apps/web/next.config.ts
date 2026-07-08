@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { securityHeaders } from "./lib/security-headers.mjs";
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -9,6 +10,16 @@ const nextConfig: NextConfig = {
   // v1 ships hand-optimized SVG/WebP assets instead.
   images: {
     unoptimized: true,
+  },
+  // Applies only to worker-rendered responses; asset-served responses get the
+  // same headers from public/_headers (see lib/security-headers.mjs).
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
   },
 };
 

@@ -12,6 +12,9 @@ dist/
 .wrangler/
 *.tsbuildinfo
 
+# generated at prebuild from lib/security-headers.mjs
+apps/web/public/_headers
+
 # secrets & env — never commit
 .dev.vars
 .env
