@@ -1,29 +1,25 @@
 <!--
   Supabase "Confirm signup" template — TechTelligence brand, locale-aware.
-  The signup form stores the user's language in user_metadata.locale;
-  {{ if eq .Data.locale "en" }} branches pick English, everything else
-  (including missing metadata) falls back to PT-BR.
+  Paste this into: Supabase Dashboard -> Authentication -> Emails ->
+  "Confirm signup" -> Message body (NOT Magic Link / Invite / other tabs).
+  Subject: Confirme seu e-mail / Confirm your email — TechTelligence
 
-  HOW TO USE (requires custom SMTP configured in Supabase first):
-  Dashboard -> Authentication -> Emails -> Confirm signup -> paste this
-  as the message body. Subject suggestion (bilingual, single line):
-    Confirme seu e-mail / Confirm your email — TechTelligence
-  Keep {{ .ConfirmationURL }} intact.
+  The signup form stores the user's language in user_metadata.locale.
+  (index .Data "locale") reads it safely; "en" -> English, anything else
+  (including missing) -> PT-BR. Keep {{ .ConfirmationURL }} intact.
 -->
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f7f8fa;padding:32px 16px;">
   <tr>
     <td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
-        <!-- header -->
         <tr>
           <td style="background-color:#1a2a44;border-radius:12px 12px 0 0;padding:28px 32px;" align="center">
             <img src="https://techtelligence.net/email/logo-email.png" alt="TechTelligence" width="270" height="60" style="display:block;border:0;max-width:270px;height:auto;" />
           </td>
         </tr>
-        <!-- body -->
         <tr>
           <td style="background-color:#ffffff;padding:36px 32px;font-family:Arial,Helvetica,sans-serif;color:#1a2a44;">
-            {{ if eq .Data.locale "en" }}
+            {{ if eq (index .Data "locale") "en" }}
             <h1 style="margin:0 0 16px;font-size:22px;line-height:1.3;font-weight:800;letter-spacing:0.5px;color:#1a2a44;">
               One step left to start your climb
             </h1>
@@ -44,34 +40,21 @@
               <tr>
                 <td style="background-color:#f59e0b;border-radius:8px;">
                   <a href="{{ .ConfirmationURL }}" target="_blank" style="display:inline-block;padding:14px 32px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#1a2a44;text-decoration:none;">
-                    {{ if eq .Data.locale "en" }}Confirm my email{{ else }}Confirmar meu e-mail{{ end }}
+                    {{ if eq (index .Data "locale") "en" }}Confirm my email{{ else }}Confirmar meu e-mail{{ end }}
                   </a>
                 </td>
               </tr>
             </table>
             <p style="margin:0;font-size:12px;line-height:1.6;color:#667080;">
-              {{ if eq .Data.locale "en" }}
-              If the button doesn't work, copy and paste this link into your browser:<br />
-              {{ else }}
-              Se o botão não funcionar, copie e cole este link no navegador:<br />
-              {{ end }}
+              {{ if eq (index .Data "locale") "en" }}If the button doesn't work, copy and paste this link into your browser:{{ else }}Se o botão não funcionar, copie e cole este link no navegador:{{ end }}<br />
               <a href="{{ .ConfirmationURL }}" style="color:#b45309;word-break:break-all;">{{ .ConfirmationURL }}</a>
             </p>
           </td>
         </tr>
-        <!-- footer -->
         <tr>
           <td style="background-color:#ffffff;border-top:1px solid #e8eaee;border-radius:0 0 12px 12px;padding:20px 32px;font-family:Arial,Helvetica,sans-serif;" align="center">
             <p style="margin:0;font-size:12px;line-height:1.6;color:#9aa3b0;">
-              {{ if eq .Data.locale "en" }}
-              You received this email because an account was created on the
-              TechTelligence platform.<br />
-              If it wasn't you, just ignore this message — no account will be activated.
-              {{ else }}
-              Você recebeu este e-mail porque criou uma conta na plataforma
-              TechTelligence.<br />
-              Se não foi você, ignore esta mensagem — nenhuma conta será ativada.
-              {{ end }}
+              {{ if eq (index .Data "locale") "en" }}You received this email because an account was created on the TechTelligence platform. If it wasn't you, just ignore this message — no account will be activated.{{ else }}Você recebeu este e-mail porque criou uma conta na plataforma TechTelligence. Se não foi você, ignore esta mensagem — nenhuma conta será ativada.{{ end }}
             </p>
           </td>
         </tr>
