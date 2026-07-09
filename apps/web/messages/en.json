@@ -86,7 +86,7 @@
     },
     "credibility": {
       "title": "Taught by the people who build",
-      "text": "We build Data & AI solutions for companies every day. That's how we know exactly what the market hires for — and how we prepare you to get there.",
+      "text": "We build Data & AI solutions for companies every day. That's how we know exactly what the market hires for — and how we prepare you to get there. And the loop closes: those who stand out in training may join our consulting projects.",
       "cta": "Read our story"
     },
     "finalCta": {
@@ -525,6 +525,48 @@
     "subtitle": "Projects delivered in banking, automotive, telecom and tech — in Brazil, the US and Japan.",
     "stripTitle": "Our team's project experience includes",
     "disclaimer": "Logos belong to their respective companies and refer to our team members's professional experience on projects for these organizations, directly or through consultancies and partners. They do not imply endorsement of or partnership with TechTelligence."
+  },
+  "talentBridge": {
+    "students": {
+      "kicker": "From training to real projects",
+      "title": "Stand out and work on our real projects",
+      "text": "TechTelligence also serves companies through Data & AI consulting. Students and mentees who stand out may be invited to work on those projects alongside our team — real experience, with real clients.",
+      "cta": "Explore the consulting side",
+      "items": [
+        {
+          "title": "Real experience on your résumé",
+          "text": "A real project for a real company is worth more than any certificate — and changes the conversation in interviews."
+        },
+        {
+          "title": "You won't walk alone",
+          "text": "Anyone joining a project works alongside senior professionals from our team, learning at market pace."
+        },
+        {
+          "title": "The natural way in",
+          "text": "It's the bridge between studying tech and working in tech — inside our own ecosystem."
+        }
+      ]
+    },
+    "clients": {
+      "kicker": "Talent ecosystem",
+      "title": "We train the talent that reinforces your projects",
+      "text": "Beyond our senior team, projects can draw on professionals trained in our own course and mentorship — people we evaluate up close, trained on exactly what the market uses, under the supervision of experienced builders.",
+      "cta": "See how we train talent",
+      "items": [
+        {
+          "title": "Vetted by us, on real practice",
+          "text": "We only invite people who proved technical consistency and professional attitude during training."
+        },
+        {
+          "title": "Trained on the stack you use",
+          "text": "Our training content comes from the projects we deliver — people arrive ready for your context."
+        },
+        {
+          "title": "Scale with guaranteed seniority",
+          "text": "Hybrid teams: senior leadership always in front, with extra capacity trained in-house."
+        }
+      ]
+    }
   },
   "privacy": {
     "meta": {

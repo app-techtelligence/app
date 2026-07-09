@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { Hero } from "@/components/sections/mentorship/Hero";
 import { HelpAreas } from "@/components/sections/mentorship/HelpAreas";
 import { Process } from "@/components/sections/mentorship/Process";
+import { TalentBridge } from "@/components/sections/shared/TalentBridge";
 import { Credibility } from "@/components/sections/mentorship/Credibility";
 import { FinalCta } from "@/components/sections/mentorship/FinalCta";
 
@@ -23,6 +24,7 @@ export default async function MentorshipPage({ params }: Props) {
       <Hero />
       <HelpAreas />
       <Process />
+      <TalentBridge audience="students" />
       <Credibility />
       <FinalCta />
     </>

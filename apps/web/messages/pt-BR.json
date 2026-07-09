@@ -86,7 +86,7 @@
     },
     "credibility": {
       "title": "Quem ensina é quem constrói",
-      "text": "Construímos soluções de Dados e IA para empresas todos os dias. Por isso, sabemos exatamente o que o mercado contrata — e é assim que preparamos você para chegar lá.",
+      "text": "Construímos soluções de Dados e IA para empresas todos os dias. Por isso, sabemos exatamente o que o mercado contrata — e é assim que preparamos você para chegar lá. E o ciclo se fecha: quem se destaca na formação pode atuar nos nossos projetos de consultoria.",
       "cta": "Conheça nossa história"
     },
     "finalCta": {
@@ -525,6 +525,48 @@
     "subtitle": "Projetos entregues em bancos, indústria automotiva, telecom e tecnologia — no Brasil, nos EUA e no Japão.",
     "stripTitle": "Experiência do nosso time em projetos para",
     "disclaimer": "Os logotipos pertencem às respectivas empresas e referem-se à experiência profissional dos membros do nosso time em projetos para essas organizações, de forma direta ou por meio de consultorias e parceiros. Não implicam endosso ou parceria com a TechTelligence."
+  },
+  "talentBridge": {
+    "students": {
+      "kicker": "Da formação ao projeto real",
+      "title": "Quem se destaca pode trabalhar nos nossos projetos",
+      "text": "A TechTelligence também atende empresas com consultoria de Dados e IA. Alunos e mentorados que se destacam podem ser convidados para atuar nesses projetos, ao lado do nosso time — experiência real, com clientes reais.",
+      "cta": "Conhecer a consultoria",
+      "items": [
+        {
+          "title": "Experiência de verdade no currículo",
+          "text": "Projeto real para empresa real vale mais do que qualquer certificado — e muda a conversa em entrevistas."
+        },
+        {
+          "title": "Você não caminha sozinho",
+          "text": "Quem entra em projeto atua junto com profissionais seniores do nosso time, aprendendo no ritmo do mercado."
+        },
+        {
+          "title": "A porta de entrada natural",
+          "text": "É a ponte entre estudar tecnologia e trabalhar com tecnologia — dentro do nosso próprio ecossistema."
+        }
+      ]
+    },
+    "clients": {
+      "kicker": "Ecossistema de talentos",
+      "title": "Formamos os talentos que reforçam seus projetos",
+      "text": "Além do nosso time sênior, projetos podem contar com profissionais formados no nosso curso e mentoria — pessoas que avaliamos de perto, treinadas exatamente no que o mercado usa, sob supervisão de quem entrega há anos.",
+      "cta": "Veja como formamos talentos",
+      "items": [
+        {
+          "title": "Avaliados por nós, em prática real",
+          "text": "Só convidamos para projetos quem demonstrou consistência técnica e atitude profissional na formação."
+        },
+        {
+          "title": "Treinados no stack que você usa",
+          "text": "O conteúdo da formação nasce dos projetos que entregamos — as pessoas chegam prontas para o seu contexto."
+        },
+        {
+          "title": "Escala com senioridade garantida",
+          "text": "Times híbridos: liderança sênior sempre à frente, com capacidade extra formada dentro de casa."
+        }
+      ]
+    }
   },
   "privacy": {
     "meta": {

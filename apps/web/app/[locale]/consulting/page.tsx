@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/consulting/Hero";
 import { Services } from "@/components/sections/consulting/Services";
 import { Approach } from "@/components/sections/consulting/Approach";
 import { WhyUs } from "@/components/sections/consulting/WhyUs";
+import { TalentBridge } from "@/components/sections/shared/TalentBridge";
 import { ClientLogos } from "@/components/sections/shared/ClientLogos";
 import { FinalCta } from "@/components/sections/consulting/FinalCta";
 
@@ -25,6 +26,7 @@ export default async function ConsultingPage({ params }: Props) {
       <Services />
       <Approach />
       <WhyUs />
+      <TalentBridge audience="clients" />
       <ClientLogos />
       <FinalCta />
     </>
