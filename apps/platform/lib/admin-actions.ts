@@ -21,19 +21,25 @@ function slugify(value: string): string {
     .slice(0, 60);
 }
 
+// Optional so forms that omit the field (e.g. quick-create lesson, which
+// only posts title fields) still validate; absent and empty both mean null.
 const text = z
   .string()
   .trim()
   .max(300)
-  .transform((v) => (v === "" ? null : v));
+  .optional()
+  .transform((v) => (v ? v : null));
+
+// Unchecked checkboxes are absent from FormData entirely; treat that as false.
+const checkbox = z.coerce.boolean().default(false);
 
 const courseSchema = z.object({
   title: z.string().trim().min(2).max(200),
   title_en: text,
   description: text,
   description_en: text,
-  is_published: z.coerce.boolean(),
-  beta_open: z.coerce.boolean(),
+  is_published: checkbox,
+  beta_open: checkbox,
 });
 
 function refresh() {
@@ -189,7 +195,7 @@ const lessonSchema = z.object({
   title_en: text,
   description: text,
   description_en: text,
-  is_free_preview: z.coerce.boolean(),
+  is_free_preview: checkbox,
 });
 
 export async function createLesson(formData: FormData) {
