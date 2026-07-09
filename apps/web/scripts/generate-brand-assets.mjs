@@ -55,7 +55,22 @@ const appleIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   </g>
 </svg>`;
 
+// Email header logo (720x160, transparent): all-white mark for the navy
+// email header + "TECH" white / "TELLIGENCE" light steel wordmark.
+const emailLogo = `<svg xmlns="http://www.w3.org/2000/svg" width="720" height="160">
+  <g transform="translate(14,14) scale(0.407)" fill="#FFFFFF">
+    <path d="${MARK[0]}"/>
+    <path d="${MARK[1]}"/>
+    <path d="${MARK[2]}"/>
+  </g>
+  <text x="192" y="98" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800" letter-spacing="5">
+    <tspan fill="#FFFFFF">TECH</tspan><tspan fill="#9AA3B0">TELLIGENCE</tspan>
+  </text>
+</svg>`;
+
 mkdirSync(join(root, "public", "og"), { recursive: true });
+mkdirSync(join(root, "public", "email"), { recursive: true });
 await sharp(Buffer.from(og)).png().toFile(join(root, "public", "og", "og-default.png"));
 await sharp(Buffer.from(appleIcon)).resize(180, 180).png().toFile(join(root, "app", "apple-icon.png"));
-console.log("[generate-brand-assets] wrote public/og/og-default.png and app/apple-icon.png");
+await sharp(Buffer.from(emailLogo)).png().toFile(join(root, "public", "email", "logo-email.png"));
+console.log("[generate-brand-assets] wrote og-default.png, apple-icon.png, email/logo-email.png");
