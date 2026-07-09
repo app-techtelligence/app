@@ -8,10 +8,18 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://techtelligence.com.br",
   /** PLACEHOLDER — WhatsApp number in international format, digits only. */
   whatsappNumber: "5511999999999",
-  /** PLACEHOLDER — inbox that receives contact-form submissions. */
-  contactEmail: "contato@techtelligence.com.br",
-  /** Sender for transactional email (must match a Resend-verified domain). */
-  emailFrom: "TechTelligence <site@techtelligence.com.br>",
+  /**
+   * Inbox that receives contact-form submissions.
+   * FREE TIER: Resend can only deliver to your own Resend account email until
+   * a domain is verified. Set this to that email. TODO: confirm this address.
+   */
+  contactEmail: "leandro.lf.frazao@hotmail.com",
+  /**
+   * Sender for transactional email.
+   * FREE TIER: must be onboarding@resend.dev until a domain is verified in
+   * Resend. Swap to "TechTelligence <site@yourdomain>" once you have a domain.
+   */
+  emailFrom: "TechTelligence <onboarding@resend.dev>",
 } as const;
 
 /** wa.me deep link with an optional pre-filled, URL-encoded message. */
