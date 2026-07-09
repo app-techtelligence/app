@@ -44,15 +44,23 @@ export default async function LessonPage({ params }: Props) {
   if (!lesson) notFound();
 
   // Access check — the media route enforces this again (defense in depth).
-  const { data: enrollment } = await supabase
-    .from("enrollments")
-    .select("status")
-    .eq("course_id", course.id)
-    .eq("user_id", user.id)
-    .eq("status", "active")
-    .maybeSingle();
+  // Admins can preview any lesson without enrolling.
+  const [{ data: enrollment }, { data: profile }] = await Promise.all([
+    supabase
+      .from("enrollments")
+      .select("status")
+      .eq("course_id", course.id)
+      .eq("user_id", user.id)
+      .eq("status", "active")
+      .maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single<{ role: string }>(),
+  ]);
 
-  if (!enrollment && !lesson.is_free_preview) {
+  if (!enrollment && !lesson.is_free_preview && profile?.role !== "admin") {
     redirect({
       href: { pathname: "/course/[slug]", params: { slug: course.slug } },
       locale,

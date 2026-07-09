@@ -42,14 +42,21 @@ export async function GET(
   }
 
   if (!lesson.is_free_preview) {
-    const { data: enrollment } = await supabase
-      .from("enrollments")
-      .select("status")
-      .eq("user_id", user.id)
-      .eq("course_id", lesson.modules.course_id)
-      .eq("status", "active")
-      .maybeSingle();
-    if (!enrollment) {
+    const [{ data: enrollment }, { data: profile }] = await Promise.all([
+      supabase
+        .from("enrollments")
+        .select("status")
+        .eq("user_id", user.id)
+        .eq("course_id", lesson.modules.course_id)
+        .eq("status", "active")
+        .maybeSingle(),
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single<{ role: string }>(),
+    ]);
+    if (!enrollment && profile?.role !== "admin") {
       return new Response("Forbidden", { status: 403 });
     }
   }

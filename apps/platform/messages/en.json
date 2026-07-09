@@ -4,7 +4,8 @@
       "beta": "Beta"
     },
     "header": {
-      "logout": "Sign out"
+      "logout": "Sign out",
+      "admin": "Admin"
     },
     "localeSwitcher": {
       "label": "Language"
@@ -74,5 +75,44 @@
   },
   "lesson": {
     "noVideo": "This lesson's video is not available yet."
+  },
+  "admin": {
+    "title": "Administration",
+    "subtitle": "Manage courses, sections and lessons.",
+    "back": "Courses",
+    "published": "Published",
+    "draft": "Draft",
+    "betaOpen": "Beta open",
+    "newCourse": "New course",
+    "courseSettings": "Course settings",
+    "newSection": "New section",
+    "editSection": "Edit section",
+    "newLesson": "New lesson",
+    "editLesson": "Edit lesson",
+    "create": "Create",
+    "save": "Save",
+    "delete": "Delete",
+    "deleteCourse": "Delete course",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "hasVideo": "Has video",
+    "noVideo": "No video",
+    "fields": {
+      "titlePt": "Title (PT-BR)",
+      "titleEn": "Title (EN)",
+      "descriptionPt": "Description (PT-BR)",
+      "descriptionEn": "Description (EN)",
+      "published": "Published",
+      "betaOpen": "Beta enrollment open",
+      "freePreview": "Free preview",
+      "durationSeconds": "Duration (seconds)"
+    },
+    "video": {
+      "upload": "Upload video",
+      "replace": "Replace video",
+      "uploading": "Uploading…",
+      "done": "Video uploaded!",
+      "error": "Upload failed — try again."
+    }
   }
 }

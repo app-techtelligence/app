@@ -57,7 +57,14 @@ export default async function CoursePage({ params }: Props) {
   ]);
 
   const enrolled = Boolean(enrollment);
-  let lessonNumber = 0;
+  const sortedModules = ((modules ?? []) as ModuleWithLessons[]).map((mod) => ({
+    ...mod,
+    lessons: [...mod.lessons].sort((a, b) => a.position - b.position),
+  }));
+  // Continuous lesson numbering across modules (01, 02, …).
+  const offsets = sortedModules.map((_, i) =>
+    sortedModules.slice(0, i).reduce((sum, m) => sum + m.lessons.length, 0),
+  );
 
   return (
     <Container className="max-w-4xl py-12 sm:py-16">
@@ -78,8 +85,8 @@ export default async function CoursePage({ params }: Props) {
       ) : null}
 
       <div className="mt-10 space-y-10">
-        {((modules ?? []) as ModuleWithLessons[]).map((mod, modIndex) => {
-          const lessons = [...mod.lessons].sort((a, b) => a.position - b.position);
+        {sortedModules.map((mod, modIndex) => {
+          const lessons = mod.lessons;
           return (
             <section key={mod.id}>
               <div className="flex items-center gap-3">
@@ -93,10 +100,9 @@ export default async function CoursePage({ params }: Props) {
               </div>
 
               <ol className="mt-4 space-y-3">
-                {lessons.map((lesson) => {
-                  lessonNumber += 1;
+                {lessons.map((lesson, lessonIndex) => {
                   const accessible = enrolled || lesson.is_free_preview;
-                  const number = String(lessonNumber).padStart(2, "0");
+                  const number = String(offsets[modIndex] + lessonIndex + 1).padStart(2, "0");
                   const title = localized(locale, lesson.title, lesson.title_en);
                   const description = localized(
                     locale,

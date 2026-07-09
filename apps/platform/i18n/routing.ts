@@ -30,6 +30,8 @@ export const routing = defineRouting({
       "pt-BR": "/curso/[slug]/aula/[lessonSlug]",
       en: "/course/[slug]/lesson/[lessonSlug]",
     },
+    "/admin": "/admin",
+    "/admin/course/[id]": "/admin/course/[id]",
   },
 });
 

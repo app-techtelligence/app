@@ -15,6 +15,16 @@ export async function PlatformHeader() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  let isAdmin = false;
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single<{ role: string }>();
+    isAdmin = profile?.role === "admin";
+  }
+
   async function signOut() {
     "use server";
     const supabase = await createClient();
@@ -38,6 +48,14 @@ export async function PlatformHeader() {
         </Link>
 
         <div className="flex items-center gap-3">
+          {isAdmin ? (
+            <Link
+              href="/admin"
+              className="rounded-md bg-navy px-2.5 py-1 text-xs font-bold text-white transition-colors hover:bg-navy-deep"
+            >
+              {t("header.admin")}
+            </Link>
+          ) : null}
           <LocaleSwitcher />
           {user ? (
             <form action={signOut} className="flex items-center gap-3">
