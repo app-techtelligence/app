@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link, redirect } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { localized } from "@/lib/content";
 import type { Course, Enrollment } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
@@ -25,7 +26,9 @@ export default async function DashboardPage({ params }: Props) {
   const [{ data: courses }, { data: enrollments }] = await Promise.all([
     supabase
       .from("courses")
-      .select("id, slug, title, description, is_published, beta_open")
+      .select(
+        "id, slug, title, title_en, description, description_en, is_published, beta_open",
+      )
       .order("created_at"),
     supabase
       .from("enrollments")
@@ -71,10 +74,10 @@ export default async function DashboardPage({ params }: Props) {
                 {enrolled ? t("enrolledTag") : t("betaTag")}
               </span>
               <h2 className="mt-2 text-xl font-extrabold tracking-wide text-navy">
-                {course.title}
+                {localized(locale, course.title, course.title_en)}
               </h2>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-steel">
-                {course.description}
+                {localized(locale, course.description, course.description_en)}
               </p>
               {enrolled ? (
                 <Link
