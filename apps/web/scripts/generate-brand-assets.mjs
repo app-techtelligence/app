@@ -44,13 +44,14 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
   <rect x="90" y="520" width="120" height="6" fill="#F59E0B"/>
 </svg>`;
 
-// Apple touch icon: full-bleed navy square (iOS applies its own rounding).
+// Apple touch icon: full-bleed black square, all-white mark (matches the
+// favicon treatment the client chose; iOS applies its own rounding).
 const appleIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#1A2A44"/>
-  <g transform="translate(9,13.2) scale(0.1167)">
-    <path fill="#FFFFFF" d="${MARK[0]}"/>
-    <path fill="#FFFFFF" d="${MARK[1]}"/>
-    <path fill="#F59E0B" d="${MARK[2]}"/>
+  <rect width="64" height="64" fill="#000000"/>
+  <g transform="translate(9,13.2) scale(0.1167)" fill="#FFFFFF">
+    <path d="${MARK[0]}"/>
+    <path d="${MARK[1]}"/>
+    <path d="${MARK[2]}"/>
   </g>
 </svg>`;
 
