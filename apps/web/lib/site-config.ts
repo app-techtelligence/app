@@ -5,7 +5,7 @@
 export const siteConfig = {
   name: "TechTelligence",
   /** Production origin — also used for canonical URLs, hreflang and OG tags. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://techtelligence.com.br",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://techtelligence.net",
   /** WhatsApp number, international format, digits only (Georgian +995). */
   whatsappNumber: "995557478927",
   /** Public contact inbox shown on the site (ProtonMail receives it directly). */
