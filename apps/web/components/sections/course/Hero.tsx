@@ -36,9 +36,6 @@ export async function Hero() {
               {t("ctaSecondary")}
             </a>
           </div>
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/60">
-            {t("note")}
-          </p>
         </div>
       </Container>
     </section>
