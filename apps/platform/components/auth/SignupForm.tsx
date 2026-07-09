@@ -48,7 +48,12 @@ export function SignupForm({ labels }: { labels: SignupLabels }) {
       email: String(fields.get("email") ?? ""),
       password: String(fields.get("password") ?? ""),
       options: {
-        data: { full_name: String(fields.get("name") ?? "") },
+        // `locale` is read by the confirmation-email template to pick the
+        // language ({{ if eq .Data.locale "en" }} … {{ else }} PT {{ end }}).
+        data: {
+          full_name: String(fields.get("name") ?? ""),
+          locale,
+        },
         // Supabase's default confirmation link verifies the account on
         // their side, then redirects here — land on login with a banner.
         // (Custom SMTP unlocks the token_hash template flow later.)
