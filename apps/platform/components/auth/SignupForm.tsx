@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
@@ -23,9 +22,16 @@ export type SignupLabels = {
 const inputCls =
   "w-full rounded-md border border-navy/20 bg-white px-3.5 py-2.5 text-sm text-navy focus:border-navy";
 
-export function SignupForm({ labels }: { labels: SignupLabels }) {
+export function SignupForm({
+  labels,
+  locale,
+}: {
+  labels: SignupLabels;
+  // Passed from the server (URL params) — the definitive locale, not the
+  // client context. Determines the confirmation-email language.
+  locale: string;
+}) {
   const router = useRouter();
-  const locale = useLocale();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

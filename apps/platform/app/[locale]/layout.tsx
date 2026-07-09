@@ -40,7 +40,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={manrope.variable}>
       <body className="flex min-h-svh flex-col font-sans antialiased">
-        <NextIntlClientProvider messages={{ common: messages.common }}>
+        <NextIntlClientProvider locale={locale} messages={{ common: messages.common }}>
           <PlatformHeader />
           <main className="flex-1">{children}</main>
         </NextIntlClientProvider>

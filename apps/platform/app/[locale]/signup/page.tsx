@@ -13,6 +13,7 @@ export default async function SignupPage({ params }: Props) {
   return (
     <AuthCard title={t("title")} subtitle={t("subtitle")}>
       <SignupForm
+        locale={locale}
         labels={{
           name: t("name"),
           email: t("email"),
