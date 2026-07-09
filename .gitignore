@@ -20,7 +20,11 @@ apps/web/public/_headers
 .env
 .env.*
 !.env.example
+!.env.local.example
 !.dev.vars.example
+
+# raw course media — lives in object storage (R2), never in git
+course/
 
 # logs & OS noise
 *.log

@@ -1,0 +1,46 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
+import { routing, type Locale } from "@/i18n/routing";
+
+const labels: Record<Locale, string> = {
+  "pt-BR": "PT",
+  en: "EN",
+};
+
+/** PT | EN toggle. Handles dynamic routes by re-passing the current params. */
+export function LocaleSwitcher() {
+  const locale = useLocale();
+  const t = useTranslations("common.localeSwitcher");
+  const pathname = usePathname();
+  const params = useParams();
+
+  return (
+    <nav
+      aria-label={t("label")}
+      className="flex items-center rounded-md border border-navy/15 p-0.5 text-xs font-bold"
+    >
+      {routing.locales.map((candidate) => {
+        const isActive = candidate === locale;
+        return (
+          <Link
+            key={candidate}
+            // The documented locale-switcher pattern: the pathname template
+            // plus the current route params satisfy every route at runtime.
+            // @ts-expect-error -- pathname/params pair is validated at runtime
+            href={{ pathname, params }}
+            locale={candidate}
+            aria-current={isActive ? "true" : undefined}
+            className={`rounded px-2 py-1 transition-colors ${
+              isActive ? "bg-navy text-white" : "text-steel hover:text-navy"
+            }`}
+          >
+            {labels[candidate]}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
