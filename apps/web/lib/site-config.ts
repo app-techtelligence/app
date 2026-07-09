@@ -6,14 +6,17 @@ export const siteConfig = {
   name: "TechTelligence",
   /** Production origin — also used for canonical URLs, hreflang and OG tags. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://techtelligence.com.br",
-  /** PLACEHOLDER — WhatsApp number in international format, digits only. */
-  whatsappNumber: "5511999999999",
+  /** WhatsApp number, international format, digits only (Georgian +995). */
+  whatsappNumber: "995557478927",
+  /** Public contact inbox shown on the site (ProtonMail receives it directly). */
+  contactEmail: "techtelligence@proton.me",
   /**
-   * Inbox that receives contact-form submissions.
-   * FREE TIER: Resend can only deliver to your own Resend account email until
-   * a domain is verified. Set this to that email. TODO: confirm this address.
+   * Where the contact FORM delivers, via Resend — internal, not shown on the site.
+   * FREE TIER: without a verified domain, Resend only delivers to the email your
+   * Resend account is registered with. Once you verify a domain in Resend, set
+   * this to contactEmail (or a domain inbox) and update emailFrom below.
    */
-  contactEmail: "leandro.lf.frazao@hotmail.com",
+  contactFormRecipient: "leandro.lf.frazao2@hotmail.com",
   /**
    * Sender for transactional email.
    * FREE TIER: must be onboarding@resend.dev until a domain is verified in

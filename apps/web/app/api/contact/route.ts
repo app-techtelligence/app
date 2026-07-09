@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
   const resend = new Resend(env.RESEND_API_KEY);
   const { error } = await resend.emails.send({
     from: siteConfig.emailFrom,
-    to: siteConfig.contactEmail,
+    to: siteConfig.contactFormRecipient,
     replyTo: data.email,
     subject: `[Site] ${subjectLabels[data.subject]} — ${data.name}`,
     text: [
