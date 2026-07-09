@@ -55,7 +55,7 @@ Never commit secrets. Only `NEXT_PUBLIC_*` values reach the client.
 
 ## Pending content (placeholders in code)
 
-- Official **SVG logo** — `components/brand/LogoMark.tsx` is a vector approximation; `Logo.png` is the original raster.
-- **WhatsApp number + contact email** — single swap point: `apps/web/lib/site-config.ts`.
 - **Founder bio + photo** (About page), **course curriculum details** (Course page), **consultancy proof points** (Consulting page) — sections are written with clearly-labeled generic/example copy.
-- **Domain name** — update `NEXT_PUBLIC_SITE_URL` / `site-config.ts` once final.
+- **Domain name** — update `NEXT_PUBLIC_SITE_URL` / `site-config.ts` once final; then verify it in Resend and point `contactFormRecipient`/`emailFrom` at the domain inboxes.
+
+Logo and contact details are real now. Brand sources live at the repo root (`Logo.svg`, `Logo.png`); web assets derive from them: `public/logo.svg` (full lockup), `components/brand/LogoMark.tsx` (mark), `app/icon.svg` (favicon), OG image + apple icon via `node scripts/generate-brand-assets.mjs`.
