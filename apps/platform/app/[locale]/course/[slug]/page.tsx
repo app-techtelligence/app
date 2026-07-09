@@ -156,15 +156,11 @@ export default async function CoursePage({ params }: Props) {
                             {formatDuration(lesson.duration_seconds)}
                           </span>
                         ) : null}
-                        <span
-                          className={`text-xs font-bold uppercase tracking-wider ${
-                            accessible
-                              ? "text-accent-ink group-hover:text-navy"
-                              : "text-steel"
-                          }`}
-                        >
-                          {accessible ? t("watch") : t("locked")}
-                        </span>
+                        {!accessible ? (
+                          <span className="text-xs font-bold uppercase tracking-wider text-steel">
+                            {t("locked")}
+                          </span>
+                        ) : null}
                       </span>
                     </>
                   );

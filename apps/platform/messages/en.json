@@ -68,7 +68,6 @@
   "course": {
     "back": "My courses",
     "notEnrolled": "You are not enrolled in this course yet. Go back to the dashboard to join the cohort.",
-    "watch": "Watch",
     "locked": "Locked",
     "lessonCount": "{count, plural, =1 {1 lesson} other {# lessons}}",
     "freePreview": "Free preview"
