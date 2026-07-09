@@ -44,7 +44,9 @@
       "errorWeak": "Senha muito fraca. Use pelo menos 8 caracteres, misturando letras e números.",
       "errorGeneric": "Não foi possível criar a conta agora. Tente novamente.",
       "haveAccount": "Já tem conta?",
-      "loginLink": "Entrar"
+      "loginLink": "Entrar",
+      "confirmPassword": "Confirmar senha",
+      "errorMismatch": "As senhas não coincidem. Confira e tente de novo."
     },
     "verify": {
       "title": "Confirme seu e-mail",

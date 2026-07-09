@@ -11,6 +11,8 @@ export type SignupLabels = {
   email: string;
   password: string;
   passwordHint: string;
+  confirmPassword: string;
+  errorMismatch: string;
   submit: string;
   submitting: string;
   errorInUse: string;
@@ -34,6 +36,13 @@ export function SignupForm({ labels }: { labels: SignupLabels }) {
     setError(null);
 
     const fields = new FormData(event.currentTarget);
+
+    if (fields.get("password") !== fields.get("confirmPassword")) {
+      setPending(false);
+      setError(labels.errorMismatch);
+      return;
+    }
+
     const supabase = createClient();
     const { data, error: authError } = await supabase.auth.signUp({
       email: String(fields.get("email") ?? ""),
@@ -116,6 +125,20 @@ export function SignupForm({ labels }: { labels: SignupLabels }) {
           className={inputCls}
         />
         <p className="mt-1.5 text-xs text-steel">{labels.passwordHint}</p>
+      </div>
+      <div>
+        <label htmlFor="signup-confirm-password" className="mb-1.5 block text-sm font-semibold text-navy">
+          {labels.confirmPassword}
+        </label>
+        <input
+          id="signup-confirm-password"
+          name="confirmPassword"
+          type="password"
+          required
+          minLength={8}
+          autoComplete="new-password"
+          className={inputCls}
+        />
       </div>
 
       {error ? (

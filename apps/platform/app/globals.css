@@ -28,4 +28,10 @@
     outline: 2px solid var(--color-accent-strong);
     outline-offset: 2px;
   }
+
+  /* Tailwind v4's reset leaves buttons with the default arrow cursor. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

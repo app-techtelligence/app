@@ -44,7 +44,9 @@
       "errorWeak": "Password too weak. Use at least 8 characters, mixing letters and numbers.",
       "errorGeneric": "We couldn't create your account right now. Please try again.",
       "haveAccount": "Already have an account?",
-      "loginLink": "Sign in"
+      "loginLink": "Sign in",
+      "confirmPassword": "Confirm password",
+      "errorMismatch": "Passwords do not match. Please check and try again."
     },
     "verify": {
       "title": "Confirm your email",

@@ -18,6 +18,8 @@ export default async function SignupPage({ params }: Props) {
           email: t("email"),
           password: t("password"),
           passwordHint: t("passwordHint"),
+          confirmPassword: t("confirmPassword"),
+          errorMismatch: t("errorMismatch"),
           submit: t("submit"),
           submitting: t("submitting"),
           errorInUse: t("errorInUse"),
