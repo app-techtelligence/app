@@ -519,6 +519,13 @@
       "privacyNote": "Protected by Cloudflare Turnstile. We don't store your data: your message is delivered straight to our inbox."
     }
   },
+  "clients": {
+    "kicker": "Proven experience",
+    "title": "Our team has built for major companies",
+    "subtitle": "Projects delivered in banking, automotive, telecom and tech — in Brazil, the US and Japan.",
+    "stripTitle": "Our team's project experience includes",
+    "disclaimer": "Logos belong to their respective companies and refer to our team members's professional experience on projects for these organizations, directly or through consultancies and partners. They do not imply endorsement of or partnership with TechTelligence."
+  },
   "privacy": {
     "meta": {
       "title": "Privacy Policy — TechTelligence",

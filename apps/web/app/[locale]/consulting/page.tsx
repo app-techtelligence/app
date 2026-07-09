@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/consulting/Hero";
 import { Services } from "@/components/sections/consulting/Services";
 import { Approach } from "@/components/sections/consulting/Approach";
 import { WhyUs } from "@/components/sections/consulting/WhyUs";
+import { ClientLogos } from "@/components/sections/shared/ClientLogos";
 import { FinalCta } from "@/components/sections/consulting/FinalCta";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -24,6 +25,7 @@ export default async function ConsultingPage({ params }: Props) {
       <Services />
       <Approach />
       <WhyUs />
+      <ClientLogos />
       <FinalCta />
     </>
   );

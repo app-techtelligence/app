@@ -519,6 +519,13 @@
       "privacyNote": "Protegido por Cloudflare Turnstile. Não armazenamos seus dados: sua mensagem é entregue diretamente ao nosso e-mail."
     }
   },
+  "clients": {
+    "kicker": "Experiência comprovada",
+    "title": "Nosso time já construiu para grandes empresas",
+    "subtitle": "Projetos entregues em bancos, indústria automotiva, telecom e tecnologia — no Brasil, nos EUA e no Japão.",
+    "stripTitle": "Experiência do nosso time em projetos para",
+    "disclaimer": "Os logotipos pertencem às respectivas empresas e referem-se à experiência profissional dos membros do nosso time em projetos para essas organizações, de forma direta ou por meio de consultorias e parceiros. Não implicam endosso ou parceria com a TechTelligence."
+  },
   "privacy": {
     "meta": {
       "title": "Política de Privacidade — TechTelligence",

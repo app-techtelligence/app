@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { Hero } from "@/components/sections/home/Hero";
 import { ProductDoors } from "@/components/sections/home/ProductDoors";
 import { CredibilityBand } from "@/components/sections/home/CredibilityBand";
+import { ClientLogos } from "@/components/sections/shared/ClientLogos";
 import { FinalCta } from "@/components/sections/home/FinalCta";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -22,6 +23,7 @@ export default async function HomePage({ params }: Props) {
       <Hero />
       <ProductDoors />
       <CredibilityBand />
+      <ClientLogos variant="strip" />
       <FinalCta />
     </>
   );
