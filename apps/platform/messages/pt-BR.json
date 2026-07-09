@@ -27,7 +27,9 @@
       "errorUnconfirmed": "Confirme seu e-mail antes de entrar. Verifique sua caixa de entrada.",
       "errorGeneric": "Não foi possível entrar agora. Tente novamente.",
       "noAccount": "Ainda não tem conta?",
-      "signupLink": "Criar conta"
+      "signupLink": "Criar conta",
+      "confirmedBanner": "E-mail confirmado! Agora é só entrar com sua senha.",
+      "confirmFailedBanner": "Não foi possível confirmar seu e-mail — o link pode ter expirado. Tente entrar ou crie a conta novamente."
     },
     "signup": {
       "title": "Criar sua conta",

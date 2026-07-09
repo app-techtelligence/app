@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useLocale } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
@@ -22,6 +23,7 @@ const inputCls =
 
 export function SignupForm({ labels }: { labels: SignupLabels }) {
   const router = useRouter();
+  const locale = useLocale();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,7 +40,12 @@ export function SignupForm({ labels }: { labels: SignupLabels }) {
       password: String(fields.get("password") ?? ""),
       options: {
         data: { full_name: String(fields.get("name") ?? "") },
-        emailRedirectTo: `${window.location.origin}/auth/confirm`,
+        // Supabase's default confirmation link verifies the account on
+        // their side, then redirects here — land on login with a banner.
+        // (Custom SMTP unlocks the token_hash template flow later.)
+        emailRedirectTo: `${window.location.origin}${
+          locale === "en" ? "/en/login" : "/entrar"
+        }?confirmed=1`,
       },
     });
 

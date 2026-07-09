@@ -27,7 +27,9 @@
       "errorUnconfirmed": "Please confirm your email before signing in. Check your inbox.",
       "errorGeneric": "We couldn't sign you in right now. Please try again.",
       "noAccount": "Don't have an account yet?",
-      "signupLink": "Create account"
+      "signupLink": "Create account",
+      "confirmedBanner": "Email confirmed! Now just sign in with your password.",
+      "confirmFailedBanner": "We could not confirm your email — the link may have expired. Try signing in or sign up again."
     },
     "signup": {
       "title": "Create your account",
