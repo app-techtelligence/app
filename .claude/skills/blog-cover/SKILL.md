@@ -46,7 +46,11 @@ Practical advice to pass along: generate all covers in the same Gemini session; 
      ```
      Same key = `cover_key` stays valid; the media route serves the object's stored content type.
 5. Verify live: `curl -s -o /dev/null -w "%{size_download} %{content_type}" <og:image URL>` → expect `image/webp`, well under 5 MB.
-6. Remind the user: LinkedIn caches failed previews (~a week) — re-scrape each post URL at https://www.linkedin.com/post-inspector/ before sharing.
+6. Remind the user about share-preview caches: social crawlers scrape a URL once and reuse the result for ~a week, so a preview that failed (or showed the old cover) stays broken until re-scraped. Per network:
+   - **LinkedIn** → Post Inspector: https://www.linkedin.com/post-inspector/ (paste URL = forced re-scrape + preview check).
+   - **Facebook/Instagram** → Sharing Debugger: https://developers.facebook.com/tools/debug/ (use "Scrape Again").
+   - **X** → the Card Validator was retired; no official refresh tool. Workaround: share the URL with a throwaway query string (e.g. `?v=2`) so X treats it as a new page.
+   Only needed when the URL was shared (or a share was attempted) before a fix — but it's also a good pre-flight for brand-new posts: it confirms title, description and image resolve before followers see the card.
 
 ## Auditing all covers at once
 
