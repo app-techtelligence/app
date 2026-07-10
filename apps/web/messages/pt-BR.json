@@ -99,15 +99,14 @@
   "course": {
     "meta": {
       "title": "Curso de Transição de Carreira para Tech — TechTelligence",
-      "description": "Migre para a tecnologia sem experiência prévia: trilhas para Dev, Dados e DevOps criadas por quem constrói Dados & IA para empresas. Entre na lista de espera."
+      "description": "Migre para a tecnologia sem experiência prévia: trilhas para Dev, Dados e DevOps criadas por quem constrói Dados & IA para empresas. Acesse a plataforma e comece agora."
     },
     "hero": {
       "kicker": "Curso de transição de carreira",
       "title": "Sua transição para a área tech começa aqui",
       "subtitle": "Um curso para quem quer construir uma carreira em tecnologia começando do zero — sem experiência prévia, sem diploma de TI. Você aprende o que o mercado realmente contrata, com quem constrói Dados & IA todos os dias.",
-      "ctaPrimary": "Entrar na lista de espera",
-      "ctaSecondary": "Ver se é para você",
-      "whatsappMessage": "Olá! Quero entrar na lista de espera do curso de transição de carreira da TechTelligence."
+      "ctaPrimary": "Acessar a plataforma",
+      "ctaSecondary": "Ver se é para você"
     },
     "whoFor": {
       "kicker": "Para quem é",
@@ -198,10 +197,9 @@
     },
     "finalCta": {
       "title": "Comece sua subida agora",
-      "subtitle": "Entre na lista de espera pelo WhatsApp e seja a primeira pessoa a saber quando as inscrições abrirem. Sem compromisso.",
-      "ctaPrimary": "Entrar na lista de espera",
-      "ctaSecondary": "Outras formas de contato",
-      "whatsappMessage": "Olá! Quero entrar na lista de espera do curso da TechTelligence e ser avisado quando as inscrições abrirem."
+      "subtitle": "Crie sua conta ou entre na plataforma e comece a estudar agora mesmo.",
+      "ctaPrimary": "Acessar a plataforma",
+      "ctaSecondary": "Outras formas de contato"
     }
   },
   "mentorship": {

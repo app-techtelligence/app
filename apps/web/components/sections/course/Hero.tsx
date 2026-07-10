@@ -1,12 +1,13 @@
-import { getTranslations } from "next-intl/server";
-import { whatsappLink } from "@/lib/site-config";
+import { getLocale, getTranslations } from "next-intl/server";
+import { platformLoginUrl } from "@/lib/site-config";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
-import { WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowRightIcon } from "@/components/ui/icons";
 
 export async function Hero() {
   const t = await getTranslations("course.hero");
+  const locale = await getLocale();
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-navy to-navy-deep">
@@ -24,13 +25,11 @@ export async function Hero() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href={whatsappLink(t("whatsappMessage"))}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={platformLoginUrl(locale)}
               className={buttonVariants("primary", "lg")}
             >
-              <WhatsAppIcon className="h-5 w-5" />
               {t("ctaPrimary")}
+              <ArrowRightIcon className="h-5 w-5" />
             </a>
             <a href="#for-whom" className={buttonVariants("onDark", "lg")}>
               {t("ctaSecondary")}

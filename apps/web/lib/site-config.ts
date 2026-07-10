@@ -14,7 +14,16 @@ export const siteConfig = {
   contactFormRecipient: "techtelligence@proton.me",
   /** Verified Resend sender on the company domain. */
   emailFrom: "TechTelligence <noreply@techtelligence.net>",
+  /** Course platform origin (apps/platform, worker "platform"). */
+  platformUrl: "https://plataforma.techtelligence.net",
 } as const;
+
+/** Platform login URL — PT lives at the root (/entrar), EN under /en/login. */
+export function platformLoginUrl(locale: string): string {
+  return locale === "en"
+    ? `${siteConfig.platformUrl}/en/login`
+    : `${siteConfig.platformUrl}/entrar`;
+}
 
 /** wa.me deep link with an optional pre-filled, URL-encoded message. */
 export function whatsappLink(message?: string): string {

@@ -99,15 +99,14 @@
   "course": {
     "meta": {
       "title": "Career-Change Course into Tech — TechTelligence",
-      "description": "Break into tech with no prior experience: tracks for Dev, Data and DevOps roles, built by the team that ships Data & AI for companies. Join the waitlist."
+      "description": "Break into tech with no prior experience: tracks for Dev, Data and DevOps roles, built by the team that ships Data & AI for companies. Access the platform and start now."
     },
     "hero": {
       "kicker": "Career-change course",
       "title": "Your transition into tech starts here",
       "subtitle": "A course for people building a tech career from zero — no prior experience, no CS degree. You learn what the market actually hires for, from a team that builds Data & AI every day.",
-      "ctaPrimary": "Join the waitlist",
-      "ctaSecondary": "See if it's for you",
-      "whatsappMessage": "Hi! I'd like to join the waitlist for TechTelligence's career-change course."
+      "ctaPrimary": "Access the platform",
+      "ctaSecondary": "See if it's for you"
     },
     "whoFor": {
       "kicker": "Who it's for",
@@ -198,10 +197,9 @@
     },
     "finalCta": {
       "title": "Start your climb now",
-      "subtitle": "Join the waitlist on WhatsApp and be the first to know when enrollment opens. No commitment.",
-      "ctaPrimary": "Join the waitlist",
-      "ctaSecondary": "Other ways to reach us",
-      "whatsappMessage": "Hi! I'd like to join the waitlist for TechTelligence's course and hear when enrollment opens."
+      "subtitle": "Create your account or sign in to the platform and start learning right away.",
+      "ctaPrimary": "Access the platform",
+      "ctaSecondary": "Other ways to reach us"
     }
   },
   "mentorship": {
