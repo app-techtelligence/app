@@ -5,6 +5,7 @@ import { createCourse } from "@/lib/admin-actions";
 import type { Course } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
+import { SaveForm } from "@/components/admin/SaveForm";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -40,7 +41,12 @@ export default async function AdminPage({ params }: Props) {
         <h2 className="text-lg font-extrabold tracking-wide text-navy">
           {t("newCourse")}
         </h2>
-        <form action={createCourse} className="mt-5 grid gap-4">
+        <SaveForm
+          action={createCourse}
+          savingLabel={t("saving")}
+          savedLabel={t("saved")}
+          className="mt-5 grid gap-4"
+        >
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="nc-title" className="mb-1 block text-xs font-bold text-navy">
@@ -82,7 +88,7 @@ export default async function AdminPage({ params }: Props) {
           <button type="submit" className={buttonVariants("primary", "md", "justify-self-start")}>
             {t("create")}
           </button>
-        </form>
+        </SaveForm>
       </section>
 
       <div className="mt-10 space-y-3">

@@ -89,6 +89,8 @@
     "editLesson": "Edit lesson",
     "create": "Create",
     "save": "Save",
+    "saving": "Saving…",
+    "saved": "Changes saved",
     "delete": "Delete",
     "deleteCourse": "Delete course",
     "moveUp": "Move up",

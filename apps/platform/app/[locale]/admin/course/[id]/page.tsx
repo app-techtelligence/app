@@ -18,6 +18,7 @@ import type { Course, Lesson, Module } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
 import { VideoUploader } from "@/components/admin/VideoUploader";
+import { SaveForm } from "@/components/admin/SaveForm";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -66,6 +67,8 @@ export default async function AdminCoursePage({ params }: Props) {
     error: t("video.error"),
   };
 
+  const saveLabels = { savingLabel: t("saving"), savedLabel: t("saved") };
+
   return (
     <Container className="max-w-4xl py-12 sm:py-16">
       <Link href="/admin" className="text-sm font-semibold text-steel hover:text-navy">
@@ -81,7 +84,7 @@ export default async function AdminCoursePage({ params }: Props) {
         <h2 className="text-sm font-extrabold uppercase tracking-[0.2em] text-navy">
           {t("courseSettings")}
         </h2>
-        <form action={updateCourse} className="mt-4 grid gap-4">
+        <SaveForm action={updateCourse} {...saveLabels} className="mt-4 grid gap-4">
           <input type="hidden" name="id" value={course.id} />
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
@@ -126,7 +129,7 @@ export default async function AdminCoursePage({ params }: Props) {
               {t("save")}
             </button>
           </div>
-        </form>
+        </SaveForm>
         <form action={deleteCourse} className="mt-4 border-t border-navy/5 pt-4">
           <input type="hidden" name="id" value={course.id} />
           <button type="submit" className={dangerBtn}>
@@ -168,7 +171,7 @@ export default async function AdminCoursePage({ params }: Props) {
                 <summary className="cursor-pointer text-xs font-bold uppercase tracking-wider text-steel hover:text-navy">
                   {t("editSection")}
                 </summary>
-                <form action={updateModule} className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
+                <SaveForm action={updateModule} {...saveLabels} className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
                   <input type="hidden" name="id" value={mod.id} />
                   <div>
                     <label htmlFor={`m-${mod.id}-t`} className="mb-1 block text-xs font-bold text-navy">
@@ -185,7 +188,7 @@ export default async function AdminCoursePage({ params }: Props) {
                   <button type="submit" className={buttonVariants("secondary", "md", "self-end")}>
                     {t("save")}
                   </button>
-                </form>
+                </SaveForm>
               </details>
 
               {/* ------------------------------------------------- lessons */}
@@ -229,7 +232,7 @@ export default async function AdminCoursePage({ params }: Props) {
                         {t("editLesson")}
                       </summary>
                       <div className="mt-3 space-y-4">
-                        <form action={updateLesson} className="grid gap-3">
+                        <SaveForm action={updateLesson} {...saveLabels} className="grid gap-3">
                           <input type="hidden" name="id" value={lesson.id} />
                           <div className="grid gap-3 sm:grid-cols-2">
                             <div>
@@ -270,7 +273,7 @@ export default async function AdminCoursePage({ params }: Props) {
                               {t("save")}
                             </button>
                           </div>
-                        </form>
+                        </SaveForm>
                         <div className="flex items-center gap-3 border-t border-navy/5 pt-3">
                           <VideoUploader
                             lessonId={lesson.id}
@@ -291,7 +294,7 @@ export default async function AdminCoursePage({ params }: Props) {
                 <summary className="cursor-pointer text-xs font-bold uppercase tracking-wider text-accent-ink hover:text-navy">
                   + {t("newLesson")}
                 </summary>
-                <form action={createLesson} className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
+                <SaveForm action={createLesson} {...saveLabels} className="mt-3 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
                   <input type="hidden" name="module_id" value={mod.id} />
                   <div>
                     <label htmlFor={`nl-${mod.id}-t`} className="mb-1 block text-xs font-bold text-navy">
@@ -308,7 +311,7 @@ export default async function AdminCoursePage({ params }: Props) {
                   <button type="submit" className={buttonVariants("primary", "md", "self-end")}>
                     {t("create")}
                   </button>
-                </form>
+                </SaveForm>
               </details>
             </section>
           );
@@ -320,7 +323,7 @@ export default async function AdminCoursePage({ params }: Props) {
         <h2 className="text-sm font-extrabold uppercase tracking-[0.2em] text-navy">
           + {t("newSection")}
         </h2>
-        <form action={createModule} className="mt-4 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
+        <SaveForm action={createModule} {...saveLabels} className="mt-4 grid gap-3 sm:grid-cols-[1fr_1fr_auto]">
           <input type="hidden" name="course_id" value={course.id} />
           <div>
             <label htmlFor="nm-t" className="mb-1 block text-xs font-bold text-navy">
@@ -337,7 +340,7 @@ export default async function AdminCoursePage({ params }: Props) {
           <button type="submit" className={buttonVariants("primary", "md", "self-end")}>
             {t("create")}
           </button>
-        </form>
+        </SaveForm>
       </section>
     </Container>
   );

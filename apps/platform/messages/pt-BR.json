@@ -89,6 +89,8 @@
     "editLesson": "Editar aula",
     "create": "Criar",
     "save": "Salvar",
+    "saving": "Salvando…",
+    "saved": "Alterações salvas",
     "delete": "Excluir",
     "deleteCourse": "Excluir curso",
     "moveUp": "Mover para cima",

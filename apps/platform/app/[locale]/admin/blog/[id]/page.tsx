@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
 import { MarkdownField } from "@/components/admin/MarkdownField";
 import { CoverUploader } from "@/components/admin/CoverUploader";
+import { SaveForm } from "@/components/admin/SaveForm";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -21,6 +22,7 @@ export default async function AdminPostPage({ params }: Props) {
   const { locale, id } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("admin.blog");
+  const tAdmin = await getTranslations("admin");
 
   const ctx = await getAdminContext();
   if (!ctx) {
@@ -42,6 +44,8 @@ export default async function AdminPostPage({ params }: Props) {
     done: t("cover.done"),
     error: t("cover.error"),
   };
+
+  const saveLabels = { savingLabel: tAdmin("saving"), savedLabel: tAdmin("saved") };
 
   return (
     <Container className="max-w-4xl py-12 sm:py-16">
@@ -73,19 +77,19 @@ export default async function AdminPostPage({ params }: Props) {
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <CoverUploader postId={post.id} hasCover={Boolean(post.cover_key)} labels={coverLabels} />
           {post.cover_key ? (
-            <form action={removePostCover}>
+            <SaveForm action={removePostCover} {...saveLabels}>
               <input type="hidden" name="id" value={post.id} />
               <button type="submit" className={dangerBtn}>
                 {t("cover.remove")}
               </button>
-            </form>
+            </SaveForm>
           ) : null}
         </div>
       </section>
 
       {/* ----------------------------------------------------------- fields */}
       <section className="mt-8 rounded-xl border border-navy/10 bg-white p-6 shadow-sm">
-        <form action={updatePost} className="grid gap-5">
+        <SaveForm action={updatePost} {...saveLabels} className="grid gap-5">
           <input type="hidden" name="id" value={post.id} />
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -163,7 +167,7 @@ export default async function AdminPostPage({ params }: Props) {
           <button type="submit" className={buttonVariants("primary", "md", "justify-self-start")}>
             {t("save")}
           </button>
-        </form>
+        </SaveForm>
 
         <form action={deletePost} className="mt-6 border-t border-navy/5 pt-4">
           <input type="hidden" name="id" value={post.id} />
