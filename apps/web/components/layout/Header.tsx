@@ -41,12 +41,14 @@ export async function Header() {
 
         <div className="flex items-center gap-3">
           <LocaleSwitcher />
-          <Link
-            href="/contact"
-            className={buttonVariants("primary", "md", "hidden md:inline-flex")}
-          >
-            {t("nav.contact")}
-          </Link>
+          {/* Wrapper owns the responsive visibility: buttonVariants() hardcodes
+              `inline-flex` in its base, which would override a `hidden` placed
+              directly on the link and keep the button visible on mobile. */}
+          <div className="hidden md:block">
+            <Link href="/contact" className={buttonVariants("primary", "md")}>
+              {t("nav.contact")}
+            </Link>
+          </div>
           <MobileNav />
         </div>
       </Container>
