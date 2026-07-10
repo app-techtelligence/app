@@ -27,6 +27,10 @@ apps/web/public/_headers
 # (anchored to repo root so it doesn't catch components/sections/course/)
 /course/
 
+# generated blog covers — uploaded to R2 via the admin editor, never in git
+# (regenerate with apps/web/scripts/generate-blog-covers.mjs)
+/blog-covers/
+
 # logs & OS noise
 *.log
 .DS_Store
