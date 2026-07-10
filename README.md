@@ -12,6 +12,7 @@ Next.js 16 (App Router, TypeScript strict) · Tailwind CSS v4 · next-intl v4 (p
 pnpm install
 pnpm dev            # next dev on http://localhost:3000
 pnpm build          # static build (also regenerates public/_headers)
+pnpm test           # vitest unit tests (also run in CI with lint + typecheck)
 pnpm --filter web preview   # full Workers-runtime simulation (wrangler)
 pnpm --filter web deploy    # build + deploy to Cloudflare Workers
 ```
