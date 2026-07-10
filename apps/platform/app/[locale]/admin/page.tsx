@@ -36,49 +36,7 @@ export default async function AdminPage({ params }: Props) {
       </h1>
       <p className="mt-2 text-steel">{t("subtitle")}</p>
 
-      <div className="mt-10 space-y-3">
-        {((courses ?? []) as Course[]).map((course) => (
-          <Link
-            key={course.id}
-            href={{ pathname: "/admin/course/[id]", params: { id: course.id } }}
-            className="flex items-center justify-between gap-4 rounded-xl border border-navy/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md"
-          >
-            <span>
-              <span className="block font-bold text-navy">{course.title}</span>
-              <span className="text-xs text-steel">/{course.slug}</span>
-            </span>
-            <span className="flex gap-2">
-              <span
-                className={`rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
-                  course.is_published
-                    ? "bg-emerald-100 text-emerald-800"
-                    : "bg-navy/5 text-steel"
-                }`}
-              >
-                {course.is_published ? t("published") : t("draft")}
-              </span>
-              {course.beta_open ? (
-                <span className="rounded bg-accent/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-ink">
-                  {t("betaOpen")}
-                </span>
-              ) : null}
-            </span>
-          </Link>
-        ))}
-      </div>
-
-      <Link
-        href="/admin/blog"
-        className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-navy/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md"
-      >
-        <span>
-          <span className="block font-bold text-navy">{t("blog.title")}</span>
-          <span className="text-xs text-steel">{t("blog.subtitle")}</span>
-        </span>
-        <span aria-hidden="true" className="text-navy">→</span>
-      </Link>
-
-      <section className="mt-12 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
+      <section className="mt-10 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
         <h2 className="text-lg font-extrabold tracking-wide text-navy">
           {t("newCourse")}
         </h2>
@@ -126,6 +84,48 @@ export default async function AdminPage({ params }: Props) {
           </button>
         </form>
       </section>
+
+      <div className="mt-10 space-y-3">
+        {((courses ?? []) as Course[]).map((course) => (
+          <Link
+            key={course.id}
+            href={{ pathname: "/admin/course/[id]", params: { id: course.id } }}
+            className="flex items-center justify-between gap-4 rounded-xl border border-navy/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md"
+          >
+            <span>
+              <span className="block font-bold text-navy">{course.title}</span>
+              <span className="text-xs text-steel">/{course.slug}</span>
+            </span>
+            <span className="flex gap-2">
+              <span
+                className={`rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                  course.is_published
+                    ? "bg-emerald-100 text-emerald-800"
+                    : "bg-navy/5 text-steel"
+                }`}
+              >
+                {course.is_published ? t("published") : t("draft")}
+              </span>
+              {course.beta_open ? (
+                <span className="rounded bg-accent/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-ink">
+                  {t("betaOpen")}
+                </span>
+              ) : null}
+            </span>
+          </Link>
+        ))}
+      </div>
+
+      <Link
+        href="/admin/blog"
+        className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-navy/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md"
+      >
+        <span>
+          <span className="block font-bold text-navy">{t("blog.title")}</span>
+          <span className="text-xs text-steel">{t("blog.subtitle")}</span>
+        </span>
+        <span aria-hidden="true" className="text-navy">→</span>
+      </Link>
     </Container>
   );
 }

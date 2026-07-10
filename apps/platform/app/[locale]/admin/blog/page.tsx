@@ -37,6 +37,31 @@ export default async function AdminBlogPage({ params }: Props) {
       </h1>
       <p className="mt-2 text-steel">{t("subtitle")}</p>
 
+      <section className="mt-10 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="text-lg font-extrabold tracking-wide text-navy">
+          {t("newPost")}
+        </h2>
+        <form action={createPost} className="mt-5 grid gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="np-title" className="mb-1 block text-xs font-bold text-navy">
+                {t("fields.titlePt")}
+              </label>
+              <input id="np-title" name="title" required minLength={2} className={inputCls} />
+            </div>
+            <div>
+              <label htmlFor="np-title-en" className="mb-1 block text-xs font-bold text-navy">
+                {t("fields.titleEn")}
+              </label>
+              <input id="np-title-en" name="title_en" required minLength={2} className={inputCls} />
+            </div>
+          </div>
+          <button type="submit" className={buttonVariants("primary", "md", "justify-self-start")}>
+            {t("create")}
+          </button>
+        </form>
+      </section>
+
       <div className="mt-10 space-y-3">
         {((posts ?? []) as Post[]).map((post) => (
           <Link
@@ -65,31 +90,6 @@ export default async function AdminBlogPage({ params }: Props) {
           </p>
         ) : null}
       </div>
-
-      <section className="mt-12 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
-        <h2 className="text-lg font-extrabold tracking-wide text-navy">
-          {t("newPost")}
-        </h2>
-        <form action={createPost} className="mt-5 grid gap-4">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="np-title" className="mb-1 block text-xs font-bold text-navy">
-                {t("fields.titlePt")}
-              </label>
-              <input id="np-title" name="title" required minLength={2} className={inputCls} />
-            </div>
-            <div>
-              <label htmlFor="np-title-en" className="mb-1 block text-xs font-bold text-navy">
-                {t("fields.titleEn")}
-              </label>
-              <input id="np-title-en" name="title_en" required minLength={2} className={inputCls} />
-            </div>
-          </div>
-          <button type="submit" className={buttonVariants("primary", "md", "justify-self-start")}>
-            {t("create")}
-          </button>
-        </form>
-      </section>
     </Container>
   );
 }
