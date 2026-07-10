@@ -1,5 +1,7 @@
 # SEO strategy — the step-by-step to 10k visits/day
 
+> Versão em português: [strategy.pt-BR.md](strategy.pt-BR.md)
+
 **Goal:** 10.000 organic visits/day (~300k/month). **Honest timeline:** 12–24 months of consistent execution. This file is the operator's playbook — what *you* do, in order. The machinery (`/seo-strategy`, `/blog-post`, `/blog-cover`, `/seo-audit`) does the heavy lifting; the backlog lives in [content-plan.md](content-plan.md).
 
 ---
