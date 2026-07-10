@@ -11,7 +11,7 @@ import { CheckIcon } from "@/components/ui/icons";
 const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA";
 
-const SUBJECTS = ["course", "mentorship", "consulting", "other"] as const;
+const SUBJECTS = ["consulting", "course", "mentorship", "other"] as const;
 
 type Status = "idle" | "submitting" | "success";
 type ErrorKind = "validation" | "turnstile" | "delivery" | "generic" | null;

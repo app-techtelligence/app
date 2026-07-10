@@ -39,7 +39,7 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
     <tspan fill="#FFFFFF">TECH</tspan><tspan fill="#727B8A">TELLIGENCE</tspan>
   </text>
   <text x="90" y="480" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#FFFFFFBF" letter-spacing="1">
-    Curso &#8226; Mentoria &#8226; Consultoria em Dados &amp; IA
+    Consultoria em Dados &amp; IA &#8226; Curso &#8226; Mentoria
   </text>
   <rect x="90" y="520" width="120" height="6" fill="#F59E0B"/>
 </svg>`;

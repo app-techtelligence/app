@@ -35,13 +35,13 @@
   },
   "home": {
     "meta": {
-      "title": "TechTelligence — Curso, Mentoria e Consultoria em Dados & IA",
-      "description": "Curso para entrar na área tech, mentoria 1:1 para crescer na carreira e consultoria de Dados & IA para empresas. Comece sua subida com a TechTelligence."
+      "title": "TechTelligence — Consultoria em Dados & IA, Curso e Mentoria",
+      "description": "Consultoria em Dados & IA para empresas, curso para entrar na área tech e mentoria 1:1 para crescer na carreira. Comece sua subida com a TechTelligence."
     },
     "hero": {
       "kicker": "Dados & Inteligência Artificial",
-      "title": "Tecnologia que transforma carreiras e empresas",
-      "subtitle": "Curso para você entrar na área tech, mentoria para crescer nela e consultoria de Dados & IA para empresas. Escolha o seu caminho para o topo.",
+      "title": "Tecnologia que transforma empresas e carreiras",
+      "subtitle": "Consultoria em Dados & IA para empresas, curso para você entrar na área tech e mentoria para crescer nela. Escolha o seu caminho para o topo.",
       "ctaPrimary": "Falar no WhatsApp",
       "ctaSecondary": "Conhecer as soluções",
       "whatsappMessage": "Olá! Vim pelo site da TechTelligence e quero saber mais sobre as soluções de vocês."
@@ -49,7 +49,7 @@
     "doors": {
       "kicker": "Nossas soluções",
       "title": "Três caminhos, um objetivo: crescer com tecnologia",
-      "subtitle": "Para quem quer entrar na área, para quem quer acelerar a carreira e para empresas que querem escalar com dados e IA.",
+      "subtitle": "Para empresas que querem escalar com dados e IA, para quem quer entrar na área e para quem quer acelerar a carreira.",
       "course": {
         "tagline": "Migre para a área tech",
         "title": "Curso",
@@ -91,7 +91,7 @@
     },
     "finalCta": {
       "title": "Pronto para dar o próximo passo?",
-      "subtitle": "Fale com a gente no WhatsApp e descubra o melhor caminho para você ou para a sua empresa.",
+      "subtitle": "Fale com a gente no WhatsApp e descubra o melhor caminho para a sua empresa ou para você.",
       "cta": "Falar no WhatsApp",
       "whatsappMessage": "Olá! Quero dar o próximo passo com a TechTelligence."
     }
@@ -398,7 +398,7 @@
   "about": {
     "meta": {
       "title": "Sobre a TechTelligence — Quem constrói, ensina",
-      "description": "Conheça a TechTelligence: nascemos construindo soluções de Dados e IA para empresas — e transformamos essa experiência em curso, mentoria e consultoria."
+      "description": "Conheça a TechTelligence: nascemos construindo soluções de Dados e IA para empresas — a prática que sustenta nossa consultoria e vira curso e mentoria."
     },
     "hero": {
       "kicker": "Sobre a TechTelligence",
@@ -411,7 +411,7 @@
       "paragraphs": [
         "A TechTelligence nasceu dentro de projetos de Dados e IA para empresas. Foi trabalhando nesses projetos que enxergamos os dois lados de um mesmo problema: empresas com dificuldade de encontrar profissionais preparados — e pessoas querendo entrar em tecnologia sem saber por onde começar.",
         "De um lado, times e plataformas precisando de gente qualificada. Do outro, pessoas talentosas dando voltas em cursos genéricos, sem um mapa que levasse até uma vaga de verdade. Decidimos construir essa ponte.",
-        "É por isso que tudo aqui parte da prática: o que aprendemos implementando soluções para empresas vira curso, mentoria e consultoria. O mercado nos mostra o caminho — e a gente ensina você a percorrê-lo."
+        "É por isso que tudo aqui parte da prática: o que aprendemos implementando soluções para empresas molda nossa consultoria, nosso curso e nossa mentoria. O mercado nos mostra o caminho — e a gente ensina você a percorrê-lo."
       ],
       "founder": {
         "kicker": "Por trás do projeto",
@@ -463,16 +463,16 @@
     },
     "finalCta": {
       "title": "Vamos conversar?",
-      "subtitle": "Seja para entrar na área, crescer nela ou levar dados e IA para a sua empresa, o primeiro passo é uma conversa.",
+      "subtitle": "Seja para levar dados e IA para a sua empresa, entrar na área tech ou crescer na carreira, o primeiro passo é uma conversa.",
       "ctaWhatsapp": "Falar no WhatsApp",
       "ctaContact": "Ir para o contato",
-      "whatsappMessage": "Olá! Li a história da TechTelligence no site e quero conversar sobre o melhor caminho para mim."
+      "whatsappMessage": "Olá! Li a história da TechTelligence no site e quero conversar sobre o melhor caminho para mim ou para a minha empresa."
     }
   },
   "contact": {
     "meta": {
       "title": "Contato — TechTelligence",
-      "description": "Fale com a TechTelligence pelo WhatsApp ou envie uma mensagem pelo formulário. Curso, mentoria e consultoria em Dados & IA."
+      "description": "Fale com a TechTelligence pelo WhatsApp ou envie uma mensagem pelo formulário. Consultoria em Dados & IA, curso de transição de carreira e mentoria 1:1."
     },
     "hero": {
       "kicker": "Contato",

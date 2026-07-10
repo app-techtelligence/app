@@ -7,6 +7,10 @@ export const routing = defineRouting({
   localePrefix: "as-needed",
   pathnames: {
     "/": "/",
+    "/consulting": {
+      "pt-BR": "/consultoria",
+      en: "/consulting",
+    },
     "/course": {
       "pt-BR": "/curso",
       en: "/course",
@@ -14,10 +18,6 @@ export const routing = defineRouting({
     "/mentorship": {
       "pt-BR": "/mentoria",
       en: "/mentorship",
-    },
-    "/consulting": {
-      "pt-BR": "/consultoria",
-      en: "/consulting",
     },
     "/about": {
       "pt-BR": "/sobre",

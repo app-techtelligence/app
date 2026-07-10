@@ -12,9 +12,9 @@ const TURNSTILE_VERIFY_URL =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 const subjectLabels: Record<string, string> = {
+  consulting: "Consultoria",
   course: "Curso",
   mentorship: "Mentoria",
-  consulting: "Consultoria",
   other: "Outro assunto",
 };
 

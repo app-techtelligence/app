@@ -1,6 +1,6 @@
 # TechTelligence
 
-Monorepo for TechTelligence: **Curso** (career-transition course), **Mentoria** (1:1 mentorship) and **Consultoria** (Data & AI services for companies). See [CLAUDE.md](CLAUDE.md) for the full project brief and conventions.
+Monorepo for TechTelligence: **Consultoria** (Data & AI services for companies), **Curso** (career-transition course) and **Mentoria** (1:1 mentorship). See [CLAUDE.md](CLAUDE.md) for the full project brief and conventions.
 
 Two apps, both live on Cloudflare Workers:
 

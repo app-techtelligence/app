@@ -6,10 +6,10 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
 
-const productLinks: { href: AppPathname; key: "course" | "mentorship" | "consulting" }[] = [
+const productLinks: { href: AppPathname; key: "consulting" | "course" | "mentorship" }[] = [
+  { href: "/consulting", key: "consulting" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
-  { href: "/consulting", key: "consulting" },
 ];
 
 export async function Footer() {

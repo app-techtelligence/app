@@ -8,10 +8,10 @@ import { whatsappLink } from "@/lib/site-config";
 import { buttonVariants } from "@/components/ui/Button";
 import { CloseIcon, MenuIcon, WhatsAppIcon } from "@/components/ui/icons";
 
-const links: { href: AppPathname; key: "course" | "mentorship" | "consulting" | "about" | "contact" }[] = [
+const links: { href: AppPathname; key: "consulting" | "course" | "mentorship" | "about" | "contact" }[] = [
+  { href: "/consulting", key: "consulting" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
-  { href: "/consulting", key: "consulting" },
   { href: "/about", key: "about" },
   { href: "/contact", key: "contact" },
 ];

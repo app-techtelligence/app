@@ -6,9 +6,11 @@ Project brief and working conventions for Claude Code. Read this before starting
 
 TechTelligence is a Brazilian company with three products, sold through one website:
 
-1. **Curso (Course)** — career-transition course for people migrating into IT with no prior experience (Dev, Front-end, Back-end, DevOps, Data Engineer, Data Analyst, Data Scientist, and other roles). Audience: individuals. B2C.
-2. **Mentoria (Mentorship)** — 1:1 help to land a job or grow in IT: career strategy, LinkedIn optimization, interview prep, skill development. Audience: individuals. B2C.
-3. **Consultoria (Consultancy)** — Data & AI services for companies: implementing data platforms, AI environments, or both. Audience: businesses. B2B.
+1. **Consultoria (Consultancy)** — Data & AI services for companies: implementing data platforms, AI environments, or both. Audience: businesses. B2B.
+2. **Curso (Course)** — career-transition course for people migrating into IT with no prior experience (Dev, Front-end, Back-end, DevOps, Data Engineer, Data Analyst, Data Scientist, and other roles). Audience: individuals. B2C.
+3. **Mentoria (Mentorship)** — 1:1 help to land a job or grow in IT: career strategy, LinkedIn optimization, interview prep, skill development. Audience: individuals. B2C.
+
+**Product priority (decided 2026-07-10): consultancy is the initial business focus.** Whenever the three products appear together — nav links, cards, dropdowns, prose enumerations, meta tags — the order is consultancy → course → mentorship, in both languages.
 
 Brand narrative that ties everything together: "We build Data & AI solutions for companies, so we know exactly what the market hires for — and we train people to get there." This credibility loop appears on Home and About, and as the "talent bridge" band (standout students may be invited to consultancy projects — wording is deliberately non-promissory, keep it that way).
 
@@ -31,7 +33,7 @@ Both apps are **live in production** on Cloudflare Workers:
   - Backgrounds: `#FFFFFF` and off-white `#F7F8FA`
   - **Accent (decided): amber `#F59E0B`** — CTAs/buttons, navy text on amber
 - **Typography:** Manrope via `next/font`. Generous letter-spacing on headings.
-- **Tone of voice:** professional but encouraging. PT-BR uses "você", direct sentences, no corporate jargon. Course/Mentorship aspirational; Consultancy credibility-first. The consulting client-logo wall (`lib/clients.ts`) is framed as **team experience, not TechTelligence clients** — keep the disclaimer.
+- **Tone of voice:** professional but encouraging. PT-BR uses "você", direct sentences, no corporate jargon. Consultancy credibility-first; Course/Mentorship aspirational. The consulting client-logo wall (`lib/clients.ts`) is framed as **team experience, not TechTelligence clients** — keep the disclaimer.
 
 ## 4. Site map
 
@@ -39,10 +41,10 @@ Both apps are **live in production** on Cloudflare Workers:
 
 | PT | EN | Page |
 |---|---|---|
-| `/` | `/en` | Home — three equally-weighted product doors |
+| `/` | `/en` | Home — three product doors, consultancy first |
+| `/consultoria` | `/en/consulting` | Consultancy |
 | `/curso` | `/en/course` | Course |
 | `/mentoria` | `/en/mentorship` | Mentorship |
-| `/consultoria` | `/en/consulting` | Consultancy |
 | `/sobre` | `/en/about` | About (founder story) |
 | `/contato` | `/en/contact` | Contact — WhatsApp + Turnstile form |
 | `/privacidade` | `/en/privacy` | Privacy (LGPD) |

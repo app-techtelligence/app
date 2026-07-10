@@ -6,10 +6,10 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TriangleDivider } from "@/components/ui/TriangleDivider";
 import { ArrowRightIcon } from "@/components/ui/icons";
 
-const products: { href: AppPathname; key: "course" | "mentorship" | "consulting" }[] = [
+const products: { href: AppPathname; key: "consulting" | "course" | "mentorship" }[] = [
+  { href: "/consulting", key: "consulting" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
-  { href: "/consulting", key: "consulting" },
 ];
 
 /** The three products presented as one ecosystem fed by the same practice. */

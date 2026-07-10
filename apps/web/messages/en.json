@@ -35,13 +35,13 @@
   },
   "home": {
     "meta": {
-      "title": "TechTelligence — Course, Mentorship and Data & AI Consulting",
-      "description": "A course to break into tech, 1:1 mentorship to grow your career, and Data & AI consulting for companies. Start your climb with TechTelligence."
+      "title": "TechTelligence — Data & AI Consulting, Course and Mentorship",
+      "description": "Data & AI consulting for companies, a course to break into tech, and 1:1 mentorship to grow your career. Start your climb with TechTelligence."
     },
     "hero": {
       "kicker": "Data & Artificial Intelligence",
-      "title": "Technology that transforms careers and companies",
-      "subtitle": "A course to break into tech, mentorship to grow in it, and Data & AI consulting for companies. Choose your path to the top.",
+      "title": "Technology that transforms companies and careers",
+      "subtitle": "Data & AI consulting for companies, a course to break into tech, and mentorship to grow in it. Choose your path to the top.",
       "ctaPrimary": "Chat on WhatsApp",
       "ctaSecondary": "Explore our solutions",
       "whatsappMessage": "Hi! I found TechTelligence's website and I'd like to know more about your solutions."
@@ -49,7 +49,7 @@
     "doors": {
       "kicker": "Our solutions",
       "title": "Three paths, one goal: growing with technology",
-      "subtitle": "For people breaking into tech, professionals accelerating their careers, and companies scaling with data and AI.",
+      "subtitle": "For companies scaling with data and AI, people breaking into tech, and professionals accelerating their careers.",
       "course": {
         "tagline": "Break into tech",
         "title": "Course",
@@ -91,7 +91,7 @@
     },
     "finalCta": {
       "title": "Ready for the next step?",
-      "subtitle": "Talk to us on WhatsApp and find the best path for you or your company.",
+      "subtitle": "Talk to us on WhatsApp and find the best path for your company — or for yourself.",
       "cta": "Chat on WhatsApp",
       "whatsappMessage": "Hi! I'd like to take the next step with TechTelligence."
     }
@@ -398,7 +398,7 @@
   "about": {
     "meta": {
       "title": "About TechTelligence — Those who build, teach",
-      "description": "Meet TechTelligence: we were born building Data & AI solutions for companies — and we turn that experience into a course, mentorship and consulting."
+      "description": "Meet TechTelligence: we were born building Data & AI solutions for companies — the practice that powers our consulting and becomes our course and mentorship."
     },
     "hero": {
       "kicker": "About TechTelligence",
@@ -411,7 +411,7 @@
       "paragraphs": [
         "TechTelligence was born inside Data & AI projects for companies. Working on those projects, we saw two sides of the same problem: companies struggling to find well-prepared professionals — and people wanting to break into tech with no idea where to start.",
         "On one side, teams and platforms in need of qualified people. On the other, talented people going in circles through generic courses, with no map leading to an actual job. We decided to build that bridge.",
-        "That's why everything here starts from practice: what we learn implementing solutions for companies becomes course, mentorship and consulting. The market shows us the way — and we teach you how to walk it."
+        "That's why everything here starts from practice: what we learn implementing solutions for companies shapes our consulting, our course and our mentorship. The market shows us the way — and we teach you how to walk it."
       ],
       "founder": {
         "kicker": "Behind the project",
@@ -463,16 +463,16 @@
     },
     "finalCta": {
       "title": "Shall we talk?",
-      "subtitle": "Whether you're breaking into tech, growing in it or bringing data and AI to your company, the first step is a conversation.",
+      "subtitle": "Whether you're bringing data and AI to your company, breaking into tech or growing your tech career, the first step is a conversation.",
       "ctaWhatsapp": "Chat on WhatsApp",
       "ctaContact": "Go to contact",
-      "whatsappMessage": "Hi! I just read TechTelligence's story on your website and I'd like to talk about the best path for me."
+      "whatsappMessage": "Hi! I just read TechTelligence's story on your website and I'd like to talk about the best path for me or for my company."
     }
   },
   "contact": {
     "meta": {
       "title": "Contact — TechTelligence",
-      "description": "Reach TechTelligence on WhatsApp or send a message through the form. Course, mentorship and Data & AI consulting."
+      "description": "Reach TechTelligence on WhatsApp or send a message through the form. Data & AI consulting, career-change course and 1:1 mentorship."
     },
     "hero": {
       "kicker": "Contact",
