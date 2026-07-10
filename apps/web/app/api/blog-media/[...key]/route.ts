@@ -35,7 +35,10 @@ export async function GET(
   const ext = objectKey.split(".").pop() ?? "jpg";
   return new Response(object.body, {
     headers: {
-      "Content-Type": CONTENT_TYPES[ext] ?? "image/jpeg",
+      // Prefer the type stored on the object — a replaced cover can hold
+      // WebP bytes under a key minted with the original upload's extension.
+      "Content-Type":
+        object.httpMetadata?.contentType ?? CONTENT_TYPES[ext] ?? "image/jpeg",
       // Keys are re-minted on every upload, so a day of caching behaves as
       // immutable — while covers of deleted posts age out of caches quickly.
       "Cache-Control": "public, max-age=86400",
