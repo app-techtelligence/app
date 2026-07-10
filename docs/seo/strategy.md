@@ -12,7 +12,7 @@
    3. Google shows a **TXT record** (`google-site-verification=...`). Copy it.
    4. Cloudflare dashboard → techtelligence.net → **DNS → Records → Add record**: Type `TXT`, Name `@`, Content = the verification string. Save.
    5. Back in GSC → **Verify** (Cloudflare DNS propagates in minutes).
-   6. In GSC: **Sitemaps** → enter `sitemap.xml` → Submit. Status should become "Success".
+   6. In GSC: **Sitemaps** → enter the **full URL** `https://techtelligence.net/sitemap.xml` → Submit (Domain properties reject relative paths like `sitemap.xml`). Status may show "couldn't fetch" for a few minutes, then becomes "Success".
    7. From now on, after publishing each post: **URL Inspection** → paste the post URL → **Request indexing** (both PT and EN URLs). On a young domain this cuts discovery from weeks to days.
    - First data appears after ~2 days. The reports that matter: **Performance** (queries, clicks, impressions, CTR, position) and **Indexing → Pages**.
 2. **Bing Webmaster Tools** — https://www.bing.com/webmasters → "Import from Google Search Console" (one click, free traffic from Bing/DuckDuckGo/AI search engines).
