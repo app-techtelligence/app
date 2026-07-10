@@ -31,7 +31,7 @@ set
 - Perfil pela metade ou desatualizado — pior que não ter perfil.
 - Pedir vaga por mensagem no primeiro contato.
 
-## O que este post não ensina (de propósito)
+## Próximos passos
 
 Cada pilar acima tem técnica por trás: como escrever a headline palavra por palavra, o que colocar em cada seção do perfil, como estruturar os posts da jornada, os roteiros de abordagem que geram resposta em vez de silêncio. Esse passo a passo, com exemplos reais e aula por aula, é exatamente o **módulo de LinkedIn do nosso [curso de transição de carreira](https://techtelligence.net/curso)**. E na [mentoria 1:1](https://techtelligence.net/mentoria), revisamos o *seu* perfil de verdade — headline, narrativa e estratégia de abordagem — com quem contrata em TI todos os dias.
 
@@ -56,7 +56,7 @@ Comece pelos 5 pilares hoje. Quando quiser acelerar, a gente continua de onde es
 - A half-finished or outdated profile — worse than none.
 - Asking for a job by DM on first contact.
 
-## What this post doesn't teach (on purpose)
+## Next steps
 
 Each pillar above has technique behind it: how to write the headline word by word, what goes in every profile section, how to structure your journey posts, the outreach scripts that get replies instead of silence. That step-by-step, with real examples, lesson by lesson, is exactly the **LinkedIn module of our [career-transition course](https://techtelligence.net/en/course)**. And in [1:1 mentorship](https://techtelligence.net/en/mentorship), we review *your* actual profile — headline, narrative and outreach strategy — with people who hire in tech every day.
 
