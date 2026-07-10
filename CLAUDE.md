@@ -78,6 +78,8 @@ Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to lo
 
 ## 5.1 Blog authoring (SEO + covers)
 
+**Traffic goal (2026-07-10): 10k organic visits/day.** The plan lives in `docs/seo/content-plan.md`; `/seo-strategy` maintains it and picks the next posts, `/seo-audit` checks the live site, and the `seo-researcher`/`seo-auditor` agents (`.claude/agents/`) do SERP recon and page checks. Known gap: no Article JSON-LD on posts yet.
+
 Posts live in the Supabase `posts` table — authored in the platform admin editor or via **SQL content seeds** in `apps/platform/supabase/content/` (dated files, dollar-quoted, run once in the Supabase SQL editor by the user — Claude has no direct DB access). The `/blog-post` and `/blog-cover` skills encode the full workflow; the essentials:
 
 **SEO conventions (batch #1 proved these):**
