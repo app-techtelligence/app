@@ -27,7 +27,7 @@ export async function Header() {
     <header className="sticky top-0 z-50 border-b border-navy/10 bg-white/95 backdrop-blur">
       <Container className="relative flex h-16 items-center justify-between gap-4">
         {/* Logo and nav grouped on the left (Allata-style); actions on the right. */}
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-20">
           {/* No aria-label: the visible wordmark text is the accessible name. */}
           <Link href="/" className="flex items-center gap-2">
             <LogoMark className="h-8 w-auto text-navy" />
