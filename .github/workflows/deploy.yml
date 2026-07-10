@@ -1,0 +1,96 @@
+name: Deploy
+
+# Production deploys from GitHub (CLAUDE.md §10): every push to main ships
+# both workers after checks pass. workflow_dispatch allows manual re-runs
+# (e.g. after adding the Cloudflare secrets, or to re-deploy without a commit).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Serialize deploys; never cancel one mid-flight.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Reads the pinned version from package.json "packageManager".
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm turbo run lint typecheck test
+
+  deploy-web:
+    needs: checks
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check Cloudflare credentials
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Missing CLOUDFLARE_API_TOKEN and/or CLOUDFLARE_ACCOUNT_ID repository secrets. Add them under Settings → Secrets and variables → Actions, then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Deploy web (worker "app")
+        run: pnpm --filter web run deploy
+
+  deploy-platform:
+    needs: checks
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      # Public values inlined into the client bundle at build time (CLAUDE.md §8).
+      # Stored as repository *variables*, not secrets — the anon key is public by design.
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check Cloudflare credentials and Supabase build vars
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Missing CLOUDFLARE_API_TOKEN and/or CLOUDFLARE_ACCOUNT_ID repository secrets. Add them under Settings → Secrets and variables → Actions, then re-run this workflow."
+            exit 1
+          fi
+          if [ -z "$NEXT_PUBLIC_SUPABASE_URL" ] || [ -z "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ]; then
+            echo "::error::Missing NEXT_PUBLIC_SUPABASE_URL and/or NEXT_PUBLIC_SUPABASE_ANON_KEY repository variables (Settings → Secrets and variables → Actions → Variables tab). The platform build inlines them into the client bundle."
+            exit 1
+          fi
+
+      - name: Deploy platform (worker "platform")
+        run: pnpm --filter platform run deploy

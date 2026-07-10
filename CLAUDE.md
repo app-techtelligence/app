@@ -84,7 +84,7 @@ Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to lo
 | Anti-spam | Cloudflare Turnstile | Contact form |
 | Email | Resend (domain verified, sender `noreply@techtelligence.net`) | Contact form + Supabase custom SMTP for auth emails |
 | Validation | Zod | Every external input |
-| Tests / CI | Vitest (web) + GitHub Actions (`.github/workflows/ci.yml`: lint, typecheck, test) | Deploys are still manual |
+| Tests / CI | Vitest (web) + GitHub Actions (`ci.yml`: lint, typecheck, test; `deploy.yml`: deploy on push to `main`) | See §10 for required secrets/variables |
 
 **Cloudflare caveat:** the Workers runtime is not Node.js. Before using any Next.js feature, confirm the OpenNext Cloudflare adapter supports it. Marketing pages stay fully static.
 
@@ -144,7 +144,7 @@ techtelligence/
 
 - Vitest in `apps/web`: contact schema edge cases, contact route (mocked Turnstile/Resend/env), message parity. Run `pnpm test` at root (turbo). **Platform has no tests yet** — add them when touching its logic.
 - GitHub Actions CI (`ci.yml`) runs `lint`, `typecheck`, `test` on pushes to `main` and PRs. Node 22, `--frozen-lockfile`.
-- Deploys are manual: `pnpm --filter <app> run deploy` (opennextjs-cloudflare build + deploy). Workers Builds hookup is pending.
+- Deploys run from GitHub Actions (`deploy.yml`): every push to `main` re-runs checks, then deploys both workers. Requires repo **secrets** `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` and repo **variables** `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (platform build inlines them). Manual fallback: `pnpm --filter <app> run deploy`; manual re-run via workflow_dispatch.
 
 ## 11. Ops facts
 
@@ -168,7 +168,6 @@ techtelligence/
 1. Founder bio + photo for the About page (placeholder sections are flagged in the code).
 2. Real course curriculum — current content is one seeded course/module/lesson.
 3. Payments (Stripe + Mercado Pago/Pix) — build only when the course is ready to sell.
-4. Workers Builds CI deploy hookup (CI currently tests but doesn't deploy).
-5. Optional `techtelligence.com.br` alias domain.
-6. `packages/` extraction of duplicated brand/UI/i18n code — when duplication starts hurting.
-7. Platform test coverage (web has vitest; platform has none).
+4. Optional `techtelligence.com.br` alias domain.
+5. `packages/` extraction of duplicated brand/UI/i18n code — when duplication starts hurting.
+6. Platform test coverage (web has vitest; platform has none).
