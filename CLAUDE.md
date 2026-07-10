@@ -20,6 +20,7 @@ Both apps are **live in production** on Cloudflare Workers:
 
 - **v1 marketing site** (`apps/web`, worker `app`) — https://techtelligence.net + www. Fully static, bilingual, informational. No login/payments here. WhatsApp primary CTA, Turnstile-protected contact form secondary.
 - **v2 course platform** (`apps/platform`, worker `platform`) — https://plataforma.techtelligence.net. Supabase auth (email+password, mandatory confirmation, branded bilingual email), RLS content schema, **beta self-enrollment instead of payments**, protected R2 video streaming, bilingual course content, admin course editor with direct video upload. E2E-verified by the user in both languages.
+- **Blog** — live with 5 bilingual SEO posts (seeded 2026-07-10) and AI-illustrated covers. Authoring happens in the platform admin (or via SQL content seeds); the public pages are on the web app. See §5.1 and the `/blog-post` + `/blog-cover` skills.
 
 **Not built yet (only when explicitly asked):** payments (Stripe + Mercado Pago — Pix is essential in Brazil), mentorship booking, Cloudflare Stream signed URLs, OAuth/MFA.
 
@@ -75,6 +76,24 @@ Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to lo
 - Signup records the locale in `user_metadata.locale` **from the server URL, not client context** — it drives the confirmation-email language.
 - SEO (web only): per-locale metadata, `hreflang` alternates, localized OG, sitemap for both locales.
 
+## 5.1 Blog authoring (SEO + covers)
+
+Posts live in the Supabase `posts` table — authored in the platform admin editor or via **SQL content seeds** in `apps/platform/supabase/content/` (dated files, dollar-quoted, run once in the Supabase SQL editor by the user — Claude has no direct DB access). The `/blog-post` and `/blog-cover` skills encode the full workflow; the essentials:
+
+**SEO conventions (batch #1 proved these):**
+- Each post targets **one Google query**; title ≤ ~60 chars with click patterns (question + "guia realista", numbered "7 sinais", "guia completo do zero").
+- The `excerpt` doubles as the meta description (~140–170 chars) — write it as one.
+- Question-phrased H2s (featured snippets), 700–1100 words per language, 2–3 internal links between posts (always verify target slugs), GFM tables supported.
+- CTAs by audience: B2B → `/consultoria` + `/contato`; B2C → `/curso` + `/mentoria` (EN: `/en/consulting`, `/en/contact`, `/en/course`, `/en/mentorship`).
+- Tag vocabulary (shared across locales): `IA`, `Dados`, `Empresas`, `Carreira`, `TI`, `Investimento`.
+
+**Covers:**
+- Stored in R2 under the `blog/` prefix (`posts.cover_key`); served by the web route `/api/blog-media/[...key]` (content type comes from the R2 object's metadata; 24 h public cache); the cover **is** the post's `og:image`.
+- **Text-free, no logo** — one cover serves both locales (user decision 2026-07-10 after rejecting geometric brand covers; the generator `apps/web/scripts/generate-blog-covers.mjs` still exists but is not the preferred style).
+- Art direction: AI-generated (Gemini) editorial illustrations — deep navy `#1A2A44` + amber `#F59E0B` glow, cinematic, negative space, 16:9, people only as silhouettes. Prompt template lives in the `/blog-cover` skill.
+- Target **1200×630 WebP under ~150 KB**. Social scrapers reject `og:image` > 5 MB (LinkedIn shows "Cannot display preview"); after fixing a cover, re-scrape with https://www.linkedin.com/post-inspector/.
+- The admin `CoverUploader` compresses client-side (> 500 KB → ≤ 1600px WebP q0.82) because the Workers runtime can't run image codecs. To replace an existing cover without touching the DB: `npx wrangler r2 object put "techtelligence-media/<cover_key>" --file <img> --content-type image/webp --remote` (same key keeps `cover_key` valid).
+
 ## 6. Tech stack (as built)
 
 | Layer | Choice | Notes |
@@ -100,22 +119,27 @@ techtelligence/
 ├── Logo.svg                      # official brand source
 ├── turbo.json / pnpm-workspace.yaml
 ├── .github/workflows/ci.yml     # lint + typecheck + test on push/PR
+├── .claude/skills/               # blog-post, blog-cover (project skills)
 ├── course/                       # gitignored — local seed video (uploaded to R2)
+├── blog-covers/                  # gitignored — cover-image workspace (originals + processed)
 ├── apps/
 │   ├── web/                      # marketing site — worker "app"
-│   │   ├── app/[locale]/…        # static pages + app/api/contact
-│   │   ├── components/           # brand/, layout/, sections/, ui/, contact/
-│   │   ├── lib/                  # site-config.ts (contact-info source of truth),
+│   │   ├── app/[locale]/…        # static pages + app/api/{contact,blog-media}
+│   │   ├── components/           # brand/, layout/, sections/, ui/, contact/, blog/
+│   │   ├── lib/                  # site-config.ts (contact-info source of truth), blog.ts,
 │   │   │                         # schemas/contact.ts, security-headers.mjs, clients.ts
 │   │   ├── messages/             # pt-BR.json, en.json (+ parity test)
-│   │   └── scripts/              # generate-headers.mjs (prebuild), generate-brand-assets.mjs
+│   │   └── scripts/              # generate-headers.mjs (prebuild), generate-brand-assets.mjs,
+│   │                             # generate-blog-covers.mjs (geometric covers — not preferred style)
 │   └── platform/                 # course platform — worker "platform"
-│       ├── app/[locale]/…        # auth, dashboard, course/lesson, admin
-│       ├── app/api/              # admin/upload (R2 multipart), media/[lessonId] (streaming)
+│       ├── app/[locale]/…        # auth, dashboard, course/lesson, admin (+ admin/blog)
+│       ├── app/api/              # admin/upload (R2 multipart), admin/blog-cover,
+│       │                         # media/[lessonId] (streaming)
 │       ├── lib/                  # supabase/{server,client}.ts, admin.ts, admin-actions.ts,
-│       │                         # content.ts, types.ts
+│       │                         # blog-actions.ts, content.ts, types.ts
 │       ├── middleware.ts         # next-intl + session refresh + route protection
-│       └── supabase/             # migrations 0001–0004, setup-all.sql, email-templates/
+│       └── supabase/             # migrations 0001–0005, setup-all.sql, email-templates/,
+│                                 # content/ (blog post SQL seeds)
 └── packages/                     # not created yet — brand/UI/security-headers/i18n code is
                                   # currently duplicated across apps; extract when it hurts
 ```
@@ -157,6 +181,7 @@ techtelligence/
 - Supabase: schema applied via `setup-all.sql`; custom SMTP through Resend; branded locale-aware confirm-signup template in `supabase/email-templates/` (reads `(index .Data "locale")`, uses `{{ .ConfirmationURL }}`). An alternative `token_hash`/`verifyOtp` flow exists at `app/auth/confirm/route.ts` but is not the active path.
 - Seed video `course/linkedin/Linkedin.mp4` (217 MB) is gitignored, local-only, already uploaded to R2.
 - GitHub: `app-techtelligence/app`; repo-local git identity `Tech Telligence <techtelligence@proton.me>`.
+- **wrangler is authenticated on this machine** — R2 objects can be inspected/overwritten directly (`npx wrangler r2 object put … --remote` from `apps/platform`). **GitHub CLI is installed (`C:\Program Files\GitHub CLI\gh.exe`) but not yet authenticated** — needs an interactive `gh auth login` by the user; until then, deploy status can't be watched from the terminal.
 
 ## 12. Conventions
 
@@ -166,6 +191,7 @@ techtelligence/
 - Conventional commits (`feat:`, `fix:`, `chore:`, `docs:`, `style:`, `test:`, `ci:`, `content:`). Small commits, one concern each.
 - Performance budget: marketing pages fully static, Lighthouse ≥ 90 mobile.
 - Every UI string in both locale JSONs, same commit (§5).
+- Admin UX: create-new forms sit **above** the lists; every save-in-place admin form is wrapped in `SaveForm` (`apps/platform/components/admin/SaveForm.tsx`) for the "Salvando… / ✓ Alterações salvas" snackbar — wrap new admin forms the same way (redirecting actions excluded).
 
 ## 13. Open items (ask before assuming)
 
