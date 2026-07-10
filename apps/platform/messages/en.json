@@ -69,8 +69,7 @@
     "back": "My courses",
     "notEnrolled": "You are not enrolled in this course yet. Go back to the dashboard to join the cohort.",
     "locked": "Locked",
-    "lessonCount": "{count, plural, =1 {1 lesson} other {# lessons}}",
-    "freePreview": "Free preview"
+    "lessonCount": "{count, plural, =1 {1 lesson} other {# lessons}}"
   },
   "lesson": {
     "noVideo": "This lesson's video is not available yet."
@@ -103,7 +102,6 @@
       "descriptionEn": "Description (EN)",
       "published": "Published",
       "betaOpen": "Beta enrollment open",
-      "freePreview": "Free preview",
       "durationSeconds": "Duration (seconds)"
     },
     "video": {

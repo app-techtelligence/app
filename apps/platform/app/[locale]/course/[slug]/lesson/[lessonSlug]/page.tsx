@@ -34,7 +34,7 @@ export default async function LessonPage({ params }: Props) {
   const { data: modules } = await supabase
     .from("modules")
     .select(
-      "id, lessons(id, slug, title, title_en, description, description_en, video_key, is_free_preview)",
+      "id, lessons(id, slug, title, title_en, description, description_en, video_key)",
     )
     .eq("course_id", course.id);
 
@@ -60,7 +60,7 @@ export default async function LessonPage({ params }: Props) {
       .single<{ role: string }>(),
   ]);
 
-  if (!enrollment && !lesson.is_free_preview && profile?.role !== "admin") {
+  if (!enrollment && profile?.role !== "admin") {
     redirect({
       href: { pathname: "/course/[slug]", params: { slug: course.slug } },
       locale,

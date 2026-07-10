@@ -1,21 +1,18 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { AppPathname } from "@/i18n/routing";
-import { whatsappLink } from "@/lib/site-config";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
-import { WhatsAppIcon } from "@/components/ui/icons";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { MobileNav } from "./MobileNav";
 
-const links: { href: AppPathname; key: "consulting" | "course" | "mentorship" | "about" | "contact" }[] = [
+const links: { href: AppPathname; key: "consulting" | "course" | "mentorship" | "about" }[] = [
   { href: "/consulting", key: "consulting" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
   { href: "/about", key: "about" },
-  { href: "/contact", key: "contact" },
 ];
 
 export async function Header() {
@@ -44,15 +41,12 @@ export async function Header() {
 
         <div className="flex items-center gap-3">
           <LocaleSwitcher />
-          <a
-            href={whatsappLink(t("cta.whatsappMessage"))}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
             className={buttonVariants("primary", "md", "hidden md:inline-flex")}
           >
-            <WhatsAppIcon className="h-4 w-4" />
-            {t("cta.whatsapp")}
-          </a>
+            {t("nav.contact")}
+          </Link>
           <MobileNav />
         </div>
       </Container>

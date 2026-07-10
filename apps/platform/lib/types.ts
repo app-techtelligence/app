@@ -30,7 +30,6 @@ export type Lesson = {
   video_key: string | null;
   duration_seconds: number | null;
   position: number;
-  is_free_preview: boolean;
 };
 
 export type Enrollment = {

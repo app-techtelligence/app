@@ -39,11 +39,11 @@ export default async function CoursePage({ params }: Props) {
     .single<Course>();
   if (!course) notFound();
 
-  const [{ data: modules }, { data: enrollment }] = await Promise.all([
+  const [{ data: modules }, { data: enrollment }, { data: profile }] = await Promise.all([
     supabase
       .from("modules")
       .select(
-        "id, course_id, title, title_en, position, lessons(id, module_id, slug, title, title_en, description, description_en, video_key, duration_seconds, position, is_free_preview)",
+        "id, course_id, title, title_en, position, lessons(id, module_id, slug, title, title_en, description, description_en, video_key, duration_seconds, position)",
       )
       .eq("course_id", course.id)
       .order("position"),
@@ -54,9 +54,17 @@ export default async function CoursePage({ params }: Props) {
       .eq("user_id", user.id)
       .eq("status", "active")
       .maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single<{ role: string }>(),
   ]);
 
   const enrolled = Boolean(enrollment);
+  // Mirrors the lesson page / media route check: admins can preview
+  // any lesson without enrolling.
+  const accessible = enrolled || profile?.role === "admin";
   const sortedModules = ((modules ?? []) as ModuleWithLessons[]).map((mod) => ({
     ...mod,
     lessons: [...mod.lessons].sort((a, b) => a.position - b.position),
@@ -101,7 +109,6 @@ export default async function CoursePage({ params }: Props) {
 
               <ol className="mt-4 space-y-3">
                 {lessons.map((lesson, lessonIndex) => {
-                  const accessible = enrolled || lesson.is_free_preview;
                   const number = String(offsets[modIndex] + lessonIndex + 1).padStart(2, "0");
                   const title = localized(locale, lesson.title, lesson.title_en);
                   const description = localized(
@@ -137,11 +144,6 @@ export default async function CoursePage({ params }: Props) {
                           <span className="truncate font-bold text-navy">
                             {title}
                           </span>
-                          {lesson.is_free_preview && !enrolled ? (
-                            <span className="rounded bg-accent/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-ink">
-                              {t("freePreview")}
-                            </span>
-                          ) : null}
                         </span>
                         {description ? (
                           <span className="mt-0.5 line-clamp-1 block text-sm text-steel">

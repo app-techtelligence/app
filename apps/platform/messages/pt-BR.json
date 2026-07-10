@@ -69,8 +69,7 @@
     "back": "Meus cursos",
     "notEnrolled": "Você ainda não está matriculado neste curso. Volte ao painel para entrar na turma.",
     "locked": "Bloqueada",
-    "lessonCount": "{count, plural, =1 {1 aula} other {# aulas}}",
-    "freePreview": "Aula aberta"
+    "lessonCount": "{count, plural, =1 {1 aula} other {# aulas}}"
   },
   "lesson": {
     "noVideo": "O vídeo desta aula ainda não está disponível."
@@ -103,7 +102,6 @@
       "descriptionEn": "Descrição (EN)",
       "published": "Publicado",
       "betaOpen": "Matrícula beta aberta",
-      "freePreview": "Aula aberta",
       "durationSeconds": "Duração (segundos)"
     },
     "video": {

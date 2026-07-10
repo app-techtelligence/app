@@ -1,7 +1,10 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getLocale } from "next-intl/server";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { z } from "zod";
+import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/admin";
 
 /**
@@ -46,6 +49,25 @@ function refresh() {
   revalidatePath("/", "layout");
 }
 
+// Videos live in R2, not the database — deleting rows alone would orphan
+// the objects and keep paying for storage. Rows are deleted first; if the
+// R2 delete then fails, a stray object is the harmless failure mode.
+async function deleteMediaObjects(keys: Array<string | null>) {
+  const valid = keys.filter((key): key is string => Boolean(key));
+  if (valid.length === 0) return;
+  try {
+    const media = getCloudflareContext().env.MEDIA;
+    // R2 bulk delete caps at 1000 keys per call.
+    for (let i = 0; i < valid.length; i += 1000) {
+      await media.delete(valid.slice(i, i + 1000));
+    }
+  } catch (error) {
+    // Orphaned objects; log the keys so they can be removed in the R2
+    // dashboard (object keys carry no PII).
+    console.error("R2 cleanup failed for keys:", valid, error);
+  }
+}
+
 // ------------------------------------------------------------------ courses
 
 export async function createCourse(formData: FormData) {
@@ -86,9 +108,26 @@ export async function deleteCourse(formData: FormData) {
   const id = z.uuid().safeParse(formData.get("id"));
   if (!id.success) return;
 
-  const { error } = await ctx.supabase.from("courses").delete().eq("id", id.data);
-  if (error) return;
+  // Collect video keys before the cascade wipes the lesson rows.
+  const { data: lessons } = await ctx.supabase
+    .from("lessons")
+    .select("video_key, modules!inner(course_id)")
+    .eq("modules.course_id", id.data);
+
+  // .select() proves rows were actually deleted — a silent 0-row delete
+  // (e.g. RLS filtering) must not trigger the irreversible R2 cleanup.
+  const { data: deleted, error } = await ctx.supabase
+    .from("courses")
+    .delete()
+    .eq("id", id.data)
+    .select("id");
+  if (error || !deleted?.length) return;
+
+  await deleteMediaObjects(
+    ((lessons ?? []) as Array<{ video_key: string | null }>).map((l) => l.video_key),
+  );
   refresh();
+  redirect({ href: "/admin", locale: await getLocale() });
 }
 
 // ------------------------------------------------------------------ modules
@@ -146,8 +185,22 @@ export async function deleteModule(formData: FormData) {
   const id = z.uuid().safeParse(formData.get("id"));
   if (!id.success) return;
 
-  const { error } = await ctx.supabase.from("modules").delete().eq("id", id.data);
-  if (error) return;
+  // Collect video keys before the cascade wipes the lesson rows.
+  const { data: lessons } = await ctx.supabase
+    .from("lessons")
+    .select("video_key")
+    .eq("module_id", id.data);
+
+  const { data: deleted, error } = await ctx.supabase
+    .from("modules")
+    .delete()
+    .eq("id", id.data)
+    .select("id");
+  if (error || !deleted?.length) return;
+
+  await deleteMediaObjects(
+    ((lessons ?? []) as Array<{ video_key: string | null }>).map((l) => l.video_key),
+  );
   refresh();
 }
 
@@ -195,7 +248,6 @@ const lessonSchema = z.object({
   title_en: text,
   description: text,
   description_en: text,
-  is_free_preview: checkbox,
 });
 
 export async function createLesson(formData: FormData) {
@@ -256,8 +308,20 @@ export async function deleteLesson(formData: FormData) {
   const id = z.uuid().safeParse(formData.get("id"));
   if (!id.success) return;
 
-  const { error } = await ctx.supabase.from("lessons").delete().eq("id", id.data);
-  if (error) return;
+  const { data: lesson } = await ctx.supabase
+    .from("lessons")
+    .select("video_key")
+    .eq("id", id.data)
+    .maybeSingle<{ video_key: string | null }>();
+
+  const { data: deleted, error } = await ctx.supabase
+    .from("lessons")
+    .delete()
+    .eq("id", id.data)
+    .select("id");
+  if (error || !deleted?.length) return;
+
+  await deleteMediaObjects([lesson?.video_key ?? null]);
   refresh();
 }
 

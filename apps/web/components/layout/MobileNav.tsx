@@ -4,16 +4,14 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { AppPathname } from "@/i18n/routing";
-import { whatsappLink } from "@/lib/site-config";
 import { buttonVariants } from "@/components/ui/Button";
-import { CloseIcon, MenuIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 
-const links: { href: AppPathname; key: "consulting" | "course" | "mentorship" | "about" | "contact" }[] = [
+const links: { href: AppPathname; key: "consulting" | "course" | "mentorship" | "about" }[] = [
   { href: "/consulting", key: "consulting" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
   { href: "/about", key: "about" },
-  { href: "/contact", key: "contact" },
 ];
 
 export function MobileNav() {
@@ -45,15 +43,13 @@ export function MobileNav() {
                 {t(`nav.${key}`)}
               </Link>
             ))}
-            <a
-              href={whatsappLink(t("cta.whatsappMessage"))}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
               className={buttonVariants("primary", "md", "mt-3 mb-2")}
             >
-              <WhatsAppIcon className="h-4 w-4" />
-              {t("cta.whatsapp")}
-            </a>
+              {t("nav.contact")}
+            </Link>
           </nav>
         </div>
       ) : null}

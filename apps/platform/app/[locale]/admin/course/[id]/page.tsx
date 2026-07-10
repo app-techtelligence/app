@@ -53,7 +53,7 @@ export default async function AdminCoursePage({ params }: Props) {
   const { data: modules } = await ctx.supabase
     .from("modules")
     .select(
-      "id, course_id, title, title_en, position, lessons(id, module_id, slug, title, title_en, description, description_en, video_key, duration_seconds, position, is_free_preview)",
+      "id, course_id, title, title_en, position, lessons(id, module_id, slug, title, title_en, description, description_en, video_key, duration_seconds, position)",
     )
     .eq("course_id", course.id)
     .order("position");
@@ -208,11 +208,6 @@ export default async function AdminCoursePage({ params }: Props) {
                           {t("noVideo")}
                         </span>
                       )}
-                      {lesson.is_free_preview ? (
-                        <span className="rounded bg-accent/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-ink">
-                          {t("fields.freePreview")}
-                        </span>
-                      ) : null}
                       <form action={moveLesson}>
                         <input type="hidden" name="id" value={lesson.id} />
                         <input type="hidden" name="dir" value="up" />
@@ -265,10 +260,6 @@ export default async function AdminCoursePage({ params }: Props) {
                             </div>
                           </div>
                           <div className="flex flex-wrap items-end gap-5">
-                            <label className="flex items-center gap-2 text-sm font-semibold text-navy">
-                              <input type="checkbox" name="is_free_preview" defaultChecked={lesson.is_free_preview} className="h-4 w-4 accent-navy" />
-                              {t("fields.freePreview")}
-                            </label>
                             <div>
                               <label htmlFor={`l-${lesson.id}-dur`} className="mb-1 block text-xs font-bold text-navy">
                                 {t("fields.durationSeconds")}

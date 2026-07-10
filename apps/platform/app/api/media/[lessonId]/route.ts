@@ -11,7 +11,6 @@ import { createClient } from "@/lib/supabase/server";
 
 type LessonAccessRow = {
   video_key: string | null;
-  is_free_preview: boolean;
   modules: { course_id: string };
 };
 
@@ -33,7 +32,7 @@ export async function GET(
   // 2. Which video, and is this user entitled to it?
   const { data: lesson } = await supabase
     .from("lessons")
-    .select("video_key, is_free_preview, modules!inner(course_id)")
+    .select("video_key, modules!inner(course_id)")
     .eq("id", lessonId)
     .single<LessonAccessRow>();
 
@@ -41,24 +40,22 @@ export async function GET(
     return new Response("Not found", { status: 404 });
   }
 
-  if (!lesson.is_free_preview) {
-    const [{ data: enrollment }, { data: profile }] = await Promise.all([
-      supabase
-        .from("enrollments")
-        .select("status")
-        .eq("user_id", user.id)
-        .eq("course_id", lesson.modules.course_id)
-        .eq("status", "active")
-        .maybeSingle(),
-      supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single<{ role: string }>(),
-    ]);
-    if (!enrollment && profile?.role !== "admin") {
-      return new Response("Forbidden", { status: 403 });
-    }
+  const [{ data: enrollment }, { data: profile }] = await Promise.all([
+    supabase
+      .from("enrollments")
+      .select("status")
+      .eq("user_id", user.id)
+      .eq("course_id", lesson.modules.course_id)
+      .eq("status", "active")
+      .maybeSingle(),
+    supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single<{ role: string }>(),
+  ]);
+  if (!enrollment && profile?.role !== "admin") {
+    return new Response("Forbidden", { status: 403 });
   }
 
   // 3. Stream from R2, honoring Range for seeking.
