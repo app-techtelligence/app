@@ -35,6 +35,7 @@ Create publication-ready posts for the TechTelligence blog. Input: a topic, an a
 
 - PT-BR uses "você", direct sentences, zero corporate jargon. The EN version mirrors the content and structure, not word-by-word — idiomatic English, localize examples (LGPD → "privacy laws such as LGPD and GDPR").
 - Consultancy copy is credibility-first ("é exatamente isso que fazemos"); course/mentorship copy is aspirational but **non-promissory** — never promise jobs, salaries, or timelines ("não existe prazo garantido — desconfie de quem promete um").
+- **Don't give away course content** (user decision 2026-07-10, after trimming the LinkedIn post): when a topic overlaps a course module, the post teaches the *what* (overview, pillars, common mistakes) but keeps the *how* (word-by-word formulas, templates, scripts, checklists, step-by-step) for the course — and says so explicitly ("o passo a passo completo é o módulo X do curso"). B2B consultancy posts can go deeper: there the method demonstrates credibility.
 - Both languages are mandatory in the same seed — publishing is blocked without complete PT + EN.
 
 ## From an example
