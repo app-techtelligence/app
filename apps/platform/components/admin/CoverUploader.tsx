@@ -18,6 +18,35 @@ type Props = {
 
 type Status = "idle" | "uploading" | "done" | "error";
 
+// Covers render at 1200x630 and must stay small — social scrapers reject
+// og:images over ~5 MB, and raw AI-tool exports easily hit 6-8 MB. Anything
+// over the threshold is downscaled and re-encoded to WebP in the browser
+// (the Workers runtime can't run image codecs server-side).
+const COMPRESS_OVER_BYTES = 500 * 1024;
+const MAX_WIDTH = 1600;
+
+async function compressImage(file: File): Promise<Blob> {
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, MAX_WIDTH / bitmap.width);
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return file;
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    // Browsers without WebP encoding fall back to PNG; either way, only
+    // use the result if it actually came out smaller than the original.
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, "image/webp", 0.82),
+    );
+    return blob && blob.size < file.size ? blob : file;
+  } catch {
+    return file;
+  }
+}
+
 /** Single-shot cover upload (images are small; no multipart needed). */
 export function CoverUploader({ postId, hasCover, labels }: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -27,12 +56,14 @@ export function CoverUploader({ postId, hasCover, labels }: Props) {
   async function handleFile(file: File) {
     setStatus("uploading");
     try {
+      const body =
+        file.size > COMPRESS_OVER_BYTES ? await compressImage(file) : file;
       const response = await fetch(
         `/api/admin/blog-cover?postId=${encodeURIComponent(postId)}`,
         {
           method: "POST",
-          headers: { "content-type": file.type },
-          body: file,
+          headers: { "content-type": body.type },
+          body,
         },
       );
       if (!response.ok) throw new Error(String(response.status));
