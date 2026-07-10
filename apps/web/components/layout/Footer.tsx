@@ -6,8 +6,14 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
 
-const productLinks: { href: AppPathname; key: "consulting" | "course" | "mentorship" }[] = [
+// Consultancy first (CLAUDE.md §1), with its two service lines right below it.
+const productLinks: {
+  href: AppPathname;
+  key: "consulting" | "servicesAi" | "servicesDataGovernance" | "course" | "mentorship";
+}[] = [
   { href: "/consulting", key: "consulting" },
+  { href: "/consulting/ai", key: "servicesAi" },
+  { href: "/consulting/data-governance", key: "servicesDataGovernance" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
 ];

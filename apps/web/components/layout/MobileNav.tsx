@@ -7,11 +7,15 @@ import type { AppPathname } from "@/i18n/routing";
 import { buttonVariants } from "@/components/ui/Button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 
-const links: { href: AppPathname; key: "consulting" | "course" | "mentorship" | "about" }[] = [
-  { href: "/consulting", key: "consulting" },
+const links: { href: AppPathname; key: "course" | "mentorship" | "about" }[] = [
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
   { href: "/about", key: "about" },
+];
+
+const serviceLinks: { href: AppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
+  { href: "/consulting/ai", key: "servicesAi" },
+  { href: "/consulting/data-governance", key: "servicesDataGovernance" },
 ];
 
 export function MobileNav() {
@@ -33,6 +37,23 @@ export function MobileNav() {
       {open ? (
         <div className="absolute inset-x-0 top-full border-b border-navy/10 bg-white shadow-lg">
           <nav className="flex flex-col px-4 py-3">
+            <Link
+              href="/consulting"
+              onClick={() => setOpen(false)}
+              className="py-3 text-base font-semibold text-navy"
+            >
+              {t("nav.services")}
+            </Link>
+            {serviceLinks.map(({ href, key }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="border-b border-navy/5 py-2.5 pl-4 text-sm font-semibold text-navy/75 last:border-b-0"
+              >
+                {t(`nav.${key}`)}
+              </Link>
+            ))}
             {links.map(({ href, key }) => (
               <Link
                 key={href}

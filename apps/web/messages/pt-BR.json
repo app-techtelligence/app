@@ -5,6 +5,9 @@
       "course": "Curso",
       "mentorship": "Mentoria",
       "consulting": "Consultoria",
+      "services": "Serviços",
+      "servicesAi": "IA",
+      "servicesDataGovernance": "Governança de dados",
       "about": "Sobre",
       "contact": "Contato",
       "menuOpen": "Abrir menu",
@@ -392,6 +395,250 @@
       "ctaPrimary": "Pedir uma proposta",
       "ctaSecondary": "Preencher o formulário de contato",
       "whatsappMessage": "Olá! Quero uma proposta de consultoria em Dados & IA da TechTelligence. Podemos conversar sobre o projeto da minha empresa?"
+    }
+  },
+  "serviceAi": {
+    "meta": {
+      "title": "Consultoria em IA: Estratégia, IA Generativa e ML — TechTelligence",
+      "description": "Consultoria de IA da estratégia à produção: IA generativa e LLMs, machine learning e operação de IA — construída sobre os seus dados, operada pelo seu time."
+    },
+    "hero": {
+      "kicker": "Serviços · Inteligência Artificial",
+      "title": "IA construída sobre os seus dados, funcionando dentro da sua operação",
+      "subtitle": "Identificamos os casos de uso que importam, construímos sobre os seus dados e sistemas e levamos à produção com responsabilidade — do primeiro assistente de IA generativa ao machine learning em escala.",
+      "ctaPrimary": "Pedir uma proposta",
+      "ctaSecondary": "Falar pelo formulário",
+      "whatsappMessage": "Olá! Quero falar sobre a consultoria de IA da TechTelligence para a minha empresa."
+    },
+    "offerings": {
+      "kicker": "O que fazemos",
+      "title": "Serviços de IA de ponta a ponta",
+      "subtitle": "De decidir onde a IA gera valor a manter modelos saudáveis em produção — um só time, um só padrão de engenharia.",
+      "cards": [
+        {
+          "tagline": "Estratégia",
+          "title": "Estratégia e prontidão para IA",
+          "description": "Antes do primeiro modelo: clareza sobre onde a IA gera valor para o seu negócio e o que precisa estar pronto para funcionar.",
+          "items": [
+            "Descoberta e priorização de casos de uso por impacto no negócio",
+            "Avaliação de prontidão: dados, sistemas e competências",
+            "Roadmap pragmático, com ganhos rápidos primeiro",
+            "Diretrizes de IA responsável desde o primeiro dia"
+          ]
+        },
+        {
+          "tagline": "IA generativa",
+          "title": "Soluções com IA generativa e LLMs",
+          "description": "Assistentes, copilotos e automações que respondem com o conhecimento da sua empresa — não com texto genérico da internet.",
+          "items": [
+            "Integração de LLMs com os seus sistemas e processos",
+            "RAG: respostas baseadas nos seus documentos e dados",
+            "Pipelines de avaliação: qualidade medida, não estimada",
+            "Privacidade, segurança e controle de custos desde a base"
+          ]
+        },
+        {
+          "tagline": "Machine learning",
+          "title": "Machine learning e análise preditiva",
+          "description": "Modelos que antecipam o que o seu negócio precisa saber: demanda, churn, risco, a próxima melhor ação.",
+          "items": [
+            "Previsão de demanda, vendas e capacidade",
+            "Classificação e scoring: churn, crédito, leads",
+            "Recomendação e personalização",
+            "Experimentos medidos por métricas de negócio"
+          ]
+        },
+        {
+          "tagline": "Operação",
+          "title": "MLOps e operação de IA",
+          "description": "IA só gera valor enquanto funciona bem. Tornamos deploy, monitoramento e evolução rotina — não heroísmo.",
+          "items": [
+            "Pipelines de deploy para modelos e aplicações com LLM",
+            "Monitoramento de qualidade, drift e custo",
+            "Ciclo de vida de modelos: versionamento, retreino, rollback",
+            "Seu time treinado para operar com confiança"
+          ]
+        }
+      ]
+    },
+    "useCases": {
+      "kicker": "Casos de uso",
+      "title": "Onde a IA se paga primeiro",
+      "subtitle": "Seis padrões que geram valor em vários setores — um ponto de partida, não um limite.",
+      "items": [
+        {
+          "title": "Assistentes de atendimento",
+          "description": "Atenda clientes com mais rapidez e consistência, com IA baseada nas suas políticas e nos dados dos seus produtos."
+        },
+        {
+          "title": "Busca de conhecimento interno",
+          "description": "Dê ao seu time um lugar único para tirar dúvidas em documentos, wikis e sistemas — com as fontes citadas."
+        },
+        {
+          "title": "Processamento de documentos",
+          "description": "Extraia, classifique e valide informações de contratos, notas e formulários automaticamente."
+        },
+        {
+          "title": "Previsão de demanda",
+          "description": "Planeje estoque, equipe e caixa com previsões que aprendem com o seu histórico e a sua sazonalidade."
+        },
+        {
+          "title": "Churn e retenção",
+          "description": "Saiba quem está prestes a sair e por quê — cedo o bastante para agir."
+        },
+        {
+          "title": "Automação de processos",
+          "description": "Elimine etapas repetitivas do back-office com IA que encaminha as exceções para pessoas."
+        }
+      ]
+    },
+    "engagement": {
+      "kicker": "Como trabalhamos",
+      "title": "Provar no pequeno, escalar com segurança",
+      "subtitle": "Ciclos curtos com pontos de verificação mensuráveis — você vê valor antes de decidir escalar.",
+      "steps": [
+        {
+          "title": "Diagnóstico",
+          "description": "Mapeamos seus casos de uso, dados e sistemas e entregamos um roadmap priorizado — valioso mesmo que o trabalho pare aqui."
+        },
+        {
+          "title": "Prova de valor",
+          "description": "Construímos o caso de uso de maior impacto em semanas e medimos contra uma métrica de negócio definida no início."
+        },
+        {
+          "title": "Escala",
+          "description": "Levamos o que funcionou para produção com segurança, monitoramento e controle de custos — e treinamos o seu time para assumir."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Pronto para colocar a IA para trabalhar?",
+      "subtitle": "Conte o seu desafio e receba uma proposta clara: casos de uso, etapas e próximos passos definidos.",
+      "ctaPrimary": "Pedir uma proposta",
+      "ctaSecondary": "Preencher o formulário de contato",
+      "whatsappMessage": "Olá! Quero uma proposta de consultoria de IA da TechTelligence para a minha empresa."
+    }
+  },
+  "serviceDataGovernance": {
+    "meta": {
+      "title": "Consultoria em Governança de Dados — TechTelligence",
+      "description": "Governança de dados que habilita o negócio: qualidade, catálogo e linhagem, conformidade com a LGPD e um modelo operacional que o seu time sustenta. Peça uma proposta."
+    },
+    "hero": {
+      "kicker": "Serviços · Governança de Dados",
+      "title": "Dados em que a sua empresa pode confiar — e provar",
+      "subtitle": "Implementamos governança que habilita em vez de travar: qualidade, donos definidos, catálogo e conformidade com a LGPD, em um modelo operacional que o seu time mantém depois que saímos.",
+      "ctaPrimary": "Pedir uma proposta",
+      "ctaSecondary": "Falar pelo formulário",
+      "whatsappMessage": "Olá! Quero falar sobre a consultoria em governança de dados da TechTelligence para a minha empresa."
+    },
+    "offerings": {
+      "kicker": "O que fazemos",
+      "title": "Governança que sai do papel",
+      "subtitle": "Não é uma pasta de políticas — são regras, papéis e ferramentas funcionando dentro da sua plataforma de dados.",
+      "cards": [
+        {
+          "tagline": "Fundação",
+          "title": "Framework e modelo operacional",
+          "description": "Governança no tamanho da sua empresa — estrutura suficiente para ser confiável, leve o bastante para ser seguida.",
+          "items": [
+            "Políticas e padrões que cabem no seu jeito de trabalhar",
+            "Donos claros: data owners e data stewards",
+            "Fóruns de decisão leves — sem teatro burocrático",
+            "Métricas de adoção para dar visibilidade ao progresso"
+          ]
+        },
+        {
+          "tagline": "Qualidade",
+          "title": "Gestão de qualidade de dados",
+          "description": "Confiança se constrói dataset a dataset: verificações automatizadas onde o dado passa, não planilhas depois do fato.",
+          "items": [
+            "Regras de qualidade embutidas nos seus pipelines",
+            "Monitoramento, alertas e scorecards de qualidade",
+            "Análise de causa raiz e fluxos de correção",
+            "SLAs para os datasets dos quais o negócio depende"
+          ]
+        },
+        {
+          "tagline": "Descoberta",
+          "title": "Catálogo, metadados e linhagem",
+          "description": "As pessoas só usam dados que conseguem encontrar e entender. Tornamos seus dados localizáveis, documentados e rastreáveis.",
+          "items": [
+            "Implantação de catálogo de dados que as pessoas realmente usam",
+            "Glossário de negócio: uma língua só entre os times",
+            "Linhagem de ponta a ponta: de onde o dado vem e para onde vai",
+            "Descoberta self-service para analistas e times de IA"
+          ]
+        },
+        {
+          "tagline": "Conformidade",
+          "title": "Privacidade, segurança e LGPD",
+          "description": "Conformidade como resultado de boa engenharia — dados pessoais mapeados, acesso controlado, evidências prontas.",
+          "items": [
+            "Mapeamento e classificação de dados pessoais",
+            "Controle de acesso, mascaramento e anonimização",
+            "Políticas de retenção e minimização na prática",
+            "Documentação e evidências prontas para auditoria"
+          ]
+        }
+      ]
+    },
+    "useCases": {
+      "kicker": "O que ela destrava",
+      "title": "É a governança que torna o resto possível",
+      "subtitle": "Seis resultados que as empresas sentem poucos meses depois de acertar a governança.",
+      "items": [
+        {
+          "title": "Uma fonte única da verdade",
+          "description": "KPIs que batem entre relatórios — sem reuniões para discutir qual número está certo."
+        },
+        {
+          "title": "Dados prontos para IA",
+          "description": "Iniciativas de IA que começam a construir no primeiro dia, porque os dados estão documentados, limpos e acessíveis."
+        },
+        {
+          "title": "LGPD sem pânico",
+          "description": "Saiba exatamente quais dados pessoais você tem, onde estão e quem os acessa — antes que o regulador pergunte."
+        },
+        {
+          "title": "Analytics self-service",
+          "description": "Analistas encontram e confiam nos dados por conta própria, em vez de entrar na fila do time de dados."
+        },
+        {
+          "title": "Menos incidentes de dados",
+          "description": "Dashboards quebrados e falhas silenciosas de pipeline detectados pelo monitoramento, não pelo CEO."
+        },
+        {
+          "title": "Compartilhamento seguro",
+          "description": "Compartilhe dados entre áreas e com parceiros sob os controles certos, sem improviso."
+        }
+      ]
+    },
+    "engagement": {
+      "kicker": "Como trabalhamos",
+      "title": "Começar onde dói, crescer domínio a domínio",
+      "subtitle": "Governança fracassa quando nasce como um programa big-bang. Implantamos onde o valor é concreto.",
+      "steps": [
+        {
+          "title": "Diagnóstico",
+          "description": "Medimos a maturidade, mapeamos riscos e escolhemos os domínios em que a governança se paga mais rápido."
+        },
+        {
+          "title": "Implementação",
+          "description": "Políticas, verificações de qualidade, catálogo e controles de acesso entram em operação nos domínios prioritários — funcionando, não só escritos."
+        },
+        {
+          "title": "Operação",
+          "description": "O stewardship vira rotina: métricas, revisões e melhoria contínua, sob responsabilidade do seu time."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "Pronto para confiar nos seus dados?",
+      "subtitle": "Conte onde os dados doem hoje e receba uma proposta clara: escopo, etapas e próximos passos definidos.",
+      "ctaPrimary": "Pedir uma proposta",
+      "ctaSecondary": "Preencher o formulário de contato",
+      "whatsappMessage": "Olá! Quero uma proposta de consultoria em governança de dados da TechTelligence para a minha empresa."
     }
   },
   "about": {
