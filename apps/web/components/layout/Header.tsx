@@ -26,13 +26,15 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-navy/10 bg-white/95 backdrop-blur">
       <Container className="relative flex h-16 items-center justify-between gap-4">
-        {/* No aria-label: the visible wordmark text is the accessible name. */}
-        <Link href="/" className="flex items-center gap-2">
-          <LogoMark className="h-8 w-auto text-navy" />
-          <Wordmark className="text-sm sm:text-base" />
-        </Link>
+        {/* Logo and nav grouped on the left (Allata-style); actions on the right. */}
+        <div className="flex items-center gap-10">
+          {/* No aria-label: the visible wordmark text is the accessible name. */}
+          <Link href="/" className="flex items-center gap-2">
+            <LogoMark className="h-8 w-auto text-navy" />
+            <Wordmark className="text-sm sm:text-base" />
+          </Link>
 
-        <nav className="hidden items-center gap-6 md:flex" aria-label={t("nav.home")}>
+          <nav className="hidden items-center gap-6 md:flex" aria-label={t("nav.home")}>
           {/* CSS-only dropdown: opens on hover and on keyboard focus of any
               item inside (focus-within), so the Header stays a Server Component. */}
           <div className="group relative">
@@ -67,7 +69,8 @@ export async function Header() {
               {t(`nav.${key}`)}
             </Link>
           ))}
-        </nav>
+          </nav>
+        </div>
 
         <div className="flex items-center gap-3">
           <LocaleSwitcher />
