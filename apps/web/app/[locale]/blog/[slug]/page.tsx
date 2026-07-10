@@ -7,6 +7,7 @@ import {
   coverUrl,
   getPublishedPost,
   localizedField,
+  localizedTags,
   readingTimeMinutes,
   type BlogPost,
 } from "@/lib/blog";
@@ -56,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: locale === "en" ? "en_US" : "pt_BR",
       type: "article",
       publishedTime: post.published_at ?? undefined,
-      tags: post.tags,
+      tags: localizedTags(locale, post),
       images: [{ url: cover ?? "/og/og-default.png", width: 1200, height: 630 }],
     },
     twitter: {
@@ -76,6 +77,7 @@ export default async function PostPage({ params }: Props) {
   const title = localizedField(locale, post.title, post.title_en);
   const body = localizedField(locale, post.body_md, post.body_md_en);
   const excerpt = localizedField(locale, post.excerpt, post.excerpt_en);
+  const tags = localizedTags(locale, post);
   const cover = coverUrl(post);
   const minutes = readingTimeMinutes(body);
   // Fixed timezone: Workers run in UTC, which would shift evening publishes
@@ -106,9 +108,9 @@ export default async function PostPage({ params }: Props) {
         </Link>
 
         <header className="mt-6">
-          {post.tags.length > 0 ? (
+          {tags.length > 0 ? (
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {tags.map((tag) => (
                 <span
                   key={tag}
                   className="rounded-full border border-navy/15 px-3 py-1 text-xs font-semibold text-steel"

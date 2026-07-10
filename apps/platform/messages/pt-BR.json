@@ -137,8 +137,10 @@
         "excerptEn": "Resumo (EN)",
         "bodyPt": "Conteúdo em Markdown (PT-BR)",
         "bodyEn": "Conteúdo em Markdown (EN)",
-        "tags": "Tags (separadas por vírgula)",
+        "tags": "Tags PT-BR (separadas por vírgula)",
         "tagsHint": "IA, Dados, Carreira",
+        "tagsEn": "Tags EN (separadas por vírgula)",
+        "tagsEnHint": "AI, Data, Career",
         "published": "Publicado"
       }
     },

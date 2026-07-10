@@ -1,4 +1,7 @@
 -- SEO batch #2 (content seed — run once in the Supabase SQL editor).
+-- REQUIRES migration 0006_post_tags_en.sql first (tags_en column).
+-- If you already ran an earlier version of this file without tags_en, don't
+-- re-run it — migration 0006's backfill translates the tags on its own.
 -- Three bilingual posts, staggered published_at (consultancy post on top).
 -- Covers via /blog-cover (Gemini prompts + processing).
 --
@@ -9,7 +12,7 @@
 
 -- 1 ─────────────────────────────────────────────────────────────────────────
 insert into public.posts
-  (slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, is_published, published_at)
+  (slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, tags_en, is_published, published_at)
 values
   (
     'rag-o-que-e-e-quando-usar',
@@ -113,13 +116,14 @@ Like every AI project that works: **one use case, one document corpus, one metri
 
 This is exactly the kind of project our [Data & AI consulting](https://techtelligence.net/en/consulting) designs and implements: a diagnosis of your scenario, pragmatic architecture (no infrastructure overkill), a pilot with a metric, and a handover so your team can operate it. [Talk to us](https://techtelligence.net/en/contact) and tell us which of your company's knowledge you want to unlock first.$enb1$,
     array['IA', 'Dados', 'Empresas'],
+    array['AI', 'Data', 'Business'],
     true,
     now()
   );
 
 -- 2 ─────────────────────────────────────────────────────────────────────────
 insert into public.posts
-  (slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, is_published, published_at)
+  (slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, tags_en, is_published, published_at)
 values
   (
     'quanto-ganha-um-analista-de-dados',
@@ -199,13 +203,14 @@ Demand for people who turn data into decisions keeps growing — every company t
 
 If a course promises "earn R$ X within 6 months", close the tab. There is no guaranteed timeline or salary — there is probability, and it grows with consistency, real projects and guidance from people who know the market. That's our proposition: the [career-transition course](https://techtelligence.net/en/course) to build the foundation, and [1:1 mentorship](https://techtelligence.net/en/mentorship) for strategy, LinkedIn and interview preparation — with people who hire and work with data every day.$enb2$,
     array['Carreira', 'Dados'],
+    array['Career', 'Data'],
     true,
     now() - interval '1 hour'
   );
 
 -- 3 ─────────────────────────────────────────────────────────────────────────
 insert into public.posts
-  (slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, is_published, published_at)
+  (slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, tags_en, is_published, published_at)
 values
   (
     'linkedin-para-conseguir-emprego-em-ti',
@@ -319,6 +324,7 @@ Recruiters find people who show up. One post a week is enough: something you lea
 
 A finished profile is step one; using it well is the ongoing game. That's exactly what we work on in our [career-transition course](https://techtelligence.net/en/course) — which includes a dedicated LinkedIn module — and in [1:1 mentorship](https://techtelligence.net/en/mentorship), where we review your actual profile, your narrative and your outreach strategy, with people who hire in tech every day.$enb3$,
     array['Carreira', 'TI'],
+    array['Career', 'IT'],
     true,
     now() - interval '2 hours'
   );

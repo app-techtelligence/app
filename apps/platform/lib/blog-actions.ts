@@ -27,6 +27,19 @@ const longText = z
   .optional()
   .transform((v) => (v ?? "").trim());
 
+// Comma-separated input → up to 10 trimmed tags (PT and EN fields alike).
+const tagList = z
+  .string()
+  .max(500)
+  .optional()
+  .transform((v) =>
+    (v ?? "")
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean)
+      .slice(0, 10),
+  );
+
 export async function createPost(formData: FormData) {
   const ctx = await getAdminContext();
   if (!ctx) return;
@@ -76,17 +89,8 @@ const postSchema = z.object({
   excerpt_en: longText,
   body_md: longText,
   body_md_en: longText,
-  tags: z
-    .string()
-    .max(500)
-    .optional()
-    .transform((v) =>
-      (v ?? "")
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter(Boolean)
-        .slice(0, 10),
-    ),
+  tags: tagList,
+  tags_en: tagList,
   // Unchecked checkboxes are absent from FormData entirely.
   is_published: z.coerce.boolean().default(false),
 });

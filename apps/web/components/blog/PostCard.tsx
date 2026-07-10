@@ -4,6 +4,7 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 import {
   coverUrl,
   localizedField,
+  localizedTags,
   postSlug,
   type BlogPost,
 } from "@/lib/blog";
@@ -18,6 +19,7 @@ export function PostCard({ post, locale, readMoreLabel }: Props) {
   const cover = coverUrl(post);
   const title = localizedField(locale, post.title, post.title_en);
   const excerpt = localizedField(locale, post.excerpt, post.excerpt_en);
+  const tags = localizedTags(locale, post);
 
   return (
     <Link
@@ -39,9 +41,9 @@ export function PostCard({ post, locale, readMoreLabel }: Props) {
       )}
 
       <span className="flex flex-1 flex-col p-6">
-        {post.tags.length > 0 ? (
+        {tags.length > 0 ? (
           <span className="flex flex-wrap gap-1.5">
-            {post.tags.slice(0, 3).map((tag) => (
+            {tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
                 className="rounded-full border border-navy/15 px-2.5 py-0.5 text-[11px] font-semibold text-steel"

@@ -284,6 +284,33 @@ create policy "posts: admin manage"
   using (public.is_admin())
   with check (public.is_admin());
 
+-- ==================================================== 0006_post_tags_en.sql
+-- English tags for blog posts (tags_en mirrors tags; PT fallback at render).
+
+alter table public.posts
+  add column if not exists tags_en text[] not null default '{}';
+
+update public.posts
+set tags_en = (
+  select coalesce(
+    array_agg(
+      case t.tag
+        when 'IA' then 'AI'
+        when 'Dados' then 'Data'
+        when 'Empresas' then 'Business'
+        when 'Carreira' then 'Career'
+        when 'TI' then 'IT'
+        when 'Investimento' then 'Investment'
+        else t.tag
+      end
+      order by t.ord
+    ),
+    '{}'::text[]
+  )
+  from unnest(posts.tags) with ordinality as t(tag, ord)
+)
+where tags_en = '{}';
+
 -- ---------------------------------------------------------------------------
 -- PROMOTE YOUR ACCOUNT (edit the email, run once):
 --

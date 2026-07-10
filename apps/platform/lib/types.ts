@@ -50,6 +50,7 @@ export type Post = {
   body_md_en: string;
   cover_key: string | null;
   tags: string[];
+  tags_en: string[];
   is_published: boolean;
   published_at: string | null;
   created_at: string;

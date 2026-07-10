@@ -85,7 +85,7 @@ Posts live in the Supabase `posts` table — authored in the platform admin edit
 - The `excerpt` doubles as the meta description (~140–170 chars) — write it as one.
 - Question-phrased H2s (featured snippets), 700–1100 words per language, 2–3 internal links between posts (always verify target slugs), GFM tables supported.
 - CTAs by audience: B2B → `/consultoria` + `/contato`; B2C → `/curso` + `/mentoria` (EN: `/en/consulting`, `/en/contact`, `/en/course`, `/en/mentorship`).
-- Tag vocabulary (shared across locales): `IA`, `Dados`, `Empresas`, `Carreira`, `TI`, `Investimento`.
+- Tags are bilingual (`tags` PT / `tags_en` EN, PT fallback — migration 0006). Paired vocabulary: `IA`↔`AI`, `Dados`↔`Data`, `Empresas`↔`Business`, `Carreira`↔`Career`, `TI`↔`IT`, `Investimento`↔`Investment`.
 
 **Covers:**
 - Stored in R2 under the `blog/` prefix (`posts.cover_key`); served by the web route `/api/blog-media/[...key]` (content type comes from the R2 object's metadata; 24 h public cache); the cover **is** the post's `og:image`.

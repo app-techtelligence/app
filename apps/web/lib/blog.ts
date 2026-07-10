@@ -20,12 +20,15 @@ export type BlogPost = {
   body_md_en: string;
   cover_key: string | null;
   tags: string[];
+  tags_en: string[];
   published_at: string | null;
   updated_at: string | null;
 };
 
-const POST_COLUMNS =
-  "id, slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, cover_key, tags, published_at, updated_at";
+// select("*") instead of an explicit column list: content migrations run by
+// hand in the SQL editor and code deploys aren't atomic — an unknown column
+// in an explicit list would turn the whole blog empty until they align.
+const POST_COLUMNS = "*";
 
 function client() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -81,6 +84,13 @@ export function localizedField(
   en: string,
 ): string {
   return locale === "en" && en ? en : pt;
+}
+
+/** Locale-appropriate tags; falls back to PT when EN tags are missing
+ *  (nullish guard covers rows read before migration 0006 ran). */
+export function localizedTags(locale: string, post: BlogPost): string[] {
+  const en = post.tags_en ?? [];
+  return locale === "en" && en.length > 0 ? en : post.tags;
 }
 
 /** ~200 words per minute, minimum 1. */

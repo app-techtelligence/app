@@ -137,18 +137,33 @@ export default async function AdminPostPage({ params }: Props) {
             previewLabel={t("preview")}
           />
 
-          <div>
-            <label htmlFor="p-tags" className="mb-1 block text-xs font-bold text-navy">
-              {t("fields.tags")}
-            </label>
-            <input
-              id="p-tags"
-              name="tags"
-              maxLength={500}
-              defaultValue={post.tags.join(", ")}
-              placeholder={t("fields.tagsHint")}
-              className={inputCls}
-            />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="p-tags" className="mb-1 block text-xs font-bold text-navy">
+                {t("fields.tags")}
+              </label>
+              <input
+                id="p-tags"
+                name="tags"
+                maxLength={500}
+                defaultValue={post.tags.join(", ")}
+                placeholder={t("fields.tagsHint")}
+                className={inputCls}
+              />
+            </div>
+            <div>
+              <label htmlFor="p-tags-en" className="mb-1 block text-xs font-bold text-navy">
+                {t("fields.tagsEn")}
+              </label>
+              <input
+                id="p-tags-en"
+                name="tags_en"
+                maxLength={500}
+                defaultValue={(post.tags_en ?? []).join(", ")}
+                placeholder={t("fields.tagsEnHint")}
+                className={inputCls}
+              />
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">

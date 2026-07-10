@@ -137,8 +137,10 @@
         "excerptEn": "Excerpt (EN)",
         "bodyPt": "Markdown body (PT-BR)",
         "bodyEn": "Markdown body (EN)",
-        "tags": "Tags (comma-separated)",
-        "tagsHint": "AI, Data, Career",
+        "tags": "Tags PT-BR (comma-separated)",
+        "tagsHint": "IA, Dados, Carreira",
+        "tagsEn": "Tags EN (comma-separated)",
+        "tagsEnHint": "AI, Data, Career",
         "published": "Published"
       }
     },

@@ -29,7 +29,7 @@ Create publication-ready posts for the TechTelligence blog. Input: a topic, an a
 - **Closing CTA section**, always last:
   - B2B → `https://techtelligence.net/consultoria` + `https://techtelligence.net/contato` (EN: `/en/consulting`, `/en/contact`)
   - B2C → `https://techtelligence.net/curso` + `https://techtelligence.net/mentoria` (EN: `/en/course`, `/en/mentorship`)
-- **Tags** (shared across locales, reuse this vocabulary): `IA`, `Dados`, `Empresas`, `Carreira`, `TI`, `Investimento`.
+- **Tags in BOTH languages** (`tags` PT / `tags_en` EN), from the paired vocabulary: `IA`↔`AI`, `Dados`↔`Data`, `Empresas`↔`Business`, `Carreira`↔`Career`, `TI`↔`IT`, `Investimento`↔`Investment`. Same order in both arrays.
 
 ## Voice rules (non-negotiable)
 
@@ -45,7 +45,7 @@ When the user provides an example post (theirs or external): extract its skeleto
 
 One INSERT per post in `apps/platform/supabase/content/YYYY-MM-DD-<name>.sql`, modeled on `2026-07-10-seo-posts.sql`:
 
-- Columns: `(slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, is_published, published_at)`.
+- Columns: `(slug, slug_en, title, title_en, excerpt, excerpt_en, body_md, body_md_en, tags, tags_en, is_published, published_at)`.
 - Dollar-quote every text field with a per-field unique tag (`$ptx1$…$ptx1$`, `$enb1$`, `$ptx2$`, …); plain-quoted strings (titles) escape `'` as `''`.
 - Multiple posts: stagger `published_at` with `now() - interval 'N hours'` to control listing order — consultancy posts newest (product priority).
 - Header comment: what the batch is + "run once in the Supabase SQL editor".
