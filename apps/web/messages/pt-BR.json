@@ -8,6 +8,7 @@
       "services": "Serviços",
       "servicesAi": "IA",
       "servicesDataGovernance": "Governança de dados",
+      "blog": "Blog",
       "about": "Sobre",
       "contact": "Contato",
       "menuOpen": "Abrir menu",
@@ -713,6 +714,26 @@
       "ctaWhatsapp": "Falar no WhatsApp",
       "ctaContact": "Ir para o contato",
       "whatsappMessage": "Olá! Li a história da TechTelligence no site e quero conversar sobre o melhor caminho para mim ou para a minha empresa."
+    }
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog — TechTelligence",
+      "description": "Artigos sobre IA, dados e carreira em tecnologia, escritos por quem constrói soluções para empresas todos os dias."
+    },
+    "kicker": "Insights",
+    "title": "Blog",
+    "subtitle": "Ideias práticas sobre IA, dados e carreira em tecnologia — direto de quem constrói.",
+    "empty": "Ainda não publicamos nenhum post. Volte em breve!",
+    "readMore": "Ler mais",
+    "backToBlog": "Todos os posts",
+    "readingTime": "{minutes, plural, =1 {1 min de leitura} other {# min de leitura}}",
+    "share": {
+      "label": "Compartilhar",
+      "linkedin": "Compartilhar no LinkedIn",
+      "x": "Compartilhar no X",
+      "copy": "Copiar link",
+      "copied": "Link copiado!"
     }
   },
   "contact": {

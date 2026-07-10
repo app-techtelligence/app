@@ -3,17 +3,18 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import type { AppPathname } from "@/i18n/routing";
+import type { StaticAppPathname } from "@/i18n/routing";
 import { buttonVariants } from "@/components/ui/Button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 
-const links: { href: AppPathname; key: "course" | "mentorship" | "about" }[] = [
+const links: { href: StaticAppPathname; key: "course" | "mentorship" | "blog" | "about" }[] = [
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
+  { href: "/blog", key: "blog" },
   { href: "/about", key: "about" },
 ];
 
-const serviceLinks: { href: AppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
+const serviceLinks: { href: StaticAppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
   { href: "/consulting/ai", key: "servicesAi" },
   { href: "/consulting/data-governance", key: "servicesDataGovernance" },
 ];

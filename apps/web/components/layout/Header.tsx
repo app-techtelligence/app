@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import type { AppPathname } from "@/i18n/routing";
+import type { StaticAppPathname } from "@/i18n/routing";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
@@ -9,13 +9,14 @@ import { ChevronDownIcon } from "@/components/ui/icons";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { MobileNav } from "./MobileNav";
 
-const links: { href: AppPathname; key: "course" | "mentorship" | "about" }[] = [
+const links: { href: StaticAppPathname; key: "course" | "mentorship" | "blog" | "about" }[] = [
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
+  { href: "/blog", key: "blog" },
   { href: "/about", key: "about" },
 ];
 
-const serviceLinks: { href: AppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
+const serviceLinks: { href: StaticAppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
   { href: "/consulting/ai", key: "servicesAi" },
   { href: "/consulting/data-governance", key: "servicesDataGovernance" },
 ];

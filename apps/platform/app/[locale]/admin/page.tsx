@@ -67,6 +67,17 @@ export default async function AdminPage({ params }: Props) {
         ))}
       </div>
 
+      <Link
+        href="/admin/blog"
+        className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-navy/10 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md"
+      >
+        <span>
+          <span className="block font-bold text-navy">{t("blog.title")}</span>
+          <span className="text-xs text-steel">{t("blog.subtitle")}</span>
+        </span>
+        <span aria-hidden="true" className="text-navy">→</span>
+      </Link>
+
       <section className="mt-12 rounded-xl border border-navy/10 bg-white p-6 shadow-sm sm:p-8">
         <h2 className="text-lg font-extrabold tracking-wide text-navy">
           {t("newCourse")}

@@ -1,12 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import type { AppPathname } from "@/i18n/routing";
+import type { StaticAppPathname } from "@/i18n/routing";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TriangleDivider } from "@/components/ui/TriangleDivider";
 import { ArrowRightIcon } from "@/components/ui/icons";
 
-const products: { href: AppPathname; key: "consulting" | "course" | "mentorship" }[] = [
+const products: { href: StaticAppPathname; key: "consulting" | "course" | "mentorship" }[] = [
   { href: "/consulting", key: "consulting" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },

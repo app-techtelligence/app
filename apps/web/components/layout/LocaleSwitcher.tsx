@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { routing, type Locale } from "@/i18n/routing";
+import { routing, type Locale, type StaticAppPathname } from "@/i18n/routing";
 
 const labels: Record<Locale, string> = {
   "pt-BR": "PT",
@@ -14,6 +14,11 @@ export function LocaleSwitcher() {
   const locale = useLocale();
   const t = useTranslations("common.localeSwitcher");
   const pathname = usePathname();
+  // Blog posts have locale-specific slugs, so a direct locale swap on
+  // /blog/[slug] would 404 — fall back to the blog listing there.
+  const href = (
+    pathname.includes("[") ? "/blog" : pathname
+  ) as StaticAppPathname;
 
   return (
     <nav
@@ -22,18 +27,25 @@ export function LocaleSwitcher() {
     >
       {routing.locales.map((candidate) => {
         const isActive = candidate === locale;
+        // The active locale is not a link — clicking it should never navigate
+        // (relevant on post pages, where `href` falls back to the listing).
+        if (isActive) {
+          return (
+            <span
+              key={candidate}
+              aria-current="true"
+              className="rounded bg-navy px-2 py-1 text-white"
+            >
+              {labels[candidate]}
+            </span>
+          );
+        }
         return (
           <Link
             key={candidate}
-            // usePathname returns the internal pathname; all routes are static.
-            href={pathname}
+            href={href}
             locale={candidate}
-            aria-current={isActive ? "true" : undefined}
-            className={`rounded px-2 py-1 transition-colors ${
-              isActive
-                ? "bg-navy text-white"
-                : "text-steel hover:text-navy"
-            }`}
+            className="rounded px-2 py-1 text-steel transition-colors hover:text-navy"
           >
             {labels[candidate]}
           </Link>

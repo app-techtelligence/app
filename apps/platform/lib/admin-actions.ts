@@ -6,6 +6,7 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { z } from "zod";
 import { redirect } from "@/i18n/navigation";
 import { getAdminContext } from "@/lib/admin";
+import { slugify } from "@/lib/slugify";
 
 /**
  * Admin mutations. Every action re-checks the admin role server-side;
@@ -13,16 +14,6 @@ import { getAdminContext } from "@/lib/admin";
  * Actions are used as plain <form action>, so they return void; failed
  * validation or RLS rejection simply leaves the data unchanged.
  */
-
-function slugify(value: string): string {
-  return value
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "")
-    .slice(0, 60);
-}
 
 // Optional so forms that omit the field (e.g. quick-create lesson, which
 // only posts title fields) still validate; absent and empty both mean null.

@@ -104,6 +104,42 @@
       "betaOpen": "Beta enrollment open",
       "durationSeconds": "Duration (seconds)"
     },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Write, edit and publish blog posts.",
+      "backToAdmin": "Administration",
+      "back": "Blog",
+      "empty": "No posts yet. Create the first one below.",
+      "newPost": "New post",
+      "create": "Create",
+      "save": "Save",
+      "deletePost": "Delete post",
+      "published": "Published",
+      "draft": "Draft",
+      "write": "Write",
+      "preview": "Preview",
+      "publishHint": "To publish, fill in the excerpt and body in both languages.",
+      "cover": {
+        "title": "Cover image",
+        "upload": "Upload cover",
+        "replace": "Replace cover",
+        "remove": "Remove cover",
+        "uploading": "Uploading…",
+        "done": "Cover uploaded!",
+        "error": "Upload failed — try again."
+      },
+      "fields": {
+        "titlePt": "Title (PT-BR)",
+        "titleEn": "Title (EN)",
+        "excerptPt": "Excerpt (PT-BR)",
+        "excerptEn": "Excerpt (EN)",
+        "bodyPt": "Markdown body (PT-BR)",
+        "bodyEn": "Markdown body (EN)",
+        "tags": "Tags (comma-separated)",
+        "tagsHint": "AI, Data, Career",
+        "published": "Published"
+      }
+    },
     "video": {
       "upload": "Upload video",
       "replace": "Replace video",

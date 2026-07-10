@@ -11,7 +11,9 @@ const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
+  // https: lets blog posts embed images from external hosts (images can't
+  // execute script, so the loosening is low-risk).
+  "img-src 'self' data: https:",
   "font-src 'self'",
   "connect-src 'self' https://challenges.cloudflare.com",
   "frame-src https://challenges.cloudflare.com",

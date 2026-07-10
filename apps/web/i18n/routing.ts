@@ -5,6 +5,10 @@ export const routing = defineRouting({
   defaultLocale: "pt-BR",
   // Portuguese lives at the root (/curso), English under /en (/en/course).
   localePrefix: "as-needed",
+  // The middleware's Link header would advertise the SAME slug for both
+  // locales on /blog/[slug] (post slugs differ per locale → 404 alternates).
+  // Correct hreflang comes from generateMetadata and the sitemap instead.
+  alternateLinks: false,
   pathnames: {
     "/": "/",
     "/consulting": {
@@ -27,6 +31,8 @@ export const routing = defineRouting({
       "pt-BR": "/mentoria",
       en: "/mentorship",
     },
+    "/blog": "/blog",
+    "/blog/[slug]": "/blog/[slug]",
     "/about": {
       "pt-BR": "/sobre",
       en: "/about",
@@ -44,3 +50,5 @@ export const routing = defineRouting({
 
 export type Locale = (typeof routing.locales)[number];
 export type AppPathname = keyof typeof routing.pathnames;
+/** Pathnames without dynamic segments — usable as a bare Link href. */
+export type StaticAppPathname = Exclude<AppPathname, `${string}[${string}`>;

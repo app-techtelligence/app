@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { getPathname } from "@/i18n/navigation";
-import { routing, type AppPathname, type Locale } from "@/i18n/routing";
+import { routing, type Locale, type StaticAppPathname } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site-config";
 
 const ogLocales: Record<Locale, string> = {
@@ -10,7 +10,7 @@ const ogLocales: Record<Locale, string> = {
   en: "en_US",
 };
 
-function absoluteUrl(href: AppPathname, locale: Locale): string {
+function absoluteUrl(href: StaticAppPathname, locale: Locale): string {
   return siteConfig.url + getPathname({ href, locale });
 }
 
@@ -23,7 +23,7 @@ function absoluteUrl(href: AppPathname, locale: Locale): string {
 export async function pageMetadata(
   requestedLocale: string,
   namespace: string,
-  href: AppPathname,
+  href: StaticAppPathname,
 ): Promise<Metadata> {
   const locale = hasLocale(routing.locales, requestedLocale)
     ? requestedLocale

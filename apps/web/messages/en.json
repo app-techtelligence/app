@@ -8,6 +8,7 @@
       "services": "Services",
       "servicesAi": "AI",
       "servicesDataGovernance": "Data governance",
+      "blog": "Blog",
       "about": "About",
       "contact": "Contact",
       "menuOpen": "Open menu",
@@ -713,6 +714,26 @@
       "ctaWhatsapp": "Chat on WhatsApp",
       "ctaContact": "Go to contact",
       "whatsappMessage": "Hi! I just read TechTelligence's story on your website and I'd like to talk about the best path for me or for my company."
+    }
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog — TechTelligence",
+      "description": "Articles on AI, data and tech careers, written by the people who build solutions for companies every day."
+    },
+    "kicker": "Insights",
+    "title": "Blog",
+    "subtitle": "Practical ideas on AI, data and tech careers — straight from the people who build.",
+    "empty": "We haven't published any posts yet. Check back soon!",
+    "readMore": "Read more",
+    "backToBlog": "All posts",
+    "readingTime": "{minutes, plural, =1 {1 min read} other {# min read}}",
+    "share": {
+      "label": "Share",
+      "linkedin": "Share on LinkedIn",
+      "x": "Share on X",
+      "copy": "Copy link",
+      "copied": "Link copied!"
     }
   },
   "contact": {

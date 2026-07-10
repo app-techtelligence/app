@@ -45,6 +45,8 @@ Both apps are **live in production** on Cloudflare Workers:
 | `/consultoria` | `/en/consulting` | Consultancy |
 | `/curso` | `/en/course` | Course |
 | `/mentoria` | `/en/mentorship` | Mentorship |
+| `/blog` | `/en/blog` | Blog listing — posts from Supabase, rendered dynamically |
+| `/blog/[slug]` | `/en/blog/[slug_en]` | Blog post — **per-locale slugs**; new post = new URL, no redeploy |
 | `/sobre` | `/en/about` | About (founder story) |
 | `/contato` | `/en/contact` | Contact — WhatsApp + Turnstile form |
 | `/privacidade` | `/en/privacy` | Privacy (LGPD) |
@@ -60,6 +62,7 @@ Both apps are **live in production** on Cloudflare Workers:
 | `/curso/[slug]` | `/en/course/[slug]` | Course overview |
 | `/curso/[slug]/aula/[lessonSlug]` | `/en/course/[slug]/lesson/[lessonSlug]` | Lesson player |
 | `/admin`, `/admin/course/[id]` | (same, locale-agnostic) | Admin course editor |
+| `/admin/blog`, `/admin/blog/[id]` | (same, locale-agnostic) | Admin blog editor (Markdown + preview, cover upload) |
 
 Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to login and logged-in users off auth pages.
 
@@ -68,6 +71,7 @@ Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to lo
 - Locales: `pt-BR` (default) and `en`, via `next-intl`, `localePrefix: "as-needed"`, localized pathnames (both apps).
 - **Every** UI string lives in `messages/pt-BR.json` and `messages/en.json`. Never hardcode user-facing text. Add both languages in the same commit — a vitest **message-parity test** (`apps/web/messages/messages.test.ts`) fails on key drift or empty strings.
 - Platform content is bilingual at **two levels**: UI strings via next-intl JSON; DB content via `title_en`/`description_en` columns picked by `lib/content.ts` `localized()` (falls back to PT when EN is missing).
+- **Blog posts must be written in BOTH languages** (user decision, 2026-07-10) — publishing is blocked until excerpt + body exist in PT and EN. Posts have per-locale slugs (`slug`, `slug_en`); the locale switcher falls back to `/blog` on post pages.
 - Signup records the locale in `user_metadata.locale` **from the server URL, not client context** — it drives the confirmation-email language.
 - SEO (web only): per-locale metadata, `hreflang` alternates, localized OG, sitemap for both locales.
 
@@ -79,7 +83,7 @@ Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to lo
 | Styling | Tailwind CSS v4 | Brand tokens in `globals.css` |
 | Monorepo | Turborepo + pnpm workspaces | `nodeLinker: hoisted` is **mandatory** (see §8) |
 | Hosting | Cloudflare Workers via `@opennextjs/cloudflare` | Workers `app` + `platform`, custom domains |
-| DB + Auth | Supabase (`@supabase/ssr`) | RLS default-deny on every table |
+| DB + Auth | Supabase (`@supabase/ssr`) | RLS default-deny on every table. The **web app also reads Supabase** (anon key, no session) for published blog posts — RLS `posts: read published` includes `anon` |
 | Video storage | Cloudflare R2 (bucket `techtelligence-media`, binding `MEDIA`) | Streamed through an auth-gated route with Range support — **not** Cloudflare Stream yet (future upgrade: Stream signed URLs) |
 | Anti-spam | Cloudflare Turnstile | Contact form |
 | Email | Resend (domain verified, sender `noreply@techtelligence.net`) | Contact form + Supabase custom SMTP for auth emails |

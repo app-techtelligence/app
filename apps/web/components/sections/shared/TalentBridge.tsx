@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import type { AppPathname } from "@/i18n/routing";
+import type { StaticAppPathname } from "@/i18n/routing";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
 import { TriangleBullet } from "@/components/ui/icons";
@@ -14,7 +14,7 @@ type TalentBridgeProps = {
   audience: "students" | "clients";
 };
 
-const ctaHref: Record<TalentBridgeProps["audience"], AppPathname> = {
+const ctaHref: Record<TalentBridgeProps["audience"], StaticAppPathname> = {
   students: "/consulting",
   clients: "/course",
 };

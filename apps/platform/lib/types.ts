@@ -37,3 +37,20 @@ export type Enrollment = {
   course_id: string;
   status: "active" | "revoked";
 };
+
+export type Post = {
+  id: string;
+  slug: string;
+  slug_en: string;
+  title: string;
+  title_en: string;
+  excerpt: string;
+  excerpt_en: string;
+  body_md: string;
+  body_md_en: string;
+  cover_key: string | null;
+  tags: string[];
+  is_published: boolean;
+  published_at: string | null;
+  created_at: string;
+};

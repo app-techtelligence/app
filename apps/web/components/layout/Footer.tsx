@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import type { AppPathname } from "@/i18n/routing";
+import type { StaticAppPathname } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site-config";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/Container";
 
 // Consultancy first (CLAUDE.md §1), with its two service lines right below it.
 const productLinks: {
-  href: AppPathname;
+  href: StaticAppPathname;
   key: "consulting" | "servicesAi" | "servicesDataGovernance" | "course" | "mentorship";
 }[] = [
   { href: "/consulting", key: "consulting" },
@@ -61,6 +61,11 @@ export async function Footer() {
             <li>
               <Link href="/about" className="text-sm text-white/80 transition-colors hover:text-white">
                 {t("nav.about")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" className="text-sm text-white/80 transition-colors hover:text-white">
+                {t("nav.blog")}
               </Link>
             </li>
             <li>

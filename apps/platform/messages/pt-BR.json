@@ -104,6 +104,42 @@
       "betaOpen": "Matrícula beta aberta",
       "durationSeconds": "Duração (segundos)"
     },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Escreva, edite e publique os posts do blog.",
+      "backToAdmin": "Administração",
+      "back": "Blog",
+      "empty": "Nenhum post ainda. Crie o primeiro abaixo.",
+      "newPost": "Novo post",
+      "create": "Criar",
+      "save": "Salvar",
+      "deletePost": "Excluir post",
+      "published": "Publicado",
+      "draft": "Rascunho",
+      "write": "Escrever",
+      "preview": "Prévia",
+      "publishHint": "Para publicar, preencha resumo e conteúdo nos dois idiomas.",
+      "cover": {
+        "title": "Imagem de capa",
+        "upload": "Enviar capa",
+        "replace": "Substituir capa",
+        "remove": "Remover capa",
+        "uploading": "Enviando…",
+        "done": "Capa enviada!",
+        "error": "Falha no envio — tente de novo."
+      },
+      "fields": {
+        "titlePt": "Título (PT-BR)",
+        "titleEn": "Título (EN)",
+        "excerptPt": "Resumo (PT-BR)",
+        "excerptEn": "Resumo (EN)",
+        "bodyPt": "Conteúdo em Markdown (PT-BR)",
+        "bodyEn": "Conteúdo em Markdown (EN)",
+        "tags": "Tags (separadas por vírgula)",
+        "tagsHint": "IA, Dados, Carreira",
+        "published": "Publicado"
+      }
+    },
     "video": {
       "upload": "Enviar vídeo",
       "replace": "Substituir vídeo",
