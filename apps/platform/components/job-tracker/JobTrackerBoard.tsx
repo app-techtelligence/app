@@ -4,6 +4,7 @@ import { useId, useMemo, useOptimistic, useState, useTransition } from "react";
 import { useFormStatus } from "react-dom";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import {
+  BanknoteIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   ClockIcon,
@@ -44,6 +45,8 @@ export type JobTrackerLabels = {
     contactName: string;
     websiteUrl: string;
     websiteUrlPlaceholder: string;
+    salary: string;
+    salaryPlaceholder: string;
     firstContactDate: string;
     stage: string;
     status: string;
@@ -154,6 +157,19 @@ function ApplicationFields({
           maxLength={300}
           placeholder={labels.fields.websiteUrlPlaceholder}
           defaultValue={app?.website_url ?? ""}
+          className={inputCls}
+        />
+      </div>
+      <div>
+        <label htmlFor={`${id}-salary`} className={labelCls}>
+          {labels.fields.salary}
+        </label>
+        <input
+          id={`${id}-salary`}
+          name="salary"
+          maxLength={200}
+          placeholder={labels.fields.salaryPlaceholder}
+          defaultValue={app?.salary ?? ""}
           className={inputCls}
         />
       </div>
@@ -529,6 +545,12 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
                           ) : app.website_url ? (
                             <p className="mt-1 truncate text-xs text-steel">
                               {app.website_url}
+                            </p>
+                          ) : null}
+                          {app.salary ? (
+                            <p className="mt-1 flex items-center gap-1.5 text-xs text-steel">
+                              <BanknoteIcon className="h-3.5 w-3.5 shrink-0" />
+                              <span className="truncate">{app.salary}</span>
                             </p>
                           ) : null}
                           {app.first_contact_date ? (

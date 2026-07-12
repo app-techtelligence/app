@@ -52,6 +52,16 @@ export function ChevronRightIcon({ className }: IconProps) {
   );
 }
 
+export function BanknoteIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className}>
+      <rect x="2.5" y="6.5" width="19" height="11" rx="2" />
+      <circle cx="12" cy="12" r="2.5" />
+      <path d="M6.5 12h.01M17.5 12h.01" />
+    </svg>
+  );
+}
+
 /** Small solid triangle — brand bullet point. */
 export function TriangleBullet({ className }: IconProps) {
   return (

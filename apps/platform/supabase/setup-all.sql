@@ -355,6 +355,13 @@ create policy "job_applications: delete own"
   to authenticated
   using ((select auth.uid()) = user_id);
 
+-- ====================================================== 0008_job_salary.sql
+-- Optional salary on job-tracker cards. Free text, not numeric: students
+-- record whatever the posting says ("R$ 8.000", "80k-100k", "a combinar").
+
+alter table public.job_applications
+  add column salary text;
+
 -- ---------------------------------------------------------------------------
 -- PROMOTE YOUR ACCOUNT (edit the email, run once):
 --

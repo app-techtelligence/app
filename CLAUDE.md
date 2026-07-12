@@ -19,7 +19,7 @@ Brand narrative that ties everything together: "We build Data & AI solutions for
 Both apps are **live in production** on Cloudflare Workers:
 
 - **v1 marketing site** (`apps/web`, worker `app`) — https://techtelligence.net + www. Fully static, bilingual, informational. No login/payments here. WhatsApp primary CTA, Turnstile-protected contact form secondary.
-- **v2 course platform** (`apps/platform`, worker `platform`) — https://plataforma.techtelligence.net. Supabase auth (email+password, mandatory confirmation, branded bilingual email), RLS content schema, **beta self-enrollment instead of payments**, protected R2 video streaming, bilingual course content, admin course editor with direct video upload. E2E-verified by the user in both languages. Student resources live under the header's "Recursos"/"Resources" dropdown — first resource: the **job-application tracker** (kanban, `/vagas` · `/en/job-tracker`, table `job_applications`, migration 0007).
+- **v2 course platform** (`apps/platform`, worker `platform`) — https://plataforma.techtelligence.net. Supabase auth (email+password, mandatory confirmation, branded bilingual email), RLS content schema, **beta self-enrollment instead of payments**, protected R2 video streaming, bilingual course content, admin course editor with direct video upload. E2E-verified by the user in both languages. Student resources live under the header's "Recursos"/"Resources" dropdown — first resource: the **job-application tracker** (kanban, `/vagas` · `/en/job-tracker`, table `job_applications`, migrations 0007–0008).
 - **Blog** — live with 5 bilingual SEO posts (seeded 2026-07-10) and AI-illustrated covers. Authoring happens in the platform admin (or via SQL content seeds); the public pages are on the web app. See §5.1 and the `/blog-post` + `/blog-cover` skills.
 
 **Not built yet (only when explicitly asked):** payments (Stripe + Mercado Pago — Pix is essential in Brazil), mentorship booking, Cloudflare Stream signed URLs, OAuth/MFA.
@@ -147,7 +147,7 @@ techtelligence/
 │       │                         # blog-actions.ts, job-tracker{,-actions}.ts, content.ts,
 │       │                         # types.ts
 │       ├── middleware.ts         # next-intl + session refresh + route protection
-│       └── supabase/             # migrations 0001–0007, setup-all.sql, email-templates/,
+│       └── supabase/             # migrations 0001–0008, setup-all.sql, email-templates/,
 │                                 # content/ (blog post SQL seeds)
 └── packages/                     # not created yet — brand/UI/security-headers/i18n code is
                                   # currently duplicated across apps; extract when it hurts

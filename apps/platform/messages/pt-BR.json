@@ -7,7 +7,8 @@
       "logout": "Sair",
       "admin": "Admin",
       "accountMenu": "Menu da conta",
-      "changePassword": "Alterar senha"
+      "changePassword": "Alterar senha",
+      "course": "Curso"
     },
     "localeSwitcher": {
       "label": "Idioma"
@@ -123,6 +124,8 @@
       "contactName": "Nome do contato",
       "websiteUrl": "Site (opcional)",
       "websiteUrlPlaceholder": "empresa.com.br",
+      "salary": "Salário (opcional)",
+      "salaryPlaceholder": "R$ 5.000 ou faixa",
       "firstContactDate": "Data do primeiro contato",
       "stage": "Etapa",
       "status": "Status"

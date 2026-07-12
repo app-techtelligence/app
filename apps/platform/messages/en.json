@@ -7,7 +7,8 @@
       "logout": "Sign out",
       "admin": "Admin",
       "accountMenu": "Account menu",
-      "changePassword": "Change password"
+      "changePassword": "Change password",
+      "course": "Course"
     },
     "localeSwitcher": {
       "label": "Language"
@@ -123,6 +124,8 @@
       "contactName": "Contact name",
       "websiteUrl": "Website (optional)",
       "websiteUrlPlaceholder": "company.com",
+      "salary": "Salary (optional)",
+      "salaryPlaceholder": "$60,000 or a range",
       "firstContactDate": "First contact date",
       "stage": "Stage",
       "status": "Status"

@@ -52,6 +52,7 @@ const applicationSchema = z.object({
   company_name: z.string().trim().min(1).max(200),
   contact_name: text,
   website_url: websiteUrl,
+  salary: text,
   first_contact_date: isoDate,
   stage: z.enum(JOB_STAGES).default("first_contact"),
   status: z.enum(JOB_STATUSES).default("waiting"),

@@ -46,6 +46,7 @@ export type JobApplication = {
   company_name: string;
   contact_name: string | null;
   website_url: string | null;
+  salary: string | null;
   first_contact_date: string | null;
   stage: JobStage;
   status: JobStatus;
