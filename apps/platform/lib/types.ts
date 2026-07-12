@@ -1,5 +1,7 @@
 /** Row shapes for the platform tables (see supabase/migrations). */
 
+import type { JobStage, JobStatus } from "./job-tracker";
+
 export type Course = {
   id: string;
   slug: string;
@@ -36,6 +38,18 @@ export type Enrollment = {
   user_id: string;
   course_id: string;
   status: "active" | "revoked";
+};
+
+export type JobApplication = {
+  id: string;
+  user_id: string;
+  company_name: string;
+  contact_name: string | null;
+  website_url: string | null;
+  first_contact_date: string | null;
+  stage: JobStage;
+  status: JobStatus;
+  created_at: string;
 };
 
 export type Post = {

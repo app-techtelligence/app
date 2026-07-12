@@ -7,6 +7,7 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { ResourcesMenu } from "./ResourcesMenu";
 import { UserMenu } from "./UserMenu";
 
 /** "Ada Lovelace" → "AL"; single word → first letter; falls back to the email. */
@@ -48,16 +49,23 @@ export async function PlatformHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-navy/10 bg-white/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Link
-          href={user ? "/dashboard" : "/"}
-          className="flex items-center gap-2"
-        >
-          <LogoMark className="h-8 w-auto text-navy" />
-          <Wordmark className="text-sm sm:text-base" />
-          <span className="ml-1 rounded bg-navy/5 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-steel">
-            {t("brand.beta")}
-          </span>
-        </Link>
+        <div className="flex min-w-0 items-center gap-1.5 sm:gap-3">
+          <Link
+            href={user ? "/dashboard" : "/"}
+            className="flex items-center gap-2"
+          >
+            <LogoMark className="h-8 w-auto text-navy" />
+            {/* At 375px the logged-in row (menu + switcher + logout) only
+                fits without the wordmark and beta chip — the mark stays. */}
+            <Wordmark
+              className={user ? "hidden text-base sm:inline" : "text-sm sm:text-base"}
+            />
+            <span className="ml-1 hidden rounded bg-navy/5 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-steel sm:inline">
+              {t("brand.beta")}
+            </span>
+          </Link>
+          {user ? <ResourcesMenu /> : null}
+        </div>
 
         <div className="flex items-center gap-3">
           {isAdmin ? (

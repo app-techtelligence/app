@@ -34,6 +34,10 @@ export const routing = defineRouting({
       "pt-BR": "/curso/[slug]/aula/[lessonSlug]",
       en: "/course/[slug]/lesson/[lessonSlug]",
     },
+    "/job-tracker": {
+      "pt-BR": "/vagas",
+      en: "/job-tracker",
+    },
     "/admin": "/admin",
     "/admin/course/[id]": "/admin/course/[id]",
     "/admin/blog": "/admin/blog",

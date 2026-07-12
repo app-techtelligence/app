@@ -12,6 +12,10 @@
     "localeSwitcher": {
       "label": "Idioma"
     },
+    "resources": {
+      "label": "Recursos",
+      "jobTracker": "Acompanhamento de vagas"
+    },
     "notFound": {
       "title": "Página não encontrada",
       "description": "A página que você procura não existe ou foi movida.",
@@ -94,6 +98,46 @@
   },
   "lesson": {
     "noVideo": "O vídeo desta aula ainda não está disponível."
+  },
+  "jobTracker": {
+    "title": "Acompanhamento de vagas",
+    "subtitle": "Organize suas candidaturas e acompanhe cada etapa até a proposta.",
+    "unavailable": "O quadro de vagas ainda não está disponível. Tente novamente em alguns minutos.",
+    "empty": "Nenhuma vaga por aqui ainda. Adicione a primeira empresa com quem você está conversando!",
+    "newApplication": "Nova vaga",
+    "create": "Adicionar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "saving": "Salvando…",
+    "errorSave": "Não foi possível salvar. Confira os campos e tente de novo.",
+    "edit": "Editar",
+    "close": "Fechar",
+    "delete": "Excluir",
+    "confirmDelete": "Confirmar exclusão",
+    "moveBack": "Voltar etapa",
+    "moveForward": "Avançar etapa",
+    "toggleStatus": "Alternar status",
+    "openWebsite": "Abrir site da empresa",
+    "fields": {
+      "companyName": "Empresa",
+      "contactName": "Nome do contato",
+      "websiteUrl": "Site (opcional)",
+      "websiteUrlPlaceholder": "empresa.com.br",
+      "firstContactDate": "Data do primeiro contato",
+      "stage": "Etapa",
+      "status": "Status"
+    },
+    "stages": {
+      "firstContact": "Primeiro contato",
+      "hrInterview": "Entrevista com RH",
+      "techInterview": "Entrevista técnica",
+      "managerInterview": "Entrevista com gestor",
+      "offer": "Proposta"
+    },
+    "statuses": {
+      "waiting": "Aguardando",
+      "noReturn": "Sem retorno"
+    }
   },
   "admin": {
     "title": "Administração",
