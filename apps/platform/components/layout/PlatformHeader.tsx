@@ -1,3 +1,4 @@
+import type { ComponentProps } from "react";
 import { getTranslations } from "next-intl/server";
 import { revalidatePath } from "next/cache";
 import { Link, redirect } from "@/i18n/navigation";
@@ -6,8 +7,8 @@ import { createClient } from "@/lib/supabase/server";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
+import { HeaderNav } from "./HeaderNav";
 import { LocaleSwitcher } from "./LocaleSwitcher";
-import { ResourcesMenu } from "./ResourcesMenu";
 import { UserMenu } from "./UserMenu";
 
 /** "Ada Lovelace" → "AL"; single word → first letter; falls back to the email. */
@@ -28,14 +29,35 @@ export async function PlatformHeader() {
 
   let isAdmin = false;
   let fullName: string | null = null;
+  // Fallback target for the job-tracker's "back to the course" header link;
+  // replaced by the course itself when the student has exactly one.
+  let courseHref: ComponentProps<typeof Link>["href"] = {
+    pathname: "/dashboard",
+  };
   if (user) {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role, full_name")
-      .eq("id", user.id)
-      .single<{ role: string; full_name: string | null }>();
+    const [{ data: profile }, { data: enrollments }] = await Promise.all([
+      supabase
+        .from("profiles")
+        .select("role, full_name")
+        .eq("id", user.id)
+        .single<{ role: string; full_name: string | null }>(),
+      // RLS scopes the rows to the caller.
+      supabase
+        .from("enrollments")
+        .select("courses(slug)")
+        .eq("status", "active")
+        .limit(2)
+        .returns<{ courses: { slug: string } | null }[]>(),
+    ]);
     isAdmin = profile?.role === "admin";
     fullName = profile?.full_name?.trim() || null;
+
+    const slugs = (enrollments ?? [])
+      .map((enrollment) => enrollment.courses?.slug)
+      .filter((slug): slug is string => Boolean(slug));
+    if (slugs.length === 1 && slugs[0]) {
+      courseHref = { pathname: "/course/[slug]", params: { slug: slugs[0] } };
+    }
   }
 
   async function signOut() {
@@ -64,7 +86,9 @@ export async function PlatformHeader() {
               {t("brand.beta")}
             </span>
           </Link>
-          {user ? <ResourcesMenu /> : null}
+          {user ? (
+            <HeaderNav courseHref={courseHref} courseLabel={t("header.course")} />
+          ) : null}
         </div>
 
         <div className="flex items-center gap-3">
