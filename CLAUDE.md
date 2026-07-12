@@ -83,7 +83,7 @@ Platform is `noindex,nofollow`. Middleware redirects unauthenticated users to lo
 
 **Traffic goal (2026-07-10): 10k organic visits/day.** The plan lives in `docs/seo/content-plan.md`; `/seo-strategy` maintains it and picks the next posts, `/seo-audit` checks the live site, and the `seo-researcher`/`seo-auditor` agents (`.claude/agents/`) do SERP recon and page checks. Known gap: no Article JSON-LD on posts yet.
 
-Posts live in the Supabase `posts` table — authored in the platform admin editor or via **SQL content seeds** in `apps/platform/supabase/content/` (dated files, dollar-quoted, run once in the Supabase SQL editor by the user — Claude has no direct DB access). The `/blog-post` and `/blog-cover` skills encode the full workflow; the essentials:
+Posts live in the Supabase `posts` table — authored in the platform admin editor or via **SQL content seeds** in `apps/platform/supabase/content/` (dated files, dollar-quoted; Claude runs them directly via the Supabase MCP — see §8). The `/blog-post` and `/blog-cover` skills encode the full workflow; the essentials:
 
 **SEO conventions (batch #1 proved these):**
 - Each post targets **one Google query**; title ≤ ~60 chars with click patterns (question + "guia realista", numbered "7 sinais", "guia completo do zero").
@@ -162,6 +162,7 @@ techtelligence/
 - Compat flags: web has `["nodejs_compat", "global_fetch_strictly_public"]` (outbound Turnstile/Resend fetches); platform has `["nodejs_compat"]`.
 - Secrets: web uses `.dev.vars` locally + `wrangler secret put` in prod (`TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`). Platform uses `.env.local` with only the **public** Supabase URL + anon key (inlined at build) — the service_role key must never appear anywhere in this repo.
 - New Supabase migrations must also be appended to `supabase/setup-all.sql` (the one-paste copy for the SQL editor).
+- **Supabase: run directly, never ask (user decision 2026-07-12).** Claude applies migrations and SQL straight to the production project (`WebApp` / `mcotsooledmmhmewxduy`) via the claude.ai Supabase MCP (`apply_migration`, `execute_sql`) — standing authorization; do not ask for per-migration approval. Order: apply the migration **before** pushing code that reads the new columns (pushes auto-deploy). If the permission classifier blocks the call in auto mode, the durable fix is a user-made allowlist entry in `.claude/settings.json`: `permissions.allow: ["mcp__claude_ai_Supabase"]` (Claude cannot add that rule itself).
 
 ## 9. Security (as implemented)
 
