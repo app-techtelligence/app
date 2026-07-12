@@ -62,6 +62,7 @@ Both apps are **live in production** on Cloudflare Workers:
 | `/painel` | `/en/dashboard` | Student dashboard |
 | `/curso/[slug]` | `/en/course/[slug]` | Course overview |
 | `/curso/[slug]/aula/[lessonSlug]` | `/en/course/[slug]/lesson/[lessonSlug]` | Lesson player |
+| `/alterar-senha` | `/en/change-password` | Change password — from the header account menu (initials avatar dropdown) |
 | `/admin`, `/admin/course/[id]` | (same, locale-agnostic) | Admin course editor |
 | `/admin/blog`, `/admin/blog/[id]` | (same, locale-agnostic) | Admin blog editor (Markdown + preview, cover upload) |
 
