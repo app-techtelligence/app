@@ -55,9 +55,9 @@ extrabold with generous letter-spacing:
 
 ## 3. Layout
 
-- Containers: web `mx-auto w-full max-w-[85rem] px-4 sm:px-6 lg:px-8`;
-  platform `max-w-6xl` with the same gutters (`components/ui/Container.tsx`
-  in each app). Narrow platform pages pass `max-w-4xl`.
+- Containers: both apps `mx-auto w-full max-w-[85rem] px-4 sm:px-6 lg:px-8`
+  (`components/ui/Container.tsx` in each app — same width by design). Narrow
+  platform pages pass `max-w-4xl`.
 - Vertical rhythm: web sections `py-16 sm:py-20`, heroes `py-20 sm:py-28`;
   platform pages `py-12 sm:py-16`. Inside a block, space with `mt-*` /
   `space-y-*`.
