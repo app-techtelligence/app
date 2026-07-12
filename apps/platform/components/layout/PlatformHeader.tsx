@@ -7,6 +7,16 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { UserMenu } from "./UserMenu";
+
+/** "Ada Lovelace" → "AL"; single word → first letter; falls back to the email. */
+function initialsOf(fullName: string | null | undefined, email: string): string {
+  const words = (fullName ?? "").trim().split(/\s+/).filter(Boolean);
+  const first = words[0]?.charAt(0) ?? "";
+  const last = words.length > 1 ? (words[words.length - 1]?.charAt(0) ?? "") : "";
+  const initials = `${first}${last}`.toUpperCase();
+  return initials || email.charAt(0).toUpperCase();
+}
 
 export async function PlatformHeader() {
   const t = await getTranslations("common");
@@ -16,13 +26,15 @@ export async function PlatformHeader() {
   } = await supabase.auth.getUser();
 
   let isAdmin = false;
+  let fullName: string | null = null;
   if (user) {
     const { data: profile } = await supabase
       .from("profiles")
-      .select("role")
+      .select("role, full_name")
       .eq("id", user.id)
-      .single<{ role: string }>();
+      .single<{ role: string; full_name: string | null }>();
     isAdmin = profile?.role === "admin";
+    fullName = profile?.full_name?.trim() || null;
   }
 
   async function signOut() {
@@ -58,17 +70,17 @@ export async function PlatformHeader() {
           ) : null}
           <LocaleSwitcher />
           {user ? (
-            <form action={signOut} className="flex items-center gap-3">
-              <span className="hidden max-w-48 truncate text-xs text-steel sm:block">
-                {user.email}
-              </span>
-              <button
-                type="submit"
-                className="text-sm font-semibold text-navy/75 transition-colors hover:text-navy"
-              >
-                {t("header.logout")}
-              </button>
-            </form>
+            <UserMenu
+              initials={initialsOf(fullName, user.email ?? "")}
+              name={fullName}
+              email={user.email ?? ""}
+              labels={{
+                accountMenu: t("header.accountMenu"),
+                changePassword: t("header.changePassword"),
+                logout: t("header.logout"),
+              }}
+              signOutAction={signOut}
+            />
           ) : null}
         </div>
       </Container>

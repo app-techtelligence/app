@@ -22,6 +22,10 @@ export const routing = defineRouting({
       "pt-BR": "/painel",
       en: "/dashboard",
     },
+    "/change-password": {
+      "pt-BR": "/alterar-senha",
+      en: "/change-password",
+    },
     "/course/[slug]": {
       "pt-BR": "/curso/[slug]",
       en: "/course/[slug]",

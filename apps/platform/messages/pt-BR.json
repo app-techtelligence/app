@@ -5,7 +5,9 @@
     },
     "header": {
       "logout": "Sair",
-      "admin": "Admin"
+      "admin": "Admin",
+      "accountMenu": "Menu da conta",
+      "changePassword": "Alterar senha"
     },
     "localeSwitcher": {
       "label": "Idioma"
@@ -53,6 +55,25 @@
       "title": "Confirme seu e-mail",
       "text": "Enviamos um link de confirmação para o seu e-mail. Clique no link para ativar sua conta — depois é só entrar.",
       "back": "Voltar para o login"
+    }
+  },
+  "account": {
+    "password": {
+      "title": "Alterar senha",
+      "subtitle": "Escolha uma nova senha para sua conta.",
+      "current": "Senha atual",
+      "new": "Nova senha",
+      "confirm": "Confirmar nova senha",
+      "hint": "Mínimo de 8 caracteres.",
+      "submit": "Salvar nova senha",
+      "submitting": "Salvando…",
+      "success": "Senha alterada com sucesso!",
+      "errorWrongCurrent": "Senha atual incorreta.",
+      "errorWeak": "Senha muito fraca. Use pelo menos 8 caracteres, misturando letras e números.",
+      "errorMismatch": "As senhas não coincidem. Confira e tente de novo.",
+      "errorSame": "A nova senha precisa ser diferente da atual.",
+      "errorGeneric": "Não foi possível alterar a senha agora. Tente novamente.",
+      "back": "Voltar ao painel"
     }
   },
   "dashboard": {
