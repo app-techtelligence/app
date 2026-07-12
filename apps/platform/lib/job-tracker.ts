@@ -15,5 +15,9 @@ export const JOB_STAGES = [
 
 export const JOB_STATUSES = ["waiting", "no_return"] as const;
 
+/** 'active' = applied directly; 'passive' = a recruiter reached out. */
+export const JOB_SOURCES = ["active", "passive"] as const;
+
 export type JobStage = (typeof JOB_STAGES)[number];
 export type JobStatus = (typeof JOB_STATUSES)[number];
+export type JobSource = (typeof JOB_SOURCES)[number];

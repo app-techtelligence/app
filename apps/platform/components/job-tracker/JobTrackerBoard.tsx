@@ -11,7 +11,9 @@ import {
   TriangleBullet,
 } from "@/components/ui/icons";
 import {
+  JOB_SOURCES,
   JOB_STAGES,
+  type JobSource,
   type JobStage,
   type JobStatus,
 } from "@/lib/job-tracker";
@@ -50,9 +52,14 @@ export type JobTrackerLabels = {
     firstContactDate: string;
     stage: string;
     status: string;
+    source: string;
   };
   stages: Record<JobStage, string>;
   statuses: Record<JobStatus, string>;
+  /** Short chip labels ("Ativo"/"Passivo"). */
+  sources: Record<JobSource, string>;
+  /** Descriptive <select> options explaining each source. */
+  sourceOptions: Record<JobSource, string>;
 };
 
 type Props = {
@@ -198,6 +205,23 @@ function ApplicationFields({
           {JOB_STAGES.map((stage) => (
             <option key={stage} value={stage}>
               {labels.stages[stage]}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label htmlFor={`${id}-source`} className={labelCls}>
+          {labels.fields.source}
+        </label>
+        <select
+          id={`${id}-source`}
+          name="source"
+          defaultValue={app?.source ?? "active"}
+          className={inputCls}
+        >
+          {JOB_SOURCES.map((source) => (
+            <option key={source} value={source}>
+              {labels.sourceOptions[source]}
             </option>
           ))}
         </select>
@@ -473,18 +497,26 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
                           }`}
                         >
                           <div className="flex items-start justify-between gap-2">
-                            <button
-                              type="button"
-                              onClick={() => toggleStatus(app)}
-                              title={labels.toggleStatus}
-                              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold transition-colors ${statusStyles[app.status]}`}
-                            >
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              <button
+                                type="button"
+                                onClick={() => toggleStatus(app)}
+                                title={labels.toggleStatus}
+                                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold transition-colors ${statusStyles[app.status]}`}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="h-1.5 w-1.5 rounded-full bg-current"
+                                />
+                                {labels.statuses[app.status]}
+                              </button>
                               <span
-                                aria-hidden="true"
-                                className="h-1.5 w-1.5 rounded-full bg-current"
-                              />
-                              {labels.statuses[app.status]}
-                            </button>
+                                title={labels.fields.source}
+                                className="inline-flex items-center rounded-full bg-navy/5 px-2.5 py-0.5 text-[11px] font-bold text-steel"
+                              >
+                                {labels.sources[app.source]}
+                              </span>
+                            </div>
                             <div className="flex shrink-0 items-center">
                               <button
                                 type="button"

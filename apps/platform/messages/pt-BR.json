@@ -128,7 +128,16 @@
       "salaryPlaceholder": "R$ 5.000 ou faixa",
       "firstContactDate": "Data do primeiro contato",
       "stage": "Etapa",
-      "status": "Status"
+      "status": "Status",
+      "source": "Origem"
+    },
+    "sources": {
+      "active": "Ativo",
+      "passive": "Passivo"
+    },
+    "sourceOptions": {
+      "active": "Ativo — encontrei a vaga e me candidatei",
+      "passive": "Passivo — um recrutador entrou em contato"
     },
     "stages": {
       "firstContact": "Primeiro contato",

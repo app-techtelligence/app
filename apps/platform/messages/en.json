@@ -128,7 +128,16 @@
       "salaryPlaceholder": "$60,000 or a range",
       "firstContactDate": "First contact date",
       "stage": "Stage",
-      "status": "Status"
+      "status": "Status",
+      "source": "Source"
+    },
+    "sources": {
+      "active": "Active",
+      "passive": "Passive"
+    },
+    "sourceOptions": {
+      "active": "Active — I found the job and applied",
+      "passive": "Passive — a recruiter reached out"
     },
     "stages": {
       "firstContact": "First contact",

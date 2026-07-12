@@ -362,6 +362,14 @@ create policy "job_applications: delete own"
 alter table public.job_applications
   add column salary text;
 
+-- ====================================================== 0009_job_source.sql
+-- How the application started: 'active' = the student found the job and
+-- applied directly; 'passive' = a tech recruiter reached out about the role.
+
+alter table public.job_applications
+  add column source text not null default 'active'
+    check (source in ('active', 'passive'));
+
 -- ---------------------------------------------------------------------------
 -- PROMOTE YOUR ACCOUNT (edit the email, run once):
 --

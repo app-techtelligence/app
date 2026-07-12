@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
-import { JOB_STAGES, JOB_STATUSES } from "@/lib/job-tracker";
+import { JOB_SOURCES, JOB_STAGES, JOB_STATUSES } from "@/lib/job-tracker";
 
 /**
  * Student job-tracker mutations. Every action re-checks the session
@@ -56,6 +56,7 @@ const applicationSchema = z.object({
   first_contact_date: isoDate,
   stage: z.enum(JOB_STAGES).default("first_contact"),
   status: z.enum(JOB_STATUSES).default("waiting"),
+  source: z.enum(JOB_SOURCES).default("active"),
 });
 
 async function getUserContext() {

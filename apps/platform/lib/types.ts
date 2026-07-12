@@ -1,6 +1,6 @@
 /** Row shapes for the platform tables (see supabase/migrations). */
 
-import type { JobStage, JobStatus } from "./job-tracker";
+import type { JobSource, JobStage, JobStatus } from "./job-tracker";
 
 export type Course = {
   id: string;
@@ -50,6 +50,7 @@ export type JobApplication = {
   first_contact_date: string | null;
   stage: JobStage;
   status: JobStatus;
+  source: JobSource;
   created_at: string;
 };
 
