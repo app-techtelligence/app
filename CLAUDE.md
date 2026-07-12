@@ -19,7 +19,7 @@ Brand narrative that ties everything together: "We build Data & AI solutions for
 Both apps are **live in production** on Cloudflare Workers:
 
 - **v1 marketing site** (`apps/web`, worker `app`) — https://techtelligence.net + www. Fully static, bilingual, informational. No login/payments here. WhatsApp primary CTA, Turnstile-protected contact form secondary.
-- **v2 course platform** (`apps/platform`, worker `platform`) — https://plataforma.techtelligence.net. Supabase auth (email+password, mandatory confirmation, branded bilingual email), RLS content schema, **beta self-enrollment instead of payments**, protected R2 video streaming, bilingual course content, admin course editor with direct video upload. E2E-verified by the user in both languages.
+- **v2 course platform** (`apps/platform`, worker `platform`) — https://plataforma.techtelligence.net. Supabase auth (email+password, mandatory confirmation, branded bilingual email), RLS content schema, **beta self-enrollment instead of payments**, protected R2 video streaming, bilingual course content, admin course editor with direct video upload. E2E-verified by the user in both languages. Student resources live under the header's "Recursos"/"Resources" dropdown — first resource: the **job-application tracker** (kanban, `/vagas` · `/en/job-tracker`, table `job_applications`, migration 0007).
 - **Blog** — live with 5 bilingual SEO posts (seeded 2026-07-10) and AI-illustrated covers. Authoring happens in the platform admin (or via SQL content seeds); the public pages are on the web app. See §5.1 and the `/blog-post` + `/blog-cover` skills.
 
 **Not built yet (only when explicitly asked):** payments (Stripe + Mercado Pago — Pix is essential in Brazil), mentorship booking, Cloudflare Stream signed URLs, OAuth/MFA.
@@ -35,6 +35,7 @@ Both apps are **live in production** on Cloudflare Workers:
   - **Accent (decided): amber `#F59E0B`** — CTAs/buttons, navy text on amber
 - **Typography:** Manrope via `next/font`. Generous letter-spacing on headings.
 - **Tone of voice:** professional but encouraging. PT-BR uses "você", direct sentences, no corporate jargon. Consultancy credibility-first; Course/Mentorship aspirational. The consulting client-logo wall (`lib/clients.ts`) is framed as **team experience, not TechTelligence clients** — keep the disclaimer.
+- **UI style guide:** `docs/style-guide.md` — tokens (incl. AA-adjusted values), typography scale, component idioms, a11y/i18n rules, and the new-page checklist. Follow it for every new page or component.
 
 ## 4. Site map
 
@@ -62,6 +63,7 @@ Both apps are **live in production** on Cloudflare Workers:
 | `/painel` | `/en/dashboard` | Student dashboard |
 | `/curso/[slug]` | `/en/course/[slug]` | Course overview |
 | `/curso/[slug]/aula/[lessonSlug]` | `/en/course/[slug]/lesson/[lessonSlug]` | Lesson player |
+| `/vagas` | `/en/job-tracker` | Job-application tracker — student kanban ("Recursos" dropdown) |
 | `/alterar-senha` | `/en/change-password` | Change password — from the header account menu (initials avatar dropdown) |
 | `/admin`, `/admin/course/[id]` | (same, locale-agnostic) | Admin course editor |
 | `/admin/blog`, `/admin/blog/[id]` | (same, locale-agnostic) | Admin blog editor (Markdown + preview, cover upload) |
@@ -124,6 +126,7 @@ techtelligence/
 ├── turbo.json / pnpm-workspace.yaml
 ├── .github/workflows/ci.yml     # lint + typecheck + test on push/PR
 ├── .claude/skills/               # blog-post, blog-cover (project skills)
+├── docs/                         # seo/ (strategy + content plan), style-guide.md
 ├── course/                       # gitignored — local seed video (uploaded to R2)
 ├── blog-covers/                  # gitignored — cover-image workspace (originals + processed)
 ├── apps/
@@ -136,13 +139,15 @@ techtelligence/
 │   │   └── scripts/              # generate-headers.mjs (prebuild), generate-brand-assets.mjs,
 │   │                             # generate-blog-covers.mjs (geometric covers — not preferred style)
 │   └── platform/                 # course platform — worker "platform"
-│       ├── app/[locale]/…        # auth, dashboard, course/lesson, admin (+ admin/blog)
+│       ├── app/[locale]/…        # auth, dashboard, course/lesson, job-tracker,
+│       │                         # admin (+ admin/blog)
 │       ├── app/api/              # admin/upload (R2 multipart), admin/blog-cover,
 │       │                         # media/[lessonId] (streaming)
 │       ├── lib/                  # supabase/{server,client}.ts, admin.ts, admin-actions.ts,
-│       │                         # blog-actions.ts, content.ts, types.ts
+│       │                         # blog-actions.ts, job-tracker{,-actions}.ts, content.ts,
+│       │                         # types.ts
 │       ├── middleware.ts         # next-intl + session refresh + route protection
-│       └── supabase/             # migrations 0001–0005, setup-all.sql, email-templates/,
+│       └── supabase/             # migrations 0001–0007, setup-all.sql, email-templates/,
 │                                 # content/ (blog post SQL seeds)
 └── packages/                     # not created yet — brand/UI/security-headers/i18n code is
                                   # currently duplicated across apps; extract when it hurts
@@ -174,7 +179,7 @@ techtelligence/
 
 ## 10. Testing & CI
 
-- Vitest in `apps/web`: contact schema edge cases, contact route (mocked Turnstile/Resend/env), message parity. Run `pnpm test` at root (turbo). **Platform has no tests yet** — add them when touching its logic.
+- Vitest in `apps/web`: contact schema edge cases, contact route (mocked Turnstile/Resend/env), message parity. Vitest in `apps/platform`: message parity only so far — add logic tests when touching its logic. Run `pnpm test` at root (turbo).
 - GitHub Actions CI (`ci.yml`) runs `lint`, `typecheck`, `test` on pushes to `main` and PRs. Node 22, `--frozen-lockfile`.
 - Deploys run from GitHub Actions (`deploy.yml`): every push to `main` re-runs checks, then deploys both workers. Requires repo **secrets** `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` and repo **variables** `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` (platform build inlines them). Manual fallback: `pnpm --filter <app> run deploy`; manual re-run via workflow_dispatch.
 
@@ -204,4 +209,4 @@ techtelligence/
 3. Payments (Stripe + Mercado Pago/Pix) — build only when the course is ready to sell.
 4. Optional `techtelligence.com.br` alias domain.
 5. `packages/` extraction of duplicated brand/UI/i18n code — when duplication starts hurting.
-6. Platform test coverage (web has vitest; platform has none).
+6. Platform test coverage (message-parity test only; no logic tests yet).
