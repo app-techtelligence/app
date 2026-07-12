@@ -190,7 +190,7 @@ techtelligence/
 - Supabase: schema applied via `setup-all.sql`; custom SMTP through Resend; branded locale-aware confirm-signup template in `supabase/email-templates/` (reads `(index .Data "locale")`, uses `{{ .ConfirmationURL }}`). An alternative `token_hash`/`verifyOtp` flow exists at `app/auth/confirm/route.ts` but is not the active path.
 - Seed video `course/linkedin/Linkedin.mp4` (217 MB) is gitignored, local-only, already uploaded to R2.
 - GitHub: `app-techtelligence/app`; repo-local git identity `Tech Telligence <techtelligence@proton.me>`.
-- **wrangler is authenticated on this machine** — R2 objects can be inspected/overwritten directly (`npx wrangler r2 object put … --remote` from `apps/platform`). **GitHub CLI is installed (`C:\Program Files\GitHub CLI\gh.exe`) but not yet authenticated** — needs an interactive `gh auth login` by the user; until then, deploy status can't be watched from the terminal.
+- **wrangler is authenticated on this machine** — R2 objects can be inspected/overwritten directly (`npx wrangler r2 object put … --remote` from `apps/platform`). **GitHub CLI is installed (`C:\Program Files\GitHub CLI\gh.exe`) and authenticated** as `app-techtelligence` (may not be on PATH — call it by full path); `gh run list --repo app-techtelligence/app` verifies CI/deploy runs from the terminal.
 
 ## 12. Conventions
 
