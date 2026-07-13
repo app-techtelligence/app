@@ -15,7 +15,7 @@
     },
     "resources": {
       "label": "Recursos",
-      "jobTracker": "Acompanhamento de vagas"
+      "jobTracker": "Quadro Kanban"
     },
     "notFound": {
       "title": "Página não encontrada",
@@ -115,7 +115,7 @@
     "advancing": "Indo para a próxima aula…"
   },
   "jobTracker": {
-    "title": "Acompanhamento de vagas",
+    "title": "Quadro Kanban",
     "subtitle": "Organize suas candidaturas e acompanhe cada etapa até a proposta.",
     "unavailable": "O quadro de vagas ainda não está disponível. Tente novamente em alguns minutos.",
     "empty": "Nenhuma vaga por aqui ainda. Adicione a primeira empresa com quem você está conversando!",
@@ -140,6 +140,8 @@
       "websiteUrlPlaceholder": "empresa.com.br",
       "salary": "Salário (opcional)",
       "salaryPlaceholder": "R$ 5.000 ou faixa",
+      "notes": "Notas (opcional)",
+      "notesPlaceholder": "Anotações sobre a vaga: feedback de entrevista, contatos, próximos passos…",
       "firstContactDate": "Data do primeiro contato",
       "stage": "Etapa",
       "status": "Status",

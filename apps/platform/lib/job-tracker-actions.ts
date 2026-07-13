@@ -22,6 +22,15 @@ const text = z
   .optional()
   .transform((v) => (v ? v : null));
 
+// Notes are a free-text scratchpad (interview feedback, contacts, next
+// steps) — allow multiple paragraphs, unlike the single-line text fields.
+const notes = z
+  .string()
+  .trim()
+  .max(2000)
+  .optional()
+  .transform((v) => (v ? v : null));
+
 // Students paste addresses in every shape ("empresa.com.br") — prefix the
 // scheme so the card link always opens, then reject what still isn't a URL.
 const websiteUrl = z
@@ -53,6 +62,7 @@ const applicationSchema = z.object({
   contact_name: text,
   website_url: websiteUrl,
   salary: text,
+  notes: notes,
   first_contact_date: isoDate,
   stage: z.enum(JOB_STAGES).default("first_contact"),
   status: z.enum(JOB_STATUSES).default("waiting"),

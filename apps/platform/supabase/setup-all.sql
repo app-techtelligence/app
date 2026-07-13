@@ -445,6 +445,13 @@ create policy "lesson_progress: insert own"
     )
   );
 
+-- ========================================================= 0012_job_notes.sql
+-- Optional free-text notes on job-tracker cards. Students jot down anything
+-- about the role: interview feedback, contacts, next steps, comp details.
+
+alter table public.job_applications
+  add column notes text;
+
 -- ---------------------------------------------------------------------------
 -- PROMOTE YOUR ACCOUNT (edit the email, run once):
 --

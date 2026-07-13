@@ -49,6 +49,8 @@ export type JobTrackerLabels = {
     websiteUrlPlaceholder: string;
     salary: string;
     salaryPlaceholder: string;
+    notes: string;
+    notesPlaceholder: string;
     firstContactDate: string;
     stage: string;
     status: string;
@@ -190,6 +192,20 @@ function ApplicationFields({
           type="date"
           defaultValue={app?.first_contact_date ?? ""}
           className={inputCls}
+        />
+      </div>
+      <div>
+        <label htmlFor={`${id}-notes`} className={labelCls}>
+          {labels.fields.notes}
+        </label>
+        <textarea
+          id={`${id}-notes`}
+          name="notes"
+          rows={3}
+          maxLength={2000}
+          placeholder={labels.fields.notesPlaceholder}
+          defaultValue={app?.notes ?? ""}
+          className={`${inputCls} resize-y`}
         />
       </div>
       <div>
@@ -429,7 +445,7 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
         </p>
       ) : null}
 
-      <div className="mt-6 flex snap-x gap-4 overflow-x-auto pb-4">
+      <div className="mt-6 flex snap-x gap-3 overflow-x-auto pb-4 lg:grid lg:grid-cols-5 lg:gap-3 lg:overflow-visible">
         {JOB_STAGES.map((stage) => {
           const cards = items.filter((item) => item.stage === stage);
           return (
@@ -451,7 +467,7 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
                 setDragId(null);
                 setDragOverStage(null);
               }}
-              className={`flex w-72 shrink-0 snap-start flex-col rounded-xl border p-3 transition-colors ${
+              className={`flex w-60 shrink-0 snap-start flex-col rounded-xl border p-2.5 transition-colors lg:w-auto ${
                 dragOverStage === stage
                   ? "border-accent/60 bg-accent/5"
                   : "border-navy/10 bg-white/60"
@@ -492,71 +508,30 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
                             setDragId(null);
                             setDragOverStage(null);
                           }}
-                          className={`cursor-grab rounded-xl border border-navy/10 bg-white p-4 shadow-sm transition-all active:cursor-grabbing ${
+                          className={`cursor-grab rounded-xl border border-navy/10 bg-white p-3 shadow-sm transition-all active:cursor-grabbing ${
                             dragId === app.id ? "opacity-50" : ""
                           }`}
                         >
-                          <div className="flex items-start justify-between gap-2">
-                            <div className="flex flex-wrap items-center gap-1.5">
-                              <button
-                                type="button"
-                                onClick={() => toggleStatus(app)}
-                                title={labels.toggleStatus}
-                                className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold transition-colors ${statusStyles[app.status]}`}
-                              >
-                                <span
-                                  aria-hidden="true"
-                                  className="h-1.5 w-1.5 rounded-full bg-current"
-                                />
-                                {labels.statuses[app.status]}
-                              </button>
-                              <span
-                                title={labels.fields.source}
-                                className="inline-flex items-center rounded-full bg-navy/5 px-2.5 py-0.5 text-[11px] font-bold text-steel"
-                              >
-                                {labels.sources[app.source]}
-                              </span>
-                            </div>
-                            <div className="flex shrink-0 items-center">
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  setEditingId(app.id);
-                                  setConfirmingId(null);
-                                }}
-                                className={cardActionCls}
-                              >
-                                {labels.edit}
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setConfirmingId(app.id)}
-                                className={`${cardActionCls} hover:text-red-700`}
-                              >
-                                {labels.delete}
-                              </button>
-                            </div>
-                          </div>
-
-                          {confirmingId === app.id ? (
-                            <form
-                              action={async (formData) => {
-                                await deleteApplication(formData);
-                                setConfirmingId(null);
-                              }}
-                              className="mt-2 flex items-center gap-2"
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <button
+                              type="button"
+                              onClick={() => toggleStatus(app)}
+                              title={labels.toggleStatus}
+                              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-bold transition-colors ${statusStyles[app.status]}`}
                             >
-                              <input type="hidden" name="id" value={app.id} />
-                              <ConfirmDeleteButton label={labels.confirmDelete} />
-                              <button
-                                type="button"
-                                onClick={() => setConfirmingId(null)}
-                                className={cardActionCls}
-                              >
-                                {labels.cancel}
-                              </button>
-                            </form>
-                          ) : null}
+                              <span
+                                aria-hidden="true"
+                                className="h-1.5 w-1.5 rounded-full bg-current"
+                              />
+                              {labels.statuses[app.status]}
+                            </button>
+                            <span
+                              title={labels.fields.source}
+                              className="inline-flex items-center rounded-full bg-navy/5 px-2.5 py-0.5 text-[11px] font-bold text-steel"
+                            >
+                              {labels.sources[app.source]}
+                            </span>
+                          </div>
 
                           <h3 className="mt-2 break-words text-sm font-extrabold tracking-wide text-navy">
                             {app.company_name}
@@ -591,29 +566,75 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
                               {formatDate(app.first_contact_date)}
                             </p>
                           ) : null}
+                          {app.notes ? (
+                            <p className="mt-2 line-clamp-3 whitespace-pre-line break-words border-l-2 border-navy/10 pl-2 text-xs text-steel">
+                              {app.notes}
+                            </p>
+                          ) : null}
 
-                          <div className="mt-3 flex items-center justify-between border-t border-navy/10 pt-2">
-                            <button
-                              type="button"
-                              disabled={stageIndex === 0}
-                              onClick={() => moveBy(app, -1)}
-                              aria-label={labels.moveBack}
-                              title={labels.moveBack}
-                              className="rounded-md p-1.5 text-steel transition-colors hover:bg-navy/5 hover:text-navy disabled:pointer-events-none disabled:opacity-30"
-                            >
-                              <ChevronLeftIcon className="h-4 w-4" />
-                            </button>
-                            <button
-                              type="button"
-                              disabled={stageIndex === JOB_STAGES.length - 1}
-                              onClick={() => moveBy(app, 1)}
-                              aria-label={labels.moveForward}
-                              title={labels.moveForward}
-                              className="rounded-md p-1.5 text-steel transition-colors hover:bg-navy/5 hover:text-navy disabled:pointer-events-none disabled:opacity-30"
-                            >
-                              <ChevronRightIcon className="h-4 w-4" />
-                            </button>
+                          <div className="mt-3 flex items-center justify-between gap-2 border-t border-navy/10 pt-2">
+                            <div className="flex items-center gap-0.5">
+                              <button
+                                type="button"
+                                disabled={stageIndex === 0}
+                                onClick={() => moveBy(app, -1)}
+                                aria-label={labels.moveBack}
+                                title={labels.moveBack}
+                                className="rounded-md p-1.5 text-steel transition-colors hover:bg-navy/5 hover:text-navy disabled:pointer-events-none disabled:opacity-30"
+                              >
+                                <ChevronLeftIcon className="h-4 w-4" />
+                              </button>
+                              <button
+                                type="button"
+                                disabled={stageIndex === JOB_STAGES.length - 1}
+                                onClick={() => moveBy(app, 1)}
+                                aria-label={labels.moveForward}
+                                title={labels.moveForward}
+                                className="rounded-md p-1.5 text-steel transition-colors hover:bg-navy/5 hover:text-navy disabled:pointer-events-none disabled:opacity-30"
+                              >
+                                <ChevronRightIcon className="h-4 w-4" />
+                              </button>
+                            </div>
+                            <div className="flex items-center gap-0.5">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setEditingId(app.id);
+                                  setConfirmingId(null);
+                                }}
+                                className={cardActionCls}
+                              >
+                                {labels.edit}
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setConfirmingId(app.id)}
+                                className={`${cardActionCls} hover:text-red-700`}
+                              >
+                                {labels.delete}
+                              </button>
+                            </div>
                           </div>
+
+                          {confirmingId === app.id ? (
+                            <form
+                              action={async (formData) => {
+                                await deleteApplication(formData);
+                                setConfirmingId(null);
+                              }}
+                              className="mt-2 flex items-center gap-2 border-t border-navy/10 pt-2"
+                            >
+                              <input type="hidden" name="id" value={app.id} />
+                              <ConfirmDeleteButton label={labels.confirmDelete} />
+                              <button
+                                type="button"
+                                onClick={() => setConfirmingId(null)}
+                                className={cardActionCls}
+                              >
+                                {labels.cancel}
+                              </button>
+                            </form>
+                          ) : null}
                         </article>
                       )}
                     </li>
