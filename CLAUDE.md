@@ -22,7 +22,7 @@ Both apps are **live in production** on Cloudflare Workers:
 - **v2 course platform** (`apps/platform`, worker `platform`) — https://plataforma.techtelligence.net. Supabase auth (email+password, mandatory confirmation, branded bilingual email), RLS content schema, **beta self-enrollment instead of payments**, protected R2 video streaming, bilingual course content, admin course editor with direct video upload. E2E-verified by the user in both languages. Student resources live under the header's "Recursos"/"Resources" dropdown — first resource: the **Kanban board** ("Quadro Kanban"/"Kanban board" — a job-application tracker; `/vagas` · `/en/job-tracker`, table `job_applications`, migrations 0007–0009 + 0012 notes). All five stage columns fit on screen at `lg`+ (horizontal scroll below); cards carry an optional free-text notes field. Course pages show collapsible sections with lesson search and per-student progress — done marks (manual toggle + auto on video end), progress bar, prev/next lesson navigation, auto-advance to the next lesson (table `lesson_progress`, migrations 0010–0011).
 - **Blog** — live with 5 bilingual SEO posts (seeded 2026-07-10) and AI-illustrated covers. Authoring happens in the platform admin (or via SQL content seeds); the public pages are on the web app. See §5.1 and the `/blog-post` + `/blog-cover` skills.
 
-**Not built yet (only when explicitly asked):** payments (Stripe + Mercado Pago — Pix is essential in Brazil), mentorship booking, Cloudflare Stream signed URLs, OAuth/MFA.
+**Not built yet (only when explicitly asked):** payments (Stripe + Mercado Pago — Pix is essential in Brazil), mentorship booking, Cloudflare Stream signed URLs (the documented video-scaling upgrade — plan in `docs/video-delivery.md`), OAuth/MFA.
 
 ## 3. Brand
 
@@ -109,7 +109,7 @@ Posts live in the Supabase `posts` table — authored in the platform admin edit
 | Monorepo | Turborepo + pnpm workspaces | `nodeLinker: hoisted` is **mandatory** (see §8) |
 | Hosting | Cloudflare Workers via `@opennextjs/cloudflare` | Workers `app` + `platform`, custom domains |
 | DB + Auth | Supabase (`@supabase/ssr`) | RLS default-deny on every table. The **web app also reads Supabase** (anon key, no session) for published blog posts — RLS `posts: read published` includes `anon` |
-| Video storage | Cloudflare R2 (bucket `techtelligence-media`, binding `MEDIA`) | Streamed through an auth-gated route with Range support — **not** Cloudflare Stream yet (future upgrade: Stream signed URLs) |
+| Video storage | Cloudflare R2 (bucket `techtelligence-media`, binding `MEDIA`) | Streamed through an auth-gated route in bounded 4 MB Range windows — **not** Cloudflare Stream yet. Architecture, the Error-1102 fix, compression convention, and the Stream migration plan all live in `docs/video-delivery.md` |
 | Anti-spam | Cloudflare Turnstile | Contact form |
 | Email | Resend (domain verified, sender `noreply@techtelligence.net`) | Contact form + Supabase custom SMTP for auth emails |
 | Validation | Zod | Every external input |
@@ -126,7 +126,7 @@ techtelligence/
 ├── turbo.json / pnpm-workspace.yaml
 ├── .github/workflows/ci.yml     # lint + typecheck + test on push/PR
 ├── .claude/skills/               # blog-post, blog-cover (project skills)
-├── docs/                         # seo/ (strategy + content plan), style-guide.md
+├── docs/                         # seo/ (strategy + content plan), style-guide.md, video-delivery.md
 ├── course/                       # gitignored — local seed video (uploaded to R2)
 ├── blog-covers/                  # gitignored — cover-image workspace (originals + processed)
 ├── apps/
@@ -175,7 +175,7 @@ techtelligence/
 - **Roles:** `profiles.role` ∈ `student|mentor|admin` (default `student`). Promotion is **SQL/service-role only** — no UI (see commented statement in migration `0004_admin.sql`). Users cannot set their own role (column-level grants revoked).
 - **Admin enforced in three layers:** Postgres RLS (`is_admin()` SECURITY DEFINER policies), `getAdminContext()` re-checked in every admin page/action/route, and middleware route protection. Never trust the client for role or ID.
 - **Enrollment:** beta self-enroll (RLS allows insert only into published + `beta_open` courses, own user_id, status `active`). Payments will replace this.
-- **Video:** R2 objects are reachable only through `/api/media/[lessonId]` — authenticated + (enrolled OR free-preview OR admin), HTTP Range/206 support, `Cache-Control: private, no-store`. Upload is admin-gated R2 multipart (32 MiB chunks, key-prefix validated, replaced objects deleted).
+- **Video:** R2 objects are reachable only through `/api/media/[lessonId]` — authenticated + (enrolled OR admin), `Cache-Control: private, no-store`. Every response is a **bounded 4 MB `206` window** (HEAD for size → clamped Range read), never the whole file — this is the fix for the intermittent Cloudflare **Error 1102** (a full-file response + OpenNext's backpressure-less stream wrapper piled bytes into the 128 MB isolate). Upload is admin-gated R2 multipart (32 MiB chunks, key-prefix validated, replaced objects deleted). **Full analysis, compression convention, scalability limits, and the Cloudflare Stream migration path: `docs/video-delivery.md`.** (Note: `is_free_preview` is defined but not yet enforced — see that doc's tech-debt list.)
 - **LGPD:** minimum collection, privacy page, platform noindexed. Never log PII, tokens, or secrets.
 
 ## 10. Testing & CI

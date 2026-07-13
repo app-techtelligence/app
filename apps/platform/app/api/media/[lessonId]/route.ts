@@ -58,49 +58,74 @@ export async function GET(
     return new Response("Forbidden", { status: 403 });
   }
 
-  // 3. Stream from R2, honoring Range for seeking.
+  // 3. Stream from R2 as bounded windows, honoring Range for seeking.
+  //
+  // Every response is capped at MAX_CHUNK bytes — never the whole file. The
+  // Workers isolate has a hard 128 MB memory limit shared across concurrent
+  // requests, and the OpenNext stream wrapper enqueues without checking
+  // backpressure, so a paused <video> on a full-file response would pile the
+  // undrained bytes into memory until the isolate is killed (Cloudflare Error
+  // 1102). Clamping keeps each in-flight response tiny regardless of file size
+  // or how the client behaves; the player pulls later windows via follow-up
+  // Range requests. See docs/video-delivery.md for the full analysis and the
+  // Cloudflare Stream migration that removes the worker from the byte path.
   const { env } = getCloudflareContext();
-  const rangeHeader = request.headers.get("range");
+  const MAX_CHUNK = 4 * 1024 * 1024; // 4 MB per response.
+
+  // HEAD first for the true size and content type, so the range math and the
+  // 416 checks are correct without fetching any bytes.
+  const head = await env.MEDIA.head(lesson.video_key);
+  if (!head) {
+    return new Response("Not found", { status: 404 });
+  }
+  const size = head.size;
+
   const baseHeaders: Record<string, string> = {
     "Accept-Ranges": "bytes",
     "Cache-Control": "private, no-store",
-    "Content-Type": "video/mp4",
+    "Content-Type": head.httpMetadata?.contentType ?? "video/mp4",
   };
 
+  // Parse the requested range. A missing Range (or a syntactically odd one we
+  // don't support, e.g. suffix "bytes=-N") starts the window at 0; the player
+  // then continues with explicit ranges.
+  let start = 0;
+  let requestedEnd: number | null = null;
+  const rangeHeader = request.headers.get("range");
   if (rangeHeader) {
     const match = /^bytes=(\d+)-(\d*)$/.exec(rangeHeader);
-    if (!match) {
-      return new Response("Invalid range", { status: 416 });
+    if (match) {
+      start = Number(match[1]);
+      requestedEnd = match[2] ? Number(match[2]) : null;
     }
-    const offset = Number(match[1]);
-    const object = await env.MEDIA.get(lesson.video_key, {
-      range: match[2]
-        ? { offset, length: Number(match[2]) - offset + 1 }
-        : { offset },
-    });
-    if (!object) {
-      return new Response("Not found", { status: 404 });
-    }
-    const end = match[2] ? Number(match[2]) : object.size - 1;
-    return new Response(object.body, {
-      status: 206,
-      headers: {
-        ...baseHeaders,
-        "Content-Range": `bytes ${offset}-${end}/${object.size}`,
-        "Content-Length": String(end - offset + 1),
-      },
+  }
+
+  // Unsatisfiable range → 416 with the resource size, per RFC 7233.
+  if (start >= size || (requestedEnd !== null && requestedEnd < start)) {
+    return new Response("Range not satisfiable", {
+      status: 416,
+      headers: { ...baseHeaders, "Content-Range": `bytes */${size}` },
     });
   }
 
-  const object = await env.MEDIA.get(lesson.video_key);
+  // Honor a smaller explicit end, otherwise cap the window at MAX_CHUNK.
+  const requestedLast = requestedEnd !== null ? Math.min(requestedEnd, size - 1) : size - 1;
+  const end = Math.min(requestedLast, start + MAX_CHUNK - 1);
+  const length = end - start + 1;
+
+  const object = await env.MEDIA.get(lesson.video_key, {
+    range: { offset: start, length },
+  });
   if (!object) {
     return new Response("Not found", { status: 404 });
   }
+
   return new Response(object.body, {
-    status: 200,
+    status: 206,
     headers: {
       ...baseHeaders,
-      "Content-Length": String(object.size),
+      "Content-Range": `bytes ${start}-${end}/${size}`,
+      "Content-Length": String(length),
     },
   });
 }
