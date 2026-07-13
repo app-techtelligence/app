@@ -14,7 +14,7 @@ export async function Hero() {
       <LogoMark className="pointer-events-none absolute -right-16 -top-10 hidden h-[130%] w-auto text-white/[0.04] md:block" />
       <Container className="relative py-20 sm:py-28">
         <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
             {t("kicker")}
           </p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-wide text-white sm:text-5xl">
@@ -26,12 +26,12 @@ export async function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={platformLoginUrl(locale)}
-              className={buttonVariants("primary", "lg")}
+              className={buttonVariants("onDark", "lg")}
             >
               {t("ctaPrimary")}
               <ArrowRightIcon className="h-5 w-5" />
             </a>
-            <a href="#for-whom" className={buttonVariants("onDark", "lg")}>
+            <a href="#for-whom" className={buttonVariants("onDarkOutline", "lg")}>
               {t("ctaSecondary")}
             </a>
           </div>

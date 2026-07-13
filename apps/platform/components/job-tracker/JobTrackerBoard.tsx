@@ -76,11 +76,10 @@ const labelCls = "mb-1 block text-xs font-bold text-navy";
 const cardActionCls =
   "rounded-md px-1.5 py-1 text-xs font-semibold text-steel transition-colors hover:bg-navy/5 hover:text-navy";
 
-// Waiting reads amber (the brand's yellow), no-return reads red. amber-800
-// instead of accent-ink: the 11px bold text needs 4.5:1 on the amber tints,
-// which accent-ink misses (4.15:1 on the hover tint).
+// Waiting reads as a neutral navy chip; no-return reads red — the only semantic
+// color kept in the palette, reserved for negative/destructive meaning.
 const statusStyles: Record<JobStatus, string> = {
-  waiting: "bg-accent/15 text-amber-800 hover:bg-accent/25",
+  waiting: "bg-navy/10 text-navy hover:bg-navy/15",
   no_return: "bg-red-600/10 text-red-700 hover:bg-red-600/20",
 };
 
@@ -335,7 +334,7 @@ function CreateForm({
         <button
           type="button"
           onClick={onClose}
-          className={buttonVariants("outline")}
+          className={buttonVariants("secondary")}
         >
           {labels.cancel}
         </button>
@@ -366,7 +365,7 @@ function EditForm({
         <button
           type="submit"
           disabled={pending}
-          className="rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-navy transition-colors hover:bg-accent-strong disabled:opacity-60"
+          className="rounded-md bg-navy px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-navy-deep disabled:opacity-60"
         >
           {pending ? labels.saving : labels.save}
         </button>

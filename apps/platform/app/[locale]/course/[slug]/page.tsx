@@ -128,7 +128,7 @@ export default async function CoursePage({ params }: Props) {
       </p>
 
       {!enrolled ? (
-        <p className="mt-6 rounded-md bg-accent/10 px-4 py-3 text-sm font-medium text-accent-ink">
+        <p className="mt-6 rounded-md bg-navy/5 px-4 py-3 text-sm font-medium text-navy">
           {t("notEnrolled")}
         </p>
       ) : null}

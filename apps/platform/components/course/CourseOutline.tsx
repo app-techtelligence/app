@@ -152,8 +152,8 @@ export function CourseOutline({ courseSlug, sections, accessible, labels }: Prop
                             !accessible
                               ? "bg-navy/5 text-steel"
                               : lesson.done
-                                ? "bg-accent text-navy group-hover:bg-navy group-hover:text-white"
-                                : "bg-navy text-white group-hover:bg-accent group-hover:text-navy"
+                                ? "bg-navy text-white group-hover:bg-navy-deep"
+                                : "bg-navy/10 text-navy group-hover:bg-navy/20"
                           }`}
                         >
                           {accessible ? (
@@ -186,7 +186,7 @@ export function CourseOutline({ courseSlug, sections, accessible, labels }: Prop
                         </span>
                         <span className="flex shrink-0 items-center gap-3">
                           {lesson.done ? (
-                            <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-xs font-bold text-amber-800">
+                            <span className="rounded-full bg-navy/10 px-2.5 py-0.5 text-xs font-bold text-navy">
                               {labels.doneBadge}
                             </span>
                           ) : null}

@@ -38,7 +38,7 @@ export async function TalentBridge({ audience }: TalentBridgeProps) {
           </p>
           <Link
             href={ctaHref[audience]}
-            className={buttonVariants("outline", "md", "mt-7")}
+            className={buttonVariants("secondary", "md", "mt-7")}
           >
             {t("cta")}
           </Link>

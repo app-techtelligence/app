@@ -11,30 +11,47 @@ Tokens are duplicated (deliberately, see CLAUDE.md §13.5) in
 
 ## 1. Design tokens
 
+The palette is **monochrome — the logo's colors only**: navy, gray-blue
+(`steel`), and white/off-white. There is **no accent color** (amber was
+removed 2026-07-13). Hierarchy comes from fill vs. outline, weight, size, and
+spacing — never from hue. Semantic red is the one exception (below).
+
 | Token | Value | Use for |
 |---|---|---|
-| `navy` | `#1A2A44` | Headings, body text, dark backgrounds, secondary buttons |
-| `navy-deep` | `#111B2E` | Hover on navy, bottom of navy gradients |
-| `steel` | `#667080` | Muted text on white/canvas (AA) |
-| `steel-light` | `#9AA3B0` | Muted text on navy (AA) |
+| `navy` | `#1A2A44` | Headings, body text, dark backgrounds, filled buttons, decorative marks |
+| `navy-deep` | `#111B2E` | Hover/pressed on navy fills, bottom of navy gradients |
+| `steel` | `#667080` | Muted text / eyebrows on white/canvas (AA) |
+| `steel-light` | `#9AA3B0` | Muted text / eyebrows on navy (AA) |
 | `canvas` | `#F7F8FA` | Off-white backgrounds |
-| `accent` | `#F59E0B` | Amber CTA **backgrounds**; amber text only on dark |
-| `accent-strong` | `#D97706` | CTA hover, focus outline |
-| `accent-ink` | `#B45309` | Amber **text** on white/canvas (AA-safe) |
+| `white` | `#FFFFFF` | Text/fills on navy; page background (web) |
+
+**Legacy aliases — do not use in new code:** `accent` → navy, `accent-strong`
+→ navy-deep, `accent-ink` → steel. They stay defined in both `globals.css`
+files only so existing utility classes keep resolving to the logo palette;
+always reach for the real token names above.
 
 Rules that keep us honest:
 
 - CLAUDE.md quotes the brand gray-blue as `#727B8A`, but that hex fails WCAG
   AA as text on white — the implemented values are `steel`/`steel-light`.
   Never (re)introduce `#727B8A` in code.
-- **Never `text-accent` on white or canvas** — use `text-accent-ink`. On navy
-  or dark gradients, `text-accent` is correct (SectionHeading's `onDark` prop
-  encodes this switch).
+- **No amber / yellow anywhere in the UI** — no accent color, no `amber-*` or
+  `yellow-*` Tailwind classes, no gold hex. Eyebrows and muted labels are
+  `text-steel` on light and `text-steel-light` on navy (SectionHeading's
+  `onDark` prop encodes this switch).
+- Emphasis is **fill vs. outline**: a filled navy surface (or filled white on
+  dark) reads as primary; an outline reads as secondary. Don't reach for a
+  color to signal importance.
 - Intentional per-app difference: web `body` background is `#fff`; platform
   `body` background is `canvas`. Don't "sync" it away.
 - Semantic red (danger, negative status) is Tailwind's default palette:
-  tinted `bg-red-600/10` backgrounds with `text-red-700` text. Don't add a
-  red token; don't use red for anything except destructive/negative meaning.
+  tinted `bg-red-600/10` backgrounds with `text-red-700` text. It's the only
+  non-logo color allowed, and only for destructive/negative meaning.
+- The focus ring is `steel` (globals.css `:focus-visible`) so it reads on both
+  light and dark surfaces. Never suppress outlines.
+- The blog-cover art direction (navy + amber editorial illustrations) is a
+  **separate** system — see the `/blog-cover` skill — and is intentionally out
+  of scope for this monochrome UI palette.
 
 ## 2. Typography
 
@@ -47,8 +64,8 @@ extrabold with generous letter-spacing:
 | Hero h1 (web) | `text-4xl font-extrabold leading-tight tracking-wide sm:text-5xl` |
 | Page h1 (platform) | `text-3xl font-extrabold tracking-wide text-navy` |
 | Section h2 | `text-3xl font-extrabold tracking-wide sm:text-4xl` |
-| Kicker / eyebrow | `text-xs font-bold uppercase tracking-[0.22em]` + `text-accent` (dark bg) / `text-accent-ink` (light bg) |
-| Small section label (platform) | `text-sm font-extrabold uppercase tracking-[0.2em] text-navy`, preceded by `<TriangleBullet className="h-3 w-3 text-accent" />` |
+| Kicker / eyebrow | `text-xs font-bold uppercase tracking-[0.22em]` + `text-steel` (light bg) / `text-steel-light` (dark bg) |
+| Small section label (platform) | `text-sm font-extrabold uppercase tracking-[0.2em] text-navy`, preceded by `<TriangleBullet className="h-3 w-3 text-navy" />` |
 | Subtitle / lead | `text-steel` (platform) / `text-white/75` (on navy) |
 | Body small | `text-sm leading-relaxed text-steel` |
 | Wordmark | `font-extrabold uppercase tracking-[0.14em]`, "Tech" navy + "telligence" steel |
@@ -73,26 +90,30 @@ extrabold with generous letter-spacing:
 Primitives live per app (`components/ui`, `components/brand`); platform does
 NOT import from web. Reuse these before inventing new ones:
 
-- **Buttons** — `Button` / `buttonVariants(variant, size, extra)`; variants
-  `primary` (amber bg + **navy** text), `secondary` (navy bg + white text),
-  `outline`, `onDark`; sizes `md` (`h-11 px-5 text-sm`) and `lg`
+- **Buttons** — `Button` / `buttonVariants(variant, size, extra)`. Four
+  **background-aware** variants, picked by the surface the button sits on. On
+  **light** surfaces: `primary` (filled navy + white text) and `secondary`
+  (navy outline + navy text). On **dark**/navy surfaces: `onDark` (filled
+  white + navy text) and `onDarkOutline` (white outline + white text). A
+  main + secondary CTA pair is `primary`+`secondary` on light,
+  `onDark`+`onDarkOutline` on dark. Sizes `md` (`h-11 px-5 text-sm`) and `lg`
   (`h-12 px-7 text-base`). Links that look like buttons use
-  `className={buttonVariants(...)}`. In dense UI (cards), a compact one-off
-  is acceptable: `rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-navy`.
+  `className={buttonVariants(...)}`. In dense UI (cards), a compact one-off is
+  acceptable: `rounded-md bg-navy px-3 py-1.5 text-xs font-bold text-white`.
 - **Card** — `rounded-xl border border-navy/10 bg-white p-7 shadow-sm`
   (list rows `p-4 sm:p-5` + `transition-all hover:-translate-y-0.5
-  hover:border-accent/60 hover:shadow-md`). Disabled/locked variant:
+  hover:border-navy/60 hover:shadow-md`). Disabled/locked variant:
   `border-dashed border-navy/15 bg-white/60`.
 - **Empty state** — `rounded-xl border border-navy/10 bg-white p-8
   text-center text-steel`.
-- **Callout / notice** — `rounded-md bg-accent/10 px-4 py-3 text-sm
-  font-medium text-accent-ink`.
+- **Callout / notice** — `rounded-md bg-navy/5 px-4 py-3 text-sm
+  font-medium text-navy`.
 - **Chip / count badge** — `rounded-full bg-navy/5 px-3 py-1 text-xs
   font-bold text-steel`; tag label `text-xs font-bold uppercase
-  tracking-[0.18em] text-accent-ink`. Status chips: waiting/attention =
-  `bg-accent/15 text-amber-800` (small bold text on the amber tints needs
-  4.5:1 — `accent-ink` falls just short there); negative = `bg-red-600/10
-  text-red-700`.
+  tracking-[0.18em] text-steel`. Status chips: neutral/waiting =
+  `bg-navy/10 text-navy`; negative = `bg-red-600/10 text-red-700` (red is the
+  only non-logo status color). Convey status by icon/label + red-for-negative,
+  not by a spectrum of hues.
 - **Form fields** — label `mb-1 block text-xs font-bold text-navy`; input
   `w-full rounded-md border border-navy/20 bg-white px-3 py-2 text-sm
   text-navy focus:border-navy`; checkbox `h-4 w-4 accent-navy`.
@@ -109,14 +130,14 @@ NOT import from web. Reuse these before inventing new ones:
 
 ## 5. Accessibility
 
-- Global `:focus-visible` amber outline comes from globals.css — never
-  suppress outlines.
+- Global `:focus-visible` steel outline comes from globals.css (reads on both
+  light and dark surfaces) — never suppress outlines.
 - Semantic HTML first (`section`, `ol/li`, `article`, real `button`s);
   landmarks get `aria-label`; active nav gets `aria-current`; menus get
   `aria-haspopup`/`aria-expanded`; async feedback gets `role="status"`.
 - Decorative SVGs/characters get `aria-hidden="true"`. Icon-only buttons get
   `aria-label` (and usually `title`).
-- Contrast is AA everywhere — that's what `steel`/`accent-ink` exist for.
+- Contrast is AA everywhere — that's what `steel`/`steel-light` exist for.
 
 ## 6. i18n
 

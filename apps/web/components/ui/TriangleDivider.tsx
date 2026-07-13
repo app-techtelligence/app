@@ -1,13 +1,12 @@
 type TriangleDividerProps = {
-  /** Color of the mountain strip. */
-  tone?: "navy" | "steel" | "accent" | "white";
+  /** Color of the mountain strip — match the surface: steel on light, white on dark. */
+  tone?: "navy" | "steel" | "white";
   className?: string;
 };
 
 const tones = {
   navy: "text-navy/10",
   steel: "text-steel/25",
-  accent: "text-accent/60",
   white: "text-white/15",
 } as const;
 

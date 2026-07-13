@@ -8,9 +8,13 @@
   --color-steel: #667080;
   --color-steel-light: #9aa3b0; /* gray-blue for text on navy (AA) */
   --color-canvas: #f7f8fa;
-  --color-accent: #f59e0b; /* amber — CTA accent (user decision) */
-  --color-accent-strong: #d97706; /* hover/pressed backgrounds */
-  --color-accent-ink: #b45309; /* AA-safe amber for TEXT on light backgrounds */
+  /* Monochrome logo palette — navy + gray-blue + white only, no accent color.
+     These "accent*" names are legacy aliases kept so existing utilities resolve;
+     they now map onto the logo palette. Prefer navy / navy-deep / steel directly
+     in new code. */
+  --color-accent: #1a2a44; /* → navy: decorative marks, fills, tinted borders */
+  --color-accent-strong: #111b2e; /* → navy-deep: hover/pressed backgrounds */
+  --color-accent-ink: #667080; /* → steel: muted labels/eyebrows on light (AA) */
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
@@ -22,11 +26,12 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    background-color: color-mix(in srgb, var(--color-navy) 22%, transparent);
   }
 
+  /* Steel reads on both white and navy backgrounds — one focus ring everywhere. */
   :focus-visible {
-    outline: 2px solid var(--color-accent-strong);
+    outline: 2px solid var(--color-steel);
     outline-offset: 2px;
   }
 

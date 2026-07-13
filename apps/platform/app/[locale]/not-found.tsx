@@ -13,7 +13,7 @@ export default function NotFoundPage() {
         {t("title")}
       </h1>
       <p className="mt-3 max-w-md text-steel">{t("description")}</p>
-      <Link href="/dashboard" className={buttonVariants("secondary", "md", "mt-8")}>
+      <Link href="/dashboard" className={buttonVariants("primary", "md", "mt-8")}>
         {t("back")}
       </Link>
     </Container>

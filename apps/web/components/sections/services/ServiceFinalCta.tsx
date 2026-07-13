@@ -14,7 +14,7 @@ export async function ServiceFinalCta({ namespace }: { namespace: ServiceNamespa
   return (
     <section className="bg-white py-16 sm:py-20">
       <Container className="flex flex-col items-center text-center">
-        <TriangleDivider tone="accent" className="mb-4" />
+        <TriangleDivider tone="steel" className="mb-4" />
         <SectionHeading title={t("title")} subtitle={t("subtitle")} />
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
@@ -26,7 +26,7 @@ export async function ServiceFinalCta({ namespace }: { namespace: ServiceNamespa
             <WhatsAppIcon className="h-5 w-5" />
             {t("ctaPrimary")}
           </a>
-          <Link href="/contact" className={buttonVariants("outline", "lg")}>
+          <Link href="/contact" className={buttonVariants("secondary", "lg")}>
             {t("ctaSecondary")}
           </Link>
         </div>

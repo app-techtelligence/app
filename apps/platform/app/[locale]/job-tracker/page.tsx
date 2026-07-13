@@ -95,7 +95,7 @@ export default async function JobTrackerPage({ params }: Props) {
       {error ? (
         // The table may not exist yet (migration 0007 pending) — degrade to a
         // notice instead of a hard error.
-        <p className="mt-10 rounded-md bg-accent/10 px-4 py-3 text-sm font-medium text-accent-ink">
+        <p className="mt-10 rounded-md bg-navy/5 px-4 py-3 text-sm font-medium text-navy">
           {t("unavailable")}
         </p>
       ) : (

@@ -15,7 +15,7 @@ export async function Hero() {
       />
       <Container className="relative py-20 sm:py-28">
         <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
             {t("kicker")}
           </p>
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-wide text-white sm:text-5xl">
@@ -29,12 +29,12 @@ export async function Hero() {
               href={whatsappLink(t("whatsappMessage"))}
               target="_blank"
               rel="noopener noreferrer"
-              className={buttonVariants("primary", "lg")}
+              className={buttonVariants("onDark", "lg")}
             >
               <WhatsAppIcon className="h-5 w-5" />
               {t("ctaPrimary")}
             </a>
-            <a href="#help" className={buttonVariants("onDark", "lg")}>
+            <a href="#help" className={buttonVariants("onDarkOutline", "lg")}>
               {t("ctaSecondary")}
             </a>
           </div>

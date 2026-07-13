@@ -27,7 +27,7 @@ export default async function BlogPage({ params }: Props) {
     <>
       <section className="bg-gradient-to-b from-navy to-navy-deep py-16 text-center sm:py-20">
         <Container className="flex flex-col items-center">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
             {t("kicker")}
           </p>
           <h1 className="mt-4 text-4xl font-extrabold tracking-wide text-white sm:text-5xl">
@@ -43,7 +43,7 @@ export default async function BlogPage({ params }: Props) {
         <Container>
           {posts.length === 0 ? (
             <div className="flex flex-col items-center py-10 text-center">
-              <TriangleDivider tone="accent" />
+              <TriangleDivider tone="steel" />
               <p className="mt-4 max-w-md text-steel">{t("empty")}</p>
             </div>
           ) : (

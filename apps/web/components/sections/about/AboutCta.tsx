@@ -23,7 +23,7 @@ export async function AboutCta() {
             <WhatsAppIcon className="h-5 w-5" />
             {t("ctaWhatsapp")}
           </a>
-          <Link href="/contact" className={buttonVariants("outline", "lg")}>
+          <Link href="/contact" className={buttonVariants("secondary", "lg")}>
             {t("ctaContact")}
           </Link>
         </div>

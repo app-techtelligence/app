@@ -19,7 +19,7 @@ export async function EcosystemBand() {
   return (
     <section className="bg-navy py-16 sm:py-20">
       <Container>
-        <TriangleDivider tone="accent" className="mb-4" />
+        <TriangleDivider tone="white" className="mb-4" />
         <SectionHeading
           kicker={t("kicker")}
           title={t("title")}
@@ -39,7 +39,7 @@ export async function EcosystemBand() {
               <p className="mt-3 text-sm leading-relaxed text-white/75">
                 {t(`${key}.description`)}
               </p>
-              <span className="mt-auto flex items-center gap-1.5 pt-6 text-sm font-bold text-accent">
+              <span className="mt-auto flex items-center gap-1.5 pt-6 text-sm font-bold text-white">
                 {t(`${key}.cta`)}
                 <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </span>

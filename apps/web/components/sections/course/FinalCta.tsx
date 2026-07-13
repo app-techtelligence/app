@@ -13,7 +13,7 @@ export async function FinalCta() {
   return (
     <section className="bg-navy py-16 text-center sm:py-20">
       <Container className="flex flex-col items-center">
-        <TriangleDivider tone="accent" />
+        <TriangleDivider tone="white" />
         <h2 className="mt-4 max-w-3xl text-2xl font-extrabold tracking-wide text-white sm:text-3xl">
           {t("title")}
         </h2>
@@ -23,12 +23,12 @@ export async function FinalCta() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
             href={platformLoginUrl(locale)}
-            className={buttonVariants("primary", "lg")}
+            className={buttonVariants("onDark", "lg")}
           >
             {t("ctaPrimary")}
             <ArrowRightIcon className="h-5 w-5" />
           </a>
-          <Link href="/contact" className={buttonVariants("onDark", "lg")}>
+          <Link href="/contact" className={buttonVariants("onDarkOutline", "lg")}>
             {t("ctaSecondary")}
           </Link>
         </div>

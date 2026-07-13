@@ -7,9 +7,12 @@
   --color-steel: #667080;
   --color-steel-light: #9aa3b0;
   --color-canvas: #f7f8fa;
-  --color-accent: #f59e0b;
-  --color-accent-strong: #d97706;
-  --color-accent-ink: #b45309;
+  /* Monochrome logo palette — kept in sync with apps/web/app/globals.css.
+     "accent*" are legacy aliases mapped onto the logo palette; prefer
+     navy / navy-deep / steel directly in new code. */
+  --color-accent: #1a2a44; /* → navy */
+  --color-accent-strong: #111b2e; /* → navy-deep */
+  --color-accent-ink: #667080; /* → steel */
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
@@ -21,11 +24,12 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    background-color: color-mix(in srgb, var(--color-navy) 22%, transparent);
   }
 
+  /* Steel reads on both white and navy backgrounds — one focus ring everywhere. */
   :focus-visible {
-    outline: 2px solid var(--color-accent-strong);
+    outline: 2px solid var(--color-steel);
     outline-offset: 2px;
   }
 

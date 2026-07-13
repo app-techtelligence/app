@@ -32,8 +32,8 @@ export async function OurStory() {
           <aside className="relative overflow-hidden rounded-xl bg-gradient-to-b from-navy to-navy-deep p-8 shadow-sm">
             <LogoMark className="pointer-events-none absolute -bottom-6 -right-8 h-36 w-auto text-white/[0.06]" />
             <div className="relative">
-              <LogoMark className="h-10 w-auto text-accent" />
-              <p className="mt-6 text-xs font-bold uppercase tracking-[0.22em] text-accent">
+              <LogoMark className="h-10 w-auto text-steel-light" />
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
                 {t("founder.kicker")}
               </p>
               <p className="mt-3 text-lg font-semibold leading-relaxed text-white">

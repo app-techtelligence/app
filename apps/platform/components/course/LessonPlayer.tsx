@@ -139,8 +139,8 @@ export function LessonPlayer({
             title={done ? labels.unmarkDone : labels.markDone}
             className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-extrabold transition-colors disabled:opacity-60 ${
               done
-                ? "bg-accent text-navy hover:bg-accent/80"
-                : "border-2 border-navy/15 text-navy hover:border-accent hover:bg-accent/10"
+                ? "bg-navy text-white hover:bg-navy-deep"
+                : "border-2 border-navy/25 text-navy hover:border-navy hover:bg-navy/5"
             }`}
           >
             <CheckIcon className="h-4 w-4" />

@@ -22,7 +22,7 @@ export async function Method() {
             <p className="mt-5 max-w-xl text-base leading-relaxed text-steel sm:text-lg">
               {t("text")}
             </p>
-            <Link href="/about" className={buttonVariants("outline", "md", "mt-8")}>
+            <Link href="/about" className={buttonVariants("secondary", "md", "mt-8")}>
               {t("cta")}
             </Link>
           </div>
