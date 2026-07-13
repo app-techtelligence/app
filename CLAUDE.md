@@ -126,7 +126,7 @@ techtelligence/
 ├── turbo.json / pnpm-workspace.yaml
 ├── .github/workflows/ci.yml     # lint + typecheck + test on push/PR
 ├── .claude/skills/               # blog-post, blog-cover (project skills)
-├── docs/                         # seo/ (strategy + content plan), style-guide.md, video-delivery.md
+├── docs/                         # seo/ (strategy + content plan), style-guide.md, video-delivery.md, costs.md
 ├── course/                       # gitignored — local seed video (uploaded to R2)
 ├── blog-covers/                  # gitignored — cover-image workspace (originals + processed)
 ├── apps/
