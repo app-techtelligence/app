@@ -23,6 +23,8 @@ export async function FinalCta() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
             href={platformLoginUrl(locale)}
+            target="_blank"
+            rel="noopener noreferrer"
             className={buttonVariants("onDark", "lg")}
           >
             {t("ctaPrimary")}
