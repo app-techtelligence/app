@@ -95,10 +95,24 @@
     "back": "Meus cursos",
     "notEnrolled": "Você ainda não está matriculado neste curso. Volte ao painel para entrar na turma.",
     "locked": "Bloqueada",
-    "lessonCount": "{count, plural, =1 {1 aula} other {# aulas}}"
+    "lessonCount": "{count, plural, =1 {1 aula} other {# aulas}}",
+    "searchLabel": "Buscar aulas",
+    "searchPlaceholder": "Buscar aula…",
+    "clearSearch": "Limpar busca",
+    "noResults": "Nenhuma aula encontrada.",
+    "progressTitle": "Seu progresso",
+    "progressCount": "{done} de {total, plural, =1 {1 aula concluída} other {# aulas concluídas}}",
+    "sectionProgress": "{done}/{total, plural, =1 {1 concluída} other {# concluídas}}",
+    "doneBadge": "Concluída"
   },
   "lesson": {
-    "noVideo": "O vídeo desta aula ainda não está disponível."
+    "noVideo": "O vídeo desta aula ainda não está disponível.",
+    "markDone": "Marcar como concluída",
+    "unmarkDone": "Desmarcar conclusão",
+    "done": "Concluída",
+    "previous": "Aula anterior",
+    "next": "Próxima aula",
+    "advancing": "Indo para a próxima aula…"
   },
   "jobTracker": {
     "title": "Acompanhamento de vagas",

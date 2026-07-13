@@ -5,7 +5,10 @@ import { createClient } from "@/lib/supabase/server";
 import { localized } from "@/lib/content";
 import type { Course, Lesson, Module } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
-import { ClockIcon, LockIcon, PlayIcon, TriangleBullet } from "@/components/ui/icons";
+import {
+  CourseOutline,
+  type OutlineSection,
+} from "@/components/course/CourseOutline";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -39,32 +42,41 @@ export default async function CoursePage({ params }: Props) {
     .single<Course>();
   if (!course) notFound();
 
-  const [{ data: modules }, { data: enrollment }, { data: profile }] = await Promise.all([
-    supabase
-      .from("modules")
-      .select(
-        "id, course_id, title, title_en, position, lessons(id, module_id, slug, title, title_en, description, description_en, video_key, duration_seconds, position)",
-      )
-      .eq("course_id", course.id)
-      .order("position"),
-    supabase
-      .from("enrollments")
-      .select("status")
-      .eq("course_id", course.id)
-      .eq("user_id", user.id)
-      .eq("status", "active")
-      .maybeSingle(),
-    supabase
-      .from("profiles")
-      .select("role")
-      .eq("id", user.id)
-      .single<{ role: string }>(),
-  ]);
+  const [{ data: modules }, { data: enrollment }, { data: profile }, { data: progressRows }] =
+    await Promise.all([
+      supabase
+        .from("modules")
+        .select(
+          "id, course_id, title, title_en, position, lessons(id, module_id, slug, title, title_en, description, description_en, video_key, duration_seconds, position)",
+        )
+        .eq("course_id", course.id)
+        .order("position"),
+      supabase
+        .from("enrollments")
+        .select("status")
+        .eq("course_id", course.id)
+        .eq("user_id", user.id)
+        .eq("status", "active")
+        .maybeSingle(),
+      supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single<{ role: string }>(),
+      supabase
+        .from("lesson_progress")
+        .select("lesson_id")
+        .eq("user_id", user.id),
+    ]);
 
   const enrolled = Boolean(enrollment);
   // Mirrors the lesson page / media route check: admins can preview
   // any lesson without enrolling.
   const accessible = enrolled || profile?.role === "admin";
+  const doneIds = new Set(
+    ((progressRows ?? []) as Array<{ lesson_id: string }>).map((r) => r.lesson_id),
+  );
+
   const sortedModules = ((modules ?? []) as ModuleWithLessons[]).map((mod) => ({
     ...mod,
     lessons: [...mod.lessons].sort((a, b) => a.position - b.position),
@@ -73,6 +85,35 @@ export default async function CoursePage({ params }: Props) {
   const offsets = sortedModules.map((_, i) =>
     sortedModules.slice(0, i).reduce((sum, m) => sum + m.lessons.length, 0),
   );
+
+  const sections: OutlineSection[] = sortedModules.map((mod, modIndex) => {
+    const doneCount = mod.lessons.filter((l) => doneIds.has(l.id)).length;
+    return {
+      id: mod.id,
+      title: localized(locale, mod.title, mod.title_en) ?? mod.title,
+      chip: accessible
+        ? t("sectionProgress", { done: doneCount, total: mod.lessons.length })
+        : t("lessonCount", { count: mod.lessons.length }),
+      lessons: mod.lessons.map((lesson, lessonIndex) => ({
+        id: lesson.id,
+        slug: lesson.slug,
+        number: String(offsets[modIndex] + lessonIndex + 1).padStart(2, "0"),
+        title: localized(locale, lesson.title, lesson.title_en) ?? lesson.title,
+        description: localized(locale, lesson.description, lesson.description_en),
+        durationLabel: lesson.duration_seconds
+          ? formatDuration(lesson.duration_seconds)
+          : null,
+        done: doneIds.has(lesson.id),
+      })),
+    };
+  });
+
+  const totalLessons = sections.reduce((sum, s) => sum + s.lessons.length, 0);
+  const totalDone = sections.reduce(
+    (sum, s) => sum + s.lessons.filter((l) => l.done).length,
+    0,
+  );
+  const percent = totalLessons ? Math.round((totalDone / totalLessons) * 100) : 0;
 
   return (
     <Container className="max-w-4xl py-12 sm:py-16">
@@ -92,109 +133,46 @@ export default async function CoursePage({ params }: Props) {
         </p>
       ) : null}
 
-      <div className="mt-10 space-y-10">
-        {sortedModules.map((mod, modIndex) => {
-          const lessons = mod.lessons;
-          return (
-            <section key={mod.id}>
-              <div className="flex items-center gap-3">
-                <TriangleBullet className="h-3 w-3 text-accent" />
-                <h2 className="text-sm font-extrabold uppercase tracking-[0.2em] text-navy">
-                  {localized(locale, mod.title, mod.title_en)}
-                </h2>
-                <span className="ml-auto rounded-full bg-navy/5 px-3 py-1 text-xs font-bold text-steel">
-                  {t("lessonCount", { count: lessons.length })}
-                </span>
-              </div>
+      {accessible && totalLessons > 0 ? (
+        <div className="mt-8">
+          <div className="flex items-baseline justify-between gap-3">
+            <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-navy">
+              {t("progressTitle")}
+            </span>
+            <span className="text-sm font-semibold text-steel">
+              {t("progressCount", { done: totalDone, total: totalLessons })}
+            </span>
+          </div>
+          <div
+            role="progressbar"
+            aria-label={t("progressTitle")}
+            aria-valuemin={0}
+            aria-valuemax={totalLessons}
+            aria-valuenow={totalDone}
+            aria-valuetext={t("progressCount", { done: totalDone, total: totalLessons })}
+            className="mt-2 h-2.5 overflow-hidden rounded-full bg-navy/10"
+          >
+            <div
+              className="h-full rounded-full bg-accent"
+              style={{ width: `${percent}%` }}
+            />
+          </div>
+        </div>
+      ) : null}
 
-              <ol className="mt-4 space-y-3">
-                {lessons.map((lesson, lessonIndex) => {
-                  const number = String(offsets[modIndex] + lessonIndex + 1).padStart(2, "0");
-                  const title = localized(locale, lesson.title, lesson.title_en);
-                  const description = localized(
-                    locale,
-                    lesson.description,
-                    lesson.description_en,
-                  );
-
-                  const inner = (
-                    <>
-                      <span
-                        aria-hidden="true"
-                        className={`relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors ${
-                          accessible
-                            ? "bg-navy text-white group-hover:bg-accent group-hover:text-navy"
-                            : "bg-navy/5 text-steel"
-                        }`}
-                      >
-                        {accessible ? (
-                          <PlayIcon className="h-4 w-4 translate-x-px" />
-                        ) : (
-                          <LockIcon className="h-4 w-4" />
-                        )}
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="flex items-baseline gap-2">
-                          <span
-                            aria-hidden="true"
-                            className="text-xs font-extrabold tracking-widest text-steel"
-                          >
-                            {number}
-                          </span>
-                          <span className="truncate font-bold text-navy">
-                            {title}
-                          </span>
-                        </span>
-                        {description ? (
-                          <span className="mt-0.5 line-clamp-1 block text-sm text-steel">
-                            {description}
-                          </span>
-                        ) : null}
-                      </span>
-                      <span className="flex shrink-0 items-center gap-4">
-                        {lesson.duration_seconds ? (
-                          <span className="hidden items-center gap-1.5 text-xs font-semibold text-steel sm:flex">
-                            <ClockIcon className="h-3.5 w-3.5" />
-                            {formatDuration(lesson.duration_seconds)}
-                          </span>
-                        ) : null}
-                        {!accessible ? (
-                          <span className="text-xs font-bold uppercase tracking-wider text-steel">
-                            {t("locked")}
-                          </span>
-                        ) : null}
-                      </span>
-                    </>
-                  );
-
-                  return (
-                    <li key={lesson.id}>
-                      {accessible ? (
-                        <Link
-                          href={{
-                            pathname: "/course/[slug]/lesson/[lessonSlug]",
-                            params: { slug: course.slug, lessonSlug: lesson.slug },
-                          }}
-                          className="group flex items-center gap-4 rounded-xl border border-navy/10 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md sm:p-5"
-                        >
-                          {inner}
-                        </Link>
-                      ) : (
-                        <div className="flex items-center gap-4 rounded-xl border border-dashed border-navy/15 bg-white/60 p-4 sm:p-5">
-                          {inner}
-                        </div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ol>
-              {modIndex < (modules ?? []).length - 1 ? (
-                <div aria-hidden="true" className="mt-8 border-b border-navy/5" />
-              ) : null}
-            </section>
-          );
-        })}
-      </div>
+      <CourseOutline
+        courseSlug={course.slug}
+        sections={sections}
+        accessible={accessible}
+        labels={{
+          searchLabel: t("searchLabel"),
+          searchPlaceholder: t("searchPlaceholder"),
+          clearSearch: t("clearSearch"),
+          noResults: t("noResults"),
+          locked: t("locked"),
+          doneBadge: t("doneBadge"),
+        }}
+      />
     </Container>
   );
 }

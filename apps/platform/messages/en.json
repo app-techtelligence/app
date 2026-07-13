@@ -95,10 +95,24 @@
     "back": "My courses",
     "notEnrolled": "You are not enrolled in this course yet. Go back to the dashboard to join the cohort.",
     "locked": "Locked",
-    "lessonCount": "{count, plural, =1 {1 lesson} other {# lessons}}"
+    "lessonCount": "{count, plural, =1 {1 lesson} other {# lessons}}",
+    "searchLabel": "Search lessons",
+    "searchPlaceholder": "Search lessons…",
+    "clearSearch": "Clear search",
+    "noResults": "No lessons found.",
+    "progressTitle": "Your progress",
+    "progressCount": "{done} of {total, plural, =1 {1 lesson} other {# lessons}} completed",
+    "sectionProgress": "{done}/{total} completed",
+    "doneBadge": "Done"
   },
   "lesson": {
-    "noVideo": "This lesson's video is not available yet."
+    "noVideo": "This lesson's video is not available yet.",
+    "markDone": "Mark as done",
+    "unmarkDone": "Unmark as done",
+    "done": "Done",
+    "previous": "Previous lesson",
+    "next": "Next lesson",
+    "advancing": "Starting the next lesson…"
   },
   "jobTracker": {
     "title": "Job application tracker",
