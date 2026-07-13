@@ -65,6 +65,15 @@ export default async function AdminCoursePage({ params }: Props) {
     uploading: t("video.uploading"),
     done: t("video.done"),
     error: t("video.error"),
+    analyzing: t("video.analyzing"),
+    compressing: t("video.compressing"),
+    compressed: t("video.compressed"),
+    optimizedOriginal: t("video.optimizedOriginal"),
+    compressUnavailable: t("video.compressUnavailable"),
+    cancel: t("video.cancel"),
+    presetLabel: t("video.presetLabel"),
+    presetTalkingHead: t("video.presetTalkingHead"),
+    presetScreenShare: t("video.presetScreenShare"),
   };
 
   const saveLabels = { savingLabel: t("saving"), savedLabel: t("saved") };

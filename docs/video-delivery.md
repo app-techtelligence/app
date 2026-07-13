@@ -84,13 +84,55 @@ read the invocation `outcome` (`exceededMemory` / `exceededCpu` /
 
 ---
 
-## 3. Compression — keep source files small (and faststart)
+## 3. Compression
 
-The Workers runtime **cannot** run ffmpeg/codecs, and the browser can't
-practically transcode a full lesson, so **compression happens on the author's
-machine before upload.** Standardize on **H.264** — it is the only codec a
-single `<video src>` plays in every browser (H.265/AV1 save another 30–60% but
-aren't universally decodable until we move to adaptive bitrate, i.e. Stream).
+### Automatic, in the browser, on upload (current)
+
+Uploading a lesson through the admin editor **now compresses the video
+automatically, client-side, before the R2 upload** — at zero added cost. The
+Workers runtime can't run codecs and "no new cost" rules out any server/
+transcoding service, so the admin's browser does it with **WebCodecs** (the
+device's hardware H.264 encoder) via the [`mediabunny`](https://mediabunny.dev)
+library. Nothing server-side changes: the `/api/admin/upload` → R2 multipart
+path and `/api/media` streaming are byte-for-byte the same; the browser just
+hands them a smaller file.
+
+- Code: `lib/video-compress.ts` (orchestrator + pure helpers, unit-tested in
+  `lib/video-compress.test.ts`) and the phased UI in
+  `components/admin/VideoUploader.tsx` (Analyzing → Compressing % → Uploading %,
+  with a Cancel button). `mediabunny` is **dynamically imported** so it never
+  ships to the server bundle or SSR — only to the browser when an upload runs.
+- Presets mirror the ffmpeg settings below: **Screen / code (1080p, ~2.2 Mbps)**
+  default, **Talking head (720p, ~1.3 Mbps)**. Output is H.264 + AAC 128k with
+  the moov atom at the front (`Mp4OutputFormat({ fastStart: 'in-memory' })`).
+- It also fixes the blank-`duration_seconds` bug for **all** uploads: duration
+  now comes from `mediabunny`'s `input.computeDuration()` (reads file bytes
+  directly), not the old `<video>` + `blob:` URL that the CSP `media-src 'self'`
+  silently blocked.
+- **Bulletproof fallback (invariant):** compression is a best-effort pre-step.
+  If the browser can't encode (no WebCodecs / no HW encoder — e.g. desktop
+  Linux/Firefox lack native AAC encode), if the transcode throws, if the source
+  had audio that couldn't be re-encoded, or if the output isn't at least 10%
+  smaller, the **untouched original file is uploaded** — an upload is never
+  blocked or corrupted. The already-lean ~1.1 Mbps seed therefore uploads as-is
+  ("already optimized"); the real win is on raw 8–20 Mbps OBS/QuickTime
+  captures.
+- **No CSP/header change was needed** — the file→file WebCodecs path uses no
+  `SharedArrayBuffer` (no cross-origin isolation) and no `blob:` workers, so
+  Supabase auth, `/api/media`, and fonts are untouched. (A Web Worker was
+  deliberately avoided to keep it that way; the encode still runs off-thread in
+  the browser's hardware encoder.)
+- Residual risk: a transcode that "succeeds" but is visually degraded still
+  passes the size/duration gates — after replacing a video, **preview the lesson
+  in the player** to confirm quality.
+
+### Manual ffmpeg preset (fallback / authoritative)
+
+Still the reference for anything the browser skips (already-lean files, or
+non-Chrome platforms), and for one-off re-encodes via wrangler. Standardize on
+**H.264** — it is the only codec a single `<video src>` plays in every browser
+(H.265/AV1 save another 30–60% but aren't universally decodable until we move to
+adaptive bitrate, i.e. Stream).
 
 **Talking-head lesson (downscale to 720p):**
 
@@ -162,10 +204,12 @@ Tracked here so we don't rediscover them. Ordered roughly by priority.
 - **`getUser()` in the media hot path.** It round-trips to Supabase GoTrue on
   every range request. Switch the hot path to `getClaims()` (local JWKS
   verification) to drop a network hop per request.
-- **`duration_seconds` is client-supplied and trusted** (`admin/upload` route).
-  It comes back `null`/`NaN` on non-faststart files — which is why the seed
-  lesson's duration is blank. Parse the MP4 `mvhd`/`moov` server-side, or take
-  duration from Stream once migrated.
+- **`duration_seconds` is client-supplied (but no longer blank).** The uploader
+  now reads it from `mediabunny`'s `input.computeDuration()` (reads file bytes,
+  immune to the CSP `media-src` issue that blanked the old `<video>`+`blob:`
+  probe), so durations populate. It is still computed client-side and trusted by
+  the server, though — for full integrity, verify/parse it server-side, or take
+  it from Stream once migrated.
 - **Upload route error handling.** `upload.complete()` / `uploadPart()` are
   unguarded → unhandled 500s; the multipart isn't aborted on failure.
 - **Orphaned multipart uploads.** A tab closed mid-upload leaves billable parts
@@ -238,8 +282,8 @@ and the right call.
 | Phase | Action | Effort / Impact |
 |---|---|---|
 | **immediate** | Range-clamp fix (§2) — **done** | trivial / critical |
-| **immediate** | Re-encode + re-upload the seed video, faststart (§3) | small / high |
-| **immediate** | Document the ffmpeg preset as an authoring convention (§3) | trivial / high |
+| **immediate** | Re-encode + re-upload the seed video, faststart (§3) — **done** | small / high |
+| **immediate** | Automatic in-browser compression on upload (§3) — **done** | medium / high |
 | **near-term** | `hasLessonAccess()` helper + `is_free_preview`; `getUser`→`getClaims` (§5) | small / medium |
 | **near-term** | Upload route hardening + server-side duration (§5) | small / medium |
 | **near-term** | Observability alerts + media error logging (§5) | small / medium |

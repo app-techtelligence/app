@@ -242,7 +242,16 @@
       "replace": "Substituir vídeo",
       "uploading": "Enviando…",
       "done": "Vídeo enviado!",
-      "error": "Falha no envio — tente de novo."
+      "error": "Falha no envio — tente de novo.",
+      "analyzing": "Analisando…",
+      "compressing": "Comprimindo",
+      "compressed": "Comprimido",
+      "optimizedOriginal": "Já otimizado — enviado o original",
+      "compressUnavailable": "Compressão indisponível — enviado o original",
+      "cancel": "Cancelar",
+      "presetLabel": "Tipo de vídeo",
+      "presetTalkingHead": "Pessoa falando (720p)",
+      "presetScreenShare": "Tela / código (1080p)"
     }
   }
 }

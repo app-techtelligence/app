@@ -242,7 +242,16 @@
       "replace": "Replace video",
       "uploading": "Uploading…",
       "done": "Video uploaded!",
-      "error": "Upload failed — try again."
+      "error": "Upload failed — try again.",
+      "analyzing": "Analyzing…",
+      "compressing": "Compressing",
+      "compressed": "Compressed",
+      "optimizedOriginal": "Already optimized — uploaded the original",
+      "compressUnavailable": "Compression unavailable — uploaded the original",
+      "cancel": "Cancel",
+      "presetLabel": "Video type",
+      "presetTalkingHead": "Talking head (720p)",
+      "presetScreenShare": "Screen / code (1080p)"
     }
   }
 }
