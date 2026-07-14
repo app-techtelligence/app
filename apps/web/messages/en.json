@@ -2,7 +2,7 @@
   "common": {
     "nav": {
       "home": "Home",
-      "course": "Course",
+      "course": "Courses",
       "mentorship": "Mentorship",
       "consulting": "Consulting",
       "services": "Services",
@@ -38,13 +38,13 @@
   },
   "home": {
     "meta": {
-      "title": "TechTelligence — Data & AI Consulting, Course and Mentorship",
-      "description": "Data & AI consulting for companies, a course to break into tech, and 1:1 mentorship to grow your career. Start your climb with TechTelligence."
+      "title": "TechTelligence — Data & AI Consulting, Courses and Mentorship",
+      "description": "Data & AI consulting for companies, courses to break into tech, and 1:1 mentorship to grow your career. Start your climb with TechTelligence."
     },
     "hero": {
       "kicker": "Data & Artificial Intelligence",
       "title": "Technology that transforms companies and careers",
-      "subtitle": "Data & AI consulting for companies, a course to break into tech, and mentorship to grow in it. Choose your path to the top.",
+      "subtitle": "Data & AI consulting for companies, courses to break into tech, and mentorship to grow in it. Choose your path to the top.",
       "ctaPrimary": "Chat on WhatsApp",
       "ctaSecondary": "Explore our solutions",
       "whatsappMessage": "Hi! I found TechTelligence's website and I'd like to know more about your solutions."
@@ -55,14 +55,14 @@
       "subtitle": "For companies scaling with data and AI, people breaking into tech, and professionals accelerating their careers.",
       "course": {
         "tagline": "Break into tech",
-        "title": "Course",
-        "description": "For career changers who want to build a career in technology — no prior experience required.",
+        "title": "Courses",
+        "description": "For anyone breaking into tech and building a career from zero — no prior experience required.",
         "items": [
           "Tracks for Dev, Data and DevOps roles",
           "From zero to your first tech job",
           "Learn what the market actually hires for"
         ],
-        "cta": "Explore the course"
+        "cta": "Explore the courses"
       },
       "mentorship": {
         "tagline": "Accelerate your career",
@@ -101,28 +101,36 @@
   },
   "course": {
     "meta": {
-      "title": "Career-Change Course into Tech — TechTelligence",
+      "title": "Career-Change Courses into Tech — TechTelligence",
       "description": "Break into tech with no prior experience: tracks for Dev, Data and DevOps roles, built by the team that ships Data & AI for companies. Access the platform and start now."
     },
     "hero": {
-      "kicker": "Career-change course",
+      "kicker": "Career-change courses",
       "title": "Your transition into tech starts here",
-      "subtitle": "A course for people building a tech career from zero — no prior experience, no CS degree. You learn what the market actually hires for, from a team that builds Data & AI every day.",
+      "subtitle": "Courses for people building a tech career from zero — no prior experience, no CS degree. You learn what the market actually hires for, from a team that builds Data & AI every day.",
       "ctaPrimary": "Access the platform",
       "ctaSecondary": "See if it's for you"
     },
     "whoFor": {
       "kicker": "Who it's for",
       "title": "Built for people starting from zero",
-      "subtitle": "You don't need prior experience or a degree in the field. You need the will to climb.",
+      "subtitle": "Whether you're coming from another field, fresh out of school, or have never worked before: you don't need prior experience or a degree in tech. You need the will to climb.",
       "personas": [
         {
           "title": "Career changers",
           "text": "You work in sales, healthcare, law, manufacturing — any field — and want a clear path into technology."
         },
         {
+          "title": "Fresh out of university",
+          "text": "Finished your degree — in any field — and haven't landed a career yet? Point your education at a market that hires fast and pays well, with no CS diploma required."
+        },
+        {
+          "title": "Starting your first job",
+          "text": "Never worked before? Whether you're a teenager, still in school or just out of it, tech is one of the few fields that opens the door without demanding experience — just the will to learn."
+        },
+        {
           "title": "No CS degree",
-          "text": "A computer science degree is not a prerequisite. The course starts from absolute zero and builds the foundation the market demands."
+          "text": "A computer science degree is not a prerequisite. Our courses start from absolute zero and build the foundation the market demands."
         },
         {
           "title": "People restarting",
@@ -137,7 +145,7 @@
     "tracks": {
       "kicker": "What you'll learn",
       "title": "Tracks for the roles the market hires",
-      "subtitle": "The course prepares you for the main roles in tech. You build the foundation first, then go deep in the track you choose.",
+      "subtitle": "Our courses prepare you for the main roles in tech. You build the foundation first, then go deep in the track you choose.",
       "disclaimer": "Example tracks — full curriculum coming soon",
       "items": [
         {
@@ -177,12 +185,12 @@
     "method": {
       "kicker": "How it works",
       "title": "Taught by the people who build",
-      "text": "TechTelligence implements data platforms and AI environments for companies. That day-to-day work defines what goes into the course: you learn what the market hires for — no filler content.",
+      "text": "TechTelligence implements data platforms and AI environments for companies. That day-to-day work defines what goes into our courses: you learn what the market hires for — no filler content.",
       "cta": "Read our story",
       "items": [
         {
           "title": "From absolute zero",
-          "text": "No prerequisites. The course assumes you've never written a line of code."
+          "text": "No prerequisites. Our courses assume you've never written a line of code."
         },
         {
           "title": "Focused on what the market hires",
@@ -645,7 +653,7 @@
   "about": {
     "meta": {
       "title": "About TechTelligence — Those who build, teach",
-      "description": "Meet TechTelligence: we were born building Data & AI solutions for companies — the practice that powers our consulting and becomes our course and mentorship."
+      "description": "Meet TechTelligence: we were born building Data & AI solutions for companies — the practice that powers our consulting and becomes our courses and mentorship."
     },
     "hero": {
       "kicker": "About TechTelligence",
@@ -658,7 +666,7 @@
       "paragraphs": [
         "TechTelligence was born inside Data & AI projects for companies. Working on those projects, we saw two sides of the same problem: companies struggling to find well-prepared professionals — and people wanting to break into tech with no idea where to start.",
         "On one side, teams and platforms in need of qualified people. On the other, talented people going in circles through generic courses, with no map leading to an actual job. We decided to build that bridge.",
-        "That's why everything here starts from practice: what we learn implementing solutions for companies shapes our consulting, our course and our mentorship. The market shows us the way — and we teach you how to walk it."
+        "That's why everything here starts from practice: what we learn implementing solutions for companies shapes our consulting, our courses and our mentorship. The market shows us the way — and we teach you how to walk it."
       ],
       "founder": {
         "kicker": "Behind the project",
@@ -668,7 +676,7 @@
     "values": {
       "kicker": "Our principles",
       "title": "What we believe in",
-      "subtitle": "Four principles guide everything we do — from the first course exercise to the delivery of a consulting project.",
+      "subtitle": "Four principles guide everything we do — from the first exercise in a course to the delivery of a consulting project.",
       "items": [
         {
           "title": "Learning by doing",
@@ -691,11 +699,11 @@
     "ecosystem": {
       "kicker": "One ecosystem",
       "title": "Three products, one foundation",
-      "subtitle": "What we build in consulting becomes content in the course and direction in mentorship. Each product strengthens the others — and you're the one who wins.",
+      "subtitle": "What we build in consulting becomes content in the courses and direction in mentorship. Each product strengthens the others — and you're the one who wins.",
       "course": {
-        "title": "Course",
+        "title": "Courses",
         "description": "Your door into tech, with tracks guided by what the market actually hires for.",
-        "cta": "Explore the course"
+        "cta": "Explore the courses"
       },
       "mentorship": {
         "title": "Mentorship",
@@ -739,7 +747,7 @@
   "contact": {
     "meta": {
       "title": "Contact — TechTelligence",
-      "description": "Reach TechTelligence on WhatsApp or send a message through the form. Data & AI consulting, career-change course and 1:1 mentorship."
+      "description": "Reach TechTelligence on WhatsApp or send a message through the form. Data & AI consulting, career-change courses and 1:1 mentorship."
     },
     "hero": {
       "kicker": "Contact",
@@ -762,7 +770,7 @@
       "email": "Email",
       "subject": "Subject",
       "subjectOptions": {
-        "course": "Course",
+        "course": "Courses",
         "mentorship": "Mentorship",
         "consulting": "Consulting (companies)",
         "other": "Something else"
@@ -814,7 +822,7 @@
     "clients": {
       "kicker": "Talent ecosystem",
       "title": "We train the talent that reinforces your projects",
-      "text": "Beyond our senior team, projects can draw on professionals trained in our own course and mentorship — people we evaluate up close, trained on exactly what the market uses, under the supervision of experienced builders.",
+      "text": "Beyond our senior team, projects can draw on professionals trained in our own courses and mentorship — people we evaluate up close, trained on exactly what the market uses, under the supervision of experienced builders.",
       "cta": "See how we train talent",
       "items": [
         {

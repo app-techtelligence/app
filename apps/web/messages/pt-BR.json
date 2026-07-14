@@ -2,7 +2,7 @@
   "common": {
     "nav": {
       "home": "Início",
-      "course": "Curso",
+      "course": "Cursos",
       "mentorship": "Mentoria",
       "consulting": "Consultoria",
       "services": "Serviços",
@@ -38,13 +38,13 @@
   },
   "home": {
     "meta": {
-      "title": "TechTelligence — Consultoria em Dados & IA, Curso e Mentoria",
-      "description": "Consultoria em Dados & IA para empresas, curso para entrar na área tech e mentoria 1:1 para crescer na carreira. Comece sua subida com a TechTelligence."
+      "title": "TechTelligence — Consultoria em Dados & IA, Cursos e Mentoria",
+      "description": "Consultoria em Dados & IA para empresas, cursos para entrar na área tech e mentoria 1:1 para crescer na carreira. Comece sua subida com a TechTelligence."
     },
     "hero": {
       "kicker": "Dados & Inteligência Artificial",
       "title": "Tecnologia que transforma empresas e carreiras",
-      "subtitle": "Consultoria em Dados & IA para empresas, curso para você entrar na área tech e mentoria para crescer nela. Escolha o seu caminho para o topo.",
+      "subtitle": "Consultoria em Dados & IA para empresas, cursos para você entrar na área tech e mentoria para crescer nela. Escolha o seu caminho para o topo.",
       "ctaPrimary": "Falar no WhatsApp",
       "ctaSecondary": "Conhecer as soluções",
       "whatsappMessage": "Olá! Vim pelo site da TechTelligence e quero saber mais sobre as soluções de vocês."
@@ -55,14 +55,14 @@
       "subtitle": "Para empresas que querem escalar com dados e IA, para quem quer entrar na área e para quem quer acelerar a carreira.",
       "course": {
         "tagline": "Migre para a área tech",
-        "title": "Curso",
-        "description": "Para quem quer sair de outra área e construir uma carreira em tecnologia — sem experiência prévia.",
+        "title": "Cursos",
+        "description": "Para quem quer entrar na área tech e construir uma carreira do zero — sem precisar de experiência prévia.",
         "items": [
           "Trilhas para Dev, Dados e DevOps",
           "Do zero à sua primeira vaga em tech",
           "Aprenda o que o mercado realmente contrata"
         ],
-        "cta": "Conhecer o curso"
+        "cta": "Conhecer os cursos"
       },
       "mentorship": {
         "tagline": "Acelere sua carreira",
@@ -101,28 +101,36 @@
   },
   "course": {
     "meta": {
-      "title": "Curso de Transição de Carreira para Tech — TechTelligence",
+      "title": "Cursos de Transição de Carreira para Tech — TechTelligence",
       "description": "Migre para a tecnologia sem experiência prévia: trilhas para Dev, Dados e DevOps criadas por quem constrói Dados & IA para empresas. Acesse a plataforma e comece agora."
     },
     "hero": {
-      "kicker": "Curso de transição de carreira",
+      "kicker": "Cursos de transição de carreira",
       "title": "Sua transição para a área tech começa aqui",
-      "subtitle": "Um curso para quem quer construir uma carreira em tecnologia começando do zero — sem experiência prévia, sem diploma de TI. Você aprende o que o mercado realmente contrata, com quem constrói Dados & IA todos os dias.",
+      "subtitle": "Cursos para quem quer construir uma carreira em tecnologia começando do zero — sem experiência prévia, sem diploma de TI. Você aprende o que o mercado realmente contrata, com quem constrói Dados & IA todos os dias.",
       "ctaPrimary": "Acessar a plataforma",
       "ctaSecondary": "Ver se é para você"
     },
     "whoFor": {
       "kicker": "Para quem é",
       "title": "Feito para quem está começando do zero",
-      "subtitle": "Você não precisa de experiência prévia nem de diploma na área. Precisa de vontade de subir.",
+      "subtitle": "Não importa se você vem de outra área, acabou de se formar ou nunca trabalhou: você não precisa de experiência prévia nem de diploma em TI. Precisa de vontade de subir.",
       "personas": [
         {
           "title": "Quem vem de outra área",
           "text": "Você trabalha com vendas, saúde, direito, indústria — qualquer área — e quer migrar para a tecnologia com um caminho claro."
         },
         {
+          "title": "Quem acabou de se formar",
+          "text": "Terminou a faculdade, em qualquer área, e ainda não engatou numa carreira? Aponte sua formação para um mercado que contrata muito e paga bem — sem precisar de um diploma de TI."
+        },
+        {
+          "title": "Quem está no primeiro emprego",
+          "text": "Ainda não trabalhou? Jovem, no ensino médio ou recém-saído dele, a tecnologia é uma das poucas áreas que abrem as portas sem exigir experiência — só vontade de aprender."
+        },
+        {
           "title": "Quem não tem formação em TI",
-          "text": "Faculdade de computação não é pré-requisito. O curso começa do zero absoluto e constrói a base que o mercado exige."
+          "text": "Faculdade de computação não é pré-requisito. Nossos cursos começam do zero absoluto e constroem a base que o mercado exige."
         },
         {
           "title": "Quem quer recomeçar",
@@ -137,7 +145,7 @@
     "tracks": {
       "kicker": "O que você vai aprender",
       "title": "Trilhas para as funções que o mercado contrata",
-      "subtitle": "O curso prepara você para atuar nas principais funções de tecnologia. Primeiro você constrói a base; depois, se aprofunda na trilha que escolher.",
+      "subtitle": "Nossos cursos preparam você para atuar nas principais funções de tecnologia. Primeiro você constrói a base; depois, se aprofunda na trilha que escolher.",
       "disclaimer": "Exemplos de trilha — currículo completo em breve",
       "items": [
         {
@@ -177,12 +185,12 @@
     "method": {
       "kicker": "Como funciona",
       "title": "Quem ensina é quem constrói",
-      "text": "A TechTelligence implementa plataformas de dados e ambientes de IA para empresas. É esse dia a dia que define o que entra no curso: você aprende o que o mercado contrata — nada de conteúdo que ninguém usa.",
+      "text": "A TechTelligence implementa plataformas de dados e ambientes de IA para empresas. É esse dia a dia que define o que entra nos nossos cursos: você aprende o que o mercado contrata — nada de conteúdo que ninguém usa.",
       "cta": "Conheça nossa história",
       "items": [
         {
           "title": "Do zero absoluto",
-          "text": "Sem pré-requisitos. O curso assume que você nunca escreveu uma linha de código."
+          "text": "Sem pré-requisitos. Nossos cursos assumem que você nunca escreveu uma linha de código."
         },
         {
           "title": "Foco no que o mercado contrata",
@@ -645,7 +653,7 @@
   "about": {
     "meta": {
       "title": "Sobre a TechTelligence — Quem constrói, ensina",
-      "description": "Conheça a TechTelligence: nascemos construindo soluções de Dados e IA para empresas — a prática que sustenta nossa consultoria e vira curso e mentoria."
+      "description": "Conheça a TechTelligence: nascemos construindo soluções de Dados e IA para empresas — a prática que sustenta nossa consultoria e vira cursos e mentoria."
     },
     "hero": {
       "kicker": "Sobre a TechTelligence",
@@ -658,7 +666,7 @@
       "paragraphs": [
         "A TechTelligence nasceu dentro de projetos de Dados e IA para empresas. Foi trabalhando nesses projetos que enxergamos os dois lados de um mesmo problema: empresas com dificuldade de encontrar profissionais preparados — e pessoas querendo entrar em tecnologia sem saber por onde começar.",
         "De um lado, times e plataformas precisando de gente qualificada. Do outro, pessoas talentosas dando voltas em cursos genéricos, sem um mapa que levasse até uma vaga de verdade. Decidimos construir essa ponte.",
-        "É por isso que tudo aqui parte da prática: o que aprendemos implementando soluções para empresas molda nossa consultoria, nosso curso e nossa mentoria. O mercado nos mostra o caminho — e a gente ensina você a percorrê-lo."
+        "É por isso que tudo aqui parte da prática: o que aprendemos implementando soluções para empresas molda nossa consultoria, nossos cursos e nossa mentoria. O mercado nos mostra o caminho — e a gente ensina você a percorrê-lo."
       ],
       "founder": {
         "kicker": "Por trás do projeto",
@@ -668,7 +676,7 @@
     "values": {
       "kicker": "Nossos princípios",
       "title": "No que acreditamos",
-      "subtitle": "Quatro princípios guiam tudo o que fazemos — do primeiro exercício do curso à entrega de um projeto de consultoria.",
+      "subtitle": "Quatro princípios guiam tudo o que fazemos — do primeiro exercício de um curso à entrega de um projeto de consultoria.",
       "items": [
         {
           "title": "Aprender fazendo",
@@ -691,11 +699,11 @@
     "ecosystem": {
       "kicker": "Um ecossistema",
       "title": "Três produtos, uma mesma base",
-      "subtitle": "O que construímos na consultoria vira conteúdo no curso e direção na mentoria. Cada produto fortalece os outros — e quem ganha é você.",
+      "subtitle": "O que construímos na consultoria vira conteúdo nos cursos e direção na mentoria. Cada produto fortalece os outros — e quem ganha é você.",
       "course": {
-        "title": "Curso",
+        "title": "Cursos",
         "description": "Sua porta de entrada na área tech, com trilhas guiadas pelo que o mercado contrata.",
-        "cta": "Conhecer o curso"
+        "cta": "Conhecer os cursos"
       },
       "mentorship": {
         "title": "Mentoria",
@@ -739,7 +747,7 @@
   "contact": {
     "meta": {
       "title": "Contato — TechTelligence",
-      "description": "Fale com a TechTelligence pelo WhatsApp ou envie uma mensagem pelo formulário. Consultoria em Dados & IA, curso de transição de carreira e mentoria 1:1."
+      "description": "Fale com a TechTelligence pelo WhatsApp ou envie uma mensagem pelo formulário. Consultoria em Dados & IA, cursos de transição de carreira e mentoria 1:1."
     },
     "hero": {
       "kicker": "Contato",
@@ -762,7 +770,7 @@
       "email": "E-mail",
       "subject": "Assunto",
       "subjectOptions": {
-        "course": "Curso",
+        "course": "Cursos",
         "mentorship": "Mentoria",
         "consulting": "Consultoria (empresas)",
         "other": "Outro assunto"
@@ -814,7 +822,7 @@
     "clients": {
       "kicker": "Ecossistema de talentos",
       "title": "Formamos os talentos que reforçam seus projetos",
-      "text": "Além do nosso time sênior, projetos podem contar com profissionais formados no nosso curso e mentoria — pessoas que avaliamos de perto, treinadas exatamente no que o mercado usa, sob supervisão de quem entrega há anos.",
+      "text": "Além do nosso time sênior, projetos podem contar com profissionais formados nos nossos cursos e mentoria — pessoas que avaliamos de perto, treinadas exatamente no que o mercado usa, sob supervisão de quem entrega há anos.",
       "cta": "Veja como formamos talentos",
       "items": [
         {
