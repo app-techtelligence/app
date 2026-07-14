@@ -21,3 +21,24 @@ export const JOB_SOURCES = ["active", "passive"] as const;
 export type JobStage = (typeof JOB_STAGES)[number];
 export type JobStatus = (typeof JOB_STATUSES)[number];
 export type JobSource = (typeof JOB_SOURCES)[number];
+
+/**
+ * The date column each stage is about. `first_contact` shows when the student
+ * first reached the company; each interview stage shows its own scheduled
+ * interview date (migration 0013). `offer` has no date of its own, so it is
+ * absent here — callers must narrow out "offer" before indexing.
+ */
+export const STAGE_DATE_FIELD = {
+  first_contact: "first_contact_date",
+  hr_interview: "hr_interview_date",
+  tech_interview: "tech_interview_date",
+  manager_interview: "manager_interview_date",
+} as const satisfies Record<Exclude<JobStage, "offer">, string>;
+
+/** Every date column, for partial-update handling in the server actions. */
+export const JOB_DATE_FIELDS = [
+  "first_contact_date",
+  "hr_interview_date",
+  "tech_interview_date",
+  "manager_interview_date",
+] as const;

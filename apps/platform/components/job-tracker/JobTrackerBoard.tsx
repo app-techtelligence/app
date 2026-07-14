@@ -13,6 +13,7 @@ import {
 import {
   JOB_SOURCES,
   JOB_STAGES,
+  STAGE_DATE_FIELD,
   type JobSource,
   type JobStage,
   type JobStatus,
@@ -52,6 +53,7 @@ export type JobTrackerLabels = {
     notes: string;
     notesPlaceholder: string;
     firstContactDate: string;
+    interviewDate: string;
     stage: string;
     status: string;
     source: string;
@@ -76,10 +78,10 @@ const labelCls = "mb-1 block text-xs font-bold text-navy";
 const cardActionCls =
   "rounded-md px-1.5 py-1 text-xs font-semibold text-steel transition-colors hover:bg-navy/5 hover:text-navy";
 
-// Waiting reads as a neutral navy chip; no-return reads red — the only semantic
-// color kept in the palette, reserved for negative/destructive meaning.
+// Waiting reads as a neutral gray chip; no-return reads red — the only
+// semantic color in the palette, reserved for negative/destructive meaning.
 const statusStyles: Record<JobStatus, string> = {
-  waiting: "bg-navy/10 text-navy hover:bg-navy/15",
+  waiting: "bg-steel/10 text-steel hover:bg-steel/15",
   no_return: "bg-red-600/10 text-red-700 hover:bg-red-600/20",
 };
 
@@ -127,6 +129,9 @@ function ApplicationFields({
   withStatus?: boolean;
 }) {
   const id = useId();
+  // The visible date field follows the selected stage (first-contact date vs.
+  // that interview round's date), so track the stage the form is editing.
+  const [stage, setStage] = useState<JobStage>(app?.stage ?? "first_contact");
   return (
     <div className="grid gap-3">
       <div>
@@ -182,18 +187,6 @@ function ApplicationFields({
         />
       </div>
       <div>
-        <label htmlFor={`${id}-date`} className={labelCls}>
-          {labels.fields.firstContactDate}
-        </label>
-        <input
-          id={`${id}-date`}
-          name="first_contact_date"
-          type="date"
-          defaultValue={app?.first_contact_date ?? ""}
-          className={inputCls}
-        />
-      </div>
-      <div>
         <label htmlFor={`${id}-notes`} className={labelCls}>
           {labels.fields.notes}
         </label>
@@ -214,16 +207,39 @@ function ApplicationFields({
         <select
           id={`${id}-stage`}
           name="stage"
-          defaultValue={app?.stage ?? "first_contact"}
+          value={stage}
+          onChange={(event) => setStage(event.target.value as JobStage)}
           className={inputCls}
         >
-          {JOB_STAGES.map((stage) => (
-            <option key={stage} value={stage}>
-              {labels.stages[stage]}
+          {JOB_STAGES.map((stageOption) => (
+            <option key={stageOption} value={stageOption}>
+              {labels.stages[stageOption]}
             </option>
           ))}
         </select>
       </div>
+      {/* One date field, matching the current stage. `offer` has no date; the
+          other stages each post their own key so a move never wipes another
+          stage's date (parseDatePatch only reads the key that was rendered). */}
+      {stage === "offer" ? null : (
+        <div>
+          <label htmlFor={`${id}-date`} className={labelCls}>
+            {stage === "first_contact"
+              ? labels.fields.firstContactDate
+              : labels.fields.interviewDate}
+          </label>
+          <input
+            // Re-key so switching stage re-seeds defaultValue from that
+            // stage's stored date.
+            key={stage}
+            id={`${id}-date`}
+            name={STAGE_DATE_FIELD[stage]}
+            type="date"
+            defaultValue={app?.[STAGE_DATE_FIELD[stage]] ?? ""}
+            className={inputCls}
+          />
+        </div>
+      )}
       <div>
         <label htmlFor={`${id}-source`} className={labelCls}>
           {labels.fields.source}
@@ -485,6 +501,12 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
               <ol className="mt-3 flex-1 space-y-3">
                 {cards.map((app) => {
                   const stageIndex = JOB_STAGES.indexOf(app.stage);
+                  // Show the date that matches the card's stage: first-contact
+                  // date up front, then each interview round's own date. Offer
+                  // has no date of its own.
+                  const dateField =
+                    app.stage === "offer" ? null : STAGE_DATE_FIELD[app.stage];
+                  const stageDate = dateField ? app[dateField] : null;
                   const websiteHref = app.website_url
                     ? safeHref(app.website_url)
                     : null;
@@ -559,10 +581,10 @@ export function JobTrackerBoard({ initial, labels, locale }: Props) {
                               <span className="truncate">{app.salary}</span>
                             </p>
                           ) : null}
-                          {app.first_contact_date ? (
+                          {stageDate ? (
                             <p className="mt-1 flex items-center gap-1.5 text-xs text-steel">
                               <ClockIcon className="h-3.5 w-3.5 shrink-0" />
-                              {formatDate(app.first_contact_date)}
+                              {formatDate(stageDate)}
                             </p>
                           ) : null}
                           {app.notes ? (

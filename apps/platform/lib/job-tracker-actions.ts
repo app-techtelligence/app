@@ -3,7 +3,12 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
-import { JOB_SOURCES, JOB_STAGES, JOB_STATUSES } from "@/lib/job-tracker";
+import {
+  JOB_DATE_FIELDS,
+  JOB_SOURCES,
+  JOB_STAGES,
+  JOB_STATUSES,
+} from "@/lib/job-tracker";
 
 /**
  * Student job-tracker mutations. Every action re-checks the session
@@ -63,11 +68,27 @@ const applicationSchema = z.object({
   website_url: websiteUrl,
   salary: text,
   notes: notes,
-  first_contact_date: isoDate,
   stage: z.enum(JOB_STAGES).default("first_contact"),
   status: z.enum(JOB_STATUSES).default("waiting"),
   source: z.enum(JOB_SOURCES).default("active"),
 });
+
+// The date columns are handled apart from the schema: the form only renders
+// the one date that matches the current stage, so an edit posts a single date
+// key. Parsing only the keys that are present keeps a stage move from nulling
+// the other stages' interview dates. Returns null on a malformed date.
+function parseDatePatch(
+  formData: FormData,
+): Record<string, string | null> | null {
+  const patch: Record<string, string | null> = {};
+  for (const field of JOB_DATE_FIELDS) {
+    if (!formData.has(field)) continue;
+    const parsed = isoDate.safeParse(formData.get(field));
+    if (!parsed.success) return null;
+    patch[field] = parsed.data;
+  }
+  return patch;
+}
 
 async function getUserContext() {
   const supabase = await createClient();
@@ -88,11 +109,12 @@ export async function createApplication(
   if (!ctx) return { ok: false };
 
   const parsed = applicationSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return { ok: false };
+  const dates = parseDatePatch(formData);
+  if (!parsed.success || !dates) return { ok: false };
 
   const { error } = await ctx.supabase
     .from("job_applications")
-    .insert({ ...parsed.data, user_id: ctx.user.id });
+    .insert({ ...parsed.data, ...dates, user_id: ctx.user.id });
   if (error) return { ok: false };
   refresh();
   return { ok: true };
@@ -106,11 +128,12 @@ export async function updateApplication(
 
   const id = z.uuid().safeParse(formData.get("id"));
   const parsed = applicationSchema.safeParse(Object.fromEntries(formData));
-  if (!id.success || !parsed.success) return { ok: false };
+  const dates = parseDatePatch(formData);
+  if (!id.success || !parsed.success || !dates) return { ok: false };
 
   const { error } = await ctx.supabase
     .from("job_applications")
-    .update({ ...parsed.data, updated_at: new Date().toISOString() })
+    .update({ ...parsed.data, ...dates, updated_at: new Date().toISOString() })
     .eq("id", id.data)
     .eq("user_id", ctx.user.id);
   if (error) return { ok: false };

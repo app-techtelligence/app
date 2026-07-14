@@ -49,6 +49,9 @@ export type JobApplication = {
   salary: string | null;
   notes: string | null;
   first_contact_date: string | null;
+  hr_interview_date: string | null;
+  tech_interview_date: string | null;
+  manager_interview_date: string | null;
   stage: JobStage;
   status: JobStatus;
   source: JobSource;

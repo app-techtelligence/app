@@ -143,6 +143,7 @@
       "notes": "Notes (optional)",
       "notesPlaceholder": "Notes about the role: interview feedback, contacts, next steps…",
       "firstContactDate": "First contact date",
+      "interviewDate": "Interview date",
       "stage": "Stage",
       "status": "Status",
       "source": "Source"

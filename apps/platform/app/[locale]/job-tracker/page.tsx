@@ -28,7 +28,7 @@ export default async function JobTrackerPage({ params }: Props) {
   const { data: applications, error } = await supabase
     .from("job_applications")
     .select(
-      "id, user_id, company_name, contact_name, website_url, salary, notes, first_contact_date, stage, status, source, created_at",
+      "id, user_id, company_name, contact_name, website_url, salary, notes, first_contact_date, hr_interview_date, tech_interview_date, manager_interview_date, stage, status, source, created_at",
     )
     .order("created_at");
 
@@ -60,6 +60,7 @@ export default async function JobTrackerPage({ params }: Props) {
       notes: t("fields.notes"),
       notesPlaceholder: t("fields.notesPlaceholder"),
       firstContactDate: t("fields.firstContactDate"),
+      interviewDate: t("fields.interviewDate"),
       stage: t("fields.stage"),
       status: t("fields.status"),
       source: t("fields.source"),

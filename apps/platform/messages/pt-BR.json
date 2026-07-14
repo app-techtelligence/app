@@ -143,6 +143,7 @@
       "notes": "Notas (opcional)",
       "notesPlaceholder": "Anotações sobre a vaga: feedback de entrevista, contatos, próximos passos…",
       "firstContactDate": "Data do primeiro contato",
+      "interviewDate": "Data da entrevista",
       "stage": "Etapa",
       "status": "Status",
       "source": "Origem"
