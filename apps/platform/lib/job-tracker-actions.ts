@@ -8,6 +8,7 @@ import {
   JOB_SOURCES,
   JOB_STAGES,
   JOB_STATUSES,
+  NOTES_MAX_LENGTH,
 } from "@/lib/job-tracker";
 
 /**
@@ -29,12 +30,15 @@ const text = z
 
 // Notes are a free-text scratchpad (interview feedback, contacts, next
 // steps) — allow multiple paragraphs, unlike the single-line text fields.
+// A textarea posts CRLF line breaks, but its maxLength (and the form's live
+// counter) counts them as a single LF — normalize before measuring so a note
+// that looked in-bounds on screen doesn't overflow the limit and fail to save.
 const notes = z
   .string()
-  .trim()
-  .max(2000)
   .optional()
-  .transform((v) => (v ? v : null));
+  .transform((v) => (v ?? "").replace(/\r\n/g, "\n").trim())
+  .refine((v) => v.length <= NOTES_MAX_LENGTH)
+  .transform((v) => (v.length > 0 ? v : null));
 
 // Students paste addresses in every shape ("empresa.com.br") — prefix the
 // scheme so the card link always opens, then reject what still isn't a URL.

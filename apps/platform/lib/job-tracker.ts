@@ -42,3 +42,10 @@ export const JOB_DATE_FIELDS = [
   "tech_interview_date",
   "manager_interview_date",
 ] as const;
+
+/**
+ * Max length of a card's free-text notes, counting line breaks as one char
+ * (LF). The form's live counter and the server both measure against this after
+ * normalizing CRLF → LF, so what fits on screen always saves.
+ */
+export const NOTES_MAX_LENGTH = 2000;

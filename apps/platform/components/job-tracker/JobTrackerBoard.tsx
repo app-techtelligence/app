@@ -13,6 +13,7 @@ import {
 import {
   JOB_SOURCES,
   JOB_STAGES,
+  NOTES_MAX_LENGTH,
   STAGE_DATE_FIELD,
   type JobSource,
   type JobStage,
@@ -132,6 +133,11 @@ function ApplicationFields({
   // The visible date field follows the selected stage (first-contact date vs.
   // that interview round's date), so track the stage the form is editing.
   const [stage, setStage] = useState<JobStage>(app?.stage ?? "first_contact");
+  // Live notes counter — measure the LF-normalized length so it matches both
+  // the textarea's maxLength and the server's limit.
+  const [notesLength, setNotesLength] = useState(
+    (app?.notes ?? "").replace(/\r\n/g, "\n").length,
+  );
   return (
     <div className="grid gap-3">
       <div>
@@ -194,11 +200,21 @@ function ApplicationFields({
           id={`${id}-notes`}
           name="notes"
           rows={3}
-          maxLength={2000}
+          maxLength={NOTES_MAX_LENGTH}
           placeholder={labels.fields.notesPlaceholder}
           defaultValue={app?.notes ?? ""}
+          onChange={(event) => setNotesLength(event.target.value.length)}
+          aria-describedby={`${id}-notes-count`}
           className={`${inputCls} resize-y`}
         />
+        <p
+          id={`${id}-notes-count`}
+          className={`mt-1 text-right text-[11px] font-semibold tabular-nums ${
+            notesLength >= NOTES_MAX_LENGTH ? "text-red-700" : "text-steel"
+          }`}
+        >
+          {notesLength} / {NOTES_MAX_LENGTH}
+        </p>
       </div>
       <div>
         <label htmlFor={`${id}-stage`} className={labelCls}>
