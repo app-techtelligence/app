@@ -68,9 +68,33 @@ const emailLogo = `<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1
   </text>
 </svg>`;
 
+// Light-background signature mark: navy peak on transparent — for email
+// signatures and other WHITE surfaces where logo-email.png (white mark) is
+// invisible. Rendered at 3x the ~40px display size for retina crispness.
+const markNavy = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.2 322.4" width="394.2" height="322.4">
+  <path fill="#1A2A44" d="${MARK[0]}"/>
+  <path fill="#1A2A44" d="${MARK[1]}"/>
+  <path fill="#1A2A44" d="${MARK[2]}"/>
+</svg>`;
+
+// Light-background full logo: navy mark + "TECH" navy / "TELLIGENCE" steel,
+// transparent — the white-surface counterpart of logo-email.png.
+const logoSignature = `<svg xmlns="http://www.w3.org/2000/svg" width="720" height="160">
+  <g transform="translate(14,14) scale(0.407)" fill="#1A2A44">
+    <path d="${MARK[0]}"/>
+    <path d="${MARK[1]}"/>
+    <path d="${MARK[2]}"/>
+  </g>
+  <text x="192" y="98" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800" letter-spacing="5">
+    <tspan fill="#1A2A44">TECH</tspan><tspan fill="#667080">TELLIGENCE</tspan>
+  </text>
+</svg>`;
+
 mkdirSync(join(root, "public", "og"), { recursive: true });
 mkdirSync(join(root, "public", "email"), { recursive: true });
 await sharp(Buffer.from(og)).png().toFile(join(root, "public", "og", "og-default.png"));
 await sharp(Buffer.from(appleIcon)).resize(180, 180).png().toFile(join(root, "app", "apple-icon.png"));
 await sharp(Buffer.from(emailLogo)).png().toFile(join(root, "public", "email", "logo-email.png"));
-console.log("[generate-brand-assets] wrote og-default.png, apple-icon.png, email/logo-email.png");
+await sharp(Buffer.from(markNavy)).resize({ height: 120 }).png().toFile(join(root, "public", "email", "mark-navy.png"));
+await sharp(Buffer.from(logoSignature)).png().toFile(join(root, "public", "email", "logo-signature.png"));
+console.log("[generate-brand-assets] wrote og-default.png, apple-icon.png, email/logo-email.png, email/mark-navy.png, email/logo-signature.png");
