@@ -98,7 +98,7 @@ function Section({
   return (
     <section className="border-t border-navy/10 py-14 first:border-t-0 first:pt-0">
       <div className="mb-8 max-w-2xl">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
           {eyebrow}
         </p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy sm:text-3xl">
@@ -125,7 +125,7 @@ export default async function StyleguidePage({ params }: Props) {
   return (
     <Container className="py-20 sm:py-24">
       <header className="max-w-2xl">
-        <p className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
           Design system
         </p>
         <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
@@ -151,7 +151,7 @@ export default async function StyleguidePage({ params }: Props) {
               <ColorSwatch key={c.name} {...c} />
             ))}
           </div>
-          <p className="mt-8 mb-4 text-xs font-bold uppercase tracking-[0.18em] text-steel">
+          <p className="mt-8 mb-4 font-mono text-xs uppercase tracking-[0.18em] text-steel">
             Supporting tokens
           </p>
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
@@ -213,7 +213,7 @@ export default async function StyleguidePage({ params }: Props) {
           description="rounded-lg with a hover lift (motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md). Emphasis is fill vs. outline, never hue — signal is never a button fill."
         >
           <div className="space-y-4">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
               On light surfaces
             </p>
             <div className="flex flex-wrap items-center gap-4 rounded-2xl bg-canvas p-8">
@@ -233,10 +233,10 @@ export default async function StyleguidePage({ params }: Props) {
               </a>
             </div>
 
-            <p className="pt-4 text-xs font-bold uppercase tracking-[0.18em] text-steel">
+            <p className="pt-4 font-mono text-xs uppercase tracking-[0.18em] text-steel">
               On navy surfaces
             </p>
-            <div className="flex flex-wrap items-center gap-4 rounded-2xl bg-navy p-8">
+            <div className="on-navy flex flex-wrap items-center gap-4 rounded-2xl bg-navy p-8">
               <Button variant="onDark">On dark</Button>
               <Button variant="onDarkOutline">On dark · outline</Button>
               <Button variant="onDark" size="lg">

@@ -7,7 +7,7 @@ export type ButtonSize = "md" | "lg";
 // and Plex Mono with contour geometry, and a pill fights that. Disabled buttons
 // get `pointer-events-none`, so the hover elevation never fires on them.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-all duration-300 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md disabled:pointer-events-none disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-[transform,box-shadow,background-color,border-color,color] duration-300 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md disabled:pointer-events-none disabled:opacity-60";
 
 // Monochrome, background-aware: filled fill flips navy↔white by context, with a
 // matching outline for secondary actions. Pick the pair that fits the surface.

@@ -92,7 +92,7 @@ Three families, each with a defined role — never mix their uses:
 | Section h2 (web display) | Archivo Expanded | `display-expanded text-2xl font-extrabold tracking-tight sm:text-3xl` |
 | Page h1 (platform) | Manrope | `text-3xl font-extrabold tracking-wide text-navy` |
 | Section h2 (platform) | Manrope | `text-3xl font-extrabold tracking-wide sm:text-4xl` |
-| Kicker / eyebrow | IBM Plex Mono | `font-mono text-xs uppercase tracking-[0.18em]` + `text-steel` (light bg) / `text-steel-light` (dark bg) / `text-signal` (on navy — one of the four permitted uses) |
+| Kicker / eyebrow | IBM Plex Mono | `font-mono text-xs uppercase tracking-[0.18em]` + `text-steel` (light bg) / `text-steel-light` (dark bg) / `text-signal` (on navy — one of the four permitted uses). **Phase 1 scope:** the mono eyebrow is applied on `/styleguide` and the Home hero. The remaining marketing-page section kickers (Contact, HelpAreas, ProductDoors, ServiceOfferings, Consulting Services) still use Manrope bold and migrate in Phase 2 — same progression as `TriangleDivider`, which is deprecated but not yet removed. |
 | Data / proof strip | IBM Plex Mono | `font-mono text-xs tracking-[0.05em] text-steel` |
 | Small section label (platform) | Manrope | `text-sm font-extrabold uppercase tracking-[0.2em] text-navy`, preceded by `<TriangleBullet className="h-3 w-3 text-navy" />` |
 | Subtitle / lead | Manrope | `text-steel` (platform) / `text-white/75` (on navy) |
@@ -131,10 +131,11 @@ NOT import from web. Reuse these before inventing new ones:
   that look like buttons use `className={buttonVariants(...)}`. In dense UI
   (cards), a compact one-off is acceptable: `rounded-md bg-navy px-3 py-1.5
   text-xs font-bold text-white`. **`signal` is never a button fill.**
-- **Card** — `rounded-xl border border-navy/10 bg-white p-7 shadow-sm`
-  (list rows `p-4 sm:p-5` + `transition-all hover:-translate-y-0.5
-  hover:border-navy/60 hover:shadow-md`). Disabled/locked variant:
-  `border-dashed border-navy/15 bg-white/60`.
+- **Card** — use `components/ui/Card.tsx` as the canonical primitive. Base:
+  `rounded-2xl p-8 sm:p-10` with `transition-[transform,box-shadow,background-color,border-color,color] duration-300`. Default variant: `border border-navy/5 bg-white` with a
+  `motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-lg` lift.
+  Locked/disabled variant: `border-dashed border-navy/15 bg-white/60` — no
+  hover lift, reserved for not-yet-available features.
 - **Empty state** — `rounded-xl border border-navy/10 bg-white p-8
   text-center text-steel`.
 - **Callout / notice** — `rounded-md bg-navy/5 px-4 py-3 text-sm
@@ -169,8 +170,11 @@ NOT import from web. Reuse these before inventing new ones:
 
 ## 5. Accessibility
 
-- Global `:focus-visible` steel outline comes from globals.css (reads on both
-  light and dark surfaces) — never suppress outlines.
+- Global `:focus-visible` steel outline comes from globals.css and is the
+  ring for **light surfaces** (4.5:1 on white/canvas — AA). Steel is only
+  2.88:1 on navy, which fails WCAG 1.4.11's 3:1 floor. Dark surfaces must
+  carry `.on-navy`, which switches the ring to `signal` (7.4:1 on navy —
+  passes AAA). Never suppress outlines.
 - Semantic HTML first (`section`, `ol/li`, `article`, real `button`s);
   landmarks get `aria-label`; active nav gets `aria-current`; menus get
   `aria-haspopup`/`aria-expanded`; async feedback gets `role="status"`.

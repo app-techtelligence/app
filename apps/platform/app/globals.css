@@ -31,10 +31,16 @@
     background-color: color-mix(in srgb, var(--color-navy) 22%, transparent);
   }
 
-  /* Steel reads on both white and navy backgrounds — one focus ring everywhere. */
+  /* Steel (4.5:1 on white/canvas) is the focus ring for light surfaces.
+     It is only 2.88:1 on navy and fails WCAG 1.4.11 — dark surfaces must
+     carry the `.on-navy` class, which switches the ring to `signal`. */
   :focus-visible {
     outline: 2px solid var(--color-steel);
     outline-offset: 2px;
+  }
+
+  .on-navy :focus-visible {
+    outline-color: var(--color-signal);
   }
 
   /* Tailwind v4's reset leaves buttons with the default arrow cursor. */

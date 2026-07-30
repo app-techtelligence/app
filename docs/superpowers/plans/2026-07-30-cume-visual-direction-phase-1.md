@@ -1433,9 +1433,9 @@ Constraints to apply to the answers:
 Record the confirmed answers directly in this plan file, replacing the three lines below, before writing any JSON:
 
 ```
-CONFIRMED PT — experience: …
-CONFIRMED PT — stack: …
-CONFIRMED PT — compliance: …
+CONFIRMED PT — experience: 10+ anos em engenharia de dados / EN: 10+ years in data engineering
+CONFIRMED PT — stack: Databricks · dbt · Airflow · Snowflake (identical in both locales)
+CONFIRMED PT — compliance: Governança e LGPD / EN: Data governance & LGPD
 ```
 
 - [ ] **Step 2: Add the strings to both catalogs**
