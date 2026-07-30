@@ -919,7 +919,7 @@ Pure logic: GLSL source, the WebGL program factory, and the DPR clamp. No React,
 Create `apps/web/lib/contour-shader.test.ts`:
 
 ```ts
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   DPR_CAP,
   FRAGMENT_SHADER,
@@ -1069,6 +1069,25 @@ describe("createContourProgram", () => {
     expect(calls.some((c) => c.name === "deleteProgram")).toBe(true);
     expect(calls.some((c) => c.name === "deleteBuffer")).toBe(true);
   });
+
+  it("throws when createBuffer returns null", () => {
+    const { gl } = fakeGl({ createBuffer: () => null });
+    expect(() => createContourProgram(gl)).toThrow(
+      "WebGL could not allocate a buffer",
+    );
+  });
+
+  it("link failure releases both compiled shaders", () => {
+    const { gl, calls } = fakeGl({ getProgramParameter: () => false });
+    expect(() => createContourProgram(gl)).toThrow(/link failed/);
+    expect(calls.filter((c) => c.name === "deleteShader")).toHaveLength(2);
+  });
+});
+
+describe("clampDpr boundary", () => {
+  it("passes through a DPR exactly at the cap", () => {
+    expect(clampDpr(DPR_CAP)).toBe(DPR_CAP);
+  });
 });
 ```
 
@@ -1174,6 +1193,8 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
   gl.linkProgram(program);
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
     const log = gl.getProgramInfoLog(program);
+    gl.deleteShader(vertex);
+    gl.deleteShader(fragment);
     gl.deleteProgram(program);
     throw new Error(`Contour program failed to link: ${log}`);
   }
@@ -1183,6 +1204,7 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
 
   // One oversized triangle covers the viewport — cheaper than two forming a quad.
   const buffer = gl.createBuffer();
+  if (!buffer) throw new Error("WebGL could not allocate a buffer");
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(
     gl.ARRAY_BUFFER,
@@ -1207,6 +1229,7 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
     },
     dispose() {
       gl.deleteBuffer(buffer);
+      gl.useProgram(null);
       gl.deleteProgram(program);
     },
   };
@@ -1219,7 +1242,7 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
 pnpm --filter web test -- contour-shader
 ```
 
-Expected: PASS, 11 tests.
+Expected: PASS, 14 tests.
 
 - [ ] **Step 5: Typecheck and commit**
 

@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   DPR_CAP,
   FRAGMENT_SHADER,
@@ -147,5 +147,24 @@ describe("createContourProgram", () => {
 
     expect(calls.some((c) => c.name === "deleteProgram")).toBe(true);
     expect(calls.some((c) => c.name === "deleteBuffer")).toBe(true);
+  });
+
+  it("throws when createBuffer returns null", () => {
+    const { gl } = fakeGl({ createBuffer: () => null });
+    expect(() => createContourProgram(gl)).toThrow(
+      "WebGL could not allocate a buffer",
+    );
+  });
+
+  it("link failure releases both compiled shaders", () => {
+    const { gl, calls } = fakeGl({ getProgramParameter: () => false });
+    expect(() => createContourProgram(gl)).toThrow(/link failed/);
+    expect(calls.filter((c) => c.name === "deleteShader")).toHaveLength(2);
+  });
+});
+
+describe("clampDpr boundary", () => {
+  it("passes through a DPR exactly at the cap", () => {
+    expect(clampDpr(DPR_CAP)).toBe(DPR_CAP);
   });
 });

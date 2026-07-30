@@ -87,6 +87,8 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
   gl.linkProgram(program);
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
     const log = gl.getProgramInfoLog(program);
+    gl.deleteShader(vertex);
+    gl.deleteShader(fragment);
     gl.deleteProgram(program);
     throw new Error(`Contour program failed to link: ${log}`);
   }
@@ -96,6 +98,7 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
 
   // One oversized triangle covers the viewport — cheaper than two forming a quad.
   const buffer = gl.createBuffer();
+  if (!buffer) throw new Error("WebGL could not allocate a buffer");
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(
     gl.ARRAY_BUFFER,
@@ -120,6 +123,7 @@ export function createContourProgram(gl: WebGLRenderingContext): ContourProgram 
     },
     dispose() {
       gl.deleteBuffer(buffer);
+      gl.useProgram(null);
       gl.deleteProgram(program);
     },
   };
