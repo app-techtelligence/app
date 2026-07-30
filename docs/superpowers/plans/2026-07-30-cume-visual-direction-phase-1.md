@@ -1552,6 +1552,12 @@ export async function Hero() {
     // complete background on its own, so the canvas is free to not render.
     <section className="on-navy relative isolate overflow-hidden bg-gradient-to-b from-navy to-navy-deep">
       <ContourField />
+      {/* AA substrate: the field's crest hits rgb(214,241,247), where white text
+          is 1.2:1. Masked off the empty right column on lg so the field survives. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-navy/94 to-navy-deep/94 lg:[mask-image:linear-gradient(to_right,black_72%,transparent_92%)]"
+      />
       <Container className="relative z-10 py-20 sm:py-28">
         <div className="max-w-2xl">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-signal">
