@@ -624,16 +624,24 @@ describe("sitemap routes", () => {
     }
   });
 
-  it("still publishes the real marketing pages", () => {
-    const published = publicStaticPathnames();
-    expect(published).toContain("/");
-    expect(published).toContain("/consulting");
-    expect(published).toContain("/course");
-    expect(published).toContain("/mentorship");
-    expect(published).toContain("/blog");
-    expect(published).toContain("/about");
-    expect(published).toContain("/contact");
-    expect(published).toContain("/privacy");
+  // Exact, not `toContain`. This is the backstop for the failure the module
+  // exists to prevent: adding any route to routing.pathnames breaks this
+  // assertion, which forces a deliberate choice — publish it by listing it
+  // here, or hide it by listing it in INTERNAL_PATHNAMES. A `toContain` set
+  // cannot detect an addition, so it would not catch a leaked internal route.
+  it("publishes exactly the marketing pages and nothing else", () => {
+    expect([...publicStaticPathnames()].sort()).toEqual([
+      "/",
+      "/about",
+      "/blog",
+      "/consulting",
+      "/consulting/ai",
+      "/consulting/data-governance",
+      "/contact",
+      "/course",
+      "/mentorship",
+      "/privacy",
+    ]);
   });
 
   it("excludes dynamic segments, which get their entries from real data", () => {
