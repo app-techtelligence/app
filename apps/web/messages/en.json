@@ -49,6 +49,11 @@
       "ctaSecondary": "Explore our solutions",
       "whatsappMessage": "Hi! I found TechTelligence's website and I'd like to know more about your solutions."
     },
+    "proof": {
+      "experience": "10+ years in data engineering",
+      "stack": "Databricks · dbt · Airflow · Snowflake",
+      "compliance": "Data governance & LGPD"
+    },
     "doors": {
       "kicker": "Our solutions",
       "title": "Three paths, one goal: growing with technology",
