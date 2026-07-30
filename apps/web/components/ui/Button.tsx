@@ -3,8 +3,11 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 export type ButtonVariant = "primary" | "secondary" | "onDark" | "onDarkOutline";
 export type ButtonSize = "md" | "lg";
 
+// Square-ish radius, not a pill: the "Cume" direction pairs Archivo Expanded
+// and Plex Mono with contour geometry, and a pill fights that. Disabled buttons
+// get `pointer-events-none`, so the hover elevation never fires on them.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-bold transition-colors disabled:pointer-events-none disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:pointer-events-none disabled:opacity-60";
 
 // Monochrome, background-aware: filled fill flips navy↔white by context, with a
 // matching outline for secondary actions. Pick the pair that fits the surface.

@@ -31,6 +31,9 @@ apps/web/public/_headers
 # (regenerate with apps/web/scripts/generate-blog-covers.mjs)
 /blog-covers/
 
+# local image workspace (originals, banners, exports) — never in git
+/images/
+
 # brainstorming mockups served by the visual companion
 .superpowers/
 
