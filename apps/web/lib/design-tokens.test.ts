@@ -48,7 +48,8 @@ describe("brand tokens", () => {
 
 function sourceFiles(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
-    if (entry === "node_modules" || entry === ".next") continue;
+    if (entry === "node_modules" || entry === ".next" || entry === ".open-next")
+      continue;
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) sourceFiles(full, acc);
     else if (/\.tsx?$/.test(entry)) acc.push(full);
