@@ -56,11 +56,12 @@ Tokens are added to the `@theme` block in **both** `apps/web/app/globals.css` an
 | `canvas` | `#F7F8FA` | Off-white backgrounds | unchanged |
 | **`signal`** | **`#5AC8E0`** | Contour glow, active state on navy, focus ring on navy | **new** |
 
-`signal` has exactly three permitted uses:
+`signal` has exactly four permitted uses:
 
 1. **Contour glow** — the hero gradient runs `navy` → `signal`, with only the crest approaching white.
 2. **Active state on navy** — current nav item, current step, selected tab.
 3. **Focus ring on navy** — today `:focus-visible` is `steel` everywhere, which nearly disappears against navy.
+4. **Eyebrow / kicker on navy** — the small mono label above a heading, on dark surfaces only. This was in the approved prototype and is the accent's most visible moment; it is listed explicitly so it stays a decision rather than a drift.
 
 Unchanged: emphasis stays fill-vs-outline, never hue. Primary buttons remain filled navy on light and filled white on dark. Semantic red stays the only non-palette color, destructive meaning only. The legacy `accent*` aliases stay mapped onto navy/steel and stay off-limits in new code.
 
