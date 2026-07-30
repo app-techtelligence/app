@@ -200,7 +200,7 @@ export default async function StyleguidePage({ params }: Props) {
                 Data · font-mono / uppercase / tracking-[0.05em]
               </span>
               <p className="font-mono text-xs tracking-[0.05em] text-steel">
-                12+ ANOS · DATABRICKS · DBT · AIRFLOW · LGPD
+                ENGENHARIA DE DADOS · WEB · 7+ ANOS
               </p>
             </div>
           </div>

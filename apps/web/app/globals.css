@@ -25,6 +25,18 @@
      is the authority association the site was missing (spec §4). */
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo,
     monospace;
+
+  /* The hero's contour field crests at rgb(214,241,247), where white text is
+     1.18:1. There is no scrim behind the copy, so legibility comes from a halo
+     welded to the glyph: navy-deep at 85% over a crest resolves to 9.3:1 in the
+     letter's immediate neighbourhood. A halo is not a background under WCAG
+     1.4.3 — this is a deliberate, owner-approved departure from CLAUDE.md §12. */
+  --text-shadow-halo:
+    0 0 2px rgb(17 27 46 / 0.95), 0 0 6px rgb(17 27 46 / 0.9),
+    0 0 16px rgb(17 27 46 / 0.7), 0 1px 3px rgb(17 27 46 / 0.9);
+  /* Small type needs a tight blur or the halo clogs the counters. */
+  --text-shadow-halo-sm:
+    0 0 2px rgb(17 27 46 / 0.95), 0 0 5px rgb(17 27 46 / 0.7);
 }
 
 /* Display type is Archivo at width 122. Family and width axis ship together
