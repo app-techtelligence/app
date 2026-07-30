@@ -9,7 +9,11 @@ import {
 
 // Starting the clock mid-cycle avoids opening on a flat frame.
 const SEED_TIME = 6;
-const STEP = 0.05;
+// Units per millisecond. Advancing per frame instead would run the field at
+// double speed on a 120 Hz display.
+const RATE = 0.003;
+// One full cycle: the shader reads `t = time * 0.05` through fract(), period 1.
+const CYCLE = 20;
 
 /**
  * Decorative triangular contour field for the Home hero. Presentational only —
@@ -52,8 +56,12 @@ export function ContourField() {
       program.draw(time);
     };
 
-    const render = () => {
-      time += STEP;
+    let started = 0;
+    const render = (now: number) => {
+      if (!started) started = now;
+      // Wrapped to one cycle so the uniform stays small however long the tab
+      // stays open — float32 quantises the animation once `time` grows large.
+      time = SEED_TIME + (((now - started) * RATE) % CYCLE);
       program.draw(time);
       frame = requestAnimationFrame(render);
     };

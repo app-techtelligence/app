@@ -1,10 +1,11 @@
 /**
  * Triangular contour field — one fullscreen fragment shader, raw WebGL.
  *
- * The source material this derives from drew circles because its distance
- * function was `length(uv)`. Swapping in an equilateral-triangle SDF is the
- * whole geometry change; everything else is unchanged. Kept free of React so
- * the shader and the component lifecycle can move independently.
+ * Five concentric equilateral triangles, each born small at the centre and
+ * scaled outward until it clears the viewport. Evaluating the SDF at a new
+ * radius per ring — rather than reading contours off one fixed triangle — is
+ * what keeps the corners sharp at every size. Kept free of React so the shader
+ * and the component lifecycle can move independently.
  */
 
 /** A DPR-3 phone renders 9x the pixels through a five-division per-pixel loop. */
@@ -34,12 +35,28 @@ float sdTri(vec2 p, float r) {
 
 void main() {
   vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
+  // Corner distance in uv units: the radius at which a ring has just cleared
+  // the viewport. Derived from resolution, so ultrawide and portrait both fall
+  // out of the same expression — no per-breakpoint constant.
+  float reach = length(resolution) / min(resolution.x, resolution.y);
   float t = time * 0.05;
-  float lineWidth = 0.0022;
-  float d = sdTri(uv, 0.55);
+  float lineWidth = 0.01;
+  // Diagonal grain at a quarter slope. mod() has slope 1 whatever its modulus,
+  // so at full strength this term out-gradients the triangle itself and the
+  // field reads as diagonal banding; scaling the amplitude is what lets the
+  // geometry win.
+  float shear = 0.25 * mod(uv.x + uv.y, 0.24);
   float acc = 0.0;
   for (int i = 0; i < 5; i++) {
-    acc += lineWidth * float(i * i) / abs(fract(t + float(i) * 0.01) * 5.0 - d + mod(uv.x + uv.y, 0.2));
+    float ph = fract(t + float(i) * 0.2);
+    // The triangle is scaled, not offset. Offsetting an SDF is a Minkowski sum
+    // with a disc, which rounds the corners away into a circle at any real
+    // distance — the shape has to be re-evaluated at each radius to stay sharp.
+    float d = sdTri(uv, mix(0.05, reach, ph));
+    // Weight follows phase rather than loop index, so every ring is born and
+    // dies at the same brightness and the wrap never pops.
+    float w = smoothstep(0.0, 0.06, ph) * (1.0 - smoothstep(0.75, 1.0, ph));
+    acc += lineWidth * w / abs(d + shear);
   }
   // navy -> signal -> white. One intensity ramp, so the field obeys the
   // accent rule instead of the source's per-channel RGB fringing.
