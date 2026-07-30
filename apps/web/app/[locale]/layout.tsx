@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { Manrope } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Manrope } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -12,6 +12,23 @@ import "../globals.css";
 const manrope = Manrope({
   subsets: ["latin", "latin-ext"],
   variable: "--font-manrope",
+  display: "swap",
+});
+
+// Variable font: omitting `weight` keeps the full range, and `axes` opts into
+// the width axis so headings can be set at wdth 122 (spec §4).
+const archivo = Archivo({
+  subsets: ["latin", "latin-ext"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+// Static family — the two weights actually used are requested explicitly.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
@@ -37,7 +54,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={manrope.variable}>
+    <html
+      lang={locale}
+      className={`${manrope.variable} ${archivo.variable} ${plexMono.variable}`}
+    >
       <body className="flex min-h-svh flex-col font-sans antialiased">
         <NextIntlClientProvider messages={{ common: messages.common }}>
           <Header />

@@ -21,6 +21,17 @@
   --color-accent-ink: #667080; /* → steel: muted labels/eyebrows on light (AA) */
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  /* Data, labels and eyebrows only — IBM engineering-documentation heritage
+     is the authority association the site was missing (spec §4). */
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+}
+
+/* Display type is Archivo at width 122. Family and width axis ship together
+   as one utility because setting either alone is always a mistake. */
+@utility display-expanded {
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: "wdth" 122;
 }
 
 @layer base {
