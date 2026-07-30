@@ -31,7 +31,8 @@ and spacing — never from hue. Semantic red is the one exception (below).
 (passes AAA), 1.95:1 on white (fails — do not use on light). Four permitted
 uses, all on navy surfaces only:
 
-1. Contour/WebGL glow (hero shader and `ContourBand` animations)
+1. Contour/WebGL glow — the Home hero shader only (`ContourBand` is static
+   SVG and draws in navy/steel/white, never `signal`)
 2. Active-state indicator on navy navigation
 3. Focus ring inside `.on-navy` blocks
 4. Eyebrow / kicker on navy sections
@@ -208,9 +209,11 @@ NOT import from web. Reuse these before inventing new ones:
    silent `return` on failure, `revalidatePath("/", "layout")` on success.
    RLS is the real gate — new tables get default-deny RLS policies in a new
    `supabase/migrations/000N_*.sql`, also appended to `setup-all.sql`.
-6. Dark surfaces carry `.on-navy` so the focus ring is visible (the
-   `.on-navy` class switches the CSS `--focus-ring` variable from `steel`
-   to `signal`).
+6. Dark surfaces carry `.on-navy` so the focus ring is visible. The rule is
+   `.on-navy :focus-visible { outline-color: var(--color-signal) }` — a
+   descendant override of the base ring, not a variable. Without the class a
+   dark block keeps the `steel` ring, which is only 2.9:1 on navy and fails
+   WCAG 1.4.11.
 7. `signal` never appears on a light surface — contrast is 1.95:1 on white,
    which fails WCAG AA. Any use of `text-signal`, `border-signal`, or related
    utilities must be inside a `.on-navy`/`bg-navy` ancestor.
