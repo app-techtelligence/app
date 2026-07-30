@@ -12,9 +12,10 @@ Tokens are duplicated (deliberately, see CLAUDE.md §13.5) in
 ## 1. Design tokens
 
 The palette is **monochrome — the logo's colors only**: navy, gray-blue
-(`steel`), and white/off-white. There is **no accent color** (amber was
-removed 2026-07-13). Hierarchy comes from fill vs. outline, weight, size, and
-spacing — never from hue. Semantic red is the one exception (below).
+(`steel`), and white/off-white, plus a single accent token (`signal`) that is
+strictly limited to navy surfaces. There is **no general accent color** (amber
+was removed 2026-07-13). Hierarchy comes from fill vs. outline, weight, size,
+and spacing — never from hue. Semantic red is the one exception (below).
 
 | Token | Value | Use for |
 |---|---|---|
@@ -24,6 +25,21 @@ spacing — never from hue. Semantic red is the one exception (below).
 | `steel-light` | `#9AA3B0` | Muted text / eyebrows on navy (AA) |
 | `canvas` | `#F7F8FA` | Off-white backgrounds |
 | `white` | `#FFFFFF` | Text/fills on navy; page background (web) |
+| `signal` | `#5AC8E0` | Strictly on navy only — see rules below |
+
+**`signal` — the one constrained accent.** Contrast ratios: 7.4:1 on navy
+(passes AAA), 1.95:1 on white (fails — do not use on light). Four permitted
+uses, all on navy surfaces only:
+
+1. Contour/WebGL glow (hero shader and `ContourBand` animations)
+2. Active-state indicator on navy navigation
+3. Focus ring inside `.on-navy` blocks
+4. Eyebrow / kicker on navy sections
+
+`signal` is **never** a button fill, link color, or background. It must not
+appear on white, canvas, or any light surface. `apps/web/lib/design-tokens.test.ts`
+enforces this by scanning every `.ts`/`.tsx` file and asserting no file
+contains a `bg-signal` utility class.
 
 **Legacy aliases — do not use in new code:** `accent` → navy, `accent-strong`
 → navy-deep, `accent-ink` → steel. They stay defined in both `globals.css`
@@ -46,29 +62,41 @@ Rules that keep us honest:
   `body` background is `canvas`. Don't "sync" it away.
 - Semantic red (danger, negative status) is Tailwind's default palette:
   tinted `bg-red-600/10` backgrounds with `text-red-700` text. It's the only
-  non-logo color allowed, and only for destructive/negative meaning.
-- The focus ring is `steel` (globals.css `:focus-visible`) so it reads on both
-  light and dark surfaces. Never suppress outlines.
+  non-logo color allowed (beyond `signal` on navy), and only for
+  destructive/negative meaning.
+- The focus ring is `steel` (globals.css `:focus-visible`) on light surfaces;
+  inside `.on-navy` blocks, the focus ring is `signal`. Never suppress outlines.
 - The blog-cover art direction (navy + amber editorial illustrations) is a
   **separate** system — see the `/blog-cover` skill — and is intentionally out
   of scope for this monochrome UI palette.
 
 ## 2. Typography
 
-Manrope via `next/font/google` (`subsets: ["latin", "latin-ext"]`, variable
-`--font-manrope`, `display: "swap"`), wired to `--font-sans`. Headings are
-extrabold with generous letter-spacing:
+Three families, each with a defined role — never mix their uses:
 
-| Element | Classes |
-|---|---|
-| Hero h1 (web) | `text-4xl font-extrabold leading-tight tracking-wide sm:text-5xl` |
-| Page h1 (platform) | `text-3xl font-extrabold tracking-wide text-navy` |
-| Section h2 | `text-3xl font-extrabold tracking-wide sm:text-4xl` |
-| Kicker / eyebrow | `text-xs font-bold uppercase tracking-[0.22em]` + `text-steel` (light bg) / `text-steel-light` (dark bg) |
-| Small section label (platform) | `text-sm font-extrabold uppercase tracking-[0.2em] text-navy`, preceded by `<TriangleBullet className="h-3 w-3 text-navy" />` |
-| Subtitle / lead | `text-steel` (platform) / `text-white/75` (on navy) |
-| Body small | `text-sm leading-relaxed text-steel` |
-| Wordmark | `font-extrabold uppercase tracking-[0.14em]`, "Tech" navy + "telligence" steel |
+- **Archivo Expanded** (`display-expanded` utility, `wdth` axis 122) — display
+  headings only (h1 and h2 in the marketing hero and page headers). Wide,
+  extrabold, tracked tight. Because the face is physically wide, headlines must
+  be shorter than they used to be; this is a **copy constraint, not a CSS one**.
+- **Manrope** (`--font-sans`, via `next/font/google`, `subsets: ["latin",
+  "latin-ext"]`, `display: "swap"`) — all body copy, UI labels, nav, card
+  content, and any running text. The default font for everything not covered
+  below.
+- **IBM Plex Mono** (`font-mono`) — data labels, eyebrows, kickers, and
+  counters at small sizes only. Never set running prose in Plex Mono.
+
+| Element | Family | Classes |
+|---|---|---|
+| Hero h1 (web) | Archivo Expanded | `display-expanded text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl` |
+| Section h2 (web display) | Archivo Expanded | `display-expanded text-2xl font-extrabold tracking-tight sm:text-3xl` |
+| Page h1 (platform) | Manrope | `text-3xl font-extrabold tracking-wide text-navy` |
+| Section h2 (platform) | Manrope | `text-3xl font-extrabold tracking-wide sm:text-4xl` |
+| Kicker / eyebrow | IBM Plex Mono | `font-mono text-xs uppercase tracking-[0.18em]` + `text-steel` (light bg) / `text-steel-light` (dark bg) / `text-signal` (on navy — one of the four permitted uses) |
+| Data / proof strip | IBM Plex Mono | `font-mono text-xs tracking-[0.05em] text-steel` |
+| Small section label (platform) | Manrope | `text-sm font-extrabold uppercase tracking-[0.2em] text-navy`, preceded by `<TriangleBullet className="h-3 w-3 text-navy" />` |
+| Subtitle / lead | Manrope | `text-steel` (platform) / `text-white/75` (on navy) |
+| Body small | Manrope | `text-sm leading-relaxed text-steel` |
+| Wordmark | Manrope | `font-extrabold uppercase tracking-[0.14em]`, "Tech" navy + "telligence" steel |
 
 ## 3. Layout
 
@@ -97,9 +125,11 @@ NOT import from web. Reuse these before inventing new ones:
   white + navy text) and `onDarkOutline` (white outline + white text). A
   main + secondary CTA pair is `primary`+`secondary` on light,
   `onDark`+`onDarkOutline` on dark. Sizes `md` (`h-11 px-5 text-sm`) and `lg`
-  (`h-12 px-7 text-base`). Links that look like buttons use
-  `className={buttonVariants(...)}`. In dense UI (cards), a compact one-off is
-  acceptable: `rounded-md bg-navy px-3 py-1.5 text-xs font-bold text-white`.
+  (`h-12 px-7 text-base`). Shape is `rounded-lg` with a hover lift
+  (`motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md`). Links
+  that look like buttons use `className={buttonVariants(...)}`. In dense UI
+  (cards), a compact one-off is acceptable: `rounded-md bg-navy px-3 py-1.5
+  text-xs font-bold text-white`. **`signal` is never a button fill.**
 - **Card** — `rounded-xl border border-navy/10 bg-white p-7 shadow-sm`
   (list rows `p-4 sm:p-5` + `transition-all hover:-translate-y-0.5
   hover:border-navy/60 hover:shadow-md`). Disabled/locked variant:
@@ -124,9 +154,17 @@ NOT import from web. Reuse these before inventing new ones:
   the lists they feed.
 - **Icons** — inline SVG in `components/ui/icons.tsx`, `currentColor`,
   `aria-hidden="true"`, `{className}` prop. Add new icons there, same style.
-- **Triangle motif** — `TriangleBullet` before section labels,
-  `TriangleDivider` between web sections, `LogoMark` watermark in heroes.
-  Echo the peak geometry; don't invent new decorative languages.
+- **Triangle / contour motif** — `TriangleBullet` before section labels,
+  `LogoMark` watermark in heroes. Echo the peak geometry; don't invent new
+  decorative languages.
+  - **`ContourBand`** (`components/ui/ContourBand.tsx`) — static SVG of the
+    same nested triangular isolines that the Home hero shader animates. Use this
+    between sections instead of inventing new geometry. Three tones: `steel`
+    (on light/canvas), `white` (on navy), `navy` (subtle on white). It is a
+    Server Component and needs no wrapper — render it directly.
+  - **`TriangleDivider`** — deprecated as of the Cume direction. It has
+    existing call sites that will be replaced in Phase 2; do not add new ones.
+    Prefer `ContourBand`.
 
 ## 5. Accessibility
 
@@ -170,3 +208,9 @@ NOT import from web. Reuse these before inventing new ones:
    silent `return` on failure, `revalidatePath("/", "layout")` on success.
    RLS is the real gate — new tables get default-deny RLS policies in a new
    `supabase/migrations/000N_*.sql`, also appended to `setup-all.sql`.
+6. Dark surfaces carry `.on-navy` so the focus ring is visible (the
+   `.on-navy` class switches the CSS `--focus-ring` variable from `steel`
+   to `signal`).
+7. `signal` never appears on a light surface — contrast is 1.95:1 on white,
+   which fails WCAG AA. Any use of `text-signal`, `border-signal`, or related
+   utilities must be inside a `.on-navy`/`bg-navy` ancestor.

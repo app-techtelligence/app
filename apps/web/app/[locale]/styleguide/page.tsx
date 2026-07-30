@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ContourBand } from "@/components/ui/ContourBand";
 
 // Internal design-system registry for validating components against
 // docs/style-guide.md. Not part of the marketing site — keep it out of search.
@@ -38,6 +39,12 @@ const PALETTE = [
     swatch: "bg-white",
     note: "Text/fills on navy; page background",
   },
+  {
+    name: "signal",
+    hex: "#5AC8E0",
+    swatch: "",
+    note: "ONLY on navy, only as light — 7.4:1 on navy, 1.95:1 on white",
+  },
 ];
 
 // The remaining two logo-palette tokens, shown for completeness.
@@ -61,7 +68,13 @@ type Swatch = { name: string; hex: string; swatch: string; note: string };
 function ColorSwatch({ name, hex, swatch, note }: Swatch) {
   return (
     <figure className="flex flex-col gap-3">
-      <div className={`h-24 w-full rounded-xl border border-navy/10 ${swatch}`} />
+      {/* An empty `swatch` means paint from the hex: a signal background
+          utility is banned by lib/design-tokens.test.ts and must stay
+          unavailable everywhere, including here. */}
+      <div
+        className={`h-24 w-full rounded-xl border border-navy/10 ${swatch}`}
+        style={swatch === "" ? { backgroundColor: hex } : undefined}
+      />
       <figcaption className="space-y-1">
         <div className="text-sm font-bold text-navy">{name}</div>
         <div className="font-mono text-xs text-steel">{hex}</div>
@@ -150,46 +163,44 @@ export default async function StyleguidePage({ params }: Props) {
 
         {/* Typography */}
         <Section
-          eyebrow="Manrope"
+          eyebrow="Archivo · Manrope · IBM Plex Mono"
           title="Typography"
-          description="Extrabold headings with tight tracking; body copy uses relaxed leading for a modern, floating feel."
+          description="Archivo at wdth 122 carries display type; Manrope carries body and UI; IBM Plex Mono is reserved for data, labels and eyebrows at small sizes. Never set body copy in Archivo or Plex Mono."
         >
           <div className="space-y-8">
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
-                Display H1 · text-5xl / extrabold / tracking-tight
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
+                Display H1 · display-expanded / extrabold / text-5xl
               </span>
-              <p className="text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
-                We build Data &amp; AI, so we know what the market hires for.
+              <p className="display-expanded text-4xl font-extrabold leading-[1.04] tracking-tight text-navy sm:text-5xl">
+                Dados que sustentam decisão.
               </p>
             </div>
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
-                H2 · text-3xl / extrabold / tracking-tight
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
+                Display H2 · display-expanded / extrabold / text-3xl
               </span>
-              <p className="text-2xl font-extrabold tracking-tight text-navy sm:text-3xl">
-                From no experience to a job in tech.
+              <p className="display-expanded text-2xl font-extrabold tracking-tight text-navy sm:text-3xl">
+                Construímos Dados &amp; IA para empresas.
               </p>
             </div>
             <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
-                Body · leading-relaxed
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
+                Body · Manrope / leading-relaxed
               </span>
               <p className="leading-relaxed text-navy">
-                Body copy in Manrope with relaxed leading. Direct sentences, no
-                corporate jargon — professional but encouraging. The extra line
-                height keeps long paragraphs readable and gives the layout room
-                to breathe.
+                Body copy stays in Manrope with relaxed leading. Direct
+                sentences, no corporate jargon — professional but encouraging.
+                Archivo Expanded is wide, so headlines have to be shorter than
+                they used to be; that is a copy constraint, not a CSS one.
               </p>
             </div>
             <div className="max-w-2xl space-y-2">
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
-                Muted body · text-steel / leading-loose
+              <span className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
+                Data · font-mono / uppercase / tracking-[0.05em]
               </span>
-              <p className="leading-loose text-steel">
-                Secondary and supporting copy uses steel for AA-safe contrast on
-                light surfaces, with even looser leading where a softer, quieter
-                voice is wanted.
+              <p className="font-mono text-xs tracking-[0.05em] text-steel">
+                12+ ANOS · DATABRICKS · DBT · AIRFLOW · LGPD
               </p>
             </div>
           </div>
@@ -199,7 +210,7 @@ export default async function StyleguidePage({ params }: Props) {
         <Section
           eyebrow="Components"
           title="Buttons"
-          description="Pill shape, transition-all, and a hover lift (hover:-translate-y-0.5 hover:shadow-md). Hover any button to see the elevation."
+          description="rounded-lg with a hover lift (motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md). Emphasis is fill vs. outline, never hue — signal is never a button fill."
         >
           <div className="space-y-4">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
@@ -286,6 +297,25 @@ export default async function StyleguidePage({ params }: Props) {
                 and no hover lift. Reserved for not-yet-available features.
               </p>
             </Card>
+          </div>
+        </Section>
+
+        {/* Contour geometry */}
+        <Section
+          eyebrow="Signature"
+          title="Contour geometry"
+          description="The animated triangular field is exclusive to the Home hero. Everywhere else the same geometry appears as a static SVG band — zero JavaScript, same language, lower volume."
+        >
+          <div className="space-y-6">
+            <div className="rounded-2xl bg-canvas p-10">
+              <ContourBand tone="steel" />
+            </div>
+            <div className="on-navy rounded-2xl bg-navy p-10">
+              <ContourBand tone="white" />
+              <p className="mt-6 text-center font-mono text-xs tracking-[0.05em] text-signal">
+                SIGNAL IS LEGIBLE HERE — AND ONLY HERE
+              </p>
+            </div>
           </div>
         </Section>
       </div>
