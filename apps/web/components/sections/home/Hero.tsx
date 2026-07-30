@@ -1,27 +1,28 @@
 import { getTranslations } from "next-intl/server";
 import { whatsappLink } from "@/lib/site-config";
-import { LogoMark } from "@/components/brand/LogoMark";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/icons";
+import { ContourField } from "./ContourField";
+import { ProofStrip } from "./ProofStrip";
 
 export async function Hero() {
   const t = await getTranslations("home.hero");
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-navy to-navy-deep">
-      <LogoMark
-        className="pointer-events-none absolute -right-16 -top-10 hidden h-[130%] w-auto text-white/[0.04] md:block"
-      />
-      <Container className="relative py-20 sm:py-28">
+    // `on-navy` switches :focus-visible to the signal ring; the gradient is a
+    // complete background on its own, so the canvas is free to not render.
+    <section className="on-navy relative isolate overflow-hidden bg-gradient-to-b from-navy to-navy-deep">
+      <ContourField />
+      <Container className="relative z-10 py-20 sm:py-28">
         <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-signal">
             {t("kicker")}
           </p>
-          <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-wide text-white sm:text-5xl">
+          <h1 className="display-expanded mt-6 text-4xl font-extrabold leading-[1.04] tracking-tight text-white sm:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
             {t("subtitle")}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -38,6 +39,7 @@ export async function Hero() {
               {t("ctaSecondary")}
             </a>
           </div>
+          <ProofStrip />
         </div>
       </Container>
     </section>
