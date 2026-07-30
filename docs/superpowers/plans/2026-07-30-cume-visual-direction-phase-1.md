@@ -268,7 +268,7 @@ Pills read friendly/consumer; the direction is precise/technical. In `apps/web/c
 // and Plex Mono with contour geometry, and a pill fights that. Disabled buttons
 // get `pointer-events-none`, so the hover elevation never fires on them.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md disabled:pointer-events-none disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 rounded-lg font-bold transition-all duration-300 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md disabled:pointer-events-none disabled:opacity-60";
 ```
 
 Leave `variants`, `sizes`, `buttonVariants()` and `Button` exactly as they are.
@@ -544,7 +544,8 @@ Then append this block to the end of the file:
 ```ts
 function sourceFiles(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
-    if (entry === "node_modules" || entry === ".next") continue;
+    if (entry === "node_modules" || entry === ".next" || entry === ".open-next")
+      continue;
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) sourceFiles(full, acc);
     else if (/\.tsx?$/.test(entry)) acc.push(full);
@@ -1799,7 +1800,7 @@ The mono sample line is illustrative registry text, not a site claim — the rea
 The Buttons section still describes the pill. Change its `description` prop to:
 
 ```tsx
-          description="rounded-lg with a hover lift (hover:-translate-y-0.5 hover:shadow-md). Emphasis is fill vs. outline, never hue — signal is never a button fill."
+          description="rounded-lg with a hover lift (motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md). Emphasis is fill vs. outline, never hue — signal is never a button fill."
 ```
 
 Then add a new `<Section>` immediately after the Cards section, before the closing `</div>`:
