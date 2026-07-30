@@ -45,6 +45,9 @@ export const routing = defineRouting({
       "pt-BR": "/privacidade",
       en: "/privacy",
     },
+    // Internal design-system registry. Same path in both locales, kept out of
+    // the sitemap by lib/sitemap-routes.ts and noindexed by its own metadata.
+    "/styleguide": "/styleguide",
   },
 });
 
