@@ -7,6 +7,10 @@
   --color-steel: #667080;
   --color-steel-light: #9aa3b0;
   --color-canvas: #f7f8fa;
+  /* The one accent (spec §2.1). 7.4:1 on navy, 1.95:1 on white — so it is
+     permitted ONLY on navy surfaces, only as light: contour glow, active
+     state, focus ring. Never a button fill, link color, or background. */
+  --color-signal: #5ac8e0;
   /* Monochrome logo palette — kept in sync with apps/web/app/globals.css.
      "accent*" are legacy aliases mapped onto the logo palette; prefer
      navy / navy-deep / steel directly in new code. */

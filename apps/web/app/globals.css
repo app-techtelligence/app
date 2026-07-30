@@ -8,6 +8,10 @@
   --color-steel: #667080;
   --color-steel-light: #9aa3b0; /* gray-blue for text on navy (AA) */
   --color-canvas: #f7f8fa;
+  /* The one accent (spec §2.1). 7.4:1 on navy, 1.95:1 on white — so it is
+     permitted ONLY on navy surfaces, only as light: contour glow, active
+     state, focus ring. Never a button fill, link color, or background. */
+  --color-signal: #5ac8e0;
   /* Monochrome logo palette — navy + gray-blue + white only, no accent color.
      These "accent*" names are legacy aliases kept so existing utilities resolve;
      they now map onto the logo palette. Prefer navy / navy-deep / steel directly
@@ -29,10 +33,15 @@
     background-color: color-mix(in srgb, var(--color-navy) 22%, transparent);
   }
 
-  /* Steel reads on both white and navy backgrounds — one focus ring everywhere. */
+  /* Steel reads on white but nearly vanishes on navy — dark surfaces opt in
+     to the signal ring by carrying `.on-navy`. */
   :focus-visible {
     outline: 2px solid var(--color-steel);
     outline-offset: 2px;
+  }
+
+  .on-navy :focus-visible {
+    outline-color: var(--color-signal);
   }
 
   /* Tailwind v4's reset leaves buttons with the default arrow cursor. */
