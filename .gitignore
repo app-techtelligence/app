@@ -31,6 +31,9 @@ apps/web/public/_headers
 # (regenerate with apps/web/scripts/generate-blog-covers.mjs)
 /blog-covers/
 
+# brainstorming mockups served by the visual companion
+.superpowers/
+
 # logs & OS noise
 *.log
 .DS_Store
