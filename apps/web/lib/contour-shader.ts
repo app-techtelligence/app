@@ -41,11 +41,13 @@ void main() {
   float reach = length(resolution) / min(resolution.x, resolution.y);
   float t = time * 0.05;
   float lineWidth = 0.01;
-  // Diagonal grain at a quarter slope. mod() has slope 1 whatever its modulus,
-  // so at full strength this term out-gradients the triangle itself and the
-  // field reads as diagonal banding; scaling the amplitude is what lets the
-  // geometry win.
-  float shear = 0.25 * mod(uv.x + uv.y, 0.24);
+  // Diagonal grain at a quarter slope. gl_FragCoord.y grows upward, so
+  // isolines of (uv.x - uv.y) rise left-to-right where (uv.x + uv.y) would
+  // fall — the sign is what sets which way the break lines lean. mod() has
+  // slope 1 whatever its modulus, so at full strength this term out-gradients
+  // the triangle itself and the field reads as diagonal banding; scaling the
+  // amplitude is what lets the geometry win.
+  float shear = 0.25 * mod(uv.x - uv.y, 0.24);
   float acc = 0.0;
   for (int i = 0; i < 5; i++) {
     float ph = fract(t + float(i) * 0.2);

@@ -11,8 +11,9 @@ import {
 const SEED_TIME = 6;
 // Units per millisecond. Advancing per frame instead would run the field at
 // double speed on a 120 Hz display.
-const RATE = 0.003;
+const RATE = 0.0024;
 // One full cycle: the shader reads `t = time * 0.05` through fract(), period 1.
+// At the rate above that is ~8.3s per cycle.
 const CYCLE = 20;
 
 /**
