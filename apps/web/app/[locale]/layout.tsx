@@ -72,9 +72,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           <RevealObserver />
         </NextIntlClientProvider>
         {/* Last in the body and synchronous: it measures a fully parsed page
-            and hides the sections still short of the trigger line before the
-            browser's first paint. React effects all run after that paint, so
-            arming there would flash out the section peeking above the fold. */}
+            and hides every marked block before the browser's first paint, then
+            two frames later lets the ones on screen rise into place — the
+            page's entrance. React effects all run after that first paint, so
+            hiding anything visible from one would flash it out instead. */}
         <script dangerouslySetInnerHTML={{ __html: REVEAL_BOOTSTRAP }} />
       </body>
     </html>

@@ -98,7 +98,11 @@ export default async function PostPage({ params }: Props) {
   };
 
   return (
-    <article className="bg-white py-12 sm:py-16">
+    <article
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white py-12 sm:py-16"
+    >
       <Container className="max-w-3xl">
         <Link
           href="/blog"

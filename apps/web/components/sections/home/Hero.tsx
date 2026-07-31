@@ -19,7 +19,7 @@ export async function Hero() {
             and every piece of copy carries its own halo instead. The filled CTA
             is the one exception — its label is navy on white, where a navy halo
             would only smudge. */}
-        <div className="max-w-2xl">
+        <div data-reveal suppressHydrationWarning className="max-w-2xl">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-signal text-shadow-halo-sm">
             {t("kicker")}
           </p>

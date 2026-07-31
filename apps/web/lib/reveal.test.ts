@@ -5,7 +5,10 @@ import { REVEAL_TRIGGER, shouldArm } from "./reveal";
 const FOLD = 800 * (1 - REVEAL_TRIGGER);
 
 describe("shouldArm", () => {
-  it("leaves anything already past the trigger line alone", () => {
+  // False does not mean "never hidden" — every marked block is hidden for two
+  // frames so the entrance has somewhere to fade from. It means "released as
+  // soon as those frames are up", rather than held back until a scroll.
+  it("does not hold back what is already past the trigger line", () => {
     expect(shouldArm({ top: 0, height: 600 }, 800)).toBe(false);
     expect(shouldArm({ top: FOLD - 1, height: 600 }, 800)).toBe(false);
     expect(shouldArm({ top: -1200, height: 600 }, 800)).toBe(false);

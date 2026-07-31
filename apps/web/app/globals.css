@@ -119,6 +119,17 @@
   }
 }
 
+/* Print gets the whole page, armed or not. Paper has no fold and no scroll, so
+   nothing would ever release what the reader never reached — and the two frames
+   the entrance waits on are frames a print never renders. Without this, printing
+   the privacy policy yields blank pages. */
+@media print {
+  [data-reveal][data-armed] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Curtain footer: `bottom: 0` pins the footer to the bottom of the viewport
    until its own natural bottom edge finally reaches it, at the end of the
    document — while `main`, opaque and at z-10, slides over it.

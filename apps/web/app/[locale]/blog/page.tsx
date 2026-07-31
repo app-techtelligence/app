@@ -26,16 +26,25 @@ export default async function BlogPage({ params }: Props) {
   return (
     <>
       <section className="bg-gradient-to-b from-navy to-navy-deep py-16 text-center sm:py-20">
-        <Container className="flex flex-col items-center">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
-            {t("kicker")}
-          </p>
-          <h1 className="mt-4 text-4xl font-extrabold tracking-wide text-white sm:text-5xl">
-            {t("title")}
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-            {t("subtitle")}
-          </p>
+        <Container>
+          {/* The mark sits here, not on the section: the navy is the page's
+              surface at this point, and letting it slide would open a white
+              seam under the header. */}
+          <div
+            data-reveal
+            suppressHydrationWarning
+            className="flex flex-col items-center"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
+              {t("kicker")}
+            </p>
+            <h1 className="mt-4 text-4xl font-extrabold tracking-wide text-white sm:text-5xl">
+              {t("title")}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+              {t("subtitle")}
+            </p>
+          </div>
         </Container>
       </section>
 
