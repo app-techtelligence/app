@@ -37,6 +37,21 @@
   /* Small type needs a tight blur or the halo clogs the counters. */
   --text-shadow-halo-sm:
     0 0 2px rgb(17 27 46 / 0.95), 0 0 5px rgb(17 27 46 / 0.7);
+
+  /* Language-switcher panel. Applied with motion-safe:, so anyone asking for
+     reduced motion gets the panel already in place. */
+  --animate-fade-in: fade-in 120ms ease-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 /* Display type is Archivo at width 122. Family and width axis ship together

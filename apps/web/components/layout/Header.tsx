@@ -85,7 +85,11 @@ export async function Header() {
         </div>
 
         <div className="flex items-center gap-3">
-          <LocaleSwitcher />
+          {/* Below `md` the language lives inside the MobileNav panel, so the
+              375px header keeps only the logo and the menu button. */}
+          <div className="hidden md:block">
+            <LocaleSwitcher />
+          </div>
           {/* Wrapper owns the responsive visibility: buttonVariants() hardcodes
               `inline-flex` in its base, which would override a `hidden` placed
               directly on the link and keep the button visible on mobile. */}

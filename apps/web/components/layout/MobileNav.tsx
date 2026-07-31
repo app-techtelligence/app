@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import type { StaticAppPathname } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/navigation";
+import { routing, type StaticAppPathname } from "@/i18n/routing";
 import { buttonVariants } from "@/components/ui/Button";
-import { CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { CheckIcon, CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { localeSwitchHref } from "@/lib/locale-switch";
+import { LOCALE_LABELS, useActiveLocale } from "./LocaleSwitcher";
 
 const links: { href: StaticAppPathname; key: "course" | "mentorship" | "blog" | "about" }[] = [
   { href: "/course", key: "course" },
@@ -22,6 +24,10 @@ const serviceLinks: { href: StaticAppPathname; key: "servicesAi" | "servicesData
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const t = useTranslations("common");
+  // The language switcher is header-only from `md` up, so on mobile it lives
+  // here — as plain rows, since a dropdown inside an open panel is redundant.
+  const localeHref = localeSwitchHref(usePathname());
+  const activeLocale = useActiveLocale();
 
   return (
     <div className="md:hidden">
@@ -72,6 +78,34 @@ export function MobileNav() {
             >
               {t("nav.contact")}
             </Link>
+
+            <div className="mt-1 border-t border-navy/10 pt-3 pb-1">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-steel">
+                {t("localeSwitcher.label")}
+              </p>
+              {routing.locales.map((candidate) =>
+                candidate === activeLocale ? (
+                  <span
+                    key={candidate}
+                    aria-current="true"
+                    className="flex items-center gap-2 py-2.5 text-base font-bold text-navy"
+                  >
+                    {LOCALE_LABELS[candidate]}
+                    <CheckIcon className="h-4 w-4" />
+                  </span>
+                ) : (
+                  <Link
+                    key={candidate}
+                    href={localeHref}
+                    locale={candidate}
+                    onClick={() => setOpen(false)}
+                    className="block py-2.5 text-base font-semibold text-navy/75"
+                  >
+                    {LOCALE_LABELS[candidate]}
+                  </Link>
+                ),
+              )}
+            </div>
           </nav>
         </div>
       ) : null}
