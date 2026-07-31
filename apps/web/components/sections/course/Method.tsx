@@ -10,7 +10,11 @@ export async function Method() {
   const t = await getTranslations("course.method");
 
   return (
-    <section data-reveal className="bg-white py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white py-16 sm:py-20"
+    >
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>

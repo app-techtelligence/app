@@ -8,6 +8,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { RevealObserver } from "@/components/layout/RevealObserver";
+import { REVEAL_BOOTSTRAP } from "@/lib/reveal-bootstrap";
 import "../globals.css";
 
 const manrope = Manrope({
@@ -70,6 +71,11 @@ export default async function LocaleLayout({ children, params }: Props) {
           <WhatsAppFloat />
           <RevealObserver />
         </NextIntlClientProvider>
+        {/* Last in the body and synchronous: it measures a fully parsed page
+            and hides the sections still short of the trigger line before the
+            browser's first paint. React effects all run after that paint, so
+            arming there would flash out the section peeking above the fold. */}
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_BOOTSTRAP }} />
       </body>
     </html>
   );

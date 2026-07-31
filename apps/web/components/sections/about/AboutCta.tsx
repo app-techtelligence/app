@@ -10,7 +10,11 @@ export async function AboutCta() {
   const t = await getTranslations("about.finalCta");
 
   return (
-    <section data-reveal className="bg-white py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white py-16 sm:py-20"
+    >
       <Container className="flex flex-col items-center text-center">
         <SectionHeading title={t("title")} subtitle={t("subtitle")} />
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">

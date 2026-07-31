@@ -89,17 +89,18 @@
   }
 }
 
-/* Section reveal. Only JS writes `armed`, and only on elements below the fold:
-   with the bundle down the attribute stays empty, nothing matches, and the whole
-   page remains visible. Deliberately outside @layer — an unlayered rule beats
-   Tailwind's utilities without a specificity fight. */
+/* Section reveal. `data-reveal` is the server-rendered mark; `data-armed` is
+   written only by JS, and only on a section that has not reached the trigger
+   line. With the bundle down nothing carries `data-armed`, nothing matches, and
+   the whole page stays visible. Deliberately outside @layer — an unlayered rule
+   beats Tailwind's utilities without a specificity fight. */
 [data-reveal] {
   transition:
     opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-[data-reveal="armed"] {
+[data-reveal][data-armed] {
   opacity: 0;
   transform: translateY(16px);
   /* A transition is read off the destination style, so `none` here makes arming
@@ -112,7 +113,7 @@
     transition: none;
   }
 
-  [data-reveal="armed"] {
+  [data-reveal][data-armed] {
     opacity: 1;
     transform: none;
   }

@@ -8,7 +8,11 @@ export async function ServiceEngagement({ namespace }: { namespace: ServiceNames
   const t = await getTranslations(`${namespace}.engagement`);
 
   return (
-    <section data-reveal className="bg-white py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white py-16 sm:py-20"
+    >
       <Container>
         <SectionHeading
           kicker={t("kicker")}

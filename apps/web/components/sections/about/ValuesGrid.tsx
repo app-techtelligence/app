@@ -7,7 +7,11 @@ export async function ValuesGrid() {
   const t = await getTranslations("about.values");
 
   return (
-    <section data-reveal className="bg-canvas py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-canvas py-16 sm:py-20"
+    >
       <Container>
         <SectionHeading
           kicker={t("kicker")}

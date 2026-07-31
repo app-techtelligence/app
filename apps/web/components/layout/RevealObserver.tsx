@@ -1,23 +1,27 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
-import { shouldArm } from "@/lib/reveal";
+import { REVEAL_TRIGGER, shouldArm } from "@/lib/reveal";
 
 // threshold 0 is mandatory: a 3000px section (the privacy policy) never reaches
 // a fractional visibility ratio in a 700px viewport, and would stay hidden
 // forever. The +9999px top margin disarms anything at or above the viewport
 // immediately, so scroll restoration never strands a section invisible.
 //
-// The negative bottom margin is the trigger point, tuned by eye: a section has
-// to climb 15% of the viewport past the bottom edge before it reveals. Larger
-// fires later. It cannot strand anything — the shortest possible gap below an
-// armed section is its own height plus the footer, always over 15% of a viewport.
-const ROOT_MARGIN = "9999px 0px -15% 0px";
+// The negative bottom margin is the trigger point, and it mirrors `shouldArm`
+// by construction: a section is armed exactly when it has not reached this
+// line, so nothing is ever hidden and revealed in the same breath.
+const ROOT_MARGIN = `9999px 0px -${REVEAL_TRIGGER * 100}% 0px`;
+
+// The bootstrap arms the first page before it paints. This has to beat the
+// paint too, on every client-side navigation — hence a layout effect. The
+// swap keeps React quiet during server rendering, where neither one runs.
+const useArmEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * One observer for the whole page. Sections ship visible and server-rendered;
- * this only hides the ones still below the fold, then reveals them on approach.
+ * only JavaScript ever hides one, and only before it has been painted.
  */
 export function RevealObserver() {
   // `next/navigation`, not `@/i18n/navigation`: the raw path carries the locale
@@ -25,7 +29,10 @@ export function RevealObserver() {
   // this dependency the effect dies on the first internal link click.
   const pathname = usePathname();
 
-  useEffect(() => {
+  useArmEffect(() => {
+    // Calls off the bootstrap's dead-man switch: the bundle is here.
+    document.documentElement.setAttribute("data-reveal-live", "");
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const targets = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -35,9 +42,7 @@ export function RevealObserver() {
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          // Empty value, not removeAttribute: the base `[data-reveal]` rule
-          // carries the transition, and dropping it would kill the animation.
-          entry.target.setAttribute("data-reveal", "");
+          entry.target.removeAttribute("data-armed");
           observer.unobserve(entry.target);
         }
       },
@@ -46,8 +51,13 @@ export function RevealObserver() {
 
     const viewport = window.innerHeight;
     targets.forEach((el) => {
-      if (!shouldArm(el.getBoundingClientRect(), viewport)) return;
-      el.dataset.reveal = "armed";
+      // Anything the bootstrap already armed is left as it is: its rect now
+      // carries the 16px offset of the hidden state, and re-measuring would
+      // read a position the section does not really occupy.
+      if (!el.hasAttribute("data-armed")) {
+        if (!shouldArm(el.getBoundingClientRect(), viewport)) return;
+        el.setAttribute("data-armed", "");
+      }
       observer.observe(el);
     });
 
