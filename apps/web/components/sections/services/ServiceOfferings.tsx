@@ -9,7 +9,7 @@ export async function ServiceOfferings({ namespace }: { namespace: ServiceNamesp
   const t = await getTranslations(`${namespace}.offerings`);
 
   return (
-    <section className="bg-canvas py-16 sm:py-20">
+    <section data-reveal className="bg-canvas py-16 sm:py-20">
       <Container>
         <SectionHeading
           kicker={t("kicker")}

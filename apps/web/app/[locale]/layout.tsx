@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 import "../globals.css";
 
 const manrope = Manrope({
@@ -61,9 +62,13 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="flex min-h-svh flex-col font-sans antialiased">
         <NextIntlClientProvider messages={{ common: messages.common }}>
           <Header />
-          <main className="flex-1">{children}</main>
+          {/* Opaque and on top: the footer stays pinned behind this layer and is
+              uncovered as the page slides up. Without the background, the
+              footer's navy bleeds through. */}
+          <main className="relative z-10 flex-1 bg-white">{children}</main>
           <Footer />
           <WhatsAppFloat />
+          <RevealObserver />
         </NextIntlClientProvider>
       </body>
     </html>

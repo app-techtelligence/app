@@ -17,7 +17,7 @@ export async function EcosystemBand() {
   const t = await getTranslations("about.ecosystem");
 
   return (
-    <section className="bg-navy py-16 sm:py-20">
+    <section data-reveal className="bg-navy py-16 sm:py-20">
       <Container>
         <TriangleDivider tone="white" className="mb-4" />
         <SectionHeading

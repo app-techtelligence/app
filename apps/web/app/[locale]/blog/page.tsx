@@ -39,7 +39,7 @@ export default async function BlogPage({ params }: Props) {
         </Container>
       </section>
 
-      <section className="bg-canvas py-16 sm:py-20">
+      <section data-reveal className="bg-canvas py-16 sm:py-20">
         <Container>
           {posts.length === 0 ? (
             <div className="flex flex-col items-center py-10 text-center">

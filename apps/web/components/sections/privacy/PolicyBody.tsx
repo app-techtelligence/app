@@ -38,7 +38,7 @@ export async function PolicyBody() {
   };
 
   return (
-    <section className="bg-white pb-16 pt-10 sm:pb-20">
+    <section data-reveal className="bg-white pb-16 pt-10 sm:pb-20">
       <Container>
         <div className="mx-auto max-w-3xl space-y-10">
           {sections.map(({ key, body, items }) => (

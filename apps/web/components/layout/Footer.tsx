@@ -23,7 +23,7 @@ export async function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-navy bg-navy text-white">
+    <footer className="on-navy curtain-footer bg-navy text-white">
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <Link href="/" className="flex items-center gap-2">

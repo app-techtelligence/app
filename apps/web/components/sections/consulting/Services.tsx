@@ -9,7 +9,7 @@ export async function Services() {
   const t = await getTranslations("consulting.services");
 
   return (
-    <section className="bg-canvas py-16 sm:py-20">
+    <section data-reveal className="bg-canvas py-16 sm:py-20">
       <Container>
         <SectionHeading
           kicker={t("kicker")}

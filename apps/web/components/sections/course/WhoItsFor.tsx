@@ -10,7 +10,7 @@ export async function WhoItsFor() {
   const personas = t.raw("personas") as { title: string; text: string }[];
 
   return (
-    <section id="for-whom" className="bg-white py-16 sm:py-20">
+    <section id="for-whom" data-reveal className="bg-white py-16 sm:py-20">
       <Container>
         <SectionHeading
           kicker={t("kicker")}

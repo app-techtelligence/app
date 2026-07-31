@@ -13,7 +13,7 @@ export async function WhyUs() {
   const t = await getTranslations("consulting.whyUs");
 
   return (
-    <section className="bg-navy py-16 sm:py-20">
+    <section data-reveal className="bg-navy py-16 sm:py-20">
       <Container>
         <SectionHeading
           kicker={t("kicker")}

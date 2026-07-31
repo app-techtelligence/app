@@ -24,7 +24,7 @@ export async function TalentBridge({ audience }: TalentBridgeProps) {
   const t = await getTranslations(`talentBridge.${audience}`);
 
   return (
-    <section className="bg-canvas py-16 sm:py-20">
+    <section data-reveal className="bg-canvas py-16 sm:py-20">
       <Container className="grid items-center gap-10 md:grid-cols-2">
         <div>
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-accent-ink">

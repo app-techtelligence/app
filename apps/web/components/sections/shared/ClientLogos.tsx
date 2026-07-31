@@ -45,7 +45,7 @@ export async function ClientLogos({ variant = "band" }: ClientLogosProps) {
 
   if (variant === "strip") {
     return (
-      <section className="border-b border-navy/5 bg-canvas py-10">
+      <section data-reveal className="border-b border-navy/5 bg-canvas py-10">
         <Container>
           <p className="mb-6 text-center text-xs font-bold uppercase tracking-[0.22em] text-steel">
             {t("stripTitle")}
@@ -57,7 +57,7 @@ export async function ClientLogos({ variant = "band" }: ClientLogosProps) {
   }
 
   return (
-    <section className="bg-canvas py-16 sm:py-20">
+    <section data-reveal className="bg-canvas py-16 sm:py-20">
       <Container>
         <SectionHeading
           kicker={t("kicker")}

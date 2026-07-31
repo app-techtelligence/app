@@ -6,7 +6,7 @@ export async function Approach() {
   const t = await getTranslations("consulting.approach");
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section data-reveal className="bg-white py-16 sm:py-20">
       <Container>
         <SectionHeading
           kicker={t("kicker")}

@@ -11,7 +11,7 @@ export async function FinalCta() {
   const locale = await getLocale();
 
   return (
-    <section className="bg-navy py-16 text-center sm:py-20">
+    <section data-reveal className="bg-navy py-16 text-center sm:py-20">
       <Container className="flex flex-col items-center">
         <TriangleDivider tone="white" />
         <h2 className="mt-4 max-w-3xl text-2xl font-extrabold tracking-wide text-white sm:text-3xl">

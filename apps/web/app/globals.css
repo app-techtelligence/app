@@ -88,3 +88,58 @@
     cursor: pointer;
   }
 }
+
+/* Section reveal. Only JS writes `armed`, and only on elements below the fold:
+   with the bundle down the attribute stays empty, nothing matches, and the whole
+   page remains visible. Deliberately outside @layer — an unlayered rule beats
+   Tailwind's utilities without a specificity fight. */
+[data-reveal] {
+  transition:
+    opacity 500ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+[data-reveal="armed"] {
+  opacity: 0;
+  transform: translateY(16px);
+  /* A transition is read off the destination style, so `none` here makes arming
+     instant and disarming animated — exactly the asymmetry we want. */
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
+
+  [data-reveal="armed"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Curtain footer: `bottom: 0` pins the footer to the bottom of the viewport
+   until its own natural bottom edge finally reaches it, at the end of the
+   document — while `main`, opaque and at z-10, slides over it.
+
+   The gate is not decorative. A sticky taller than the viewport crops its own
+   top forever: at the end of the scroll the pinned position equals the natural
+   one, so the rows above never get painted — the logo, the description and the
+   first links would be unreachable, yet still focusable: WCAG 2.4.11.
+
+   Measured footer heights (identical in PT and EN, which is the binding pair):
+   375px wide → 693px, one column;  640-1023px → 495px, two columns;
+   1024px+ → 361px, four columns. So the width gate is what keeps the tall
+   one-column layout out, and 36rem (576px) clears the 495px worst case by 81px.
+   Both gates are in rem on purpose: a reader with a larger default font scales
+   the footer and the threshold together. Re-measure if the footer gains rows.
+
+   `no-preference` because scroll-coupled parallax is the canonical WCAG 2.3.3
+   case. Under `reduce` the footer goes back to static and the rest is inert. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 40rem) and (min-height: 36rem) {
+  .curtain-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+  }
+}
