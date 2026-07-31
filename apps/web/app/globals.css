@@ -96,13 +96,13 @@
    beats Tailwind's utilities without a specificity fight. */
 [data-reveal] {
   transition:
-    opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    opacity 800ms ease-out,
+    transform 800ms ease-out;
 }
 
 [data-reveal][data-armed] {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(24px);
   /* A transition is read off the destination style, so `none` here makes arming
      instant and disarming animated — exactly the asymmetry we want. */
   transition: none;

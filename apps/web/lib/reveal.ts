@@ -5,8 +5,8 @@
  *
  * Mark the element that should move, not the one that paints the background.
  * On a section whose surface differs from the page — a navy band, an off-white
- * strip — the mark belongs on the content inside it, or the 16px rise drags
- * the coloured edge with it and opens a gap against the neighbour. Where the
+ * strip — the mark belongs on the content inside it, or the rise drags the
+ * coloured edge with it and opens a gap against the neighbour. Where the
  * surface is the page's own white, section and content are indistinguishable
  * and the outer element is the simpler mark.
  *

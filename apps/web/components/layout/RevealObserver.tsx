@@ -65,7 +65,7 @@ export function RevealObserver() {
     targets.forEach((el) => {
       if (el.hasAttribute("data-armed")) {
         // Already hidden by the bootstrap, which also scheduled its release.
-        // Re-measuring would read the 16px offset of the hidden state, a
+        // Re-measuring would read the hidden state's downward offset, a
         // position the block does not really occupy.
         observer.observe(el);
         return;
