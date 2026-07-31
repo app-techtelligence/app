@@ -44,3 +44,5 @@ Thumbs.db
 
 # Claude Code personal settings
 .claude/settings.local.json
+# local dev/preview launch targets — machine-specific ports, not project config
+.claude/launch.json
