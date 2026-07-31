@@ -95,8 +95,8 @@
    Tailwind's utilities without a specificity fight. */
 [data-reveal] {
   transition:
-    opacity 500ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 [data-reveal="armed"] {

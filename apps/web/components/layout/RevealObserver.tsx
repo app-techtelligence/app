@@ -8,7 +8,12 @@ import { shouldArm } from "@/lib/reveal";
 // a fractional visibility ratio in a 700px viewport, and would stay hidden
 // forever. The +9999px top margin disarms anything at or above the viewport
 // immediately, so scroll restoration never strands a section invisible.
-const ROOT_MARGIN = "9999px 0px -10% 0px";
+//
+// The negative bottom margin is the trigger point, tuned by eye: a section has
+// to climb 15% of the viewport past the bottom edge before it reveals. Larger
+// fires later. It cannot strand anything — the shortest possible gap below an
+// armed section is its own height plus the footer, always over 15% of a viewport.
+const ROOT_MARGIN = "9999px 0px -15% 0px";
 
 /**
  * One observer for the whole page. Sections ship visible and server-rendered;
