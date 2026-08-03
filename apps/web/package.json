@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/generate-headers.mjs",
+    "prebuild": "node scripts/generate-headers.mjs && node scripts/generate-knowledge.mjs",
+    "generate:knowledge": "node scripts/generate-knowledge.mjs",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
@@ -16,6 +17,7 @@
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0",
     "@marsidev/react-turnstile": "^1.5.3",
     "@opennextjs/cloudflare": "^1.20.1",
     "@supabase/supabase-js": "^2.110.1",

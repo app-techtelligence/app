@@ -92,3 +92,12 @@ export function LinkIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+/** Balão de chat com nariz triangular — eco da geometria do logo. */
+export function ChatBubbleIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9.4L5 21.2A.6.6 0 0 1 4 20.7V17a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" />
+    </svg>
+  );
+}

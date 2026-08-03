@@ -12,6 +12,7 @@ const sections = [
   { key: "dataCollected", body: 1, items: 2 },
   { key: "howWeUse", body: 2, items: 0 },
   { key: "storage", body: 2, items: 0 },
+  { key: "assistant", body: 3, items: 0 },
   { key: "retention", body: 1, items: 0 },
   { key: "cookies", body: 2, items: 0 },
   { key: "infrastructure", body: 2, items: 0 },
