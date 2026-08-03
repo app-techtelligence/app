@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/generate-headers.mjs",
+    "prebuild": "node scripts/generate-headers.mjs && node scripts/generate-knowledge.mjs",
+    "generate:knowledge": "node scripts/generate-knowledge.mjs",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
