@@ -4,20 +4,21 @@ import { useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { CloseIcon } from "@/components/ui/icons";
 
-export type ChatPanelProps = { onClose: () => void };
+export type ChatPanelProps = { open: boolean; onClose: () => void };
 
-export function ChatPanel({ onClose }: ChatPanelProps) {
+export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const t = useTranslations("chat");
   const locale = useLocale();
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
+  }, [open, onClose]);
 
   return (
     <div

@@ -26,7 +26,7 @@ function subscribeNoop() {
   return () => {};
 }
 
-function UnavailablePanel({ onClose }: { onClose: () => void }) {
+function UnavailablePanel({ onClose }: { open: boolean; onClose: () => void }) {
   const t = useTranslations("chat");
   return (
     <div
@@ -78,6 +78,7 @@ export function ChatLauncher() {
       {loaded ? (
         <div hidden={!open}>
           <ChatPanel
+            open={open}
             onClose={() => {
               setOpen(false);
               buttonRef.current?.focus();
