@@ -219,6 +219,11 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
    *  em `retryContextRef`), senão um Retry pendente reenviaria um snapshot
    *  que já não é o fim real da conversa. */
   function handleLeadSuccess() {
+    // Cinto de segurança: com o `lead.cta` já `disabled={streaming || leadSent}`,
+    // isto não deveria disparar durante o streaming — mas gate mesmo assim, no
+    // mesmo padrão de handleSend/handleRetry, para nunca anexar a `messages`
+    // enquanto outro append (o delta do streaming) está em curso.
+    if (streaming) return;
     setErrorKind(null);
     retryContextRef.current = null;
     setLeadSent(true);
@@ -429,7 +434,7 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
         <button
           type="button"
           onClick={() => setLeadOpen(true)}
-          disabled={leadSent}
+          disabled={streaming || leadSent}
           className={`${OUTCOME_MUTED_LINK_CLS} disabled:pointer-events-none disabled:opacity-60`}
         >
           {t("lead.cta")}
@@ -442,21 +447,40 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
             sessionToken={leadSessionToken}
             locale={locale}
             topic={topic ?? "outros"}
-            transcript={messages}
+            // Defesa em profundidade (mesmo espírito do filtro em runStream):
+            // um turno assistant "" remanescente (parcial ainda não podado,
+            // ou uma janela entre setMessages/dropEmptyTrailingAssistant) não
+            // pode chegar ao POST — o servidor rejeitaria (min(1)) e devolveria
+            // um 400 que aqui só apareceria como o `error` genérico.
+            transcript={messages.filter((m) => m.content.trim().length > 0)}
             onSuccess={handleLeadSuccess}
             onCancel={() => setLeadOpen(false)}
           />
         ) : !connectionFailed ? (
           // Sem sessão pronta ainda (ex.: quem só clicou em chips) — o
           // Turnstile já roda desde a abertura do painel, então isto se
-          // resolve sozinho assim que `session.state` vira "ready". Se a
-          // sessão já falhou de vez (connectionFailed), não mostramos isto —
-          // ficaria "conectando" para sempre; o banner acima já cobre o erro
-          // com os desfechos WhatsApp/contato.
+          // resolve sozinho assim que `session.state` vira "ready".
           <div role="status" className="border-t border-navy/10 bg-canvas p-4 text-sm font-medium text-navy">
             {t("status.connecting")}
           </div>
-        ) : null
+        ) : (
+          // Sessão falhou de vez (connectionFailed) enquanto o lead estava
+          // aberto sem sessionToken: sem este ramo o slot renderizava `null`
+          // — um beco sem saída, já que o cta "Prefiro que me contatem" não
+          // é um toggle e o formulário normal não volta sozinho. Mesmo
+          // desfecho do banner acima (unavailable) + um Cancelar para voltar
+          // à conversa.
+          <div role="alert" className="space-y-2 border-t border-navy/10 bg-canvas p-4">
+            <p className="text-sm font-medium text-red-800">{t("status.unavailable")}</p>
+            <button
+              type="button"
+              onClick={() => setLeadOpen(false)}
+              className="text-xs font-semibold text-steel underline-offset-2 hover:underline"
+            >
+              {t("lead.cancel")}
+            </button>
+          </div>
+        )
       ) : (
         <form onSubmit={handleSubmit} className="flex items-end gap-2 border-t border-navy/10 p-3">
           <textarea

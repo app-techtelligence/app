@@ -18,20 +18,27 @@ type Props = {
 const inputCls =
   "w-full rounded-md border border-navy/20 bg-white px-3 py-2 text-sm text-navy placeholder:text-steel/70 focus:border-navy";
 
+// "contact" = client-side "nem e-mail nem telefone" (mostra contactHint em
+// vermelho); "delivery" = falha de rede/servidor (mostra a mensagem
+// genérica). Antes um único booleano fazia os dois casos mostrarem o mesmo
+// texto de "não conseguimos enviar", que confundia quem só esqueceu de
+// preencher um contato.
+type ErrorKind = "contact" | "delivery" | null;
+
 export function LeadForm({ sessionToken, locale, topic, transcript, onSuccess, onCancel }: Props) {
   const t = useTranslations("chat.lead");
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+  const [errorKind, setErrorKind] = useState<ErrorKind>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
-    setError(false);
+    setErrorKind(null);
     const fields = new FormData(event.currentTarget);
     const email = String(fields.get("email") ?? "").trim();
     const phone = String(fields.get("phone") ?? "").trim();
     if (!email && !phone) {
-      setError(true);
+      setErrorKind("contact");
       return;
     }
     setSubmitting(true);
@@ -54,22 +61,76 @@ export function LeadForm({ sessionToken, locale, topic, transcript, onSuccess, o
       if (!response.ok) throw new Error(String(response.status));
       onSuccess();
     } catch {
-      setError(true);
+      setErrorKind("delivery");
     } finally {
       setSubmitting(false);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 border-t border-navy/10 bg-canvas p-4">
+    <form
+      onSubmit={handleSubmit}
+      onChange={() => setErrorKind(null)}
+      className="space-y-3 border-t border-navy/10 bg-canvas p-4"
+    >
       <div>
         <p className="text-sm font-extrabold text-navy">{t("title")}</p>
         <p className="mt-0.5 text-xs text-steel">{t("intro")}</p>
       </div>
-      <input name="name" required minLength={2} maxLength={100} placeholder={t("name")} autoComplete="name" className={inputCls} />
-      <input name="email" type="email" maxLength={200} placeholder={t("email")} autoComplete="email" className={inputCls} />
-      <input name="phone" type="tel" maxLength={30} placeholder={t("phone")} autoComplete="tel" className={inputCls} />
-      <p className="text-xs text-steel">{t("contactHint")}</p>
+      <div>
+        <label htmlFor="lead-name" className="mb-1 block text-xs font-semibold text-navy">
+          {t("name")}
+        </label>
+        <input
+          id="lead-name"
+          name="name"
+          required
+          minLength={2}
+          maxLength={100}
+          placeholder={t("name")}
+          autoComplete="name"
+          className={inputCls}
+        />
+      </div>
+      <div>
+        <label htmlFor="lead-email" className="mb-1 block text-xs font-semibold text-navy">
+          {t("email")}
+        </label>
+        <input
+          id="lead-email"
+          name="email"
+          type="email"
+          maxLength={200}
+          placeholder={t("email")}
+          autoComplete="email"
+          className={inputCls}
+        />
+      </div>
+      <div>
+        <label htmlFor="lead-phone" className="mb-1 block text-xs font-semibold text-navy">
+          {t("phone")}
+        </label>
+        <input
+          id="lead-phone"
+          name="phone"
+          type="tel"
+          maxLength={30}
+          placeholder={t("phone")}
+          autoComplete="tel"
+          className={inputCls}
+        />
+      </div>
+      {/* Hint por padrão; vira o erro de "falta contato" (role="alert" +
+          vermelho) quando o submit falha por não ter nem e-mail nem
+          telefone — antes esse caso mostrava a mensagem genérica de falha de
+          rede/servidor, que confundia o motivo real. Limpa em qualquer
+          mudança de campo (onChange do form, acima) ou no próximo submit. */}
+      <p
+        role={errorKind === "contact" ? "alert" : undefined}
+        className={errorKind === "contact" ? "text-xs font-medium text-red-800" : "text-xs text-steel"}
+      >
+        {t("contactHint")}
+      </p>
       {/* Honeypot */}
       <div className="hidden" aria-hidden="true">
         <input name="website" type="text" tabIndex={-1} autoComplete="off" />
@@ -78,7 +139,7 @@ export function LeadForm({ sessionToken, locale, topic, transcript, onSuccess, o
         <input name="consent" type="checkbox" required className="mt-0.5" />
         <span>{t("consent")}</span>
       </label>
-      {error ? (
+      {errorKind === "delivery" ? (
         <p role="alert" className="rounded-md bg-red-50 px-3 py-2 text-xs font-medium text-red-800">
           {t("error")}
         </p>
