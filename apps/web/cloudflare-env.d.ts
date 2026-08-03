@@ -10,6 +10,9 @@ interface __BaseEnv_CloudflareEnv {
 	ANTHROPIC_API_KEY: string;
 }
 declare namespace Cloudflare {
+	interface GlobalProps {
+		mainModule: typeof import("./.open-next/worker");
+	}
 	interface Env extends __BaseEnv_CloudflareEnv {}
 }
 interface CloudflareEnv extends __BaseEnv_CloudflareEnv {}
