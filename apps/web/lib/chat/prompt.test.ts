@@ -21,8 +21,8 @@ describe("buildSystemBlocks", () => {
       const text = buildSystemBlocks(locale)[0].text.toLowerCase();
       // Regras que NUNCA podem sair do prompt (spec §4 camada 1):
       for (const needle of locale === "pt-BR"
-        ? ["nunca invente preços", "nunca prometa", "nunca revele", "2 a 4 frases"]
-        : ["never invent prices", "never promise", "never reveal", "2 to 4 sentences"]) {
+        ? ["responda apenas sobre a techtelligence", "2 a 4 frases", "nunca invente preços", "nunca prometa", "nunca revele", "dados sensíveis", "profissional e encorajador", "idioma da última mensagem", "whatsapp", "única fonte"]
+        : ["answer only about techtelligence", "2 to 4 sentences", "never invent prices", "never promise", "never reveal", "sensitive data", "professional and encouraging", "language of the visitor's last message", "whatsapp", "only source"]) {
         expect(text, `${locale}: ${needle}`).toContain(needle);
       }
     }
