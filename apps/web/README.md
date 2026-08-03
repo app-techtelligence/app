@@ -16,7 +16,9 @@ Copy `.dev.vars.example` to `.dev.vars` for local development. Production values
 
 - `RESEND_API_KEY` — Resend email API key (https://resend.com/api-keys). Leave empty to stub email sending locally.
 - `TURNSTILE_SECRET_KEY` — Cloudflare Turnstile secret for the contact form. Use the test key `1x0000000000000000000000000000000AA` locally (https://developers.cloudflare.com/turnstile/troubleshooting/testing/).
-- `ANTHROPIC_API_KEY` — Anthropic API key for the chat assistant (https://console.anthropic.com/). Leave empty to stub chat responses locally.
+- `ANTHROPIC_API_KEY` — Anthropic API key for the chat assistant (https://console.anthropic.com/). Leave empty to stub chat responses locally (.dev.vars). In production, set with `wrangler secret put ANTHROPIC_API_KEY`.
 - `CHAT_SESSION_SECRET` — HMAC secret for signing chat session tokens. Generate with `openssl rand -base64 32`. Used both locally (.dev.vars) and in production (wrangler secret).
 
-Utility scripts: `node scripts/generate-brand-assets.mjs` regenerates the OG image and apple-touch icon.
+Utility scripts:
+- `node scripts/generate-brand-assets.mjs` regenerates the OG image and apple-touch icon.
+- After editing the assistant knowledge base in `content/assistant/`, run `pnpm --filter web generate:knowledge` to regenerate `lib/chat/knowledge.generated.ts` (the sync test fails otherwise).
