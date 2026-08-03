@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { NextRequest } from "next/server";
 import { createSessionToken } from "@/lib/chat/session";
-import { MAX_OUTPUT_TOKENS, MAX_USER_MESSAGES } from "@/lib/chat/constants";
+import { DEV_SESSION_TOKEN, MAX_OUTPUT_TOKENS, MAX_USER_MESSAGES } from "@/lib/chat/constants";
 
 const env: { CHAT_SESSION_SECRET?: string; ANTHROPIC_API_KEY?: string } = {};
 vi.mock("@opennextjs/cloudflare", () => ({
@@ -102,12 +102,26 @@ describe("POST /api/chat", () => {
     expect(body).toContain("event: error");
   });
 
-  it("responde stub em SSE quando não há ANTHROPIC_API_KEY (dev)", async () => {
+  it("responde stub em SSE quando não há CHAT_SESSION_SECRET nem ANTHROPIC_API_KEY (dev local)", async () => {
+    env.CHAT_SESSION_SECRET = undefined;
     env.ANTHROPIC_API_KEY = undefined;
-    const response = await POST(postRequest(baseBody()));
+    const response = await POST(
+      postRequest({ ...baseBody(), sessionToken: DEV_SESSION_TOKEN }),
+    );
     const body = await response.text();
     expect(body).toContain("event: delta");
     expect(body).toContain("event: done");
+    expect(streamMock).not.toHaveBeenCalled();
+  });
+
+  it("emite só event: error quando falta ANTHROPIC_API_KEY num ambiente configurado (prod)", async () => {
+    env.ANTHROPIC_API_KEY = undefined;
+    // env.CHAT_SESSION_SECRET permanece definido (beforeEach) — ambiente com
+    // cara de prod, então o widget deve cair no fallback, nunca no stub de dev.
+    const response = await POST(postRequest(baseBody()));
+    const body = await response.text();
+    expect(body).toContain("event: error");
+    expect(body).not.toContain("event: delta");
     expect(streamMock).not.toHaveBeenCalled();
   });
 });

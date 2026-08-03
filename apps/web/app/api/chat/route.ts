@@ -64,6 +64,15 @@ export async function POST(request: NextRequest) {
   }
 
   if (!env.ANTHROPIC_API_KEY) {
+    if (env.CHAT_SESSION_SECRET) {
+      // Ambiente com cara de prod (secret configurado) mas sem a chave: falha
+      // visível (spec §7), nunca o stub — o widget cai no fallback desenhado
+      // (indisponível + WhatsApp + contato) em vez de mostrar texto de dev.
+      console.error("[chat] ANTHROPIC_API_KEY missing in configured environment");
+      return sse(async (send) => {
+        send("error");
+      });
+    }
     // Dev local sem chave: stub fixo, mesmo espírito do stub do Resend.
     console.warn("[chat] ANTHROPIC_API_KEY not set — streaming stub reply");
     return sse(async (send) => {
