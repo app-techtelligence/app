@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { ChatLauncher } from "@/components/chat/ChatLauncher";
 import "../globals.css";
 
 const manrope = Manrope({
@@ -32,18 +33,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   // Enables static rendering — every page below also calls this.
   setRequestLocale(locale);
 
-  // Only the "common" namespace goes to the client (nav, locale switcher);
-  // sending all messages would serialize the full tree into every page.
+  // Only the "common" and "chat" namespaces go to the client (nav, locale
+  // switcher, chat launcher/panel); sending all messages would serialize the
+  // full tree into every page.
   const messages = await getMessages();
 
   return (
     <html lang={locale} className={manrope.variable}>
       <body className="flex min-h-svh flex-col font-sans antialiased">
-        <NextIntlClientProvider messages={{ common: messages.common }}>
+        <NextIntlClientProvider messages={{ common: messages.common, chat: messages.chat }}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
           <WhatsAppFloat />
+          <ChatLauncher />
         </NextIntlClientProvider>
       </body>
     </html>
