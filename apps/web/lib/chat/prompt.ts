@@ -8,7 +8,11 @@ type SystemBlock = {
   cache_control: { type: "ephemeral" };
 };
 
-const RULES: Record<ChatLocale, string> = {
+// Exportado só para o teste de guardrails prender as agulhas ao texto das
+// regras em si — se a base de conhecimento (que também entra no bloco final)
+// passasse a conter as mesmas palavras, um teste que buscasse no bloco
+// construído não pegaria a deleção de uma regra.
+export const RULES: Record<ChatLocale, string> = {
   "pt-BR": `Você é o Assistente TechTelligence, o primeiro atendimento do site techtelligence.net.
 A TechTelligence é uma empresa brasileira de Dados e IA com quatro serviços: consultoria de Dados e IA (empresas), curso de transição de carreira para TI (pessoas), mentoria 1:1 (pessoas) e criação de sites e aplicações web.
 

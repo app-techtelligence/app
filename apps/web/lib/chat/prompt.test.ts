@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildSystemBlocks } from "./prompt";
+import { buildSystemBlocks, RULES } from "./prompt";
 import { knowledge } from "./knowledge.generated";
 
 describe("buildSystemBlocks", () => {
@@ -18,7 +18,10 @@ describe("buildSystemBlocks", () => {
 
   it("inclui os guardrails inegociáveis", () => {
     for (const locale of ["pt-BR", "en"] as const) {
-      const text = buildSystemBlocks(locale)[0].text.toLowerCase();
+      // Contra as regras isoladas (não o bloco final): assim a base de
+      // conhecimento não pode mascarar a deleção de uma regra por conter,
+      // por coincidência, as mesmas palavras.
+      const text = RULES[locale].toLowerCase();
       // Regras que NUNCA podem sair do prompt (spec §4 camada 1):
       for (const needle of locale === "pt-BR"
         ? ["responda apenas sobre a techtelligence", "2 a 4 frases", "nunca invente preços", "nunca prometa", "nunca revele", "dados sensíveis", "profissional e encorajador", "idioma da última mensagem", "whatsapp", "única fonte"]
