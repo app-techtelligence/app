@@ -23,6 +23,7 @@ import {
   type ChatTopic,
 } from "@/lib/chat/constants";
 import { useChatSession } from "./useChatSession";
+import { LeadForm } from "./LeadForm";
 
 const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA";
@@ -52,7 +53,10 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   /** Contexto exato (o `next` que falhou) para o retry reenviar — capturado no
    *  momento da falha, nunca re-derivado de `messages` (evita comer a resposta
-   *  enlatada de um chip clicado depois do erro). Limpo no sucesso/restart. */
+   *  enlatada de um chip clicado depois do erro). Limpo no sucesso/restart.
+   *  Invariante: TUDO que anexa a `messages` (chip, envio, lead) também limpa
+   *  este ref (e `errorKind`) — senão um Retry tardio reenviaria um snapshot
+   *  que já não corresponde ao fim real da conversa (ver `handleChip`). */
   const retryContextRef = useRef<ChatMessage[] | null>(null);
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -66,6 +70,8 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const [errorKind, setErrorKind] = useState<ErrorKind>(null);
   const [turnstileFailed, setTurnstileFailed] = useState(false);
   const [turnstileKey, setTurnstileKey] = useState(0); // remount no restart
+  const [leadOpen, setLeadOpen] = useState(false);
+  const [leadSent, setLeadSent] = useState(false);
 
   // Esc fecha o painel (mantido da casca da T9).
   useEffect(() => {
@@ -152,6 +158,10 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
         dropEmptyTrailingAssistant();
         retryContextRef.current = next;
       } else {
+        // Um `done` sem nenhum delta (ex.: stub/edge case do modelo) deixaria
+        // um turno assistant vazio cujos "…" de digitação nunca somem — o
+        // mesmo saneamento do caminho de erro se aplica aqui.
+        dropEmptyTrailingAssistant();
         retryContextRef.current = null;
       }
     } catch (error) {
@@ -196,9 +206,24 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
     setEnded(null);
     setErrorKind(null);
     setTurnstileFailed(false);
+    setLeadOpen(false);
+    setLeadSent(false);
     retryContextRef.current = null;
     session.reset();
     setTurnstileKey((k) => k + 1); // novo Turnstile → nova sessão
+  }
+
+  /** onSuccess do LeadForm (spec §3/§7): fecha o form, marca o lead como
+   *  enviado e anexa o desfecho como turno assistant — como isto anexa a
+   *  `messages`, respeita o mesmo invariante de `handleChip` (ver o comentário
+   *  em `retryContextRef`), senão um Retry pendente reenviaria um snapshot
+   *  que já não é o fim real da conversa. */
+  function handleLeadSuccess() {
+    setErrorKind(null);
+    retryContextRef.current = null;
+    setLeadSent(true);
+    setLeadOpen(false);
+    setMessages((m) => [...m, { role: "assistant", content: t("lead.success") }]);
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -230,6 +255,9 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const inputDisabled =
     ended !== null || session.state !== "ready" || userCount >= MAX_USER_MESSAGES;
   const sendDisabled = inputDisabled || streaming || draft.trim().length === 0;
+  // Capturado numa local (mesmo padrão de handleSend/handleRetry) para a
+  // checagem abaixo estreitar `string | null` para `string` de forma segura.
+  const leadSessionToken = session.sessionToken;
 
   // Foco no textarea ao abrir o painel. O textarea fica `disabled` até a
   // sessão ficar pronta e focus() em um controlo disabled é um no-op — por
@@ -398,38 +426,60 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
         >
           {t("whatsapp.cta")}
         </a>
-        {/* LeadForm chega na Task 11 */}
         <button
           type="button"
-          aria-disabled="true"
-          onClick={(e) => e.preventDefault()}
-          className={OUTCOME_MUTED_LINK_CLS}
+          onClick={() => setLeadOpen(true)}
+          disabled={leadSent}
+          className={`${OUTCOME_MUTED_LINK_CLS} disabled:pointer-events-none disabled:opacity-60`}
         >
           {t("lead.cta")}
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex items-end gap-2 border-t border-navy/10 p-3">
-        <textarea
-          ref={textareaRef}
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          onKeyDown={handleTextareaKeyDown}
-          maxLength={MAX_USER_MESSAGE_CHARS}
-          disabled={inputDisabled}
-          placeholder={t("input.placeholder")}
-          aria-label={t("input.placeholder")}
-          rows={2}
-          className="flex-1 resize-none rounded-md border border-navy/20 bg-white px-3 py-2 text-sm text-navy placeholder:text-steel/70 focus:border-navy disabled:opacity-60"
-        />
-        <button
-          type="submit"
-          disabled={sendDisabled}
-          className="h-9 shrink-0 rounded-md bg-navy px-4 text-sm font-bold text-white hover:bg-navy-deep disabled:pointer-events-none disabled:opacity-60"
-        >
-          {t("input.send")}
-        </button>
-      </form>
+      {leadOpen ? (
+        leadSessionToken ? (
+          <LeadForm
+            sessionToken={leadSessionToken}
+            locale={locale}
+            topic={topic ?? "outros"}
+            transcript={messages}
+            onSuccess={handleLeadSuccess}
+            onCancel={() => setLeadOpen(false)}
+          />
+        ) : !connectionFailed ? (
+          // Sem sessão pronta ainda (ex.: quem só clicou em chips) — o
+          // Turnstile já roda desde a abertura do painel, então isto se
+          // resolve sozinho assim que `session.state` vira "ready". Se a
+          // sessão já falhou de vez (connectionFailed), não mostramos isto —
+          // ficaria "conectando" para sempre; o banner acima já cobre o erro
+          // com os desfechos WhatsApp/contato.
+          <div role="status" className="border-t border-navy/10 bg-canvas p-4 text-sm font-medium text-navy">
+            {t("status.connecting")}
+          </div>
+        ) : null
+      ) : (
+        <form onSubmit={handleSubmit} className="flex items-end gap-2 border-t border-navy/10 p-3">
+          <textarea
+            ref={textareaRef}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={handleTextareaKeyDown}
+            maxLength={MAX_USER_MESSAGE_CHARS}
+            disabled={inputDisabled}
+            placeholder={t("input.placeholder")}
+            aria-label={t("input.placeholder")}
+            rows={2}
+            className="flex-1 resize-none rounded-md border border-navy/20 bg-white px-3 py-2 text-sm text-navy placeholder:text-steel/70 focus:border-navy disabled:opacity-60"
+          />
+          <button
+            type="submit"
+            disabled={sendDisabled}
+            className="h-9 shrink-0 rounded-md bg-navy px-4 text-sm font-bold text-white hover:bg-navy-deep disabled:pointer-events-none disabled:opacity-60"
+          >
+            {t("input.send")}
+          </button>
+        </form>
+      )}
 
       <Turnstile
         key={turnstileKey}
