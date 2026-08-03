@@ -110,4 +110,12 @@ describe("leadRequestSchema", () => {
   it("recusa topic fora do enum", () => {
     expect(leadRequestSchema.safeParse({ ...validLead, topic: "vendas" }).success).toBe(false);
   });
+
+  it("aceita transcrição com mais de 20 mensagens de usuário", () => {
+    // Cria uma transcrição com 25 mensagens de usuário
+    const messages = Array.from({ length: 25 }, (_, i) =>
+      user(`m${i}`),
+    );
+    expect(leadRequestSchema.safeParse({ ...validLead, transcript: messages }).success).toBe(true);
+  });
 });

@@ -15,7 +15,8 @@ export type ChatMessage = z.infer<typeof chatMessageSchema>;
 
 const localeSchema = z.enum(["pt-BR", "en"]);
 
-const messagesArraySchema = z
+/** Validações comuns a transcrições: limites por mensagem e total (sem limite de contagem). */
+const transcriptArraySchema = z
   .array(chatMessageSchema)
   .min(1)
   .refine(
@@ -28,11 +29,13 @@ const messagesArraySchema = z
   .refine(
     (msgs) => msgs.reduce((n, m) => n + m.content.length, 0) <= MAX_PAYLOAD_CHARS,
     { message: "payload_too_large" },
-  )
-  .refine(
-    (msgs) => msgs.filter((m) => m.role === "user").length <= MAX_USER_MESSAGES,
-    { message: "too_many_user_messages" },
   );
+
+/** Mensagens do chat com limite de 20 mensagens de usuário. */
+const messagesArraySchema = transcriptArraySchema.refine(
+  (msgs) => msgs.filter((m) => m.role === "user").length <= MAX_USER_MESSAGES,
+  { message: "too_many_user_messages" },
+);
 
 export const sessionRequestSchema = z.object({
   turnstileToken: z.string().min(1),
@@ -63,7 +66,7 @@ export const leadRequestSchema = z
       .optional(),
     consent: z.literal(true),
     topic: z.enum(CHAT_TOPICS),
-    transcript: messagesArraySchema,
+    transcript: transcriptArraySchema,
     /** Honeypot — usuários reais nunca preenchem. */
     website: z.literal("").optional(),
   })
