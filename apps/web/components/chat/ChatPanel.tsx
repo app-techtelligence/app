@@ -284,20 +284,6 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
         </div>
       );
     }
-    if (ended === "limit") {
-      return (
-        <div role="status" className={INFO_BANNER_CLS}>
-          <p>{t("status.limitReached")}</p>
-        </div>
-      );
-    }
-    if (errorKind === "rateLimited") {
-      return (
-        <div role="alert" className={ERROR_BANNER_CLS}>
-          <p>{t("status.rateLimited")}</p>
-        </div>
-      );
-    }
     if (errorKind === "unavailable") {
       return (
         <div role="alert" className={ERROR_BANNER_CLS}>
@@ -318,6 +304,20 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
               {t("status.contactPage")}
             </Link>
           </div>
+        </div>
+      );
+    }
+    if (ended === "limit") {
+      return (
+        <div role="status" className={INFO_BANNER_CLS}>
+          <p>{t("status.limitReached")}</p>
+        </div>
+      );
+    }
+    if (errorKind === "rateLimited") {
+      return (
+        <div role="alert" className={ERROR_BANNER_CLS}>
+          <p>{t("status.rateLimited")}</p>
         </div>
       );
     }
