@@ -791,6 +791,66 @@
       "privacyNote": "Protegido por Cloudflare Turnstile. Não armazenamos seus dados: sua mensagem é entregue diretamente ao nosso e-mail."
     }
   },
+  "chat": {
+    "launcher": { "open": "Abrir assistente", "close": "Fechar assistente" },
+    "title": "Assistente TechTelligence",
+    "subtitle": "Primeiro atendimento",
+    "welcome": "Olá! 👋 Sou o assistente da TechTelligence. Posso tirar dúvidas sobre nossos serviços — escolha um assunto ou escreva sua pergunta.",
+    "chips": {
+      "consultoria": "Consultoria",
+      "curso": "Curso",
+      "mentoria": "Mentoria",
+      "criacao-de-sites": "Criação de sites",
+      "outros": "Outros"
+    },
+    "canned": {
+      "consultoria": "A consultoria implementa plataformas de dados e ambientes de IA para empresas — da estratégia à operação. É para a sua empresa ou para um projeto em que você participa? Me conta um pouco do cenário 🙂",
+      "curso": "O curso prepara quem quer migrar para TI sem experiência anterior, com trilhas como Dev, Dados e DevOps — focadas no que o mercado contrata. Você está começando do zero ou já estudou algo da área?",
+      "mentoria": "A mentoria é um acompanhamento 1:1 para conquistar uma vaga ou crescer em TI: estratégia de carreira, LinkedIn, entrevistas e habilidades. Qual é o seu momento hoje?",
+      "criacao-de-sites": "Também criamos sites e aplicações web profissionais — este site é um exemplo do nosso trabalho. Me conta o que você precisa: site institucional, blog, sistema com login?",
+      "outros": "Sem problema! Me escreve o que você precisa — se for algo que fazemos, te explico como funciona; se não for, te aponto o canal certo."
+    },
+    "input": { "placeholder": "Escreva sua pergunta…", "send": "Enviar" },
+    "whatsapp": {
+      "cta": "Falar no WhatsApp",
+      "templates": {
+        "consultoria": "Olá! Falei com o assistente do site sobre consultoria de Dados e IA e quero conversar sobre um projeto.",
+        "curso": "Olá! Falei com o assistente do site sobre o curso de transição para TI e quero saber mais.",
+        "mentoria": "Olá! Falei com o assistente do site sobre a mentoria 1:1 e quero saber mais.",
+        "criacao-de-sites": "Olá! Falei com o assistente do site sobre criação de sites e quero conversar sobre um projeto.",
+        "outros": "Olá! Estava falando com o assistente do site e quero continuar a conversa."
+      }
+    },
+    "lead": {
+      "cta": "Prefiro que me contatem",
+      "title": "Deixe seu contato",
+      "intro": "A gente te procura — informe como prefere ser contatado.",
+      "name": "Nome",
+      "email": "E-mail",
+      "phone": "Telefone/WhatsApp",
+      "contactHint": "Informe pelo menos e-mail ou telefone.",
+      "consent": "Autorizo a TechTelligence a me contatar usando os dados informados e a receber o histórico desta conversa.",
+      "submit": "Enviar contato",
+      "sending": "Enviando…",
+      "success": "Recebemos seu contato! Vamos te procurar em breve. 🙂",
+      "error": "Não conseguimos enviar agora. Tente de novo ou chame no WhatsApp.",
+      "cancel": "Voltar à conversa"
+    },
+    "status": {
+      "connecting": "Preparando o assistente…",
+      "limitReached": "Chegamos ao limite desta conversa 🙂 Para continuar, chame a gente no WhatsApp.",
+      "expired": "Esta conversa expirou. Você pode começar outra ou falar direto no WhatsApp.",
+      "restart": "Começar nova conversa",
+      "rateLimited": "Muitas mensagens em pouco tempo — aguarde alguns instantes e tente de novo.",
+      "unavailable": "Nosso assistente está indisponível agora 🙂 Fale com a gente no WhatsApp ou pela página de contato.",
+      "retry": "Tentar novamente",
+      "contactPage": "página de contato"
+    },
+    "a11y": {
+      "conversation": "Mensagens da conversa",
+      "panel": "Assistente TechTelligence"
+    }
+  },
   "clients": {
     "kicker": "Experiência comprovada",
     "title": "Nosso time já construiu para grandes empresas",

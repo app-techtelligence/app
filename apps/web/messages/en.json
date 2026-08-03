@@ -791,6 +791,66 @@
       "privacyNote": "Protected by Cloudflare Turnstile. We don't store your data: your message is delivered straight to our inbox."
     }
   },
+  "chat": {
+    "launcher": { "open": "Open assistant", "close": "Close assistant" },
+    "title": "TechTelligence Assistant",
+    "subtitle": "First contact",
+    "welcome": "Hi! 👋 I'm the TechTelligence assistant. I can answer questions about our services — pick a topic or type your question.",
+    "chips": {
+      "consultoria": "Consulting",
+      "curso": "Course",
+      "mentoria": "Mentorship",
+      "criacao-de-sites": "Website development",
+      "outros": "Other"
+    },
+    "canned": {
+      "consultoria": "Our consulting implements data platforms and AI environments for companies — from strategy to operations. Is this for your company or a project you're part of? Tell me a bit about the scenario 🙂",
+      "curso": "The course prepares people moving into IT with no prior experience, with tracks like Dev, Data and DevOps — focused on what the market hires for. Are you starting from zero or have you studied the field before?",
+      "mentoria": "Mentorship is 1:1 guidance to land a job or grow in IT: career strategy, LinkedIn, interviews and skills. Where are you today?",
+      "criacao-de-sites": "We also build professional websites and web applications — this site is an example of our work. Tell me what you need: an institutional site, a blog, a system with login?",
+      "outros": "No problem! Tell me what you need — if it's something we do, I'll explain how it works; if not, I'll point you to the right channel."
+    },
+    "input": { "placeholder": "Type your question…", "send": "Send" },
+    "whatsapp": {
+      "cta": "Chat on WhatsApp",
+      "templates": {
+        "consultoria": "Hello! I talked to the website assistant about Data & AI consulting and I'd like to discuss a project.",
+        "curso": "Hello! I talked to the website assistant about the career-transition course and I'd like to know more.",
+        "mentoria": "Hello! I talked to the website assistant about 1:1 mentorship and I'd like to know more.",
+        "criacao-de-sites": "Hello! I talked to the website assistant about website development and I'd like to discuss a project.",
+        "outros": "Hello! I was talking to the website assistant and I'd like to continue the conversation."
+      }
+    },
+    "lead": {
+      "cta": "I'd rather be contacted",
+      "title": "Leave your contact",
+      "intro": "We'll reach out — tell us how you prefer to be contacted.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone/WhatsApp",
+      "contactHint": "Provide at least an email or a phone number.",
+      "consent": "I authorize TechTelligence to contact me using this information and to receive this conversation's history.",
+      "submit": "Send contact",
+      "sending": "Sending…",
+      "success": "Got it! We'll reach out soon. 🙂",
+      "error": "We couldn't send it right now. Try again or message us on WhatsApp.",
+      "cancel": "Back to the conversation"
+    },
+    "status": {
+      "connecting": "Getting the assistant ready…",
+      "limitReached": "We've reached this conversation's limit 🙂 To continue, message us on WhatsApp.",
+      "expired": "This conversation expired. You can start a new one or message us on WhatsApp.",
+      "restart": "Start a new conversation",
+      "rateLimited": "Too many messages at once — wait a moment and try again.",
+      "unavailable": "Our assistant is unavailable right now 🙂 Message us on WhatsApp or use the contact page.",
+      "retry": "Try again",
+      "contactPage": "contact page"
+    },
+    "a11y": {
+      "conversation": "Conversation messages",
+      "panel": "TechTelligence Assistant"
+    }
+  },
   "clients": {
     "kicker": "Proven experience",
     "title": "Our team has built for major companies",
