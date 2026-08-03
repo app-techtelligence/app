@@ -7,3 +7,7 @@ RESEND_API_KEY=
 # Cloudflare Turnstile secret. This is the official "always passes" TEST key:
 # https://developers.cloudflare.com/turnstile/troubleshooting/testing/
 TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Chat assistant (see README): session-token signing secret + Anthropic API key
+CHAT_SESSION_SECRET=
+ANTHROPIC_API_KEY=

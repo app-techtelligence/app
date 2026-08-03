@@ -939,6 +939,14 @@
           "The website does not store these messages in any database. In other words: your message exists only in our email inbox."
         ]
       },
+      "assistant": {
+        "title": "Website AI assistant",
+        "body": [
+          "The site offers an optional conversational assistant. Messages you type there are processed ephemerally: they are sent to the Anthropic API (the AI model provider) only to generate the reply, and we do not store the conversation in any database or log. Anthropic does not use API data to train its models.",
+          "There is a single exception, triggered only by you: if you fill in the \"I'd rather be contacted\" form inside the chat, your name, the contact details you provide and that conversation's history are emailed to our support inbox, where they are retained for as long as needed to assist you — like contact-form messages.",
+          "Opening the chat goes through Cloudflare Turnstile anti-spam verification, the same used on the contact form."
+        ]
+      },
       "retention": {
         "title": "How long we keep it",
         "body": [

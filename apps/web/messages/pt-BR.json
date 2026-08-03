@@ -939,6 +939,14 @@
           "O site não guarda essas mensagens em nenhum banco de dados. Ou seja: sua mensagem existe apenas no nosso e-mail."
         ]
       },
+      "assistant": {
+        "title": "Assistente de IA do site",
+        "body": [
+          "O site oferece um assistente de conversa opcional. As mensagens que você escreve nele são processadas de forma efêmera: são enviadas à API da Anthropic (fornecedora do modelo de IA) apenas para gerar a resposta, e nós não gravamos a conversa em nenhum banco de dados ou log. A Anthropic não usa dados enviados pela API para treinar seus modelos.",
+          "Há uma única exceção, que depende de uma ação sua: se você preencher o formulário \"Prefiro que me contatem\" dentro do chat, o seu nome, o contato informado e o histórico daquela conversa são enviados por e-mail para a nossa caixa de atendimento, onde ficam retidos pelo tempo necessário para te atender — como as mensagens do formulário de contato.",
+          "A abertura do chat passa pela verificação antispam do Cloudflare Turnstile, a mesma usada no formulário de contato."
+        ]
+      },
       "retention": {
         "title": "Por quanto tempo guardamos",
         "body": [
