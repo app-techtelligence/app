@@ -50,6 +50,10 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const logRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  /** Contexto exato (o `next` que falhou) para o retry reenviar — capturado no
+   *  momento da falha, nunca re-derivado de `messages` (evita comer a resposta
+   *  enlatada de um chip clicado depois do erro). Limpo no sucesso/restart. */
+  const retryContextRef = useRef<ChatMessage[] | null>(null);
 
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "assistant", content: t("welcome") },
@@ -73,11 +77,6 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  // Foco no textarea ao abrir o painel.
-  useEffect(() => {
-    if (open) textareaRef.current?.focus();
-  }, [open]);
-
   // Auto-scroll a cada mensagem.
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
@@ -93,6 +92,11 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
 
   function handleChip(chip: ChatTopic) {
     if (ended || streaming) return;
+    // Limpa qualquer erro pendente de uma tentativa anterior — senão o banner
+    // "unavailable" + Retry ficam presos na tela, e um Retry accionado depois
+    // reaproveitaria o snapshot antigo em vez desta resposta enlatada nova.
+    setErrorKind(null);
+    retryContextRef.current = null;
     setTopic(chip);
     setMessages((m) => [
       ...m,
@@ -100,6 +104,19 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
       { role: "assistant", content: t(`canned.${chip}`) },
     ]);
     bumpUserCount();
+  }
+
+  /** Remove o turno assistant à direita SE ele continuar vazio — nunca chega
+   *  a existir conteúdo parcial a preservar (a regra "mantém o parcial na
+   *  tela" só vale quando HÁ parcial). Sem isto, um turno `content: ""` fica
+   *  em `messages` para sempre e `chatMessageSchema` (min(1)) rejeita todo
+   *  envio seguinte que o inclua — o widget trava e só "expired" reabre. */
+  function dropEmptyTrailingAssistant() {
+    setMessages((m) => {
+      const last = m[m.length - 1];
+      if (last?.role === "assistant" && last.content.trim().length === 0) return m.slice(0, -1);
+      return m;
+    });
   }
 
   /** Corre o pedido de streaming para um contexto já fechado (spec §5/§7).
@@ -114,7 +131,13 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
         {
           sessionToken: token,
           locale,
-          messages: pruneMessages(next, MAX_PAYLOAD_CHARS),
+          // Defesa em profundidade: nenhuma mensagem de conteúdo vazio/só
+          // espaços chega ao payload, mesmo que `next` já devesse estar limpo
+          // (ex.: um turno assistant vazio remanescente de uma falha anterior).
+          messages: pruneMessages(
+            next.filter((m) => m.content.trim().length > 0),
+            MAX_PAYLOAD_CHARS,
+          ),
         },
         (delta) =>
           setMessages((m) => {
@@ -124,8 +147,16 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
             return copy;
           }),
       );
-      if (outcome === "error") setErrorKind("unavailable"); // parcial fica na tela
+      if (outcome === "error") {
+        setErrorKind("unavailable"); // parcial fica na tela
+        dropEmptyTrailingAssistant();
+        retryContextRef.current = next;
+      } else {
+        retryContextRef.current = null;
+      }
     } catch (error) {
+      dropEmptyTrailingAssistant();
+      retryContextRef.current = next;
       if (error instanceof ChatHttpError && error.status === 403) setEnded("expired");
       else if (error instanceof ChatHttpError && error.status === 429)
         setErrorKind("rateLimited");
@@ -147,12 +178,14 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
 
   function handleRetry() {
     const token = session.sessionToken;
-    if (streaming || !token) return;
-    // A última entrada é o turno assistant vazio/parcial da tentativa que
-    // falhou — descarta e reenvia o mesmo contexto (não conta de novo).
-    const withoutFailedReply =
-      messages[messages.length - 1]?.role === "assistant" ? messages.slice(0, -1) : messages;
-    void runStream(withoutFailedReply, token);
+    // Reenvia o snapshot exato capturado no momento da falha (não re-deriva
+    // de `messages`): se um chip foi clicado depois do erro, o último turno
+    // assistant em `messages` é a resposta enlatada do chip, não o turno
+    // vazio/parcial da tentativa que falhou — usar `messages` aqui comeria
+    // essa resposta enlatada no reenvio.
+    const context = retryContextRef.current;
+    if (streaming || !token || !context) return;
+    void runStream(context, token);
   }
 
   function handleRestart() {
@@ -163,6 +196,7 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
     setEnded(null);
     setErrorKind(null);
     setTurnstileFailed(false);
+    retryContextRef.current = null;
     session.reset();
     setTurnstileKey((k) => k + 1); // novo Turnstile → nova sessão
   }
@@ -171,6 +205,11 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
     e.preventDefault();
     const text = draft.trim();
     if (!text) return;
+    // Espelha o gate de handleSend: sem isto, Enter durante o streaming
+    // (o textarea não é `disabled` nesse estado, só o botão) dispara o
+    // submit, que limpava o rascunho antes do handleSend abortar — o texto
+    // digitado desaparecia sem ser enviado.
+    if (ended || streaming || !session.sessionToken) return;
     setDraft("");
     void handleSend(text);
   }
@@ -191,6 +230,15 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const inputDisabled =
     ended !== null || session.state !== "ready" || userCount >= MAX_USER_MESSAGES;
   const sendDisabled = inputDisabled || streaming || draft.trim().length === 0;
+
+  // Foco no textarea ao abrir o painel. O textarea fica `disabled` até a
+  // sessão ficar pronta e focus() em um controlo disabled é um no-op — por
+  // isso o efeito também depende de `inputDisabled`, reaplicando o foco
+  // assim que o textarea é habilitado enquanto o painel já está aberto.
+  // Nunca rouba o foco quando o painel está fechado.
+  useEffect(() => {
+    if (open && !inputDisabled) textareaRef.current?.focus();
+  }, [open, inputDisabled]);
 
   function renderStatusBanner() {
     if (ended === "expired") {
