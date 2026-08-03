@@ -93,11 +93,21 @@ export function LinkIcon({ className }: IconProps) {
   );
 }
 
-/** Balão de chat com nariz triangular — eco da geometria do logo. */
+/** Dois balões de conversa sobrepostos, em traço — ícone do assistente. */
 export function ChatBubbleIcon({ className }: IconProps) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9.4L5 21.2A.6.6 0 0 1 4 20.7V17a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M8.5 7V6.5A2.5 2.5 0 0 1 11 4h6.5A2.5 2.5 0 0 1 20 6.5V11a2.5 2.5 0 0 1-2.5 2.5h-2" />
+      <path d="M6.5 7H13a2.5 2.5 0 0 1 2.5 2.5V14a2.5 2.5 0 0 1-2.5 2.5H9.5l-2.9 2.5c-.4.34-1.1.06-1.1-.5v-2.2A2.5 2.5 0 0 1 4 14V9.5A2.5 2.5 0 0 1 6.5 7Z" />
     </svg>
   );
 }
