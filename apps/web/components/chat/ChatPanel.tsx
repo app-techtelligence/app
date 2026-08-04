@@ -72,6 +72,10 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
   const [turnstileKey, setTurnstileKey] = useState(0); // remount no restart
   const [leadOpen, setLeadOpen] = useState(false);
   const [leadSent, setLeadSent] = useState(false);
+  // Desfechos (WhatsApp + lead) ficam ocultos por padrão para não poluir o
+  // painel (decisão do usuário, 2026-08-04): aparecem ao tocar em "Outros" e
+  // nos estados terminais (limite/expirado), cujas mensagens apontam para eles.
+  const [outcomesVisible, setOutcomesVisible] = useState(false);
 
   // Esc fecha o painel (mantido da casca da T9).
   useEffect(() => {
@@ -104,6 +108,7 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
     setErrorKind(null);
     retryContextRef.current = null;
     setTopic(chip);
+    if (chip === "outros") setOutcomesVisible(true);
     setMessages((m) => [
       ...m,
       { role: "user", content: t(`chips.${chip}`) },
@@ -208,6 +213,7 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
     setTurnstileFailed(false);
     setLeadOpen(false);
     setLeadSent(false);
+    setOutcomesVisible(false);
     retryContextRef.current = null;
     session.reset();
     setTurnstileKey((k) => k + 1); // novo Turnstile → nova sessão
@@ -421,25 +427,31 @@ export function ChatPanel({ open, onClose }: ChatPanelProps) {
         </div>
       ) : null}
 
-      {/* Desfechos sempre visíveis (spec §3/§7): WhatsApp + "prefiro ser contatado". */}
-      <div className="flex flex-wrap items-center gap-4 border-t border-navy/10 px-4 py-3">
-        <a
-          href={whatsappLink(t(`whatsapp.templates.${topic ?? "outros"}`))}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={OUTCOME_LINK_CLS}
-        >
-          {t("whatsapp.cta")}
-        </a>
-        <button
-          type="button"
-          onClick={() => setLeadOpen(true)}
-          disabled={streaming || leadSent}
-          className={`${OUTCOME_MUTED_LINK_CLS} disabled:pointer-events-none disabled:opacity-60`}
-        >
-          {t("lead.cta")}
-        </button>
-      </div>
+      {/* Desfechos (WhatsApp + "prefiro ser contatado"). Não ficam fixos para
+          não poluir o painel: aparecem via chip "Outros" e nos estados
+          terminais (limite/expirado), cujos avisos apontam para eles — os
+          banners de erro (unavailable/connectionFailed) trazem os próprios
+          links, então nenhum caminho do spec §7 fica sem saída. */}
+      {outcomesVisible || ended !== null ? (
+        <div className="flex flex-wrap items-center gap-4 border-t border-navy/10 px-4 py-3">
+          <a
+            href={whatsappLink(t(`whatsapp.templates.${topic ?? "outros"}`))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={OUTCOME_LINK_CLS}
+          >
+            {t("whatsapp.cta")}
+          </a>
+          <button
+            type="button"
+            onClick={() => setLeadOpen(true)}
+            disabled={streaming || leadSent}
+            className={`${OUTCOME_MUTED_LINK_CLS} disabled:pointer-events-none disabled:opacity-60`}
+          >
+            {t("lead.cta")}
+          </button>
+        </div>
+      ) : null}
 
       {leadOpen ? (
         leadSessionToken ? (
