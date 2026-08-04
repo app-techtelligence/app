@@ -34,7 +34,9 @@ describe("assistant knowledge base", () => {
       const generated = knowledge[locale] as Record<string, string>;
       expect(Object.keys(generated).sort()).toEqual(topicsOf(locale));
       for (const topic of topicsOf(locale)) {
-        const onDisk = readFileSync(join(contentDir, locale, `${topic}.md`), "utf8");
+        // Mesma normalização do gerador: checkouts Windows podem materializar CRLF.
+        const onDisk = readFileSync(join(contentDir, locale, `${topic}.md`), "utf8")
+          .replaceAll("\r\n", "\n");
         expect(generated[topic], `${locale}/${topic}`).toBe(onDisk);
       }
     }

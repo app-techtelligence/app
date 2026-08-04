@@ -20,7 +20,8 @@ for (const locale of locales) {
   const files = readdirSync(dir).filter((f) => f.endsWith(".md")).sort();
   lines.push(`  "${locale}": {`);
   for (const file of files) {
-    const text = readFileSync(join(dir, file), "utf8");
+    // Normaliza CRLF de checkouts Windows: o módulo gerado embute sempre LF.
+    const text = readFileSync(join(dir, file), "utf8").replaceAll("\r\n", "\n");
     lines.push(`    "${basename(file, ".md")}": ${JSON.stringify(text)},`);
   }
   lines.push("  },");

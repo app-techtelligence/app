@@ -1,0 +1,4 @@
+# A base de conhecimento do assistente é comparada byte a byte com o módulo
+# gerado (lib/chat/knowledge.generated.ts) pelo teste de sincronia — CRLF de
+# checkout no Windows (core.autocrlf) quebraria a comparação.
+apps/web/content/assistant/**/*.md text eol=lf
