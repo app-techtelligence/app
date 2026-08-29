@@ -28,7 +28,7 @@ export async function DataJourney() {
       id="data"
       data-reveal
       suppressHydrationWarning
-      className="scroll-mt-24 bg-white py-16 sm:py-20"
+      className="scroll-mt-24 bg-canvas py-16 sm:py-20"
     >
       <Container>
         <SectionHeading
