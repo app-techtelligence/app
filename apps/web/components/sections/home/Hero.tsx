@@ -14,7 +14,10 @@ export async function Hero() {
         className="pointer-events-none absolute -right-16 -top-10 hidden h-[130%] w-auto text-white/[0.04] md:block"
       />
       <Container className="relative py-20 sm:py-28">
-        <div className="max-w-2xl">
+        {/* The mark sits here, not on the section: the navy is the page's
+            surface at this point, and letting it slide would open a white
+            seam under the header. */}
+        <div data-reveal suppressHydrationWarning className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-steel-light">
             {t("kicker")}
           </p>

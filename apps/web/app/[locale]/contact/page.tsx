@@ -25,7 +25,11 @@ export default async function ContactPage({ params }: Props) {
   const messages = await getMessages();
 
   return (
-    <section className="bg-canvas py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-canvas py-16 sm:py-20"
+    >
       <Container>
         <SectionHeading
           as="h1"

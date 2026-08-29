@@ -7,7 +7,11 @@ export async function PolicyHeader() {
   const t = await getTranslations("privacy.header");
 
   return (
-    <section className="bg-white pt-16 sm:pt-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white pt-16 sm:pt-20"
+    >
       <Container>
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent-ink">

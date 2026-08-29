@@ -41,3 +41,44 @@
     cursor: pointer;
   }
 }
+
+/* Section reveal. `data-reveal` is the server-rendered mark; `data-armed` is
+   written only by JS, and only on a section that has not reached the trigger
+   line. With the bundle down nothing carries `data-armed`, nothing matches, and
+   the whole page stays visible. Deliberately outside @layer — an unlayered rule
+   beats Tailwind's utilities without a specificity fight. */
+[data-reveal] {
+  transition:
+    opacity 800ms ease-out,
+    transform 800ms ease-out;
+}
+
+[data-reveal][data-armed] {
+  opacity: 0;
+  transform: translateY(24px);
+  /* A transition is read off the destination style, so `none` here makes arming
+     instant and disarming animated — exactly the asymmetry we want. */
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
+
+  [data-reveal][data-armed] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Print gets the whole page, armed or not. Paper has no fold and no scroll, so
+   nothing would ever release what the reader never reached — and the two frames
+   the entrance waits on are frames a print never renders. Without this, printing
+   the privacy policy yields blank pages. */
+@media print {
+  [data-reveal][data-armed] {
+    opacity: 1;
+    transform: none;
+  }
+}

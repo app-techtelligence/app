@@ -11,7 +11,11 @@ export async function FinalCta() {
   const t = await getTranslations("consulting.finalCta");
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white py-16 sm:py-20"
+    >
       <Container className="flex flex-col items-center text-center">
         <TriangleDivider tone="steel" className="mb-4" />
         <SectionHeading title={t("title")} subtitle={t("subtitle")} />
