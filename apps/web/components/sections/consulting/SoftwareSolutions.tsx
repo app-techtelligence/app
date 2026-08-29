@@ -8,8 +8,8 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 
 const cards = ["website", "store", "apps", "custom"] as const;
 
-/** Quiet 2x2: the Data rail is this page's one loud element, so these cards
- *  stay minimal — hairline borders, a text link, a small hover shift. */
+/** Same iOS-style card family as the AI section: generous radius, hairline
+ *  border, soft shadow, whole card tappable. */
 export async function SoftwareSolutions() {
   const t = await getTranslations("consulting");
 
@@ -36,7 +36,7 @@ export async function SoftwareSolutions() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col rounded-xl border border-navy/10 bg-white p-7 transition-colors hover:border-navy/30"
+              className="group flex flex-col rounded-2xl border border-navy/5 bg-white p-7 shadow-md shadow-navy/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/10"
             >
               <h3 className="text-xl font-extrabold tracking-wide text-navy">
                 {t(`software.cards.${key}.title`)}
@@ -44,7 +44,7 @@ export async function SoftwareSolutions() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-steel">
                 {t(`software.cards.${key}.description`)}
               </p>
-              <span className="mt-6 flex items-center gap-1.5 text-sm font-bold text-navy">
+              <span className="mt-6 flex items-center gap-1.5 text-sm font-bold text-navy transition-colors group-hover:text-accent-strong">
                 {t("software.cta")}
                 <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </span>
