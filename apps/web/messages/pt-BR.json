@@ -316,14 +316,14 @@
     "data": {
       "kicker": "Data",
       "title": "Sua empresa, orientada por dados",
-      "subtitle": "Sua empresa pode contratar as 3 etapas como uma jornada completa, ou só a que precisa agora — cada uma entrega valor sozinha.",
+      "subtitle": "Sua empresa pode contratar as 3 etapas como uma jornada completa, ou só a que precisa agora.",
       "steps": {
         "diagnosis": {
           "label": "01 · Diagnóstico",
           "title": "Mapa de Dados",
           "tag": "“Clareza antes de qualquer investimento em dados e IA.”",
           "items": [
-            "Saiba exatamente onde estão as maiores oportunidades — sem achismo",
+            "Saiba exatamente onde estão as maiores oportunidades",
             "Prioridades claras: o que resolver primeiro pra gerar resultado mais rápido",
             "Liderança e time técnico alinhados na mesma direção",
             "Um roadmap pra executar com confiança, não um relatório que fica na gaveta"
@@ -335,10 +335,10 @@
           "title": "Construção de Dados",
           "tag": "“Da arquitetura à operação, com entregas reais em cada ciclo.”",
           "items": [
-            "Governança de verdade — todo mundo sabe quem é responsável pelo quê",
+            "Governança de verdade",
             "Seus dados organizados num catálogo que sua equipe realmente usa",
             "As ferramentas certas pro seu contexto, não a mais na moda",
-            "Sistema funcionando em produção — não uma promessa que fica no slide",
+            "Sistema funcionando em produção",
             "Seu time capacitado pra tocar sozinho, sem depender de nós pra sempre"
           ],
           "cta": "Quero construir"
@@ -351,7 +351,7 @@
             "Reforço sênior quando você precisa, sem o custo de uma contratação CLT",
             "A qualidade dos seus dados sempre sob controle, com indicadores que você acompanha",
             "Sua operação evolui junto com o negócio, sem ficar pra trás",
-            "Escala pra cima ou pra baixo conforme a necessidade — sem multa, sem enrolação"
+            "Escala pra cima ou pra baixo conforme a necessidade"
           ],
           "cta": "Quero reforço contínuo"
         }

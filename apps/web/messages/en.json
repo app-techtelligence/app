@@ -316,14 +316,14 @@
     "data": {
       "kicker": "Data",
       "title": "Your business, driven by data",
-      "subtitle": "You can hire all 3 stages as a complete journey, or only the one you need now — each delivers value on its own.",
+      "subtitle": "You can hire all 3 stages as a complete journey, or only the one you need now.",
       "steps": {
         "diagnosis": {
           "label": "01 · Diagnosis",
           "title": "Data Map",
           "tag": "“Clarity before any investment in data and AI.”",
           "items": [
-            "Know exactly where the biggest opportunities are — no guesswork",
+            "Know exactly where the biggest opportunities are",
             "Clear priorities: what to solve first for faster results",
             "Leadership and technical team aligned in the same direction",
             "A roadmap to execute with confidence, not a report left in a drawer"
@@ -335,10 +335,10 @@
           "title": "Data Build",
           "tag": "“From architecture to operations, with real deliveries in every cycle.”",
           "items": [
-            "Real governance — everyone knows who is responsible for what",
+            "Real governance",
             "Your data organized in a catalog your team actually uses",
             "The right tools for your context, not the trendiest ones",
-            "A system running in production — not a promise left on a slide",
+            "A system running in production",
             "Your team trained to run it on its own, without depending on us forever"
           ],
           "cta": "I want to build"
@@ -351,7 +351,7 @@
             "Senior reinforcement when you need it, without the cost of a full-time hire",
             "Your data quality always under control, with indicators you can track",
             "Your operation evolves with the business, without falling behind",
-            "Scale up or down as needed — no penalties, no hassle"
+            "Scale up or down as needed"
           ],
           "cta": "I want ongoing support"
         }
