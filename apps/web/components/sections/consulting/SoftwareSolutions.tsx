@@ -4,9 +4,12 @@ import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { buttonVariants } from "@/components/ui/Button";
+import { ArrowRightIcon } from "@/components/ui/icons";
 
 const cards = ["website", "store", "apps", "custom"] as const;
 
+/** Quiet 2x2: the Data rail is this page's one loud element, so these cards
+ *  stay minimal — hairline borders, a text link, a small hover shift. */
 export async function SoftwareSolutions() {
   const t = await getTranslations("consulting");
 
@@ -24,11 +27,16 @@ export async function SoftwareSolutions() {
           title={t("software.title")}
           subtitle={t("software.subtitle")}
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {cards.map((key) => (
-            <article
+            <a
               key={key}
-              className="flex flex-col rounded-xl border border-navy/10 bg-canvas p-7"
+              href={whatsappLink(
+                t("whatsappTopic", { topic: t(`software.cards.${key}.title`) }),
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col rounded-xl border border-navy/10 bg-white p-7 transition-colors hover:border-navy/30"
             >
               <h3 className="text-xl font-extrabold tracking-wide text-navy">
                 {t(`software.cards.${key}.title`)}
@@ -36,20 +44,14 @@ export async function SoftwareSolutions() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-steel">
                 {t(`software.cards.${key}.description`)}
               </p>
-              <a
-                href={whatsappLink(
-                  t("whatsappTopic", { topic: t(`software.cards.${key}.title`) }),
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonVariants("secondary", "md", "mt-6 self-start")}
-              >
+              <span className="mt-6 flex items-center gap-1.5 text-sm font-bold text-navy">
                 {t("software.cta")}
-              </a>
-            </article>
+                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
           ))}
         </div>
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <Link href="/contact" className={buttonVariants("primary", "lg")}>
             {t("software.proposalCta")}
           </Link>

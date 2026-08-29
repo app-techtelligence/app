@@ -14,6 +14,11 @@ const steps = [
   { key: "squad", items: 4 },
 ] as const;
 
+/**
+ * The journey drawn as a route: a continuous rail with triangle waypoints,
+ * because these stages ARE a sequence — the numbering carries information,
+ * it does not decorate. The rail is this page's signature element.
+ */
 export async function DataJourney() {
   const t = await getTranslations("consulting");
 
@@ -32,43 +37,49 @@ export async function DataJourney() {
           title={t("data.title")}
           subtitle={t("data.subtitle")}
         />
-        <div className="mt-12 space-y-6">
+        <ol className="mt-12 sm:mt-14">
           {steps.map(({ key, items }) => (
-            <article
-              key={key}
-              className="rounded-xl border border-navy/10 bg-canvas p-7 sm:p-10"
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
-                {t(`data.steps.${key}.label`)}
-              </p>
-              <h3 className="mt-2 text-2xl font-extrabold tracking-wide text-navy">
-                {t(`data.steps.${key}.title`)}
-              </h3>
-              <p className="mt-1 text-sm italic leading-relaxed text-steel sm:text-base">
-                {t(`data.steps.${key}.tag`)}
-              </p>
-              <ul className="mt-5 max-w-2xl space-y-2.5">
-                {Array.from({ length: items }, (_, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-navy/85">
-                    <TriangleBullet className="mt-1 h-2.5 w-2.5 shrink-0 text-accent" />
-                    {t(`data.steps.${key}.items.${i}`)}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={whatsappLink(
-                  t("whatsappTopic", { topic: t(`data.steps.${key}.title`) }),
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonVariants("primary", "md", "mt-7")}
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                {t(`data.steps.${key}.cta`)}
-              </a>
-            </article>
+            <li key={key} className="group/step flex gap-5 sm:gap-8">
+              {/* Rail: waypoint marker + connecting line to the next stage. */}
+              <div aria-hidden="true" className="flex flex-col items-center">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-navy/15 bg-white shadow-sm shadow-navy/5">
+                  <TriangleBullet className="h-3.5 w-3.5 text-navy" />
+                </span>
+                <span className="w-px flex-1 bg-navy/15 group-last/step:hidden" />
+              </div>
+              <div className="pb-12 group-last/step:pb-0 sm:pb-14">
+                <p className="pt-2.5 text-xs font-bold uppercase tracking-[0.18em] text-steel">
+                  {t(`data.steps.${key}.label`)}
+                </p>
+                <h3 className="mt-2 text-2xl font-extrabold tracking-wide text-navy sm:text-3xl">
+                  {t(`data.steps.${key}.title`)}
+                </h3>
+                <p className="mt-2 text-sm italic leading-relaxed text-steel sm:text-base">
+                  {t(`data.steps.${key}.tag`)}
+                </p>
+                <ul className="mt-5 max-w-2xl space-y-2.5">
+                  {Array.from({ length: items }, (_, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed text-navy/85">
+                      <TriangleBullet className="mt-1 h-2.5 w-2.5 shrink-0 text-accent" />
+                      {t(`data.steps.${key}.items.${i}`)}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={whatsappLink(
+                    t("whatsappTopic", { topic: t(`data.steps.${key}.title`) }),
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonVariants("primary", "md", "mt-7")}
+                >
+                  <WhatsAppIcon className="h-4 w-4" />
+                  {t(`data.steps.${key}.cta`)}
+                </a>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </Container>
     </section>
   );
