@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { whatsappLink } from "@/lib/site-config";
-import { Link } from "@/i18n/navigation";
 import { LogoMark } from "@/components/brand/LogoMark";
 import { Container } from "@/components/ui/Container";
 import { buttonVariants } from "@/components/ui/Button";
@@ -20,10 +19,7 @@ export async function Hero() {
           <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-wide text-white sm:text-5xl">
             {t("title")}
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
-            {t("subtitle")}
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8">
             <a
               href={whatsappLink(t("whatsappMessage"))}
               target="_blank"
@@ -31,11 +27,8 @@ export async function Hero() {
               className={buttonVariants("onDark", "lg")}
             >
               <WhatsAppIcon className="h-5 w-5" />
-              {t("ctaPrimary")}
+              {t("cta")}
             </a>
-            <Link href="/contact" className={buttonVariants("onDarkOutline", "lg")}>
-              {t("ctaSecondary")}
-            </Link>
           </div>
         </div>
       </Container>

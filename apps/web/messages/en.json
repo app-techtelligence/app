@@ -7,7 +7,7 @@
       "consulting": "Consulting",
       "consultingData": "Data",
       "consultingAi": "AI",
-      "consultingSoftware": "Software/APP",
+      "consultingSoftware": "Software/App",
       "blog": "Blog",
       "about": "About",
       "contact": "Contact",
@@ -307,136 +307,113 @@
       "description": "Data platforms and AI environments implemented end to end: diagnosis, architecture, implementation and operations. Request a proposal."
     },
     "hero": {
-      "kicker": "Data & AI Consulting",
-      "title": "Data and AI that leave the slide deck and reach production",
-      "subtitle": "We implement data platforms and AI environments end to end — from diagnosis to operations, with your team ready to own what we build.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Use the contact form",
-      "whatsappMessage": "Hi! I'd like to request a Data & AI consulting proposal from TechTelligence for my company."
+      "kicker": "For businesses",
+      "title": "Data, AI and digital presence implemented by those who build.",
+      "cta": "Talk to a specialist",
+      "whatsappMessage": "Hello! I'd like to talk to a TechTelligence specialist about consulting for my company."
     },
-    "services": {
-      "kicker": "Services",
-      "title": "What we implement",
-      "subtitle": "Three service lines, one standard: solid engineering, from raw data to value in production.",
-      "dataPlatforms": {
-        "tagline": "Data engineering",
-        "title": "Data Platforms",
-        "description": "A modern, reliable data platform sized for where your business is today.",
-        "items": [
-          "Ingestion and integration of your data sources",
-          "Warehouse or lakehouse — whichever fits your case",
-          "Reliable, tested and monitored pipelines",
-          "Data governance and quality from day one"
-        ]
-      },
-      "aiEnvironments": {
-        "tagline": "Artificial intelligence",
-        "title": "AI Environments",
-        "description": "From your first generative AI use case to machine learning foundations — with responsible adoption.",
-        "items": [
-          "LLM integration with your systems and processes",
-          "RAG: AI that answers with your company's data",
-          "Machine learning foundations to grow on safely",
-          "Responsible adoption: privacy, security and control"
-        ]
-      },
-      "integrated": {
-        "tagline": "The full stack",
-        "title": "Data + AI, Integrated",
-        "description": "The complete journey in one coherent architecture: from raw data to AI creating value in production.",
-        "items": [
-          "A single roadmap for data and AI",
-          "Architecture designed end to end, no patchwork",
-          "Less rework, faster delivery",
-          "Continuous evolution alongside your team"
-        ]
+    "whatsappTopic": "Hello! I'd like to know more about {topic} from TechTelligence for my company.",
+    "data": {
+      "kicker": "Data",
+      "title": "Your business, driven by data",
+      "subtitle": "You can hire all 3 stages as a complete journey, or only the one you need now — each delivers value on its own.",
+      "steps": {
+        "diagnosis": {
+          "label": "01 · Diagnosis",
+          "title": "Data Map",
+          "tag": "“Clarity before any investment in data and AI.”",
+          "items": [
+            "Know exactly where the biggest opportunities are — no guesswork",
+            "Clear priorities: what to solve first for faster results",
+            "Leadership and technical team aligned in the same direction",
+            "A roadmap to execute with confidence, not a report left in a drawer"
+          ],
+          "cta": "I want my diagnosis"
+        },
+        "build": {
+          "label": "02 · Implementation",
+          "title": "Data Build",
+          "tag": "“From architecture to operations, with real deliveries in every cycle.”",
+          "items": [
+            "Real governance — everyone knows who is responsible for what",
+            "Your data organized in a catalog your team actually uses",
+            "The right tools for your context, not the trendiest ones",
+            "A system running in production — not a promise left on a slide",
+            "Your team trained to run it on its own, without depending on us forever"
+          ],
+          "cta": "I want to build"
+        },
+        "squad": {
+          "label": "03 · Ongoing",
+          "title": "Ongoing Squad",
+          "tag": "“Engineering capacity on demand, at your company's pace.”",
+          "items": [
+            "Senior reinforcement when you need it, without the cost of a full-time hire",
+            "Your data quality always under control, with indicators you can track",
+            "Your operation evolves with the business, without falling behind",
+            "Scale up or down as needed — no penalties, no hassle"
+          ],
+          "cta": "I want ongoing support"
+        }
       }
     },
-    "serviceAreas": {
-      "kicker": "Consulting",
-      "title": "How we help your business",
-      "subtitle": "Three practice areas, one engineering standard — from strategy to operations.",
-      "cta": "Talk to us",
-      "data": {
-        "title": "Data",
-        "description": "Data your company can trust: platforms, quality, catalog and LGPD compliance, in an operating model your team sustains.",
-        "items": [
-          "Data platforms and pipelines",
-          "Quality, catalog and lineage",
-          "Privacy, security and LGPD"
-        ]
-      },
-      "ai": {
-        "title": "AI",
-        "description": "AI built on your data and running inside your operation — from your first generative-AI assistant to machine learning at scale.",
-        "items": [
-          "Generative AI and LLMs on your data",
-          "Machine learning and predictive analytics",
-          "MLOps and AI operations"
-        ]
-      },
-      "software": {
-        "title": "Software/APP",
-        "description": "Custom web and mobile applications built around your process — from prototype to production, integrated with your systems and your data.",
-        "items": [
-          "Custom web and mobile applications",
-          "Integration with your systems",
-          "From prototype to production"
-        ]
+    "ai": {
+      "kicker": "AI",
+      "title": "Artificial intelligence that actually solves",
+      "subtitle": "Ready-to-use automations, chosen for what your company needs right now.",
+      "cta": "Learn more",
+      "cards": {
+        "chatbot": {
+          "title": "Chatbot",
+          "description": "Automated support that actually works, 24 hours a day."
+        },
+        "marketing": {
+          "title": "Marketing Boost",
+          "description": "Campaigns running every day, with no manual effort."
+        },
+        "processes": {
+          "title": "Process Automation",
+          "description": "Repetitive tasks automated, freeing your team for what matters."
+        },
+        "recruiting": {
+          "title": "Smart Recruiting",
+          "description": "Faster, more consistent candidate screening."
+        },
+        "sales": {
+          "title": "Sales Engine",
+          "description": "Your team selling more, with less manual work."
+        }
       }
     },
-    "approach": {
-      "kicker": "Our approach",
-      "title": "How we work",
-      "subtitle": "No never-ending projects: a clear path from base to summit, with concrete deliverables at every stage.",
-      "steps": [
-        {
-          "title": "Diagnosis",
-          "description": "We map your business, your data and your systems. You leave with a clear picture of where you stand and the highest-impact opportunities."
+    "software": {
+      "kicker": "Software/App",
+      "title": "Digital presence that delivers results",
+      "subtitle": "From an institutional website to a custom system, according to your company's needs.",
+      "cta": "Learn more",
+      "proposalCta": "Request a proposal",
+      "cards": {
+        "website": {
+          "title": "Institutional Website",
+          "description": "A website that builds credibility and opens business opportunities."
         },
-        {
-          "title": "Architecture and roadmap",
-          "description": "We design the architecture and prioritize a pragmatic roadmap: what creates value first ships first."
+        "store": {
+          "title": "Online Store",
+          "description": "Your online store ready to sell, with all the credibility your business deserves."
         },
-        {
-          "title": "Implementation",
-          "description": "We build in short cycles, with working deliverables in production — not just documents and presentations."
+        "apps": {
+          "title": "Mobile Apps",
+          "description": "Your app, from design to publication in the app stores."
         },
-        {
-          "title": "Handover and operations",
-          "description": "We hand over a running operation with your team enabled: documentation, training and support until full autonomy."
+        "custom": {
+          "title": "Custom Software",
+          "description": "The tailor-made solution your company really needs."
         }
-      ]
+      }
     },
-    "whyUs": {
-      "kicker": "Why TechTelligence",
-      "title": "We build — we don't just advise",
-      "subtitle": "The same team that implements Data & AI for companies also trains professionals for the market. That loop keeps our bar high on both sides.",
-      "items": [
-        {
-          "title": "Hands-on, not slide decks",
-          "description": "We deliver working code, pipelines and infrastructure — not recommendations that stay on paper."
-        },
-        {
-          "title": "A market-current stack",
-          "description": "We work with the tools the market uses today, chosen for the problem — not for the hype."
-        },
-        {
-          "title": "Pragmatic scope",
-          "description": "We start from the business problem and deliver in short cycles. Value first; complexity only when it earns its place."
-        },
-        {
-          "title": "Knowledge that stays",
-          "description": "Training people is part of our business — and we do the same for your team, so they own the platform with confidence."
-        }
-      ]
-    },
-    "finalCta": {
-      "title": "Ready to talk about your project?",
-      "subtitle": "Tell us your company's challenge and get a clear proposal, with scope, stages and next steps defined.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Fill out the contact form",
-      "whatsappMessage": "Hi! I'd like a Data & AI consulting proposal from TechTelligence. Can we talk about my company's project?"
+    "band": {
+      "text": "Every project has a different scope — so the investment is always discussed, never standardized. Talk to us and get a proposal tailored to your company's moment.",
+      "cta": "Chat on WhatsApp",
+      "whatsappMessage": "Hello! I'd like a tailored proposal from TechTelligence for my company."
     }
   },
   "about": {
