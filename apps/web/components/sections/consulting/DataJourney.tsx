@@ -40,12 +40,13 @@ export async function DataJourney() {
         <ol className="mt-12 sm:mt-14">
           {steps.map(({ key, items }) => (
             <li key={key} className="group/step flex gap-5 sm:gap-8">
-              {/* Rail: waypoint marker + connecting line to the next stage. */}
+              {/* Rail: waypoint marker + connecting line, running the full
+                  length of every stage — the last one included. */}
               <div aria-hidden="true" className="flex flex-col items-center">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-navy/15 bg-white shadow-sm shadow-navy/5">
                   <TriangleBullet className="h-3.5 w-3.5 text-navy" />
                 </span>
-                <span className="w-px flex-1 bg-navy/15 group-last/step:hidden" />
+                <span className="w-px flex-1 bg-navy/15" />
               </div>
               <div className="pb-12 group-last/step:pb-0 sm:pb-14">
                 <p className="pt-2.5 text-xs font-bold uppercase tracking-[0.18em] text-steel">
