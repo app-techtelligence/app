@@ -6,14 +6,17 @@ import { LogoMark } from "@/components/brand/LogoMark";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Container } from "@/components/ui/Container";
 
-// Consultancy first (CLAUDE.md §1), with its two service lines right below it.
+// Consultancy first (CLAUDE.md §1), with its three service lines right below
+// it. The services are anchored sections on the consulting page, not separate
+// pages.
 const productLinks: {
-  href: StaticAppPathname;
-  key: "consulting" | "servicesAi" | "servicesDataGovernance" | "course" | "mentorship";
+  href: StaticAppPathname | { pathname: StaticAppPathname; hash: string };
+  key: "consulting" | "consultingData" | "consultingAi" | "consultingSoftware" | "course" | "mentorship";
 }[] = [
   { href: "/consulting", key: "consulting" },
-  { href: "/consulting/ai", key: "servicesAi" },
-  { href: "/consulting/data-governance", key: "servicesDataGovernance" },
+  { href: { pathname: "/consulting", hash: "#data" }, key: "consultingData" },
+  { href: { pathname: "/consulting", hash: "#ia" }, key: "consultingAi" },
+  { href: { pathname: "/consulting", hash: "#software" }, key: "consultingSoftware" },
   { href: "/course", key: "course" },
   { href: "/mentorship", key: "mentorship" },
 ];
@@ -41,7 +44,7 @@ export async function Footer() {
           </h2>
           <ul className="mt-4 space-y-2.5">
             {productLinks.map(({ href, key }) => (
-              <li key={href}>
+              <li key={key}>
                 <Link
                   href={href}
                   className="text-sm text-white/80 transition-colors hover:text-white"

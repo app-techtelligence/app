@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { pageMetadata } from "@/lib/metadata";
 import { Hero } from "@/components/sections/consulting/Hero";
 import { Services } from "@/components/sections/consulting/Services";
+import { ServiceAreas } from "@/components/sections/consulting/ServiceAreas";
 import { Approach } from "@/components/sections/consulting/Approach";
 import { WhyUs } from "@/components/sections/consulting/WhyUs";
 import { TalentBridge } from "@/components/sections/shared/TalentBridge";
@@ -24,6 +25,7 @@ export default async function ConsultingPage({ params }: Props) {
     <>
       <Hero />
       <Services />
+      <ServiceAreas />
       <Approach />
       <WhyUs />
       <TalentBridge audience="clients" />

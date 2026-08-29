@@ -15,14 +15,6 @@ export const routing = defineRouting({
       "pt-BR": "/consultoria",
       en: "/consulting",
     },
-    "/consulting/ai": {
-      "pt-BR": "/consultoria/ia",
-      en: "/consulting/ai",
-    },
-    "/consulting/data-governance": {
-      "pt-BR": "/consultoria/governanca-de-dados",
-      en: "/consulting/data-governance",
-    },
     "/course": {
       "pt-BR": "/curso",
       en: "/course",

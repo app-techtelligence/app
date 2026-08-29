@@ -20,6 +20,15 @@
 }
 
 @layer base {
+  /* The header dropdown links to in-page anchors (/#data, /#ia, /#software);
+     smooth scroll is the visual cue that the click stayed on the same page.
+     Scoped to no-preference — instant jumps under reduced motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     background-color: #fff;
     color: var(--color-navy);

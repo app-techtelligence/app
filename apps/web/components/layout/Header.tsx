@@ -16,9 +16,12 @@ const links: { href: StaticAppPathname; key: "course" | "mentorship" | "blog" | 
   { href: "/about", key: "about" },
 ];
 
-const serviceLinks: { href: StaticAppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
-  { href: "/consulting/ai", key: "servicesAi" },
-  { href: "/consulting/data-governance", key: "servicesDataGovernance" },
+// The service lines live on the consulting page as anchored sections, not on
+// separate pages — the dropdown scrolls within /consultoria.
+const serviceAnchors: { hash: string; key: "consultingData" | "consultingAi" | "consultingSoftware" }[] = [
+  { hash: "#data", key: "consultingData" },
+  { hash: "#ia", key: "consultingAi" },
+  { hash: "#software", key: "consultingSoftware" },
 ];
 
 export async function Header() {
@@ -43,16 +46,16 @@ export async function Header() {
               href="/consulting"
               className="flex items-center gap-1 text-sm font-semibold text-navy/75 transition-colors hover:text-navy"
             >
-              {t("nav.services")}
+              {t("nav.consulting")}
               <ChevronDownIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
             </Link>
             {/* pt-2 bridges the hover gap between the trigger and the panel. */}
             <div className="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
               <div className="w-60 rounded-lg border border-navy/10 bg-white p-1.5 shadow-lg">
-                {serviceLinks.map(({ href, key }) => (
+                {serviceAnchors.map(({ hash, key }) => (
                   <Link
-                    key={href}
-                    href={href}
+                    key={hash}
+                    href={{ pathname: "/consulting", hash }}
                     className="block rounded-md px-3 py-2.5 text-sm font-semibold text-navy/80 transition-colors hover:bg-canvas hover:text-navy"
                   >
                     {t(`nav.${key}`)}
