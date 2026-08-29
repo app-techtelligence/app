@@ -29,14 +29,9 @@ export async function SoftwareSolutions() {
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {cards.map((key) => (
-            <a
+            <article
               key={key}
-              href={whatsappLink(
-                t("whatsappTopic", { topic: t(`software.cards.${key}.title`) }),
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col rounded-2xl border border-navy/5 bg-white p-7 shadow-md shadow-navy/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/10"
+              className="flex flex-col rounded-2xl border border-navy/5 bg-white p-7 shadow-md shadow-navy/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/10"
             >
               <h3 className="text-xl font-extrabold tracking-wide text-navy">
                 {t(`software.cards.${key}.title`)}
@@ -44,11 +39,18 @@ export async function SoftwareSolutions() {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-steel">
                 {t(`software.cards.${key}.description`)}
               </p>
-              <span className="mt-6 flex items-center gap-1.5 text-sm font-bold text-navy transition-colors group-hover:text-accent-strong">
+              <a
+                href={whatsappLink(
+                  t("whatsappTopic", { topic: t(`software.cards.${key}.title`) }),
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link mt-6 flex items-center gap-1.5 self-start text-sm font-bold text-navy transition-colors hover:text-accent-strong"
+              >
                 {t("software.cta")}
-                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </a>
+                <ArrowRightIcon className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5" />
+              </a>
+            </article>
           ))}
         </div>
         <div className="mt-12 text-center">
