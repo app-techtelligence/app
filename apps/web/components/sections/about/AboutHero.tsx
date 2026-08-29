@@ -13,7 +13,7 @@ export async function AboutHero() {
     <section className="relative overflow-hidden bg-canvas">
       <LogoMark className="pointer-events-none absolute -right-16 -top-10 hidden h-[130%] w-auto text-navy/[0.04] md:block" />
       <Container className="relative py-20 sm:py-28">
-        <div className="max-w-2xl">
+        <div data-reveal suppressHydrationWarning className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-accent-ink">
             {t("kicker")}
           </p>

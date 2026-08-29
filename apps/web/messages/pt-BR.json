@@ -5,9 +5,9 @@
       "course": "Cursos",
       "mentorship": "Mentoria",
       "consulting": "Consultoria",
-      "services": "Serviços",
-      "servicesAi": "IA",
-      "servicesDataGovernance": "Governança de dados",
+      "consultingData": "Data",
+      "consultingAi": "IA",
+      "consultingSoftware": "Software/App",
       "blog": "Blog",
       "about": "Sobre",
       "contact": "Contato",
@@ -307,347 +307,113 @@
       "description": "Plataformas de dados e ambientes de IA implementados de ponta a ponta: diagnóstico, arquitetura, implementação e operação. Peça uma proposta."
     },
     "hero": {
-      "kicker": "Consultoria em Dados & IA",
-      "title": "Dados e IA que saem do slide e entram em produção",
-      "subtitle": "Implementamos plataformas de dados e ambientes de IA de ponta a ponta — do diagnóstico à operação, com o seu time preparado para assumir o que construímos.",
-      "ctaPrimary": "Pedir uma proposta",
-      "ctaSecondary": "Falar pelo formulário",
-      "whatsappMessage": "Olá! Quero pedir uma proposta de consultoria em Dados & IA da TechTelligence para a minha empresa."
+      "kicker": "Para empresas",
+      "title": "Dados, IA e presença digital implementados por quem constrói.",
+      "cta": "Falar com um especialista",
+      "whatsappMessage": "Olá! Quero falar com um especialista da TechTelligence sobre a consultoria para a minha empresa."
     },
-    "services": {
-      "kicker": "Serviços",
-      "title": "O que implementamos",
-      "subtitle": "Três frentes de atuação, um mesmo padrão: engenharia bem-feita, do dado bruto ao valor em produção.",
-      "dataPlatforms": {
-        "tagline": "Engenharia de dados",
-        "title": "Plataformas de Dados",
-        "description": "Uma plataforma de dados moderna, confiável e dimensionada para o momento do seu negócio.",
-        "items": [
-          "Ingestão e integração das suas fontes de dados",
-          "Warehouse ou lakehouse, conforme o seu caso",
-          "Pipelines confiáveis, testados e monitorados",
-          "Governança e qualidade de dados desde o início"
-        ]
-      },
-      "aiEnvironments": {
-        "tagline": "Inteligência artificial",
-        "title": "Ambientes de IA",
-        "description": "Do primeiro caso de uso com IA generativa às fundações de machine learning — com adoção responsável.",
-        "items": [
-          "Integração de LLMs aos seus sistemas e processos",
-          "RAG: IA que responde com os dados da sua empresa",
-          "Fundações de machine learning para evoluir com segurança",
-          "Adoção responsável: privacidade, segurança e controle"
-        ]
-      },
-      "integrated": {
-        "tagline": "A stack completa",
-        "title": "Dados + IA integrados",
-        "description": "O caminho completo em uma única arquitetura coerente: do dado bruto à IA gerando valor em produção.",
-        "items": [
-          "Um roadmap único para dados e IA",
-          "Arquitetura pensada de ponta a ponta, sem remendos",
-          "Menos retrabalho, mais velocidade de entrega",
-          "Evolução contínua junto com o seu time"
-        ]
+    "whatsappTopic": "Olá! Quero saber mais sobre {topic} da TechTelligence para a minha empresa.",
+    "data": {
+      "kicker": "Data",
+      "title": "Sua empresa, orientada por dados",
+      "subtitle": "Sua empresa pode contratar as 3 etapas como uma jornada completa, ou só a que precisa agora.",
+      "steps": {
+        "diagnosis": {
+          "label": "01 · Diagnóstico",
+          "title": "Mapa de Dados",
+          "tag": "“Clareza antes de qualquer investimento em dados e IA.”",
+          "items": [
+            "Saiba exatamente onde estão as maiores oportunidades",
+            "Prioridades claras: o que resolver primeiro pra gerar resultado mais rápido",
+            "Liderança e time técnico alinhados na mesma direção",
+            "Um roadmap pra executar com confiança, não um relatório que fica na gaveta"
+          ],
+          "cta": "Quero meu diagnóstico"
+        },
+        "build": {
+          "label": "02 · Implementação",
+          "title": "Construção de Dados",
+          "tag": "“Da arquitetura à operação, com entregas reais em cada ciclo.”",
+          "items": [
+            "Governança de verdade",
+            "Seus dados organizados num catálogo que sua equipe realmente usa",
+            "As ferramentas certas pro seu contexto, não a mais na moda",
+            "Sistema funcionando em produção",
+            "Seu time capacitado pra tocar sozinho, sem depender de nós pra sempre"
+          ],
+          "cta": "Quero construir"
+        },
+        "squad": {
+          "label": "03 · Contínuo",
+          "title": "Squad Contínuo",
+          "tag": "“Capacidade de engenharia sob demanda, no ritmo da sua empresa.”",
+          "items": [
+            "Reforço sênior quando você precisa, sem o custo de uma contratação CLT",
+            "A qualidade dos seus dados sempre sob controle, com indicadores que você acompanha",
+            "Sua operação evolui junto com o negócio, sem ficar pra trás",
+            "Escala pra cima ou pra baixo conforme a necessidade"
+          ],
+          "cta": "Quero reforço contínuo"
+        }
       }
     },
-    "approach": {
-      "kicker": "Nossa abordagem",
-      "title": "Como trabalhamos",
-      "subtitle": "Sem projetos intermináveis: um caminho claro da base ao topo, com entregas concretas em cada etapa.",
-      "steps": [
-        {
-          "title": "Diagnóstico",
-          "description": "Entendemos o seu negócio, seus dados e seus sistemas. Você sai com um mapa claro do ponto de partida e das oportunidades de maior impacto."
+    "ai": {
+      "kicker": "IA",
+      "title": "Inteligência artificial que resolve de verdade",
+      "subtitle": "Automações prontas pra usar, escolhidas conforme o que sua empresa precisa agora.",
+      "cta": "Saiba mais",
+      "cards": {
+        "chatbot": {
+          "title": "Chatbot",
+          "description": "Atendimento automatizado que funciona de verdade, 24 horas por dia."
         },
-        {
-          "title": "Arquitetura e roadmap",
-          "description": "Desenhamos a arquitetura e priorizamos um roadmap pragmático: o que gera valor primeiro entra primeiro."
+        "marketing": {
+          "title": "Impulso de Marketing",
+          "description": "Campanhas rodando todos os dias, sem esforço manual."
         },
-        {
-          "title": "Implementação",
-          "description": "Construímos em ciclos curtos, com entregas funcionando em produção — não apenas documentos e apresentações."
+        "processes": {
+          "title": "Automação de Processos",
+          "description": "Tarefas repetitivas automatizadas, liberando sua equipe pro que importa."
         },
-        {
-          "title": "Transição e operação",
-          "description": "Entregamos a operação com o seu time capacitado: documentação, treinamento e acompanhamento até a autonomia."
+        "recruiting": {
+          "title": "Recrutamento Inteligente",
+          "description": "Triagem de candidatos mais rápida e mais consistente."
+        },
+        "sales": {
+          "title": "Motor de Vendas",
+          "description": "Seu time vendendo mais, com menos trabalho manual."
         }
-      ]
+      }
     },
-    "whyUs": {
-      "kicker": "Por que a TechTelligence",
-      "title": "Construímos — não apenas recomendamos",
-      "subtitle": "A mesma equipe que implementa Dados e IA em empresas também forma profissionais para o mercado. Esse ciclo mantém nosso padrão alto dos dois lados.",
-      "items": [
-        {
-          "title": "Mão na massa, não slides",
-          "description": "Entregamos código, pipelines e infraestrutura funcionando — não recomendações que param no papel."
+    "software": {
+      "kicker": "Software/App",
+      "title": "Presença digital que gera resultado",
+      "subtitle": "De um site institucional a um sistema sob medida, conforme a necessidade da sua empresa.",
+      "cta": "Saiba mais",
+      "proposalCta": "Peça uma proposta",
+      "cards": {
+        "website": {
+          "title": "Site Institucional",
+          "description": "Um site que gera credibilidade e abre oportunidades de negócio."
         },
-        {
-          "title": "Stack atual de mercado",
-          "description": "Trabalhamos com as ferramentas que o mercado usa hoje, escolhidas pelo problema — não pela moda."
+        "store": {
+          "title": "Loja Virtual",
+          "description": "Sua loja virtual pronta pra vender, com toda a credibilidade que seu negócio merece."
         },
-        {
-          "title": "Escopo pragmático",
-          "description": "Começamos pelo problema de negócio e entregamos em ciclos curtos. Valor primeiro; complexidade, só quando necessária."
+        "apps": {
+          "title": "Aplicativos",
+          "description": "Seu aplicativo, do design à publicação nas lojas."
         },
-        {
-          "title": "Conhecimento que fica",
-          "description": "Formar pessoas faz parte do nosso negócio — e fazemos o mesmo pelo seu time, que assume a plataforma com autonomia."
+        "custom": {
+          "title": "Software sob medida",
+          "description": "A solução sob medida que sua empresa realmente precisa."
         }
-      ]
+      }
     },
-    "finalCta": {
-      "title": "Vamos falar sobre o seu projeto?",
-      "subtitle": "Conte o desafio da sua empresa e receba uma proposta clara, com escopo, etapas e próximos passos definidos.",
-      "ctaPrimary": "Pedir uma proposta",
-      "ctaSecondary": "Preencher o formulário de contato",
-      "whatsappMessage": "Olá! Quero uma proposta de consultoria em Dados & IA da TechTelligence. Podemos conversar sobre o projeto da minha empresa?"
-    }
-  },
-  "serviceAi": {
-    "meta": {
-      "title": "Consultoria em IA: Estratégia, IA Generativa e ML — TechTelligence",
-      "description": "Consultoria de IA da estratégia à produção: IA generativa e LLMs, machine learning e operação de IA — construída sobre os seus dados, operada pelo seu time."
-    },
-    "hero": {
-      "kicker": "Serviços · Inteligência Artificial",
-      "title": "IA construída sobre os seus dados, funcionando dentro da sua operação",
-      "subtitle": "Identificamos os casos de uso que importam, construímos sobre os seus dados e sistemas e levamos à produção com responsabilidade — do primeiro assistente de IA generativa ao machine learning em escala.",
-      "ctaPrimary": "Pedir uma proposta",
-      "ctaSecondary": "Falar pelo formulário",
-      "whatsappMessage": "Olá! Quero falar sobre a consultoria de IA da TechTelligence para a minha empresa."
-    },
-    "offerings": {
-      "kicker": "O que fazemos",
-      "title": "Serviços de IA de ponta a ponta",
-      "subtitle": "De decidir onde a IA gera valor a manter modelos saudáveis em produção — um só time, um só padrão de engenharia.",
-      "cards": [
-        {
-          "tagline": "Estratégia",
-          "title": "Estratégia e prontidão para IA",
-          "description": "Antes do primeiro modelo: clareza sobre onde a IA gera valor para o seu negócio e o que precisa estar pronto para funcionar.",
-          "items": [
-            "Descoberta e priorização de casos de uso por impacto no negócio",
-            "Avaliação de prontidão: dados, sistemas e competências",
-            "Roadmap pragmático, com ganhos rápidos primeiro",
-            "Diretrizes de IA responsável desde o primeiro dia"
-          ]
-        },
-        {
-          "tagline": "IA generativa",
-          "title": "Soluções com IA generativa e LLMs",
-          "description": "Assistentes, copilotos e automações que respondem com o conhecimento da sua empresa — não com texto genérico da internet.",
-          "items": [
-            "Integração de LLMs com os seus sistemas e processos",
-            "RAG: respostas baseadas nos seus documentos e dados",
-            "Pipelines de avaliação: qualidade medida, não estimada",
-            "Privacidade, segurança e controle de custos desde a base"
-          ]
-        },
-        {
-          "tagline": "Machine learning",
-          "title": "Machine learning e análise preditiva",
-          "description": "Modelos que antecipam o que o seu negócio precisa saber: demanda, churn, risco, a próxima melhor ação.",
-          "items": [
-            "Previsão de demanda, vendas e capacidade",
-            "Classificação e scoring: churn, crédito, leads",
-            "Recomendação e personalização",
-            "Experimentos medidos por métricas de negócio"
-          ]
-        },
-        {
-          "tagline": "Operação",
-          "title": "MLOps e operação de IA",
-          "description": "IA só gera valor enquanto funciona bem. Tornamos deploy, monitoramento e evolução rotina — não heroísmo.",
-          "items": [
-            "Pipelines de deploy para modelos e aplicações com LLM",
-            "Monitoramento de qualidade, drift e custo",
-            "Ciclo de vida de modelos: versionamento, retreino, rollback",
-            "Seu time treinado para operar com confiança"
-          ]
-        }
-      ]
-    },
-    "useCases": {
-      "kicker": "Casos de uso",
-      "title": "Onde a IA se paga primeiro",
-      "subtitle": "Seis padrões que geram valor em vários setores — um ponto de partida, não um limite.",
-      "items": [
-        {
-          "title": "Assistentes de atendimento",
-          "description": "Atenda clientes com mais rapidez e consistência, com IA baseada nas suas políticas e nos dados dos seus produtos."
-        },
-        {
-          "title": "Busca de conhecimento interno",
-          "description": "Dê ao seu time um lugar único para tirar dúvidas em documentos, wikis e sistemas — com as fontes citadas."
-        },
-        {
-          "title": "Processamento de documentos",
-          "description": "Extraia, classifique e valide informações de contratos, notas e formulários automaticamente."
-        },
-        {
-          "title": "Previsão de demanda",
-          "description": "Planeje estoque, equipe e caixa com previsões que aprendem com o seu histórico e a sua sazonalidade."
-        },
-        {
-          "title": "Churn e retenção",
-          "description": "Saiba quem está prestes a sair e por quê — cedo o bastante para agir."
-        },
-        {
-          "title": "Automação de processos",
-          "description": "Elimine etapas repetitivas do back-office com IA que encaminha as exceções para pessoas."
-        }
-      ]
-    },
-    "engagement": {
-      "kicker": "Como trabalhamos",
-      "title": "Provar no pequeno, escalar com segurança",
-      "subtitle": "Ciclos curtos com pontos de verificação mensuráveis — você vê valor antes de decidir escalar.",
-      "steps": [
-        {
-          "title": "Diagnóstico",
-          "description": "Mapeamos seus casos de uso, dados e sistemas e entregamos um roadmap priorizado — valioso mesmo que o trabalho pare aqui."
-        },
-        {
-          "title": "Prova de valor",
-          "description": "Construímos o caso de uso de maior impacto em semanas e medimos contra uma métrica de negócio definida no início."
-        },
-        {
-          "title": "Escala",
-          "description": "Levamos o que funcionou para produção com segurança, monitoramento e controle de custos — e treinamos o seu time para assumir."
-        }
-      ]
-    },
-    "finalCta": {
-      "title": "Pronto para colocar a IA para trabalhar?",
-      "subtitle": "Conte o seu desafio e receba uma proposta clara: casos de uso, etapas e próximos passos definidos.",
-      "ctaPrimary": "Pedir uma proposta",
-      "ctaSecondary": "Preencher o formulário de contato",
-      "whatsappMessage": "Olá! Quero uma proposta de consultoria de IA da TechTelligence para a minha empresa."
-    }
-  },
-  "serviceDataGovernance": {
-    "meta": {
-      "title": "Consultoria em Governança de Dados — TechTelligence",
-      "description": "Governança de dados que habilita o negócio: qualidade, catálogo e linhagem, conformidade com a LGPD e um modelo operacional que o seu time sustenta. Peça uma proposta."
-    },
-    "hero": {
-      "kicker": "Serviços · Governança de Dados",
-      "title": "Dados em que a sua empresa pode confiar — e provar",
-      "subtitle": "Implementamos governança que habilita em vez de travar: qualidade, donos definidos, catálogo e conformidade com a LGPD, em um modelo operacional que o seu time mantém depois que saímos.",
-      "ctaPrimary": "Pedir uma proposta",
-      "ctaSecondary": "Falar pelo formulário",
-      "whatsappMessage": "Olá! Quero falar sobre a consultoria em governança de dados da TechTelligence para a minha empresa."
-    },
-    "offerings": {
-      "kicker": "O que fazemos",
-      "title": "Governança que sai do papel",
-      "subtitle": "Não é uma pasta de políticas — são regras, papéis e ferramentas funcionando dentro da sua plataforma de dados.",
-      "cards": [
-        {
-          "tagline": "Fundação",
-          "title": "Framework e modelo operacional",
-          "description": "Governança no tamanho da sua empresa — estrutura suficiente para ser confiável, leve o bastante para ser seguida.",
-          "items": [
-            "Políticas e padrões que cabem no seu jeito de trabalhar",
-            "Donos claros: data owners e data stewards",
-            "Fóruns de decisão leves — sem teatro burocrático",
-            "Métricas de adoção para dar visibilidade ao progresso"
-          ]
-        },
-        {
-          "tagline": "Qualidade",
-          "title": "Gestão de qualidade de dados",
-          "description": "Confiança se constrói dataset a dataset: verificações automatizadas onde o dado passa, não planilhas depois do fato.",
-          "items": [
-            "Regras de qualidade embutidas nos seus pipelines",
-            "Monitoramento, alertas e scorecards de qualidade",
-            "Análise de causa raiz e fluxos de correção",
-            "SLAs para os datasets dos quais o negócio depende"
-          ]
-        },
-        {
-          "tagline": "Descoberta",
-          "title": "Catálogo, metadados e linhagem",
-          "description": "As pessoas só usam dados que conseguem encontrar e entender. Tornamos seus dados localizáveis, documentados e rastreáveis.",
-          "items": [
-            "Implantação de catálogo de dados que as pessoas realmente usam",
-            "Glossário de negócio: uma língua só entre os times",
-            "Linhagem de ponta a ponta: de onde o dado vem e para onde vai",
-            "Descoberta self-service para analistas e times de IA"
-          ]
-        },
-        {
-          "tagline": "Conformidade",
-          "title": "Privacidade, segurança e LGPD",
-          "description": "Conformidade como resultado de boa engenharia — dados pessoais mapeados, acesso controlado, evidências prontas.",
-          "items": [
-            "Mapeamento e classificação de dados pessoais",
-            "Controle de acesso, mascaramento e anonimização",
-            "Políticas de retenção e minimização na prática",
-            "Documentação e evidências prontas para auditoria"
-          ]
-        }
-      ]
-    },
-    "useCases": {
-      "kicker": "O que ela destrava",
-      "title": "É a governança que torna o resto possível",
-      "subtitle": "Seis resultados que as empresas sentem poucos meses depois de acertar a governança.",
-      "items": [
-        {
-          "title": "Uma fonte única da verdade",
-          "description": "KPIs que batem entre relatórios — sem reuniões para discutir qual número está certo."
-        },
-        {
-          "title": "Dados prontos para IA",
-          "description": "Iniciativas de IA que começam a construir no primeiro dia, porque os dados estão documentados, limpos e acessíveis."
-        },
-        {
-          "title": "LGPD sem pânico",
-          "description": "Saiba exatamente quais dados pessoais você tem, onde estão e quem os acessa — antes que o regulador pergunte."
-        },
-        {
-          "title": "Analytics self-service",
-          "description": "Analistas encontram e confiam nos dados por conta própria, em vez de entrar na fila do time de dados."
-        },
-        {
-          "title": "Menos incidentes de dados",
-          "description": "Dashboards quebrados e falhas silenciosas de pipeline detectados pelo monitoramento, não pelo CEO."
-        },
-        {
-          "title": "Compartilhamento seguro",
-          "description": "Compartilhe dados entre áreas e com parceiros sob os controles certos, sem improviso."
-        }
-      ]
-    },
-    "engagement": {
-      "kicker": "Como trabalhamos",
-      "title": "Começar onde dói, crescer domínio a domínio",
-      "subtitle": "Governança fracassa quando nasce como um programa big-bang. Implantamos onde o valor é concreto.",
-      "steps": [
-        {
-          "title": "Diagnóstico",
-          "description": "Medimos a maturidade, mapeamos riscos e escolhemos os domínios em que a governança se paga mais rápido."
-        },
-        {
-          "title": "Implementação",
-          "description": "Políticas, verificações de qualidade, catálogo e controles de acesso entram em operação nos domínios prioritários — funcionando, não só escritos."
-        },
-        {
-          "title": "Operação",
-          "description": "O stewardship vira rotina: métricas, revisões e melhoria contínua, sob responsabilidade do seu time."
-        }
-      ]
-    },
-    "finalCta": {
-      "title": "Pronto para confiar nos seus dados?",
-      "subtitle": "Conte onde os dados doem hoje e receba uma proposta clara: escopo, etapas e próximos passos definidos.",
-      "ctaPrimary": "Pedir uma proposta",
-      "ctaSecondary": "Preencher o formulário de contato",
-      "whatsappMessage": "Olá! Quero uma proposta de consultoria em governança de dados da TechTelligence para a minha empresa."
+    "band": {
+      "text": "Cada projeto tem um escopo diferente — por isso o investimento é sempre conversado, não padronizado. Fale com a gente e leve uma proposta sob medida pro momento da sua empresa.",
+      "cta": "Falar no WhatsApp",
+      "whatsappMessage": "Olá! Quero uma proposta sob medida da TechTelligence para a minha empresa."
     }
   },
   "about": {
@@ -792,7 +558,10 @@
     }
   },
   "chat": {
-    "launcher": { "open": "Abrir assistente", "close": "Fechar assistente" },
+    "launcher": {
+      "open": "Abrir assistente",
+      "close": "Fechar assistente"
+    },
     "title": "Assistente TechTelligence",
     "subtitle": "Primeiro atendimento",
     "welcome": "Olá! 👋 Sou o assistente da TechTelligence. Posso tirar dúvidas sobre nossos serviços — escolha um assunto ou escreva sua pergunta.",
@@ -810,7 +579,10 @@
       "criacao-de-sites": "Também criamos sites e aplicações web profissionais — este site é um exemplo do nosso trabalho. Me conta o que você precisa: site institucional, blog, sistema com login?",
       "outros": "Sem problema! Me escreve o que você precisa — se for algo que fazemos, te explico como funciona; se não for, te aponto o canal certo."
     },
-    "input": { "placeholder": "Escreva sua pergunta…", "send": "Enviar" },
+    "input": {
+      "placeholder": "Escreva sua pergunta…",
+      "send": "Enviar"
+    },
     "whatsapp": {
       "cta": "Falar no WhatsApp",
       "templates": {

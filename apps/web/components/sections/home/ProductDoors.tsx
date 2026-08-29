@@ -15,7 +15,12 @@ export async function ProductDoors() {
   const t = await getTranslations("home.doors");
 
   return (
-    <section id="solutions" className="bg-canvas py-16 sm:py-20">
+    <section
+      id="solutions"
+      data-reveal
+      suppressHydrationWarning
+      className="bg-canvas py-16 sm:py-20"
+    >
       <Container>
         <SectionHeading
           kicker={t("kicker")}

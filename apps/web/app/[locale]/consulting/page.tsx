@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { pageMetadata } from "@/lib/metadata";
 import { Hero } from "@/components/sections/consulting/Hero";
-import { Services } from "@/components/sections/consulting/Services";
-import { Approach } from "@/components/sections/consulting/Approach";
-import { WhyUs } from "@/components/sections/consulting/WhyUs";
-import { TalentBridge } from "@/components/sections/shared/TalentBridge";
-import { ClientLogos } from "@/components/sections/shared/ClientLogos";
-import { FinalCta } from "@/components/sections/consulting/FinalCta";
+import { DataJourney } from "@/components/sections/consulting/DataJourney";
+import { AiSolutions } from "@/components/sections/consulting/AiSolutions";
+import { SoftwareSolutions } from "@/components/sections/consulting/SoftwareSolutions";
+import { ProposalBand } from "@/components/sections/consulting/ProposalBand";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -23,12 +21,10 @@ export default async function ConsultingPage({ params }: Props) {
   return (
     <>
       <Hero />
-      <Services />
-      <Approach />
-      <WhyUs />
-      <TalentBridge audience="clients" />
-      <ClientLogos />
-      <FinalCta />
+      <DataJourney />
+      <AiSolutions />
+      <SoftwareSolutions />
+      <ProposalBand />
     </>
   );
 }

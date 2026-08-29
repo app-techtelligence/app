@@ -7,7 +7,9 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 import { ChatLauncher } from "@/components/chat/ChatLauncher";
+import { REVEAL_BOOTSTRAP } from "@/lib/reveal-bootstrap";
 import "../globals.css";
 
 const manrope = Manrope({
@@ -47,7 +49,14 @@ export default async function LocaleLayout({ children, params }: Props) {
           <Footer />
           <WhatsAppFloat />
           <ChatLauncher />
+          <RevealObserver />
         </NextIntlClientProvider>
+        {/* Last in the body and synchronous: it measures a fully parsed page
+            and hides every marked block before the browser's first paint, then
+            two frames later lets the ones on screen rise into place — the
+            page's entrance. React effects all run after that first paint, so
+            hiding anything visible from one would flash it out instead. */}
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_BOOTSTRAP }} />
       </body>
     </html>
   );

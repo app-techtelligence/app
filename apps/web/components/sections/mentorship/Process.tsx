@@ -9,7 +9,11 @@ export async function Process() {
   const t = await getTranslations("mentorship.process");
 
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section
+      data-reveal
+      suppressHydrationWarning
+      className="bg-white py-16 sm:py-20"
+    >
       <Container>
         <SectionHeading
           kicker={t("kicker")}

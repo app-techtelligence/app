@@ -9,7 +9,12 @@ export async function HelpAreas() {
   const t = await getTranslations("mentorship.help");
 
   return (
-    <section id="help" className="bg-canvas py-16 sm:py-20">
+    <section
+      id="help"
+      data-reveal
+      suppressHydrationWarning
+      className="bg-canvas py-16 sm:py-20"
+    >
       <Container>
         <SectionHeading
           kicker={t("kicker")}

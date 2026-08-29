@@ -5,9 +5,9 @@
       "course": "Courses",
       "mentorship": "Mentorship",
       "consulting": "Consulting",
-      "services": "Services",
-      "servicesAi": "AI",
-      "servicesDataGovernance": "Data governance",
+      "consultingData": "Data",
+      "consultingAi": "AI",
+      "consultingSoftware": "Software/App",
       "blog": "Blog",
       "about": "About",
       "contact": "Contact",
@@ -307,347 +307,113 @@
       "description": "Data platforms and AI environments implemented end to end: diagnosis, architecture, implementation and operations. Request a proposal."
     },
     "hero": {
-      "kicker": "Data & AI Consulting",
-      "title": "Data and AI that leave the slide deck and reach production",
-      "subtitle": "We implement data platforms and AI environments end to end — from diagnosis to operations, with your team ready to own what we build.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Use the contact form",
-      "whatsappMessage": "Hi! I'd like to request a Data & AI consulting proposal from TechTelligence for my company."
+      "kicker": "For businesses",
+      "title": "Data, AI and digital presence implemented by those who build.",
+      "cta": "Talk to a specialist",
+      "whatsappMessage": "Hello! I'd like to talk to a TechTelligence specialist about consulting for my company."
     },
-    "services": {
-      "kicker": "Services",
-      "title": "What we implement",
-      "subtitle": "Three service lines, one standard: solid engineering, from raw data to value in production.",
-      "dataPlatforms": {
-        "tagline": "Data engineering",
-        "title": "Data Platforms",
-        "description": "A modern, reliable data platform sized for where your business is today.",
-        "items": [
-          "Ingestion and integration of your data sources",
-          "Warehouse or lakehouse — whichever fits your case",
-          "Reliable, tested and monitored pipelines",
-          "Data governance and quality from day one"
-        ]
-      },
-      "aiEnvironments": {
-        "tagline": "Artificial intelligence",
-        "title": "AI Environments",
-        "description": "From your first generative AI use case to machine learning foundations — with responsible adoption.",
-        "items": [
-          "LLM integration with your systems and processes",
-          "RAG: AI that answers with your company's data",
-          "Machine learning foundations to grow on safely",
-          "Responsible adoption: privacy, security and control"
-        ]
-      },
-      "integrated": {
-        "tagline": "The full stack",
-        "title": "Data + AI, Integrated",
-        "description": "The complete journey in one coherent architecture: from raw data to AI creating value in production.",
-        "items": [
-          "A single roadmap for data and AI",
-          "Architecture designed end to end, no patchwork",
-          "Less rework, faster delivery",
-          "Continuous evolution alongside your team"
-        ]
+    "whatsappTopic": "Hello! I'd like to know more about {topic} from TechTelligence for my company.",
+    "data": {
+      "kicker": "Data",
+      "title": "Your business, driven by data",
+      "subtitle": "You can hire all 3 stages as a complete journey, or only the one you need now.",
+      "steps": {
+        "diagnosis": {
+          "label": "01 · Diagnosis",
+          "title": "Data Map",
+          "tag": "“Clarity before any investment in data and AI.”",
+          "items": [
+            "Know exactly where the biggest opportunities are",
+            "Clear priorities: what to solve first for faster results",
+            "Leadership and technical team aligned in the same direction",
+            "A roadmap to execute with confidence, not a report left in a drawer"
+          ],
+          "cta": "I want my diagnosis"
+        },
+        "build": {
+          "label": "02 · Implementation",
+          "title": "Data Build",
+          "tag": "“From architecture to operations, with real deliveries in every cycle.”",
+          "items": [
+            "Real governance",
+            "Your data organized in a catalog your team actually uses",
+            "The right tools for your context, not the trendiest ones",
+            "A system running in production",
+            "Your team trained to run it on its own, without depending on us forever"
+          ],
+          "cta": "I want to build"
+        },
+        "squad": {
+          "label": "03 · Ongoing",
+          "title": "Ongoing Squad",
+          "tag": "“Engineering capacity on demand, at your company's pace.”",
+          "items": [
+            "Senior reinforcement when you need it, without the cost of a full-time hire",
+            "Your data quality always under control, with indicators you can track",
+            "Your operation evolves with the business, without falling behind",
+            "Scale up or down as needed"
+          ],
+          "cta": "I want ongoing support"
+        }
       }
     },
-    "approach": {
-      "kicker": "Our approach",
-      "title": "How we work",
-      "subtitle": "No never-ending projects: a clear path from base to summit, with concrete deliverables at every stage.",
-      "steps": [
-        {
-          "title": "Diagnosis",
-          "description": "We map your business, your data and your systems. You leave with a clear picture of where you stand and the highest-impact opportunities."
+    "ai": {
+      "kicker": "AI",
+      "title": "Artificial intelligence that actually solves",
+      "subtitle": "Ready-to-use automations, chosen for what your company needs right now.",
+      "cta": "Learn more",
+      "cards": {
+        "chatbot": {
+          "title": "Chatbot",
+          "description": "Automated support that actually works, 24 hours a day."
         },
-        {
-          "title": "Architecture and roadmap",
-          "description": "We design the architecture and prioritize a pragmatic roadmap: what creates value first ships first."
+        "marketing": {
+          "title": "Marketing Boost",
+          "description": "Campaigns running every day, with no manual effort."
         },
-        {
-          "title": "Implementation",
-          "description": "We build in short cycles, with working deliverables in production — not just documents and presentations."
+        "processes": {
+          "title": "Process Automation",
+          "description": "Repetitive tasks automated, freeing your team for what matters."
         },
-        {
-          "title": "Handover and operations",
-          "description": "We hand over a running operation with your team enabled: documentation, training and support until full autonomy."
+        "recruiting": {
+          "title": "Smart Recruiting",
+          "description": "Faster, more consistent candidate screening."
+        },
+        "sales": {
+          "title": "Sales Engine",
+          "description": "Your team selling more, with less manual work."
         }
-      ]
+      }
     },
-    "whyUs": {
-      "kicker": "Why TechTelligence",
-      "title": "We build — we don't just advise",
-      "subtitle": "The same team that implements Data & AI for companies also trains professionals for the market. That loop keeps our bar high on both sides.",
-      "items": [
-        {
-          "title": "Hands-on, not slide decks",
-          "description": "We deliver working code, pipelines and infrastructure — not recommendations that stay on paper."
+    "software": {
+      "kicker": "Software/App",
+      "title": "Digital presence that delivers results",
+      "subtitle": "From an institutional website to a custom system, according to your company's needs.",
+      "cta": "Learn more",
+      "proposalCta": "Request a proposal",
+      "cards": {
+        "website": {
+          "title": "Institutional Website",
+          "description": "A website that builds credibility and opens business opportunities."
         },
-        {
-          "title": "A market-current stack",
-          "description": "We work with the tools the market uses today, chosen for the problem — not for the hype."
+        "store": {
+          "title": "Online Store",
+          "description": "Your online store ready to sell, with all the credibility your business deserves."
         },
-        {
-          "title": "Pragmatic scope",
-          "description": "We start from the business problem and deliver in short cycles. Value first; complexity only when it earns its place."
+        "apps": {
+          "title": "Mobile Apps",
+          "description": "Your app, from design to publication in the app stores."
         },
-        {
-          "title": "Knowledge that stays",
-          "description": "Training people is part of our business — and we do the same for your team, so they own the platform with confidence."
+        "custom": {
+          "title": "Custom Software",
+          "description": "The tailor-made solution your company really needs."
         }
-      ]
+      }
     },
-    "finalCta": {
-      "title": "Ready to talk about your project?",
-      "subtitle": "Tell us your company's challenge and get a clear proposal, with scope, stages and next steps defined.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Fill out the contact form",
-      "whatsappMessage": "Hi! I'd like a Data & AI consulting proposal from TechTelligence. Can we talk about my company's project?"
-    }
-  },
-  "serviceAi": {
-    "meta": {
-      "title": "AI Consulting: Strategy, Generative AI and ML — TechTelligence",
-      "description": "AI consulting from strategy to production: generative AI and LLM solutions, machine learning and AI operations — built on your data, run by your team."
-    },
-    "hero": {
-      "kicker": "Services · Artificial Intelligence",
-      "title": "AI built on your data, working inside your operation",
-      "subtitle": "We identify the use cases that matter, build them on your data and systems, and take them to production responsibly — from your first generative AI assistant to machine learning at scale.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Use the contact form",
-      "whatsappMessage": "Hi! I'd like to talk about TechTelligence's AI consulting for my company."
-    },
-    "offerings": {
-      "kicker": "What we do",
-      "title": "AI services, end to end",
-      "subtitle": "From deciding where AI creates value to keeping models healthy in production — one team, one standard of engineering.",
-      "cards": [
-        {
-          "tagline": "Strategy",
-          "title": "AI Strategy & Readiness",
-          "description": "Before the first model: clarity on where AI creates value for your business and what needs to be true for it to work.",
-          "items": [
-            "Use-case discovery and prioritization by business impact",
-            "Readiness assessment: data, systems and skills",
-            "Pragmatic roadmap with quick wins first",
-            "Responsible-AI guardrails from day one"
-          ]
-        },
-        {
-          "tagline": "Generative AI",
-          "title": "Generative AI & LLM Solutions",
-          "description": "Assistants, copilots and automations that answer with your company's knowledge — not generic internet text.",
-          "items": [
-            "LLM integration with your systems and processes",
-            "RAG: answers grounded in your documents and data",
-            "Evaluation pipelines so quality is measured, not guessed",
-            "Privacy, security and cost control built in"
-          ]
-        },
-        {
-          "tagline": "Machine learning",
-          "title": "Machine Learning & Predictive Analytics",
-          "description": "Models that anticipate what your business needs to know: demand, churn, risk, the next best action.",
-          "items": [
-            "Forecasting for demand, sales and capacity",
-            "Classification and scoring: churn, credit, leads",
-            "Recommendation and personalization",
-            "Experiments measured against business metrics"
-          ]
-        },
-        {
-          "tagline": "Operations",
-          "title": "MLOps & AI Operations",
-          "description": "AI only creates value while it runs well. We make deployment, monitoring and evolution routine — not heroics.",
-          "items": [
-            "Deployment pipelines for models and LLM applications",
-            "Monitoring for quality, drift and cost",
-            "Model lifecycle: versioning, retraining, rollback",
-            "Your team trained to operate it with confidence"
-          ]
-        }
-      ]
-    },
-    "useCases": {
-      "kicker": "Use cases",
-      "title": "Where AI pays off first",
-      "subtitle": "Six patterns we see creating value across industries — a starting point, not a limit.",
-      "items": [
-        {
-          "title": "Customer service assistants",
-          "description": "Answer customers faster and more consistently, with AI grounded in your policies and product data."
-        },
-        {
-          "title": "Internal knowledge search",
-          "description": "Give your team one place to ask questions across documents, wikis and systems — with sources cited."
-        },
-        {
-          "title": "Document processing",
-          "description": "Extract, classify and validate information from contracts, invoices and forms automatically."
-        },
-        {
-          "title": "Forecasting",
-          "description": "Plan inventory, staffing and cash with forecasts that learn from your history and seasonality."
-        },
-        {
-          "title": "Churn and retention",
-          "description": "Know who is about to leave and why — early enough to act on it."
-        },
-        {
-          "title": "Process automation",
-          "description": "Remove repetitive steps from back-office workflows with AI that hands edge cases off to people."
-        }
-      ]
-    },
-    "engagement": {
-      "kicker": "How we engage",
-      "title": "Prove it small, then scale it",
-      "subtitle": "Short cycles with measurable checkpoints — you see value before you commit to scale.",
-      "steps": [
-        {
-          "title": "Assess",
-          "description": "We map your use cases, data and systems, and leave you with a prioritized roadmap — valuable even if we stop here."
-        },
-        {
-          "title": "Prove",
-          "description": "We build the highest-impact use case in weeks and measure it against a business metric agreed up front."
-        },
-        {
-          "title": "Scale",
-          "description": "We harden what worked into production — security, monitoring, cost control — and train your team to own it."
-        }
-      ]
-    },
-    "finalCta": {
-      "title": "Ready to put AI to work?",
-      "subtitle": "Tell us your challenge and get a clear proposal: use cases, stages and next steps defined.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Fill out the contact form",
-      "whatsappMessage": "Hi! I'd like a proposal for AI consulting from TechTelligence for my company."
-    }
-  },
-  "serviceDataGovernance": {
-    "meta": {
-      "title": "Data Governance Consulting — TechTelligence",
-      "description": "Data governance that enables the business: quality, catalog and lineage, LGPD compliance and an operating model your team sustains. Request a proposal."
-    },
-    "hero": {
-      "kicker": "Services · Data Governance",
-      "title": "Data your company can trust — and prove it",
-      "subtitle": "We implement governance that enables instead of blocking: quality, clear ownership, catalog and LGPD compliance, in an operating model your team keeps running after we leave.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Use the contact form",
-      "whatsappMessage": "Hi! I'd like to talk about TechTelligence's data governance consulting for my company."
-    },
-    "offerings": {
-      "kicker": "What we do",
-      "title": "Governance made operational",
-      "subtitle": "Not a binder of policies — rules, roles and tooling working inside your data platform.",
-      "cards": [
-        {
-          "tagline": "Foundation",
-          "title": "Framework & Operating Model",
-          "description": "Governance sized for your company — enough structure to be reliable, light enough to be followed.",
-          "items": [
-            "Policies and standards that fit how you work",
-            "Clear ownership: data owners and data stewards",
-            "Lightweight decision forums — no bureaucracy theater",
-            "Adoption metrics so progress is visible"
-          ]
-        },
-        {
-          "tagline": "Quality",
-          "title": "Data Quality Management",
-          "description": "Trust is built dataset by dataset: automated checks where the data flows, not spreadsheets after the fact.",
-          "items": [
-            "Quality rules embedded in your pipelines",
-            "Monitoring, alerting and quality scorecards",
-            "Root-cause analysis and remediation workflows",
-            "SLAs for the datasets the business depends on"
-          ]
-        },
-        {
-          "tagline": "Discovery",
-          "title": "Catalog, Metadata & Lineage",
-          "description": "People can only use data they can find and understand. We make your data discoverable, documented and traceable.",
-          "items": [
-            "A data catalog rollout that people actually use",
-            "Business glossary: one language across teams",
-            "End-to-end lineage: where data comes from and goes",
-            "Self-service discovery for analysts and AI teams"
-          ]
-        },
-        {
-          "tagline": "Compliance",
-          "title": "Privacy, Security & LGPD",
-          "description": "Compliance as an outcome of good engineering — personal data mapped, access controlled, evidence ready.",
-          "items": [
-            "Personal-data mapping and classification",
-            "Access control, masking and anonymization",
-            "Retention and minimization policies in practice",
-            "Audit-ready documentation and evidence"
-          ]
-        }
-      ]
-    },
-    "useCases": {
-      "kicker": "What it unlocks",
-      "title": "Governance is what makes the rest possible",
-      "subtitle": "Six outcomes companies feel within months of getting governance right.",
-      "items": [
-        {
-          "title": "One source of truth",
-          "description": "KPIs that match across reports — no more meetings arguing about whose number is right."
-        },
-        {
-          "title": "AI-ready data",
-          "description": "AI initiatives that start building on day one, because the data is documented, clean and accessible."
-        },
-        {
-          "title": "LGPD without panic",
-          "description": "Know exactly what personal data you hold, where it lives and who touches it — before the regulator asks."
-        },
-        {
-          "title": "Self-service analytics",
-          "description": "Analysts find and trust data on their own instead of queueing for the data team."
-        },
-        {
-          "title": "Fewer data incidents",
-          "description": "Broken dashboards and silent pipeline failures caught by monitoring, not by the CEO."
-        },
-        {
-          "title": "Safe data sharing",
-          "description": "Share data between departments and with partners under the right controls, without improvisation."
-        }
-      ]
-    },
-    "engagement": {
-      "kicker": "How we engage",
-      "title": "Start where it hurts, grow domain by domain",
-      "subtitle": "Governance fails when it launches as a big-bang program. We roll it out where the value is concrete.",
-      "steps": [
-        {
-          "title": "Assess",
-          "description": "We measure maturity, map risks and pick the domains where governance pays back fastest."
-        },
-        {
-          "title": "Implement",
-          "description": "Policies, quality checks, catalog and access controls go live on the priority domains — working, not just written."
-        },
-        {
-          "title": "Operate",
-          "description": "Stewardship becomes routine: metrics, reviews and continuous improvement, owned by your team."
-        }
-      ]
-    },
-    "finalCta": {
-      "title": "Ready to trust your data?",
-      "subtitle": "Tell us where data hurts today and get a clear proposal: scope, stages and next steps defined.",
-      "ctaPrimary": "Request a proposal",
-      "ctaSecondary": "Fill out the contact form",
-      "whatsappMessage": "Hi! I'd like a proposal for data governance consulting from TechTelligence for my company."
+    "band": {
+      "text": "Every project has a different scope — so the investment is always discussed, never standardized. Talk to us and get a proposal tailored to your company's moment.",
+      "cta": "Chat on WhatsApp",
+      "whatsappMessage": "Hello! I'd like a tailored proposal from TechTelligence for my company."
     }
   },
   "about": {
@@ -792,7 +558,10 @@
     }
   },
   "chat": {
-    "launcher": { "open": "Open assistant", "close": "Close assistant" },
+    "launcher": {
+      "open": "Open assistant",
+      "close": "Close assistant"
+    },
     "title": "TechTelligence Assistant",
     "subtitle": "First contact",
     "welcome": "Hi! 👋 I'm the TechTelligence assistant. I can answer questions about our services — pick a topic or type your question.",
@@ -810,7 +579,10 @@
       "criacao-de-sites": "We also build professional websites and web applications — this site is an example of our work. Tell me what you need: an institutional site, a blog, a system with login?",
       "outros": "No problem! Tell me what you need — if it's something we do, I'll explain how it works; if not, I'll point you to the right channel."
     },
-    "input": { "placeholder": "Type your question…", "send": "Send" },
+    "input": {
+      "placeholder": "Type your question…",
+      "send": "Send"
+    },
     "whatsapp": {
       "cta": "Chat on WhatsApp",
       "templates": {

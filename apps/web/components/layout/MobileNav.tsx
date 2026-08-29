@@ -14,9 +14,12 @@ const links: { href: StaticAppPathname; key: "course" | "mentorship" | "blog" | 
   { href: "/about", key: "about" },
 ];
 
-const serviceLinks: { href: StaticAppPathname; key: "servicesAi" | "servicesDataGovernance" }[] = [
-  { href: "/consulting/ai", key: "servicesAi" },
-  { href: "/consulting/data-governance", key: "servicesDataGovernance" },
+// The service lines live on the consulting page as anchored sections, not on
+// separate pages — these links scroll within /consultoria.
+const serviceAnchors: { hash: string; key: "consultingData" | "consultingAi" | "consultingSoftware" }[] = [
+  { hash: "#data", key: "consultingData" },
+  { hash: "#ia", key: "consultingAi" },
+  { hash: "#software", key: "consultingSoftware" },
 ];
 
 export function MobileNav() {
@@ -43,12 +46,12 @@ export function MobileNav() {
               onClick={() => setOpen(false)}
               className="py-3 text-base font-semibold text-navy"
             >
-              {t("nav.services")}
+              {t("nav.consulting")}
             </Link>
-            {serviceLinks.map(({ href, key }) => (
+            {serviceAnchors.map(({ hash, key }) => (
               <Link
-                key={href}
-                href={href}
+                key={hash}
+                href={{ pathname: "/consulting", hash }}
                 onClick={() => setOpen(false)}
                 className="border-b border-navy/5 py-2.5 pl-4 text-sm font-semibold text-navy/75 last:border-b-0"
               >
