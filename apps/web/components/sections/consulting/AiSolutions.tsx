@@ -7,10 +7,10 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 const cards = ["chatbot", "marketing", "processes", "recruiting", "sales"] as const;
 
 /**
- * iOS-style cards (owner's call): generous corner radius, hairline border,
- * soft diffuse shadow, whole card tappable. Laid 2-up then 3-up so five
- * items close the grid with no orphan cell (the 5th goes full-width in the
- * tablet two-column window).
+ * Owner's call: a left-aligned vertical stack, every card the same size
+ * regardless of copy length — distinct from the Software grid below. Same
+ * iOS family: generous radius, hairline border, soft shadow, whole card
+ * tappable.
  */
 export async function AiSolutions() {
   const t = await getTranslations("consulting");
@@ -29,8 +29,8 @@ export async function AiSolutions() {
           title={t("ai.title")}
           subtitle={t("ai.subtitle")}
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-          {cards.map((key, i) => (
+        <div className="mt-12 flex max-w-3xl flex-col gap-5">
+          {cards.map((key) => (
             <a
               key={key}
               href={whatsappLink(
@@ -38,17 +38,15 @@ export async function AiSolutions() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group flex flex-col rounded-2xl border border-navy/5 bg-white p-7 shadow-md shadow-navy/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/10 ${
-                i < 2 ? "lg:col-span-3" : "lg:col-span-2"
-              } ${i === cards.length - 1 ? "sm:col-span-2 lg:col-span-2" : ""}`}
+              className="group flex w-full flex-col rounded-2xl border border-navy/5 bg-white p-7 shadow-md shadow-navy/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-navy/10"
             >
               <h3 className="text-xl font-extrabold tracking-wide text-navy">
                 {t(`ai.cards.${key}.title`)}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-steel">
+              <p className="mt-2 text-sm leading-relaxed text-steel">
                 {t(`ai.cards.${key}.description`)}
               </p>
-              <span className="mt-6 flex items-center gap-1.5 text-sm font-bold text-navy transition-colors group-hover:text-accent-strong">
+              <span className="mt-5 flex items-center gap-1.5 text-sm font-bold text-navy transition-colors group-hover:text-accent-strong">
                 {t("ai.cta")}
                 <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </span>
