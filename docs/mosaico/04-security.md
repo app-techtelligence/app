@@ -117,10 +117,13 @@ profiles can be made permanently ineligible.
 - Releases are built in CI from a tagged commit, with checksums published and build
   provenance attested. The updater, if enabled, verifies a signature against a pinned
   public key; an unverifiable update is refused, never "downloaded anyway".
-- **Windows code signing is an unresolved cost.** Unsigned installers trigger SmartScreen
-  warnings that will lose most first-time users. An OV/EV certificate is an annual expense
-  (a few hundred USD) and needs a decision before the public release —
-  [05-roadmap.md § Open questions](05-roadmap.md#open-questions).
+- **Windows code signing: 0.1.0 ships unsigned** (D17). This is a deliberate, documented
+  trade — not an oversight. Mitigations: SHA-256 checksums published with every release,
+  releases built in CI from a tagged commit with provenance attested, and a README section
+  that explains the SmartScreen prompt plainly and tells users how to verify the download
+  themselves. Signing is revisited at 0.2.0, when there is evidence of real demand.
+  Users who won't run unsigned software should build from source — and the build must be
+  simple enough that this is a genuine option.
 
 ## 9. Privacy
 

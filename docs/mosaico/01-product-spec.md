@@ -315,10 +315,11 @@ A profile is "a kind of pane": what to run, where, with what environment, and ho
   is local-only (D10), the connection is an ordinary `ssh` process, and authentication is
   your system agent's job. **Mosaico never stores a password or a private key.**
 
-## 12. The CLI
+## 12. The CLI — a supported product, not a side effect
 
 `mosaico` is also a terminal command, because a session manager that can only be driven by
-its own GUI is half a tool:
+its own GUI is half a tool. It is a **first-class deliverable** (D15): plenty of people
+will never open the GUI but would use a modern tmux, and they are part of the audience.
 
 ```
 mosaico ls                      list sessions: id, name, profile, status, cwd, age
@@ -331,9 +332,18 @@ mosaico workspace open <name>   launch a workspace
 mosaico daemon start|stop|status|upgrade
 ```
 
-`mosaico attach` from inside any terminal makes the daemon useful on a headless box and
-gives us a test harness that needs no GUI — which is how the daemon gets properly tested
-in CI (see [05-roadmap.md § M2](05-roadmap.md#m2--daemon-core-34-weeks)).
+What being first-class commits us to:
+
+- **A stable surface** within a major version. Flags do not change meaning; a removal gets
+  a deprecation warning for one minor cycle first.
+- **Complete `--help`** on every command, plus shell completions for pwsh, bash, zsh, fish.
+- **`--json`** on `ls`, `grep` and `daemon status`, so output is scriptable rather than
+  something you have to parse out of a table.
+- **No GUI required, ever.** The CLI starts the daemon itself, and every command works over
+  a plain SSH connection to a headless box where the app has never been installed.
+
+It is also how the daemon gets properly tested: the whole of M2 is verified through the CLI
+with no GUI in the loop (see [05-roadmap.md § M2](05-roadmap.md#m2--daemon-core-34-weeks)).
 
 ## 13. What "done" means for v0.1
 
@@ -343,5 +353,8 @@ working zoom and drag-and-drop, the config and appearance system, full keybindin
 copy/paste/search, the palette, workspaces, broadcast, and sessions that survive closing
 the window. Documented, MIT/Apache licensed, with installers for Windows and Linux.
 
+Plus a CLI good enough to use on its own, on a headless machine, with no GUI installed.
+
 Not in v0.1: macOS, remote attach, a plugin API, serial profiles, image protocols
-(sixel/kitty), and any form of sync.
+(sixel/kitty), and any form of sync. The Windows installer for 0.1.0 is **unsigned** (D17)
+— checksums are published and the SmartScreen prompt is documented rather than hidden.

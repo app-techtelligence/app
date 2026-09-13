@@ -3,7 +3,7 @@
 A customizable terminal session manager. Sessions live in a background daemon and
 survive the app; panes are arranged on a zoomable plane instead of a tab bar.
 
-**Status: specification only. No code written yet.**
+**Status: specification complete, all 18 decisions made. No code written yet — M1 is the next step.**
 
 These documents are the design artifact for milestone M0. They are written to be
 lifted, as-is, into a new standalone repository when we start building — see
@@ -15,7 +15,7 @@ lifted, as-is, into a new standalone repository when we start building — see
 | [02-architecture.md](02-architecture.md) | Processes, the daemon, the IPC protocol, the renderer, per-OS notes |
 | [03-config-reference.md](03-config-reference.md) | The full TOML schema — appearance cascade, profiles, themes, keybindings |
 | [04-security.md](04-security.md) | Threat model and the decisions that follow from it |
-| [05-roadmap.md](05-roadmap.md) | Milestones with acceptance criteria, risks, fallback ladder, open questions |
+| [05-roadmap.md](05-roadmap.md) | Milestones with acceptance criteria and dates, risks, fallback ladder |
 
 ---
 
@@ -38,6 +38,12 @@ is fine — but do it here, with a date, so the reasoning survives.
 | D10 | Network reach | Local only; SSH and WSL are pane types, not a network daemon | 2026-09-12 |
 | D11 | Canvas rendering | Live nearby, snapshot far away, alerts at every zoom | 2026-09-12 |
 | D12 | Feature set | Command palette, broadcast input, saved workspaces, cross-pane search | 2026-09-12 |
+| D13 | Capacity | 10–20 h/week — the roadmap's estimates hold as written | 2026-09-13 |
+| D14 | Repo visibility | Private until 0.1.0, then public | 2026-09-13 |
+| D15 | The CLI | A first-class, supported product — not just a test harness | 2026-09-13 |
+| D16 | Licence | `MIT OR Apache-2.0` | 2026-09-13 |
+| D17 | Windows signing | Ship 0.1.0 unsigned; revisit at 0.2.0 | 2026-09-13 |
+| D18 | Docs language | English only (the app UI stays bilingual) | 2026-09-13 |
 
 ### D1 — refined during design
 
@@ -54,6 +60,28 @@ config file, the theme format and full keybinding remapping are specified anyway
 they are load-bearing: per-pane visual control needs a cascade to live in, and the command
 palette (D12) needs an action registry, which is the same registry keybindings bind to.
 They are specified at a *baseline* level — the depth and polish goes into per-pane visuals.
+
+### D14 — private does not mean closed
+
+D4 chose open source and D14 chose private-until-0.1.0. These do not conflict: the repo
+opens at the public release, under the D16 licence, with its full history. Until then the
+work happens without an audience for the rough middle. The practical consequence is that
+`SECURITY.md`, `CONTRIBUTING.md`, issue templates and the licence files land at **M6**,
+not at M1 — but the code is written the whole way as if it were already public.
+
+### D15 — what "first-class CLI" commits us to
+
+`mosaico attach` becomes a supported way to use Mosaico, not a side effect of testing:
+
+- A stable command surface within a major version. Flags do not change meaning; removals
+  get a deprecation warning for one minor cycle first.
+- Complete `--help` on every command, plus shell completions for pwsh/bash/zsh/fish.
+- Machine-readable output (`--json`) on `ls`, `grep` and `daemon status`, so it scripts.
+- It must work on a machine where the GUI has **never** run: the CLI starts the daemon
+  itself, and every command works over a plain SSH connection to a headless box.
+
+This is a real widening of the audience — plenty of people will never open the GUI but
+would use a modern tmux — paid for with docs and a compatibility promise.
 
 ### D9 — name availability, checked 2026-09-12
 
@@ -77,6 +105,7 @@ D3 chose a standalone repository. The spec is being written on
 session's designated branch, and because a spec with no code has no reason to create a
 repo yet.
 
-When M1 starts: create `app-techtelligence/mosaico`, move `docs/mosaico/**` to its `docs/`,
-and delete it from this repo. Nothing here is coupled to the monorepo — no shared config,
-no imports, no CI wiring.
+When M1 starts: create `app-techtelligence/mosaico` **private** (D14), move
+`docs/mosaico/**` to its `docs/`, and delete it from this repo. Nothing here is coupled to
+the monorepo — no shared config, no imports, no CI wiring. The repo flips to public at M6,
+licensed `MIT OR Apache-2.0` (D16).

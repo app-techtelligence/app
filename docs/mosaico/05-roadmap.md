@@ -1,11 +1,24 @@
 # Mosaico — roadmap, risks, open questions
 
-Milestones are **sequenced, not scheduled**. The week estimates assume steady part-time
-work and exist to convey relative size; they are not commitments, and the available hours
-per week are still unknown ([open question 5](#open-questions)).
+Capacity is **10–20 h/week** (D13), which is what the estimates below were sized for, so
+they stand as written. Each milestone has acceptance criteria: a milestone is not done
+because the code exists, it is done when the criteria are demonstrably met.
 
-Each milestone has acceptance criteria. A milestone is not done because the code exists —
-it is done when the criteria are demonstrably met.
+| Milestone | Size | Cumulative | Indicative finish |
+|---|---|---|---|
+| M1 Spike | 1–2 wk | 1–2 wk | late Sep 2026 |
+| M2 Daemon | 3–4 wk | 4–6 wk | late Oct 2026 |
+| M3 App, tiling | 4–6 wk | 8–12 wk | early Dec 2026 |
+| M4 Canvas | 4–6 wk | 12–18 wk | mid Jan 2027 |
+| M5 Power features | 3–4 wk | 15–22 wk | mid Feb 2027 |
+| M6 Linux + 0.1.0 | 2–3 wk | 17–25 wk | early Mar 2027 |
+
+That is 17–25 weeks of *work*, not of calendar. It assumes no gaps, and there will be gaps
+— consultancy load, the website, December. **Plan on 0.1.0 landing somewhere between March
+and May 2027**, and treat any date inside that range as good.
+
+The dates are a planning aid, not a commitment to anyone. The only hard gate is M1: if the
+spike fails, everything after it is re-estimated from the fallback that replaces it.
 
 ---
 
@@ -45,7 +58,12 @@ Sessions, PTY on Windows and Linux, VT parser, ring buffers, scrollback, the eve
 detector, the protocol, subscription tiers, flow control, and the CLI
 (`ls`/`new`/`attach`/`kill`/`send`/`grep`).
 
-**Acceptance:** `mosaico attach` works from inside any ordinary terminal. Kill the client
+Because the CLI is a **first-class product** (D15), not just a harness, this milestone also
+owns its command surface: complete `--help`, `--json` output on `ls`/`grep`/`daemon status`,
+and daemon autostart so every command works on a machine where the GUI has never run.
+
+**Acceptance:** `mosaico attach` works from inside any ordinary terminal, including over a
+plain SSH connection to a headless Linux box with no GUI installed. Kill the client
 mid-session and reattach: the screen is byte-identical to what it should be. `vim`, `htop`,
 `git log --graph`, a progress bar and CJK/emoji output all render correctly through the
 parser (golden tests). A slow client is demoted, never blocking the PTY read loop — with a
@@ -89,10 +107,17 @@ cannot be enabled on an excluded profile.
 
 Linux PTY and socket paths, WebKitGTK verification (M1's benchmarks re-run there), the
 `--renderer=canvas` fallback proven working, AppImage and `.deb`, MSI and NSIS, a docs site,
-a theme gallery, `README`, `CONTRIBUTING`, `SECURITY.md`, the license, and issue templates.
+a theme gallery, `README`, `CONTRIBUTING`, `SECURITY.md`, issue templates, shell completions
+and a documented CLI reference (D15), and the `MIT OR Apache-2.0` licence files (D16).
+
+This is also where the repository **flips from private to public** (D14) and where the
+unsigned-release decision (D17) is executed: published checksums, and a README section
+explaining the SmartScreen prompt honestly rather than hiding it. Docs are English only
+(D18); the app UI ships bilingual.
 
 **Acceptance:** someone who has never seen the project installs it on both OSes and reaches
-a working, styled, multi-pane setup using only the published docs.
+a working, styled, multi-pane setup using only the published docs — including someone who
+only ever uses the CLI.
 
 ## M7+ — After 0.1.0
 
@@ -136,8 +161,12 @@ have shipped something worth using.
 where terminals-in-webviews break, and PT-BR keyboards hit the dead-key path constantly.
 Mitigation: it is an M1 acceptance criterion, not a late-stage bug report.
 
-**R5 — Windows code signing.** Unsigned installers trigger SmartScreen and lose most
-first-time users. Needs a decision and a budget before M6.
+**R5 — Windows code signing.** Decided (D17): 0.1.0 ships **unsigned**, with published
+checksums and an honest README note about the SmartScreen prompt. This is a real cost —
+a share of casual installs simply will not happen — accepted deliberately so the spend
+waits until there is evidence anyone wants the thing. Revisit at 0.2.0; Microsoft's
+subscription signing service is the cheaper option to evaluate then, assuming
+TechTelligence meets its eligibility rules.
 
 **R6 — Memory.** 20 sessions × parsed scrollback can become gigabytes if the encoding is
 naive. Mitigation: RLE with an interned attribute table, hard per-session byte caps,
@@ -149,20 +178,32 @@ it and close the issue.
 
 ---
 
-## Open questions
+## Questions answered, 2026-09-13
 
-Answer these before the milestone in brackets.
+| # | Question | Answer |
+|---|---|---|
+| 1 | Hours per week | 10–20 h — estimates above hold; 0.1.0 realistically Mar–May 2027 |
+| 2 | Repo public or private | Private until 0.1.0, public at M6 |
+| 3 | CLI first-class? | Yes — supported product, stable flags, works headless |
+| 4 | Licence | `MIT OR Apache-2.0` |
+| 5 | Windows signing | Unsigned for 0.1.0; revisit at 0.2.0 |
+| 6 | Docs language | English only; app UI bilingual |
 
-1. **License** — `MIT OR Apache-2.0` (the Rust ecosystem norm, maximum adoption) or GPL-3.0
-   (keeps derivatives open)? Recommendation: `MIT OR Apache-2.0`. **[before M6]**
-2. **Windows code signing** — buy a certificate, or ship unsigned with a documented
-   SmartScreen workaround for 0.1.0? **[before M6]**
-3. **Repository** — create `app-techtelligence/mosaico` public from the first commit
-   (building in public), or private until 0.1.0? **[before M1]**
-4. **Documentation language** — English-only for reach, or bilingual PT-BR/EN? A Brazilian
-   OSS project with Portuguese docs is genuinely differentiated, and it doubles the
-   maintenance. The app UI itself should be bilingual either way. **[before M6]**
-5. **Hours per week** — needed to turn the sequence above into a calendar. **[now]**
-6. **Is the CLI a first-class product?** `mosaico attach` could be a genuinely useful
-   tmux-alternative for people who never open the GUI. Treating it as a supported product
-   costs polish and documentation; treating it as a test harness costs nothing. **[before M2]**
+Nothing is now blocking M1.
+
+## What gets revisited, and when
+
+These are not open questions — they are decisions with a scheduled review, so they don't
+get quietly forgotten:
+
+- **Code signing** — at 0.2.0, if 0.1.0 shows real download interest. **[0.2.0]**
+- **`canvas.mode` default** — after two weeks of daily use in M4, confirm `continuous`
+  beats `modal` in practice rather than only on paper. **[M4]**
+- **LOD thresholds** (11 / 5 / 2 px) — starting points for M1 measurement, tuned once the
+  real renderer exists. **[M4]**
+- **Scrollback memory estimates** (1–3 MB/session after RLE) — validated with real output
+  in M2; the caps and eviction path exist regardless. **[M2]**
+- **macOS** — only when someone has a Mac to test on. Until then the code paths exist and
+  the platform is documented as unsupported. **[M7+]**
+- **Docs language** — English only stands unless a Portuguese-speaking user base actually
+  materializes, which is a good problem to reconsider it for. **[after 0.1.0]**
