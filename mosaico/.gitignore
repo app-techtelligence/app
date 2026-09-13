@@ -1,0 +1,14 @@
+# Rust
+target/
+
+# Node
+node_modules/
+dist/
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Spike output you may not want to commit until you're ready
+spike/RESULTS.local.md

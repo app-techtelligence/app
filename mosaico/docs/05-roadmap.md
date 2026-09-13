@@ -35,6 +35,25 @@ find out whether that assumption holds **before** anything is built on top of it
 Build the smallest honest thing: one window, one real shell, xterm.js, plus a throwaway
 harness that fakes 20 panes on a zoomable board.
 
+**Revised during implementation (2026-09-13): M1 is three phases, not one.** Ordering
+them cheapest-first retires most of the risk before any Tauri code exists:
+
+| Phase | Needs | Answers |
+|---|---|---|
+| **A** — browser probe | a browser, nothing installed | WebGL context limit, many-pane fps, keypress→glyph latency, dead keys / AltGr / IME, DPI |
+| **B** — PTY bridge | Rust toolchain | real shells (ConPTY), end-to-end latency, throughput under a flood |
+| **C** — Tauri wrapper | Tauri toolchain | whether packaging changes any of the above |
+
+Phase A is the important one and costs almost nothing: **Edge on Windows runs the same
+engine as WebView2**, so opening the probe in Edge answers most of the graphics questions
+with no install at all. If Phase A fails, stop — the fallback ladder is the next decision
+and there is no point wrapping an engine that cannot do the job. Phase C is deliberately
+not built until A and B pass.
+
+Phases A and B are written and live in `spike/` — the Rust bridge compiles and
+round-trips a real shell, the web probe typechecks, builds and boots. None of that is the
+measurement: it was all verified on Linux, and M1 asks only about Windows.
+
 **Acceptance criteria — all measured on real Windows hardware, not estimated:**
 
 | Criterion | Target |
@@ -47,8 +66,10 @@ harness that fakes 20 panes on a zoomable board.
 | IME composition | No partial input leaks to the PTY |
 | Mixed-DPI multi-monitor | Cell metrics survive moving the window |
 
-**Deliverable:** a written go/no-go with the numbers, and if no-go, a decision from the
-fallback ladder below. Nothing after M1 starts until this is answered.
+**Deliverable:** a filled-in `spike/RESULTS.md` with a written go/no-go and the numbers,
+and if no-go, a decision from the fallback ladder below. Nothing after M1 starts until
+that verdict exists — including, especially, when the verdict is "go". A spike whose
+numbers were never recorded is a spike that gets argued about later from memory.
 
 ## M2 — Daemon core (~3–4 weeks)
 

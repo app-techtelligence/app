@@ -105,7 +105,22 @@ D3 chose a standalone repository. The spec is being written on
 session's designated branch, and because a spec with no code has no reason to create a
 repo yet.
 
-When M1 starts: create `app-techtelligence/mosaico` **private** (D14), move
-`docs/mosaico/**` to its `docs/`, and delete it from this repo. Nothing here is coupled to
-the monorepo — no shared config, no imports, no CI wiring. The repo flips to public at M6,
+M1 has started, so the future repo's contents now live under `mosaico/` in the website
+monorepo, laid out exactly as the standalone repo will be: `README.md`, both licence
+files, `docs/`, and `spike/`.
+
+**The move is a manual step, because Claude cannot create repositories** — the GitHub App
+integration returns 403 on repository creation. To complete it:
+
+```sh
+gh repo create app-techtelligence/mosaico --private \
+  --description "A terminal session manager: sessions on a zoomable board, in a daemon that outlives the app."
+git clone https://github.com/app-techtelligence/mosaico && cd mosaico
+cp -r <monorepo>/mosaico/. .
+git add -A && git commit -m "chore: import design docs and M1 spike" && git push
+```
+
+Then delete `mosaico/` from the website monorepo. Nothing is coupled to it — no shared
+config, no imports, no CI wiring, and the folder sits outside the pnpm workspace globs
+(`apps/*`, `packages/*`) so it never entered that build. The repo flips to public at M6,
 licensed `MIT OR Apache-2.0` (D16).
